@@ -225,6 +225,33 @@ button:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
 .boxes i.b3{background:var(--accent-soft)}
 .boxes i.b4{background:var(--accent)}
 .boxes i.b5{background:var(--good)}
+.practice{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:26px 0 4px}
+.pcard{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border:1px solid var(--rule);border-radius:4px;background:var(--surface);text-decoration:none;color:inherit;box-shadow:var(--shadow)}
+.pcard:hover{border-color:var(--accent);background:var(--surface-2)}
+.pcard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pglyph{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--accent);flex:none;line-height:1.35}
+.pcard b{display:block;font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.pcard .pd{font-size:14px;line-height:1.5;color:var(--ink-2)}
+.pcard .pn{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-3);display:block;margin-top:6px}
+.qtext{font-size:16.5px;line-height:1.6;color:var(--ink);margin-top:14px}
+.qtext code{font-family:var(--mono);font-size:.9em;background:var(--surface-2);padding:1px 5px;border-radius:2px}
+.opts{display:flex;flex-direction:column;gap:8px;margin-top:15px}
+.opt{text-align:left;font-family:var(--serif);font-size:15px;line-height:1.5;padding:11px 14px;border:1px solid var(--rule);border-radius:3px;background:var(--surface);color:var(--ink);cursor:pointer;display:flex;gap:11px;align-items:flex-start;width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--surface-2)}
+.opt:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.opt .ltr{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink-3);flex:none;padding-top:2px}
+.opt[data-state="right"]{border-color:var(--good);background:var(--surface-2)}
+.opt[data-state="right"] .ltr{color:var(--good)}
+.opt[data-state="wrong"]{border-color:var(--mark);background:var(--mark-soft)}
+.opt[data-state="wrong"] .ltr{color:var(--mark)}
+.opt:disabled{cursor:default}
+.fb{margin-top:15px;padding:13px 16px;border-left:3px solid var(--rule);background:var(--surface-2);border-radius:0 3px 3px 0;font-size:15px;line-height:1.6;color:var(--ink-2)}
+.fb.ok{border-left-color:var(--good)}
+.fb.no{border-left-color:var(--mark)}
+.fb b{color:var(--ink)}
+.fb .verdict{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px}
+.fb.ok .verdict{color:var(--good)}
+.fb.no .verdict{color:var(--mark)}
 
 /* ---------- setningsleser ---------- */
 .sentence{font-family:var(--serif);font-size:19px;line-height:1.85;margin:16px 0 0;max-width:none;color:var(--ink)}
@@ -287,14 +314,34 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
   <div>
     <p class="eyebrow">PSY300 · statistikk og metode</p>
     <h1>Statistikkens <em>alfabet</em></h1>
-    <p class="standfirst">Tre deler: først grunnbegrepene og hva variablene dine egentlig heter, så hvert statistisk tegn forklart med demoer du kan dra i, og til slutt en leseordbok for artikler. Alt i midtdelen kjører på et oppdiktet datasett du selv bestemmer størrelsen på.</p>
+    <p class="standfirst">Tre deler: først grunnbegrepene og hva variablene dine egentlig heter, så hvert statistisk tegn forklart med demoer du kan dra i, og til slutt en leseordbok for artikler. Alt i midtdelen kjører på et oppdiktet datasett du selv bestemmer størrelsen på. Nederst ligger øvingskortene og oppgavene — de to lenkene under tar deg rett dit.</p>
   </div>
   <div class="dataplate">
     <b>Del 0</b> — grunnbegrepene<br>
     <b>Del I</b> — tegnene, med sandkasse<br>
-    <b>Del II</b> — leseordbok for artikler
+    <b>Del II</b> — leseordbok for artikler<br>
+    <b>Øving</b> — kort og oppgaver
   </div>
 </header>
+
+<div class="practice">
+  <a class="pcard" href="#kort">
+    <span class="pglyph">⇄</span>
+    <span>
+      <b>Øvingskort</b>
+      <span class="pd">Tegnet på forsiden, betydningen bak. Hentet rett fra ordboka, så de dekker hvert eneste begrep på sida.</span>
+      <span class="pn">206 kort · 20 områder</span>
+    </span>
+  </a>
+  <a class="pcard" href="#oppgaver">
+    <span class="pglyph">?!</span>
+    <span>
+      <b>Oppgaver</b>
+      <span class="pd">Les tallet, velg analysen, si hva resultatet betyr. Hvert feilalternativ er en bestemt misforståelse, og du får vite hvilken.</span>
+      <span class="pn">36 flervalgsoppgaver · eksamensformat</span>
+    </span>
+  </a>
+</div>
 
 <div class="databar">
   <div class="databar-inner">
@@ -322,6 +369,11 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
 <div class="cols">
   <nav class="index" aria-label="Innhold">
+    <p class="navgroup">Øving</p>
+    <ol>
+      <li><a href="#kort"><span class="g">⇄</span> Øvingskort</a></li>
+      <li><a href="#oppgaver"><span class="g">?!</span> Oppgaver</a></li>
+    </ol>
     <p class="navgroup">Del 0 · grunnbegrepene</p>
     <ol>
       <li><a href="#studien"><span class="g">?</span> Studien vi later som</a></li>
@@ -372,6 +424,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
       <li><a href="#falske-venner"><span class="g">⚠</span> Falske venner</a></li>
       <li><a href="#ordbok"><span class="g">☰</span> Hele ordboka</a></li>
       <li><a href="#kort"><span class="g">⇄</span> Øvingskort</a></li>
+      <li><a href="#oppgaver"><span class="g">?!</span> Oppgaver</a></li>
     </ol>
   </nav>
 
@@ -1455,6 +1508,36 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
         <div class="aside"><b>Hvordan framgangen regnes.</b> Hvert kort har fem trinn. «Kunne den» flytter det ett trinn opp, «måtte tenke» sender det helt tilbake til start — for det er den ærlige responsen: kunne du det ikke nå, kan du det ikke. Stripa under kortet viser hvor hele bunken står, fra grått (ikke øvd ennå) til grønt (sitter). Målet er en grønn stripe, ikke et høyt tall.</div>
         <div class="aside tryit"><b>Slik ville jeg brukt dem:</b> velg ett område om gangen i stedet for alle 200+ på én gang — «Effektstørrelse» før en innlevering, «Greske bokstaver» når du sliter med å lese formler. Når et område begynner å sitte, slå på «bare de jeg sliter med», så blir bunken bare de kortene som fortsatt ikke har festet seg.</div>
         <div class="aside"><b>Framgangen lagres i denne nettleseren</b>, ikke på en server. Bytter du til mobilen eller en annen maskin, starter du på nytt der. Ingenting sendes noe sted, og ingen andre ser hvordan du ligger an.</div>
+      </div>
+    </section>
+
+    <!-- ---------- oppgaver ---------- -->
+    <section class="entry" id="oppgaver">
+      <div class="glyphcol"><span class="step">34</span><span class="glyph up">?!</span></div>
+      <div>
+        <h2>Oppgaver</h2>
+        <p class="asks">Kan du bruke det, ikke bare gjenkjenne det?</p>
+        <p>Kortene tester om du kan ordene. Disse tester om du kan <em>tenke</em> med dem: lese et tall ut av en resultatsetning, velge riktig analyse for et design, og si hva et resultat betyr — og hva det <strong>ikke</strong> betyr. Det er den oppgavetypen eksamen består av.</p>
+        <p>Hvert feilalternativ her er en bestemt misforståelse, ikke et tilfeldig galt svar. Svarer du feil, får du vite nøyaktig hvilken felle du gikk i — det er som regel mer nyttig enn å få vite hva som var riktig.</p>
+        <div class="panel">
+          <div class="panel-head"><span id="oppgHead">Oppgave</span><span id="oppgScore">—</span></div>
+          <div class="kortbar">
+            <label class="kortlab" for="oppgTema">Tema</label>
+            <select id="oppgTema" aria-label="Velg tema"></select>
+            <button class="chip" id="oppgWrong" aria-pressed="false">Bare de jeg har bommet på</button>
+          </div>
+          <div id="oppgBody" aria-live="polite"></div>
+          <div class="controls">
+            <button id="oppgNext" hidden>Neste oppgave</button>
+            <button class="ghost" id="oppgShuffle">Stokk om</button>
+            <button class="ghost" id="oppgForget">Nullstill framgang</button>
+          </div>
+          <div class="readout" id="oppgRead"></div>
+        </div>
+        <div class="aside"><b>Alternativene stokkes hver gang.</b> Det er med vilje: husker du «det var det tredje alternativet», har du lært rekkefølgen og ikke statistikken. Tastene <em class="v">1</em> til <em class="v">4</em> velger alternativ, <em class="v">N</em> går videre.</div>
+        <div class="aside"><b>Bruk «bare de jeg har bommet på».</b> Det er der læringen ligger. En oppgave du svarte riktig på i går er billig å gjenta; en du bommet på er verdt å møte igjen til begrunnelsen sitter — ikke bare svaret.</div>
+        <div class="aside tryit"><b>Les begrunnelsen også når du svarer riktig.</b> Det hender man treffer med en halvgod grunn, og da er det først i forklaringen det viser seg. Særlig på oppgavene om p-verdier og konfidensintervall, der det finnes flere tilsynelatende rimelige måter å ta feil på.</div>
+        <div class="aside"><b>Framgangen ligger i denne nettleseren</b>, som for øvingskortene. Ingenting sendes noe sted.</div>
       </div>
     </section>
 
@@ -2984,6 +3067,404 @@ const SENTENCES = [
     if(r.bottom < 0 || r.top > innerHeight) return;   /* bare når kortet er synlig */
     if(e.key === '1'){ grade(false); }
     else if(e.key === '2'){ grade(true); }
+  });
+
+  build();
+})();
+
+/* ================= Oppgaver: flervalg med begrunnelse per alternativ ================= */
+(function oppgaver(){
+  const body = document.getElementById('oppgBody');
+  if(!body) return;
+  const temaSel = document.getElementById('oppgTema'),
+        wrongBtn= document.getElementById('oppgWrong'),
+        nextBtn = document.getElementById('oppgNext'),
+        shufBtn = document.getElementById('oppgShuffle'),
+        forgetBtn=document.getElementById('oppgForget'),
+        readEl  = document.getElementById('oppgRead'),
+        headEl  = document.getElementById('oppgHead'),
+        scoreEl = document.getElementById('oppgScore');
+
+  /* q = spørsmål, o = alternativer, c = indeks til riktig svar, f = begrunnelse per alternativ */
+  const BANK = [
+/* ---- A: les tallet ---- */
+{t:'Les tallet', n:1, q:'En artikkel rapporterer: <code>t(73) = 2.41, p = .019, d = 0.56</code>. Hvilket tall forteller deg hvor <em>stor</em> forskjellen er?',
+ o:['d = 0.56','t = 2.41','p = .019','73'], c:0,
+ f:['Riktig. <b>d</b> er effektstørrelsen: forskjellen målt i standardavvik. 0.56 er en middels stor forskjell, og den står der nettopp fordi p ikke sier noe om størrelse.',
+    'Nei. <b>t</b> er testtallet — forskjellen delt på standardfeilen. Den vokser med utvalgsstørrelsen, så en stor t kan like gjerne bety mange deltagere som en stor effekt.',
+    'Nei. <b>p</b> sier hvor uvanlig resultatet er hvis nullhypotesen er sann. En bitteliten effekt får liten p bare N er stor nok.',
+    'Nei. <b>73</b> er frihetsgrader, som her røper at studien hadde 75 deltagere fordelt på to grupper.']},
+
+{t:'Les tallet', n:2, q:'<code>F(2, 388) = 12.44, p &lt; .001</code>. Hva forteller <em>toeren</em> deg om studien?',
+ o:['Den ble sammenlignet tre grupper','Den hadde to grupper','Den hadde to prediktorer i tillegg til utfallet','Den brukte to måletidspunkter'], c:0,
+ f:['Riktig. Første frihetsgrad i en enveis-ANOVA er antall grupper minus 1. <b>2</b> betyr altså <b>tre</b> grupper — og det er derfor man trengte ANOVA i stedet for en t-test.',
+    'Nei — da hadde første frihetsgrad vært 1, og du kunne brukt en t-test. Frihetsgraden er antall grupper <em>minus 1</em>.',
+    'Nei. Det ville vært en regresjon. I <code>F(2, 388)</code> fra en enveis-ANOVA handler toeren om grupper.',
+    'Nei. Gjentatte målinger gir en annen oppstilling. Her er toeren antall grupper minus 1.']},
+
+{t:'Les tallet', n:3, q:'En studie med 80 deltagere rapporterer <code>r = .34, p = .002</code>. Hvor stor andel av variasjonen deler de to variablene?',
+ o:['Omtrent 12 %','Omtrent 34 %','Omtrent 58 %','Det kan man ikke vite fra r'], c:0,
+ f:['Riktig. Delt variasjon er <b>r²</b> = .34² ≈ .12, altså omtrent 12 %. De resterende 88 % forklares av noe annet.',
+    'Nei — det er r selv, ikke andelen variasjon. r og r² er to forskjellige skalaer, og forskjellen er stor: .34 høres nesten ut som en tredel, men er i praksis en åttedel.',
+    'Nei. .58 ville vært kvadratroten av .34 — altså feil vei. Du skal kvadrere, ikke rotutdra.',
+    'Nei, det er nettopp det r² gjør: kvadrer korrelasjonen, så har du andelen delt variasjon.']},
+
+{t:'Les tallet', n:4, q:'<code>χ²(2, N = 391) = 8.4, p = .015, V = .15</code>. Hva er <b>V</b> her?',
+ o:['Effektstørrelsen — hvor sterk sammenhengen er','En ny testverdi som bekrefter χ²','Andelen av utvalget som havnet i riktig kategori','Variansen i den ene variabelen'], c:0,
+ f:['Riktig. <b>Cramérs V</b> er effektstørrelsen for kjikvadrat. χ² sier bare <em>om</em> det finnes en sammenheng; V sier hvor sterk den er. .15 er svak.',
+    'Nei. V er ikke en test og har ingen egen p-verdi — den er et mål på styrke, på linje med r² ved siden av r.',
+    'Nei, det er ikke det V måler. V går fra 0 til 1 og beskriver styrken i sammenhengen mellom de to kategoriske variablene.',
+    'Nei. Varians hører til kontinuerlige variabler. Her telles personer i kategorier.']},
+
+{t:'Les tallet', n:5, q:'En regresjon gir <code>b = 2.51, SE = 0.62, 95 % KI [1.29, 3.73]</code>. Er koeffisienten signifikant på 5 %-nivå?',
+ o:['Ja — intervallet inneholder ikke null','Nei — vi trenger p-verdien for å kunne si det','Ja — fordi b er større enn SE','Nei — intervallet er for bredt'], c:0,
+ f:['Riktig. Et 95 % konfidensintervall som ikke dekker null, svarer til p &lt; .05. Intervallet gjør altså dobbelt arbeid: det viser både signifikans og hvilke verdier som er plausible.',
+    'Ikke nødvendig. Intervallet inneholder informasjonen allerede — og forteller deg i tillegg <em>hvor mye</em> effekten kan tenkes å være, noe p aldri gjør.',
+    'Nei, det er ikke regelen. Sammenligningen som gjelder er om <em>intervallet</em> dekker null, ikke hvordan b står seg mot SE.',
+    'Nei. Bredden sier noe om presisjonen, ikke om signifikansen. Et bredt intervall som likevel utelukker null er fortsatt signifikant — bare upresist.']},
+
+{t:'Les tallet', n:6, q:'En regresjon har to prediktorer. Den ene har <code>B = 2.51</code>, den andre <code>B = 0.04</code>. Kan du konkludere med at den første er viktigst?',
+ o:['Nei — B står i variablenes egne enheter, så de kan ikke sammenlignes direkte','Ja — større B betyr større betydning','Ja, men bare hvis begge er signifikante','Nei — B sier ingenting om styrke i det hele tatt'], c:0,
+ f:['Riktig. <b>B</b> er ustandardisert: «poeng per time» og «poeng per krone» er ikke samme skala. Vil du rangere prediktorene, trenger du <b>β</b>, som er i standardavvik og dermed sammenlignbar.',
+    'Nei — dette er en av de vanligste lesefeilene. En prediktor målt i kroner får liten B rett og slett fordi én krone er lite, ikke fordi den betyr lite.',
+    'Signifikans hjelper ikke her. To signifikante B-er i ulike enheter er fortsatt usammenlignbare.',
+    'For strengt. B er fullt tolkbar — «2,51 poeng per ekstra time» er meningsfullt. Den er bare ikke sammenlignbar <em>på tvers av</em> prediktorer.']},
+/* ---- B: hva betyr det ---- */
+{t:'Hva betyr det', n:7, q:'En studie rapporterer <code>p = .03</code>. Hva betyr det?',
+ o:['Hvis det ikke fantes noen effekt, ville 3 % av studiene gitt et resultat minst så tydelig','Det er 3 % sjanse for at nullhypotesen er sann','Det er 97 % sjanse for at funnet er ekte','Effekten er liten — bare 3 %'], c:0,
+ f:['Riktig. p regnes ut <em>under forutsetning av</em> at H₀ er sann, og beskriver hvor uvanlig dataene er i den verdenen. Ikke noe annet.',
+    'Nei — dette er den klassiske feillesningen. p forteller deg sannsynligheten for <em>dataene gitt H₀</em>, ikke sannsynligheten for <em>H₀ gitt dataene</em>. De to er ikke det samme, og å bytte om på dem er den vanligste feilen i faget.',
+    'Nei, av samme grunn. p sier ingenting om hvor sannsynlig funnet ditt er — bare hvor uvanlig det ville vært hvis ingenting var på gang.',
+    'Nei. p sier ingenting om størrelse. Det er effektstørrelsens jobb.']},
+
+{t:'Hva betyr det', n:8, q:'En studie med 24 deltagere finner <code>p = .42</code> og konkluderer: «behandlingen har ingen effekt». Er det forsvarlig?',
+ o:['Nei — mangel på bevis er ikke bevis for fravær','Ja — p er langt over .05','Ja, hvis studien var godt gjennomført','Nei — de burde ha brukt ensidig test'], c:0,
+ f:['Riktig. Med 24 deltagere er styrken lav, så en reell effekt kunne lett vært oversett. Det er en <b>type II-feil</b>. Riktig formulering er «fant ikke en signifikant forskjell», ikke «det er ingen forskjell» — akkurat som en frifinnelse ikke er bevist uskyld.',
+    'At p er stor betyr bare at dataene er forenlige med H₀ — de er som regel forenlige med en haug andre verdier også. Se på konfidensintervallet: det vil trolig være vidt.',
+    'God gjennomføring hjelper ikke mot lav styrke. Med så få deltagere er studien rett og slett ikke i stand til å skille «ingen effekt» fra «effekt vi ikke fanget».',
+    'Ensidig test ville bare flyttet grensa, ikke løst problemet — og å bytte til ensidig etter å ha sett dataene er en form for p-hacking.']},
+
+{t:'Hva betyr det', n:9, q:'Forskjellen mellom to behandlinger er <code>2.1 poeng, 95 % KI [−0.4, 4.6]</code>. Hva er den ryddigste konklusjonen?',
+ o:['Resultatet er forenlig med alt fra en liten negativ til en ganske stor positiv effekt','Behandlingene er like effektive','Behandlingen virker, med 2,1 poeng bedring','Studien er mislykket og bør forkastes'], c:0,
+ f:['Riktig. Intervallet dekker null, så funnet er ikke signifikant — men det utelukker heller ikke en effekt på 4,6 poeng. Studien er <em>uavklart</em>, og det er en ærligere beskrivelse enn både «virker» og «virker ikke».',
+    'Nei. At intervallet dekker null betyr ikke at effekten <em>er</em> null — bare at null er blant de plausible verdiene, sammen med mange andre.',
+    'Nei. 2,1 er beste anslag, men intervallet viser at anslaget er for upresist til å bære den konklusjonen.',
+    'For hardt. Et uavklart resultat er fortsatt informasjon, og det teller med i en senere metaanalyse — hvis det blir publisert.']},
+
+{t:'Hva betyr det', n:10, q:'Hva betyr «95 %» i et 95 % konfidensintervall?',
+ o:['Over mange gjentatte studier vil ca. 95 % av slike intervaller inneholde den sanne verdien','Det er 95 % sjanse for at den sanne verdien ligger i nettopp dette intervallet','95 % av deltagerne ligger innenfor intervallet','Vi er 95 % sikre på at studien er riktig gjennomført'], c:0,
+ f:['Riktig. «95 %» er en egenskap ved <em>prosedyren</em>, ikke ved det ene intervallet du sitter med. Ditt intervall inneholder sannheten, eller så gjør det ikke det — og bredden røper ikke hvilket.',
+    'Dette er den vanligste misforståelsen, og den er lett å gjøre fordi formuleringen føles naturlig. Men det enkelte intervallet enten treffer eller bommer; sannsynligheten ligger i metoden.',
+    'Nei — det forveksler konfidensintervall med spredningen blant personer. Det siste er standardavviket sin jobb.',
+    'Nei. Konfidensintervallet sier ingenting om studiens kvalitet, bare om presisjonen i anslaget gitt at alt annet er gjort riktig.']},
+
+{t:'Hva betyr det', n:11, q:'En studie med 40 000 deltagere finner <code>r = .03, p &lt; .001</code>. Hvordan bør det leses?',
+ o:['Sammenhengen er nesten sikkert reell, men så svak at den knapt betyr noe praktisk','Sammenhengen er sterk, siden p er så liten','Resultatet er en statistisk feil','p &lt; .001 betyr at r egentlig er større enn .03'], c:0,
+ f:['Riktig. Med 40 000 deltagere blir standardfeilen bitteliten, så selv en forsvinnende sammenheng blir signifikant. <b>r² ≈ .0009</b> — under en tidel av en prosent delt variasjon. Dette er nettopp derfor effektstørrelser skal rapporteres.',
+    'Nei — p og styrke er to forskjellige ting. Stor N gjør p liten uten å gjøre effekten større.',
+    'Nei, det er helt normalt. Store utvalg oppdager små effekter; det er styrken deres, og fallgruva.',
+    'Nei. p og r måler ulike ting. r er anslaget på styrken, og det er .03 uansett hvor liten p er.']},
+/* ---- C: velg analysen ---- */
+{t:'Velg analysen', n:12, q:'Du sammenligner depresjonsskåre (0–63) mellom en behandlingsgruppe og en venteliste. Fordelingene er noenlunde normale. Hvilken test?',
+ o:['Uavhengig t-test','Kjikvadrat','Enveis-ANOVA','Paret t-test'], c:0,
+ f:['Riktig. To uavhengige grupper, ett kontinuerlig utfall, rimelig normalfordeling — det er t-testens kjerneoppgave. Welchs variant er trygg hvis spredningen er ulik.',
+    'Nei. Kjikvadrat er for <em>kategoriske</em> data der du teller personer i bokser. Her har du en skala.',
+    'Den ville faktisk gitt samme svar med to grupper (F = t²), men ANOVA er verktøyet når du har <em>tre eller flere</em>. Med to er t-testen det direkte valget.',
+    'Nei. Paret t-test er for de <em>samme</em> personene målt to ganger. Her er det to forskjellige grupper.']},
+
+{t:'Velg analysen', n:13, q:'Du måler de samme 60 pasientene før behandling, rett etter, og ved tre måneders oppfølging. Hva passer?',
+ o:['ANOVA for gjentatte målinger','Tre separate t-tester','Uavhengig t-test','Kjikvadrat'], c:0,
+ f:['Riktig. Samme personer på flere tidspunkter gir avhengige observasjoner, og ANOVA for gjentatte målinger håndterer nettopp det.',
+    'Fristende, men galt: tre tester på samme data blåser opp risikoen for falske positive. Det er p-hacking i miniatyr — én analyse som tar alle tre tidspunktene samtidig er riktig.',
+    'Nei. Uavhengig t-test forutsetter at gruppene består av forskjellige personer.',
+    'Nei, utfallet er en skala, ikke kategorier.']},
+
+{t:'Velg analysen', n:14, q:'Du vil vite om medisinbruk (ja/nei) fordeler seg likt mellom to behandlingsgrupper. Hvilken test?',
+ o:['Kjikvadrat for uavhengighet','Kjikvadrat for tilpasning','t-test','Korrelasjon'], c:0,
+ f:['Riktig. To kategoriske variabler, og spørsmålet er om de henger sammen. De forventede antallene regnes ut fra rad- og kolonnesummene.',
+    'Nesten. Tilpasningstesten brukes når du har <em>én</em> variabel og en forventet fordeling utenfra — «er kjønnsfordelingen 50/50?». Her har du to variabler.',
+    'Nei. t-testen sammenligner gjennomsnitt, og «ja/nei» har ikke noe gjennomsnitt.',
+    'Nei. Pearsons r forutsetter to kontinuerlige variabler og en rett linje.']},
+
+{t:'Velg analysen', n:15, q:'Utfallet er tydelig skjevt, og du har to uavhengige grupper med 18 deltagere i hver. Hva er tryggest?',
+ o:['Mann–Whitney U','Pearsons r','Uavhengig t-test uten videre','Kjikvadrat'], c:0,
+ f:['Riktig. Mann–Whitney sammenligner rangeringer i stedet for gjennomsnitt, og bryr seg derfor ikke om skjevhet. Med bare 18 per gruppe kan du ikke lene deg på sentralgrenseteoremet.',
+    'Nei. r måler samvariasjon mellom to variabler, ikke forskjell mellom grupper.',
+    'Med store utvalg hadde t-testen tålt skjevheten fint, men 18 per gruppe er for lite til at fordelingen av gjennomsnitt rekker å bli normal.',
+    'Nei, utfallet er en skala.']},
+
+{t:'Velg analysen', n:16, q:'Du har en 2×2-tabell der to av cellene har forventet antall på 3. Hva gjør du?',
+ o:['Bruker Fishers eksakte test','Kjører kjikvadrat som vanlig','Slår sammen kategoriene til én','Rapporterer at det ikke går an å teste'], c:0,
+ f:['Riktig. Kjikvadrat bruker χ²-fordelingen som <em>tilnærming</em>, og den blir upålitelig når forventede antall er under 5. Fisher regner ut den eksakte sannsynligheten i stedet.',
+    'Nei. Da bryter du forutsetningen om forventede antall ≥ 5, og p-verdien blir upålitelig. JASP sier vanligvis fra.',
+    'Det ville ødelagt spørsmålet — med bare to kategorier i hver variabel er det ingenting å slå sammen uten å miste selve sammenligningen.',
+    'Jo, det går fint — Fishers eksakte test er laget for akkurat denne situasjonen.']},
+/* ---- D: målenivå ---- */
+{t:'Målenivå', n:17, q:'Variabelen <em>Gruppe</em> (ISTDP mot venteliste) er målt på:',
+ o:['Nominalnivå','Ordinalnivå','Intervallnivå','Forholdstallnivå'], c:0,
+ f:['Riktig. To kategorier uten rangering — den ene er ikke «mer» enn den andre. Koder du dem 0 og 1, er tallene rene merkelapper.',
+    'Nei. Ordinal krever en meningsfull rekkefølge, som «lett / middels / vanskelig». ISTDP er ikke mer eller mindre enn venteliste.',
+    'Nei. Intervallnivå krever like store steg mellom verdiene, og her finnes det ingen steg i det hele tatt.',
+    'Nei. Forholdstall krever i tillegg et ekte nullpunkt.']},
+
+{t:'Målenivå', n:18, q:'<em>Antall tidligere behandlingsforsøk</em>, registrert som 1, 2 eller 3+. Hvilket målenivå?',
+ o:['Ordinal','Nominal','Intervall','Forholdstall'], c:0,
+ f:['Riktig. Rekkefølgen er meningsfull, men den siste kategorien «3+» er åpen, så avstanden mellom trinnene er ikke lik. Da stopper det på ordinalnivå.',
+    'Nei — her finnes det en klar rangering: tre forsøk er flere enn ett.',
+    'Fristende, siden tallene ser jevne ut. Men «3+» kan romme 3 eller 12, så steget fra 2 til «3+» er ikke det samme som fra 1 til 2.',
+    'Nei, av samme grunn — og forholdstall krever i tillegg like intervaller.']},
+
+{t:'Målenivå', n:19, q:'Er <em>antall riktige svar på en prøve (0–5)</em> diskret eller kontinuerlig, og hvilket målenivå har den?',
+ o:['Diskret og forholdstall','Kontinuerlig og intervall','Diskret og ordinal','Kontinuerlig og forholdstall'], c:0,
+ f:['Riktig. Den teller hele enheter, så den er <b>diskret</b> — «2,4 riktige» betyr ingenting. Og den har et ekte nullpunkt og like steg, så den er <b>forholdstall</b>. De to spørsmålene er uavhengige av hverandre.',
+    'Nei på begge. Den kan ikke anta mellomverdier, og null riktige betyr faktisk ingen riktige — det er et ekte nullpunkt.',
+    'Halvveis: diskret stemmer, men stegene er like store og nullpunktet ekte, så den når helt opp til forholdstall.',
+    'Nei — den er ikke kontinuerlig. Dette er nettopp poenget med å holde de to spørsmålene fra hverandre.']},
+
+{t:'Målenivå', n:20, q:'En <em>depresjonsskåre</em> fra 0 til 63 behandles som kontinuerlig i analysene. Hvilket målenivå har den strengt tatt?',
+ o:['Intervall — 30 er ikke «dobbelt så deprimert» som 15','Forholdstall, siden skalaen starter på null','Ordinal, siden det er en spørreskjemaskala','Nominal'], c:0,
+ f:['Riktig. Skalaens null betyr ikke fravær av depresjon i noen ekte forstand, og forholdstall som «dobbelt så deprimert» gir ikke mening. At den behandles som kontinuerlig er en pragmatisk konvensjon, ikke en påstand om målenivå.',
+    'Fristende, men et nullpunkt på skalaen er ikke det samme som et <em>ekte</em> nullpunkt. Sammenlign med celsius: 0 °C er ikke fravær av temperatur.',
+    'Strengt tatt er enkeltleddene ordinale, men summen av mange ledd behandles konvensjonelt som intervall. Det er den vanlige praksisen i faget.',
+    'Nei — skåren har en klar rekkefølge og er ikke bare merkelapper.']},
+
+/* ---- E: SPINE ---- */
+{t:'SPINE', n:21, q:'Du regner ut gjennomsnittlig depresjonsskåre for de 75 deltagerne i studien. Tallet du får er:',
+ o:['Et estimat','En parameter','En standardfeil','En operasjonalisering'], c:0,
+ f:['Riktig. Alt du regner ut fra et <em>utvalg</em> er et estimat, skrevet med latinske bokstaver (M, SD, r). Det er et anslag på parameteren du egentlig vil vite noe om.',
+    'Nei — en parameter er den sanne verdien ute i <em>populasjonen</em>, skrevet med greske bokstaver (μ, σ, ρ). Den får du aldri se.',
+    'Nei. Standardfeilen beskriver hvor mye estimatet ville variert mellom utvalg — den er et mål på usikkerheten i tallet, ikke tallet selv.',
+    'Nei. Operasjonalisering er hvordan du bestemte deg for å <em>måle</em> depresjon, ikke resultatet av målingen.']},
+
+{t:'SPINE', n:22, q:'Hva beskriver standardfeilen til gjennomsnittet?',
+ o:['Hvor mye utvalgsgjennomsnittet ville variert fra utvalg til utvalg','Hvor mye enkeltpersoner varierer rundt gjennomsnittet','Hvor stor målefeilen i spørreskjemaet er','Avstanden mellom gjennomsnittet og medianen'], c:0,
+ f:['Riktig. SE handler om presisjonen i <em>anslaget ditt</em>: gjentok du hele studien med nye deltagere, hvor mye ville tallet hoppet? Det er bredden på utvalgsfordelingen.',
+    'Det er <b>standardavviket</b>. Forskjellen mellom SD og SE er den enkeltforvekslingen som koster flest poeng: SD beskriver folk, SE beskriver anslaget.',
+    'Nei. Målefeil i instrumentet hører til reliabilitet, ikke til standardfeilen.',
+    'Nei. Det er et mål på skjevhet, og har ingenting med SE å gjøre.']},
+
+{t:'SPINE', n:23, q:'Du firedobler utvalget fra 25 til 100. Hva skjer med standardfeilen?',
+ o:['Den halveres','Den blir en firedel','Den er uendret','Den dobles'], c:0,
+ f:['Riktig. <code>SE = σ/√n</code>, så det er <em>kvadratroten</em> av n som teller: √4 = 2, altså halveres SE. Derfor er det så dyrt å bli dobbelt så presis — du må firedoble studien.',
+    'Dette er den vanligste gjetningen, og den overvurderer gevinsten kraftig. Nevneren er √n, ikke n.',
+    'Nei. Populasjonen er den samme, men anslaget ditt blir mer presist av flere deltagere.',
+    'Nei — større utvalg gir mindre usikkerhet, ikke mer.']},
+
+{t:'SPINE', n:24, q:'Populasjonen av depresjonsskårer er tydelig skjev. Du trekker 1 000 utvalg på n = 75 og tegner fordelingen av <em>gjennomsnittene</em>. Hvordan ser den ut?',
+ o:['Tilnærmet normalfordelt','Like skjev som populasjonen','Flat','Med to topper'], c:0,
+ f:['Riktig. Dette er <b>sentralgrenseteoremet</b>: fordelingen av gjennomsnitt blir tilnærmet normal når n vokser, nesten uansett hvordan populasjonen ser ut. Det er grunnen til at t-tester virker på virkelige, skjeve data.',
+    'Nei — og det er nettopp det overraskende. Skjevheten i populasjonen arves ikke av fordelingen av gjennomsnitt.',
+    'Nei. Gjennomsnittene klumper seg tydelig rundt populasjonsgjennomsnittet.',
+    'Nei. To topper i utvalgsfordelingen ville krevd at du trakk fra to forskjellige populasjoner.']},
+
+{t:'SPINE', n:25, q:'Hvorfor deler vi kvadratsummen på <em>n − 1</em> i stedet for n når vi regner ut variansen i et utvalg?',
+ o:['Fordi avvikene måles fra utvalgets eget gjennomsnitt og derfor blir litt for små','Fordi én deltager alltid er en uteligger','For å gjøre tallet større og dermed mer forsiktig','Det er bare en konvensjon uten begrunnelse'], c:0,
+ f:['Riktig. Utvalgets snitt ligger per definisjon midt i akkurat disse tallene, så avvikene undervurderer spredningen i populasjonen. Å dele på n − 1 retter nøyaktig opp den skjevheten. Det tapte tallet er en frihetsgrad.',
+    'Nei, det har ingenting med uteliggere å gjøre.',
+    'Tallet <em>blir</em> større, men det er konsekvensen, ikke grunnen. Begrunnelsen er at anslaget ellers er systematisk for lavt.',
+    'Nei — det finnes en presis begrunnelse, og den handler om forventningsretthet.']},
+/* ---- F: feil og styrke ---- */
+{t:'Feil og styrke', n:26, q:'Du forkaster en nullhypotese som i virkeligheten er sann. Hva har du gjort?',
+ o:['En type I-feil','En type II-feil','En målefeil','Ingenting galt — det er slik testing virker'], c:0,
+ f:['Riktig. Falsk positiv: du roper opp om en effekt som ikke finnes. Sannsynligheten er α, så med grensa på .05 aksepterer du 5 % slike. I rettssaken: å dømme en uskyldig.',
+    'Motsatt. Type II er å <em>beholde</em> en H₀ som var falsk — å overse en ekte effekt.',
+    'Nei. Målefeil handler om instrumentet, ikke om testbeslutningen.',
+    'Det er riktig at feilen er innebygd og akseptert, men den har et navn, og navnet er type I.']},
+
+{t:'Feil og styrke', n:27, q:'En behandling virker i virkeligheten, men studien har bare 20 deltagere og finner p = .18. Hva er dette et eksempel på?',
+ o:['Type II-feil — lav styrke gjorde at effekten ble oversett','Type I-feil','At behandlingen likevel ikke virker','At α var satt for lavt'], c:0,
+ f:['Riktig. Effekten fantes, men studien var ikke stor nok til å oppdage den. <b>Styrke = 1 − β</b> vokser med utvalgsstørrelsen og med effektens størrelse, og 20 deltagere gir som regel altfor lav styrke.',
+    'Nei — type I er å finne noe som ikke er der. Her er det motsatt.',
+    'Premisset i spørsmålet er at den <em>virker</em>. Studien klarte bare ikke å vise det, og det er en helt annen sak.',
+    'Å senke α ville gjort problemet verre, ikke bedre — da blir det enda vanskeligere å nå signifikans.']},
+
+{t:'Feil og styrke', n:28, q:'Hva øker den statistiske styrken i en studie?',
+ o:['Flere deltagere, større ekte effekt, og mindre støy i målingene','Å senke α fra .05 til .01','Å kjøre flere analyser på de samme dataene','Å bruke ensidig test etter å ha sett resultatet'], c:0,
+ f:['Riktig. Alle tre virker gjennom det samme: de gjør signalet stort i forhold til standardfeilen. Konvensjonen er styrke ≥ .80, og underpowrede studier er psykologiens største metodeproblem.',
+    'Motsatt effekt. Strengere α gir færre falske positive, men flere oversette effekter — du bytter type I mot type II.',
+    'Det øker bare sjansen for falske positive. Flere analyser er ikke mer styrke, det er p-hacking.',
+    'Å velge ensidig <em>etter</em> at du har sett dataene er å gi seg selv gratis signifikans. Retningen må være bestemt på forhånd.']},
+
+/* ---- G: trusler ---- */
+{t:'Trusler', n:29, q:'Du kjører 20 uavhengige analyser på data der <em>ingen</em> av effektene er ekte. Omtrent hvor stor er sjansen for minst ett signifikant funn?',
+ o:['Rundt 64 %','Rundt 5 %','Rundt 20 %','Rundt 95 %'], c:0,
+ f:['Riktig. Sjansen for å slippe unna alle 20 er .95²⁰ ≈ 36 %, så sjansen for minst ett «funn» er omtrent <b>64 %</b>. Det krever ingen uredelighet — det er ren aritmetikk, og det er derfor forskerens frihetsgrader er farlige.',
+    '5 % er sjansen for at <em>én bestemt</em> analyse blir signifikant. Med 20 forsøk akkumulerer risikoen raskt.',
+    'Nei — 20 er antall analyser, ikke en sannsynlighet.',
+    'For høyt. Det ville krevd langt flere enn 20 analyser.']},
+
+{t:'Trusler', n:30, q:'100 laboratorier studerer en effekt som i sannhet er null. Bare studier med p &lt; .05 blir publisert. Hvordan ser den publiserte litteraturen ut?',
+ o:['Den viser en tydelig effekt som ikke finnes','Den viser omtrent null, siden sannheten er null','Den blir tilfeldig og uten mønster','Den viser en negativ effekt'], c:0,
+ f:['Riktig. Rundt fem studier passerer filteret, og det er nødvendigvis de som ligger <em>lengst fra null</em> — det er akkurat det som skal til for å bli signifikant når det ikke er noen effekt. Gjennomsnittseffekten i litteraturen blir dermed langt for stor.',
+    'Det ville vært sant om <em>alle</em> studiene ble publisert. Filteret er hele problemet: det fjerner systematisk de resultatene som lå nær sannheten.',
+    'Nei, og det er det urovekkende: skjevheten er systematisk og går alltid samme vei — mot for store effekter.',
+    'Retningen er tilfeldig; problemet er <em>størrelsen</em> på de publiserte effektene, ikke fortegnet.']},
+
+{t:'Trusler', n:31, q:'En forsker snublet over et uventet funn og skriver artikkelen som om det var forutsagt fra starten. Hva kalles det?',
+ o:['HARKing','P-hacking','Publikasjonsskjevhet','Preregistrering'], c:0,
+ f:['Riktig. <b>HARK</b> = «Hypothesizing After the Results are Known». Det gjør en eksplorativ oppdagelse om til en tilsynelatende bekreftet hypotese, og fjerner leserens mulighet til å vurdere hvor mye leting som lå bak.',
+    'Nært beslektet, men p-hacking er å prøve seg fram i <em>analysene</em> til noe blir signifikant. HARKing er å omskrive <em>hypotesen</em> i etterkant.',
+    'Nei — det handler om hva tidsskriftene slipper gjennom, ikke om hva den enkelte forskeren skriver.',
+    'Det er motgiften, ikke problemet: analyseplanen låses før dataene samles inn.']},
+
+{t:'Trusler', n:32, q:'Hva er det preregistrering først og fremst løser?',
+ o:['Den skiller planlagte analyser fra dem man kom på underveis','Den gjør utvalget mer representativt','Den øker den statistiske styrken','Den fjerner behovet for effektstørrelser'], c:0,
+ f:['Riktig. Ved å låse analyseplanen før dataene finnes, blir p-verdien igjen det den skal være. Eksplorative funn er fortsatt lov — de må bare merkes som eksplorative.',
+    'Nei. Hvem du rekrutterer er et helt annet spørsmål, og preregistrering hjelper ikke mot et skjevt utvalg.',
+    'Nei, styrken avhenger av utvalgsstørrelse og effekt. Preregistrering kan riktignok tvinge deg til å <em>planlegge</em> styrken, men den øker den ikke i seg selv.',
+    'Tvert imot — effektstørrelser skal alltid rapporteres, preregistrert eller ei.']},
+
+/* ---- H: fordelingen ---- */
+{t:'Fordelingen', n:33, q:'I et datasett med 21 depresjonsskårer rundt 30 blir én verdi feiltastet til 80. Hvilket sentralmål flytter seg mest?',
+ o:['Gjennomsnittet','Medianen','Modus','Alle tre like mye'], c:0,
+ f:['Riktig. Gjennomsnittet er tyngdepunktet og lar seg dra av ekstremverdier. Medianen er bare midtverdien i rekka, så den rikker seg knapt. Det er hele grunnen til at medianen rapporteres ved skjeve fordelinger.',
+    'Medianen er nettopp den som <em>ikke</em> lar seg rive med — én feiltastet verdi flytter midtpunktet med maks én plass.',
+    'Modus er den vanligste verdien og påvirkes ikke i det hele tatt av at én observasjon flyttes.',
+    'Nei — de skiller lag kraftig, og det er nettopp derfor det er verdt å rapportere mer enn ett av dem.']},
+
+{t:'Fordelingen', n:34, q:'Prøveskårene fra en lett og en vanskelig betingelse slås sammen og danner en fordeling med to topper. Hvilket sentralmål beskriver «en typisk student» best?',
+ o:['Ingen av dem — gruppene bør beskrives hver for seg','Gjennomsnittet','Medianen','Modus'], c:0,
+ f:['Riktig. Ved to topper lander både gjennomsnittet og medianen i dalen mellom dem, der nesten ingen faktisk ligger. To topper betyr som regel to grupper blandet sammen, og løsningen er å skille dem — ikke å lete etter et bedre sentralmål.',
+    'Gjennomsnittet lander midt i dalen og beskriver en student som ikke finnes.',
+    'Medianen har samme problem: den peker på midten, og midten er nettopp der det er tynnest.',
+    'Modus peker på den ene toppen og overser den andre helt.']},
+
+{t:'Fordelingen', n:35, q:'En variabel har skjevhet <code>−1,4</code>. Hva betyr det?',
+ o:['Halen peker mot venstre — de fleste ligger høyt, noen få lavt','Halen peker mot høyre','Fordelingen er symmetrisk','Fordelingen har to topper'], c:0,
+ f:['Riktig. Negativ skjevhet betyr venstreskjev. Typisk årsak er en <em>takeffekt</em>: skalaen stopper, og folk hoper seg opp mot toppen. Over omtrent ±2 begynner det å bli et problem for tester som antar normalfordeling.',
+    'Det ville vært <em>positiv</em> skjevhet. Fortegnet peker mot halen, ikke mot toppen.',
+    'Nei — symmetrisk er skjevhet rundt 0.',
+    'Skjevhetstallet sier ingenting om antall topper. Det må du se på histogrammet for å oppdage.']},
+
+{t:'Fordelingen', n:36, q:'Hva er den viktigste svakheten ved å bare vise et boksplott?',
+ o:['Det skjuler at fordelingen kan ha to topper','Det viser ikke medianen','Det tåler ikke uteliggere','Det kan bare brukes på kategoriske data'], c:0,
+ f:['Riktig. Boksplottet er et sammendrag — kvartiler og median. To fordelinger med helt ulik form kan gi nesten identiske bokser. Derfor er histogram eller raincloud verdt å se i tillegg.',
+    'Tvert imot: medianen er streken inni boksen, og den er det tydeligste elementet i figuren.',
+    'Det håndterer uteliggere svært godt — de tegnes som egne punkter utenfor værhårene.',
+    'Nei, boksplottet krever nettopp en kontinuerlig variabel.']}
+  ];
+
+  const STORE = 'sa-oppg-v1';
+  let hist = {};
+  try { hist = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch(e) { hist = {}; }
+  const save = () => { try { localStorage.setItem(STORE, JSON.stringify(hist)); } catch(e){} };
+
+  const temaer = [];
+  BANK.forEach(q=>{ if(!temaer.includes(q.t)) temaer.push(q.t); });
+  const mkOpt = (v,t)=>{ const o=document.createElement('option'); o.value=v; o.textContent=t; temaSel.appendChild(o); };
+  mkOpt('*', 'Alle temaer (' + BANK.length + ')');
+  temaer.forEach(t=> mkOpt(t, t + ' (' + BANK.filter(q=>q.t===t).length + ')'));
+
+  let deck = [], idx = 0, answered = false, wrongOnly = false, roundRight = 0, roundDone = 0;
+
+  const scoped = () => BANK.filter(q => temaSel.value === '*' || q.t === temaSel.value);
+  function build(){
+    let pool = scoped();
+    if(wrongOnly) pool = pool.filter(q => hist[q.n] && hist[q.n].ok === false);
+    deck = pool.slice();
+    for(let i=deck.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [deck[i],deck[j]]=[deck[j],deck[i]]; }
+    idx = 0; answered = false; roundRight = 0; roundDone = 0;
+    render();
+  }
+
+  function stats(){
+    const pool = scoped();
+    const seen = pool.filter(q=>hist[q.n]);
+    const ok = seen.filter(q=>hist[q.n].ok).length;
+    return {n: pool.length, seen: seen.length, ok};
+  }
+
+  function render(){
+    const st = stats();
+    scoreEl.textContent = st.seen ? st.ok + ' av ' + st.seen + ' riktig' : 'ingen besvart';
+    nextBtn.hidden = true;
+
+    if(!deck.length){
+      headEl.textContent = 'Oppgave';
+      body.innerHTML = '<p class="qtext">' + (wrongOnly
+        ? 'Du har ingen bommede oppgaver i dette temaet. Slå av filteret for å gå gjennom alle.'
+        : 'Ingen oppgaver i dette temaet.') + '</p>';
+      readEl.textContent = '';
+      return;
+    }
+    if(idx >= deck.length){
+      headEl.textContent = 'Runden er ferdig';
+      body.innerHTML = '<p class="qtext">Du svarte riktig på <b>' + roundRight + ' av ' + roundDone + '</b> i denne runden.</p>'
+        + '<p class="qtext" style="font-size:15px;color:var(--ink-2)">Totalt i dette temaet: <b>' + st.ok + ' av ' + st.seen + '</b> besvarte oppgaver riktig sist du møtte dem.</p>';
+      readEl.textContent = 'Trykk «Stokk om» for en ny runde, eller slå på filteret for bare å ta dem du bommet på.';
+      return;
+    }
+
+    const q = deck[idx];
+    answered = false;
+    headEl.textContent = q.t;
+
+    /* alternativene stokkes, så fasiten ikke ligger fast på samme plass */
+    const opts = q.o.map((text,i)=>({text, fb: q.f[i], ok: i === q.c}));
+    for(let i=opts.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [opts[i],opts[j]]=[opts[j],opts[i]]; }
+
+    body.innerHTML = '<p class="qtext">' + q.q + '</p><div class="opts" id="oppgOpts"></div><div id="oppgFb"></div>';
+    const wrap = document.getElementById('oppgOpts');
+    opts.forEach((o,i)=>{
+      const b = document.createElement('button');
+      b.className = 'opt'; b.type = 'button';
+      b.innerHTML = '<span class="ltr">' + 'ABCD'[i] + '</span><span>' + o.text + '</span>';
+      b.addEventListener('click', ()=>answer(q, opts, i));
+      wrap.appendChild(b);
+    });
+    readEl.innerHTML = 'Oppgave <b>' + (idx+1) + '</b> av <b>' + deck.length + '</b> i runden.';
+  }
+
+  function answer(q, opts, pick){
+    if(answered) return;
+    answered = true;
+    const chosen = opts[pick], correct = opts.findIndex(o=>o.ok);
+    const btns = [...document.querySelectorAll('#oppgOpts .opt')];
+    btns.forEach((b,i)=>{
+      b.disabled = true;
+      if(i === correct) b.dataset.state = 'right';
+      else if(i === pick) b.dataset.state = 'wrong';
+    });
+    document.getElementById('oppgFb').innerHTML =
+      '<div class="fb ' + (chosen.ok ? 'ok' : 'no') + '">'
+      + '<span class="verdict">' + (chosen.ok ? 'Riktig' : 'Ikke helt — du valgte ' + 'ABCD'[pick]) + '</span>'
+      + chosen.fb
+      + (chosen.ok ? '' : '<br><br><b>Riktig svar var ' + 'ABCD'[correct] + ':</b> ' + opts[correct].fb)
+      + '</div>';
+
+    hist[q.n] = {ok: chosen.ok, n: ((hist[q.n] && hist[q.n].n) || 0) + 1};
+    save();
+    roundDone++; if(chosen.ok) roundRight++;
+    nextBtn.hidden = false;
+    nextBtn.focus();
+    const st = stats();
+    scoreEl.textContent = st.ok + ' av ' + st.seen + ' riktig';
+  }
+
+  nextBtn.addEventListener('click', ()=>{ idx++; render(); });
+  shufBtn.addEventListener('click', build);
+  temaSel.addEventListener('change', build);
+  wrongBtn.addEventListener('click', ()=>{
+    wrongOnly = !wrongOnly;
+    wrongBtn.setAttribute('aria-pressed', String(wrongOnly));
+    build();
+  });
+  forgetBtn.addEventListener('click', ()=>{
+    hist = {}; save(); build();
+    readEl.textContent = 'Framgangen er nullstilt.';
+  });
+
+  document.addEventListener('keydown', e=>{
+    const t = e.target;
+    if(t && (t.tagName === 'INPUT' || t.tagName === 'SELECT' || t.tagName === 'TEXTAREA')) return;
+    const r = body.getBoundingClientRect();
+    if(!r.height || r.bottom < 0 || r.top > innerHeight) return;
+    if(!answered && '1234'.includes(e.key)){
+      const b = document.querySelectorAll('#oppgOpts .opt')[+e.key - 1];
+      if(b) b.click();
+    } else if(answered && (e.key === 'n' || e.key === 'N')){
+      if(!nextBtn.hidden) nextBtn.click();
+    }
   });
 
   build();

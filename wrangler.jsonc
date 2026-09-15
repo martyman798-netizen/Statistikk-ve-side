@@ -1,0 +1,12 @@
+{
+  // Statisk nettsted på Workers Static Assets: ingen Worker-kode, bare filer.
+  // Derfor er "main" utelatt med vilje.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "statistikk-ve-side",
+  "compatibility_date": "2026-09-15",
+  "assets": {
+    "directory": "./public",
+    // Ukjente adresser får 404.html i stedet for Cloudflares standardside.
+    "not_found_handling": "404-page"
+  }
+}

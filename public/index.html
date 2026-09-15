@@ -323,6 +323,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
       <li><a href="#r"><span class="g">r</span> Korrelasjon</a></li>
       <li><a href="#r2"><span class="g">r²</span> Delt variasjon</a></li>
       <li><a href="#p"><span class="g">p</span> Flakssjansen</a></li>
+      <li><a href="#pjakt"><span class="g">p&lt;</span> Jakten på p</a></li>
       <li><a href="#se"><span class="g">SE</span> Presisjonen</a></li>
       <li><a href="#ki"><span class="g">KI</span> Usikkerheten</a></li>
       <li><a href="#b"><span class="g">b</span> Linja</a></li>
@@ -706,7 +707,16 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
         <h2>Flakssjansen</h2>
         <p class="asks">Kunne tilfeldigheter alene gitt meg dette?</p>
         <p><em class="v">p</em> svarer på ett bestemt spørsmål: <strong>hvis det i virkeligheten ikke fantes noen sammenheng, hvor ofte ville ren flaks gitt meg et resultat minst så tydelig som mitt?</strong> Her ble <em class="v">p</em> = <span class="stat" data-s="p"></span>.</p>
-        <p>Du kan se det med egne øyne. Demoen under tar utvalget ditt og <strong>stokker om</strong> poengkolonnen, slik at hver students studietimer pares med en tilfeldig annen students poengsum. Da er sammenhengen ødelagt med vilje. Likevel blir r sjelden nøyaktig null — det er flaksen.</p>
+        <p>Bak det spørsmålet ligger en fast prosedyre. Den har fire trinn, og den er den samme for hver eneste test du møter resten av semesteret:</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Nullhypotesetesting">
+          <tbody>
+            <tr><td>1 · Sett opp</td><td>H₀ og H₁</td><td><em class="v">H₀</em> er «ingen effekt, ingen sammenheng». <em class="v">H₁</em> er at det finnes en. H₀ er den du tester — H₁ er bare det som står igjen hvis H₀ ryker.</td></tr>
+            <tr><td>2 · Lat som</td><td>Anta at H₀ er sann</td><td>Og finn ut hvilke resultater den verdenen ville produsert. Det er <em class="v">nullfordelingen</em>: alle utfallene du kunne fått hvis ingenting var på gang.</td></tr>
+            <tr><td>3 · Sammenlign</td><td>Hvor uvanlig er mitt tall?</td><td>Hvor stor andel av nullfordelingen ligger like langt ute som det du faktisk målte, eller lenger? <strong>Den andelen er p-verdien.</strong></td></tr>
+            <tr><td>4 · Bestem</td><td>Er p &lt; α?</td><td>Er den mindre enn grensa du satte på forhånd (nesten alltid <em class="v">α</em> = .05), forkaster du H₀. Hvis ikke, beholder du den.</td></tr>
+          </tbody>
+        </table></div>
+        <p>Trinn 2 er det som pleier å glippe, og det er nettopp det du kan se med egne øyne her. Demoen under bygger nullfordelingen for deg: den tar utvalget ditt og <strong>stokker om</strong> poengkolonnen, slik at hver students studietimer pares med en tilfeldig annen students poengsum. Da er sammenhengen ødelagt med vilje — dette <em>er</em> verdenen der H₀ er sann. Likevel blir r sjelden nøyaktig null. Det er flaksen, og haugen den lager er nullfordelingen.</p>
         <div class="panel">
           <div class="panel-head"><span>Hva flaks alene klarer å produsere</span><span id="nullN">0 omstokkinger</span></div>
           <canvas id="cvNull" height="230"></canvas>
@@ -720,12 +730,62 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
         <div class="aside tryit"><b>Dette er den viktigste demoen på sida.</b> Sett N = 20, stokk om 200 ganger, og se hvor bred flakshaugen er — den strekker seg gjerne til ±.45. Med så få deltagere <em>må</em> en korrelasjon være enorm for å skille seg fra flaks. Sett så N = 100 og gjør det samme: haugen krymper til rundt ±.20. <strong>Det er hele grunnen til at store utvalg gir små p-verdier.</strong></div>
         <div class="aside"><b>Grensa på .05</b> er en konvensjon, ikke en naturlov. Og <em class="v">p</em> sier ingenting om hvor stor sammenhengen er — bare hvor sikre vi er på at den ikke er null. Derfor skal <em class="v">r²</em> alltid stå ved siden av.</div>
         <div class="aside"><b>Aldri skriv «tendens».</b> En p over .05 er ikke «nesten signifikant» — omstokkingsdemoen viser hvorfor: den verdien er helt vanlig ren flaks. Skriv «var ikke signifikant», og oppgi tallene.</div>
+        <div class="aside"><b>Rettssaken er den samme logikken, på et språk du kjenner.</b> Tiltalte antas uskyldig: det er <em class="v">H₀</em>. «Utover rimelig tvil» er <em class="v">α</em>. En fellende dom er å forkaste H₀. Og det viktigste punktet: <strong>en frifinnelse er ikke det samme som bevist uskyldig.</strong> Et ikke-signifikant resultat betyr «ikke motbevist», ikke «H₀ er sann». Retten kan mangle bevis fordi det ikke skjedde — eller fordi etterforskningen var for dårlig. En studie kan mangle signifikans fordi effekten ikke finnes — eller fordi utvalget var for lite. Du kan aldri se forskjell på de to fra p-verdien alene.</div>
+        <div class="aside"><b>Og «rimelig tvil» er en konvensjon.</b> Bevisbildet endrer seg ikke mellom <em class="v">p</em> = .049 og <em class="v">p</em> = .051, men konklusjonen gjør det. Det bør gjøre deg mistenksom overfor alt som ligger og vipper rundt grensa.</div>
+        <p>Siden du enten forkaster H₀ eller lar være, og H₀ enten er sann eller ikke, finnes det nøyaktig to måter å ta feil på:</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="To måter å ta feil på">
+          <tbody>
+            <tr><td>Type I-feil</td><td>Falsk positiv</td><td>Du forkaster en H₀ som var sann: du roper opp om en effekt som ikke finnes. Sannsynligheten er <em class="v">α</em> — setter du grensa på .05, aksepterer du 5 % justismord. I rettssaken: å dømme en uskyldig.</td></tr>
+            <tr><td>Type II-feil</td><td>Falsk negativ</td><td>Du beholder en H₀ som var falsk: du overser en effekt som faktisk er der. Sannsynligheten kalles <em class="v">β</em>. I rettssaken: å frikjenne en skyldig.</td></tr>
+            <tr><td>Styrke (1 − β)</td><td>Power</td><td>Sjansen for å oppdage en effekt som virkelig finnes. Vokser med utvalgsstørrelsen og med hvor stor effekten er. Konvensjonen er ≥ .80, og altfor mange psykologistudier ligger langt under. Se <a href="#fam-power">styrkefamilien</a>.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside tryit"><b>Prøv å kjenne type II-feilen på kroppen:</b> sett N = 20 og trekk nytt utvalg noen ganger. Den sanne korrelasjonen er ρ = .67 — den er der hele tiden, i hvert eneste utvalg. Likevel vil p av og til lande over .05. Hver gang det skjer, har du nettopp gjort en type II-feil på data der du <em>vet</em> fasiten.</div>
+      </div>
+    </section>
+
+    <!-- ---------- p-jakt ---------- -->
+    <section class="entry" id="pjakt">
+      <div class="glyphcol"><span class="step">07</span><span class="glyph sm">p&lt;.05</span></div>
+      <div>
+        <h2>Jakten på p under .05</h2>
+        <p class="asks">Hva skjer når alle leter etter det samme tallet?</p>
+        <p>Alt på forrige side forutsetter én ting: at du bestemte deg for analysen <em>før</em> du så dataene, og at resultatet blir publisert uansett hva det viser. Begge forutsetningene brytes rutinemessig. Da slutter p-verdien å bety det den skal — ikke fordi matematikken svikter, men fordi den får feil spørsmål.</p>
+        <p>De to demoene under kjører på data der <strong>det ikke finnes noen effekt i det hele tatt</strong>. Alt du ser er ren flaks.</p>
+
+        <div class="panel">
+          <div class="panel-head"><span>20 analyser på data uten noen som helst effekt</span><span id="phackN">ingen studier kjørt</span></div>
+          <canvas id="cvPhack" height="200"></canvas>
+          <div class="controls">
+            <button id="phack1">Kjør 20 analyser</button>
+            <button class="ghost" id="phack500">Kjør 500 slike studier</button>
+            <button class="ghost" id="phackReset">Nullstill</button>
+          </div>
+          <div class="readout" id="phackRead"></div>
+        </div>
+        <p>Hver prikk er én analyse: et annet utfallsmål, en undergruppe, en kovariat du prøvde å legge inn. Ingen av dem har en ekte effekt. Likevel faller noen under .05 — og det er ikke uflaks, det er aritmetikk. Sjansen for å slippe unna alle 20 er <em class="v">.95<sup>20</sup></em> ≈ 36 %, så sjansen for <strong>minst ett «funn» er omtrent 64 %</strong>.</p>
+        <div class="aside"><b>Dette er «forskerens frihetsgrader».</b> Det krever ingen uredelighet. Det holder å prøve seg litt fram, stoppe når noe ser pent ut, og så rapportere den ene analysen som virket — som om den var den du planla. Motgiften har et navn: <a href="#fam-power">preregistrering</a>. Analyseplanen låses før dataene finnes, og da betyr p igjen det den skal.</div>
+
+        <div class="panel">
+          <div class="panel-head"><span>100 laboratorier studerer den samme ikke-eksisterende effekten</span><span id="labsHint">alle studier vises</span></div>
+          <canvas id="cvLabs" height="200"></canvas>
+          <div class="controls">
+            <button id="labsRun">Kjør 100 laboratorier</button>
+            <button class="ghost" id="labsPub" aria-pressed="false">Publiser bare p &lt; .05</button>
+            <button class="ghost" id="labsReset">Nullstill</button>
+          </div>
+          <div class="readout" id="labsRead"></div>
+        </div>
+        <p>Den sanne sammenhengen er <strong>null</strong>, og skyen av alle 100 studiene viser det: de klumper seg rundt null, slik de skal. Men trykk på «publiser bare p &lt; .05». Rundt fem studier blir stående igjen — og det er nødvendigvis de som ligger <em>lengst fra null</em>, for det er akkurat det som skal til for å bli signifikant når det ikke finnes noen effekt. Midten av fordelingen, altså sannheten, forsvinner ut av litteraturen.</p>
+        <div class="aside"><b>Publikasjonsskjevhet.</b> Ingen av de 100 laboratoriene har gjort noe galt. Hver enkelt studie er korrekt utført. Det er <em>filteret</em> som lyver: når bare signifikante resultater kommer gjennom, blir den gjennomsnittlige effekten i litteraturen for stor — selv når sannheten er at det ikke finnes noen effekt. Og de upubliserte studiene ligger i en skuff der ingen metaanalyse finner dem. Det er derfor <a href="#fam-meta">traktplott og Eggers test</a> finnes.</div>
+        <div class="aside tryit"><b>Prøv å se de to problemene henge sammen:</b> kjør 500 studier i den første demoen og legg merke til at rundt 64 % produserer et «funn». Kjør så laboratoriene og filtrer. Det første viser hvordan funnene <em>oppstår</em> når det ikke er noe der. Det andre viser hvordan de <em>overlever</em> og blir til det vi tror vi vet. Til sammen er de en stor del av forklaringen på replikasjonskrisen.</div>
+        <div class="aside"><b>Og derfor: en p-verdi alene er aldri nok.</b> Rapporter alltid <a href="#fam-effekt">effektstørrelsen</a> og <a href="#ki">konfidensintervallet</a> ved siden av. p sier bare om du klarte å skille funnet fra flaks; de to andre sier hvor stort det er og hvor presist du har målt det.</div>
       </div>
     </section>
 
     <!-- ---------- SE ---------- -->
     <section class="entry" id="se">
-      <div class="glyphcol"><span class="step">07</span><span class="glyph up">SE</span></div>
+      <div class="glyphcol"><span class="step">08</span><span class="glyph up">SE</span></div>
       <div>
         <h2>Standardfeilen</h2>
         <p class="asks">Hvor presist er anslaget mitt?</p>
@@ -749,7 +809,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- KI ---------- -->
     <section class="entry" id="ki">
-      <div class="glyphcol"><span class="step">08</span><span class="glyph up">95&nbsp;% KI</span></div>
+      <div class="glyphcol"><span class="step">09</span><span class="glyph up">95&nbsp;% KI</span></div>
       <div>
         <h2>Konfidensintervallet</h2>
         <p class="asks">Hvor mye kan den sanne verdien avvike fra min?</p>
@@ -766,7 +826,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- b ---------- -->
     <section class="entry" id="b">
-      <div class="glyphcol"><span class="step">09</span><span class="glyph">b</span></div>
+      <div class="glyphcol"><span class="step">10</span><span class="glyph">b</span></div>
       <div>
         <h2>Linja: konstantledd og stigningstall</h2>
         <p class="asks">Hvor mange poeng gir én time til?</p>
@@ -797,7 +857,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- t ---------- -->
     <section class="entry" id="t">
-      <div class="glyphcol"><span class="step">10</span><span class="glyph">t</span></div>
+      <div class="glyphcol"><span class="step">11</span><span class="glyph">t</span></div>
       <div>
         <h2>Testtallet</h2>
         <p class="asks">Hvor mange standardfeil unna null ligger anslaget?</p>
@@ -809,7 +869,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- df ---------- -->
     <section class="entry" id="df">
-      <div class="glyphcol"><span class="step">11</span><span class="glyph up">df</span></div>
+      <div class="glyphcol"><span class="step">12</span><span class="glyph up">df</span></div>
       <div>
         <h2>Frihetsgrader</h2>
         <p class="asks">Hvor mange uavhengige biter informasjon står igjen?</p>
@@ -820,7 +880,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- residualer ---------- -->
     <section class="entry" id="res">
-      <div class="glyphcol"><span class="step">12</span><span class="glyph">e</span></div>
+      <div class="glyphcol"><span class="step">13</span><span class="glyph">e</span></div>
       <div>
         <h2>Residualer og antakelser</h2>
         <p class="asks">Kan jeg stole på tallene modellen ga meg?</p>
@@ -842,7 +902,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- beta ---------- -->
     <section class="entry" id="beta">
-      <div class="glyphcol"><span class="step">13</span><span class="glyph">β</span></div>
+      <div class="glyphcol"><span class="step">14</span><span class="glyph">β</span></div>
       <div>
         <h2>Den standardiserte koeffisienten</h2>
         <p class="asks">Hvilken prediktor veier tyngst?</p>
@@ -858,7 +918,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- R2 ---------- -->
     <section class="entry" id="R2">
-      <div class="glyphcol"><span class="step">14</span><span class="glyph up">R²</span></div>
+      <div class="glyphcol"><span class="step">15</span><span class="glyph up">R²</span></div>
       <div>
         <h2>Forklart variasjon</h2>
         <p class="asks">Hvor mye av utfallet fanger modellen opp?</p>
@@ -870,7 +930,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- F ---------- -->
     <section class="entry" id="F">
-      <div class="glyphcol"><span class="step">15</span><span class="glyph">F</span></div>
+      <div class="glyphcol"><span class="step">16</span><span class="glyph">F</span></div>
       <div>
         <h2>Helhetstesten</h2>
         <p class="asks">Forklarer modellen som helhet noe i det hele tatt?</p>
@@ -881,7 +941,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- dR2 ---------- -->
     <section class="entry" id="dR2">
-      <div class="glyphcol"><span class="step">16</span><span class="glyph up">ΔR²</span></div>
+      <div class="glyphcol"><span class="step">17</span><span class="glyph up">ΔR²</span></div>
       <div>
         <h2>Endringen i forklart variasjon</h2>
         <p class="asks">Hva tjente jeg på å legge til en prediktor til?</p>
@@ -898,7 +958,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- VIF ---------- -->
     <section class="entry" id="vif">
-      <div class="glyphcol"><span class="step">17</span><span class="glyph up">VIF</span></div>
+      <div class="glyphcol"><span class="step">18</span><span class="glyph up">VIF</span></div>
       <div>
         <h2>Overlapp mellom prediktorene</h2>
         <p class="asks">Forteller prediktorene mine den samme historien?</p>
@@ -931,7 +991,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- setningsleseren ---------- -->
     <section class="entry" id="setninger">
-      <div class="glyphcol"><span class="step">18</span><span class="glyph up">¶</span></div>
+      <div class="glyphcol"><span class="step">19</span><span class="glyph up">¶</span></div>
       <div>
         <h2>Setningsleseren</h2>
         <p class="asks">Trykk på et hvilket som helst tegn i setningen</p>
@@ -950,7 +1010,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- A: deskriptivt ---------- -->
     <section class="entry" id="fam-desk">
-      <div class="glyphcol"><span class="step">19</span><span class="glyph up">Mdn</span></div>
+      <div class="glyphcol"><span class="step">20</span><span class="glyph up">Mdn</span></div>
       <div>
         <h2>Beskrive utvalget</h2>
         <p class="asks">Metodedelen og Tabell 1</p>
@@ -977,7 +1037,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- B: effektstørrelser ---------- -->
     <section class="entry" id="fam-effekt">
-      <div class="glyphcol"><span class="step">20</span><span class="glyph">d</span></div>
+      <div class="glyphcol"><span class="step">21</span><span class="glyph">d</span></div>
       <div>
         <h2>Effektstørrelser</h2>
         <p class="asks">Hvor stort er det egentlig?</p>
@@ -1007,7 +1067,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- C: gruppesammenligning ---------- -->
     <section class="entry" id="fam-grupper">
-      <div class="glyphcol"><span class="step">21</span><span class="glyph">t</span></div>
+      <div class="glyphcol"><span class="step">22</span><span class="glyph">t</span></div>
       <div>
         <h2>Sammenligne grupper</h2>
         <p class="asks">Skårer gruppe A annerledes enn gruppe B?</p>
@@ -1020,17 +1080,21 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
             <tr><td class="up">U</td><td>Mann–Whitney U</td><td>Ikke-parametrisk versjon av t-testen for to uavhengige grupper. Sammenligner rangeringer, ikke gjennomsnitt.</td></tr>
             <tr><td class="up">W</td><td>Wilcoxon signed-rank</td><td>Samme idé for to målinger på de samme personene (før/etter).</td></tr>
             <tr><td class="up">H</td><td>Kruskal–Wallis H</td><td>Ikke-parametrisk for tre eller flere grupper.</td></tr>
-            <tr><td>χ²</td><td>Kjikvadrat</td><td>For kategoriske data: fordeler svarene seg annerledes enn forventet? Skrives <code>χ²(2, N = 391) = 8.4</code>.</td></tr>
-            <tr><td class="up">Fisher</td><td>Fishers eksakte test</td><td>Erstatter χ² når cellene har for få observasjoner (under 5).</td></tr>
+            <tr><td>χ²</td><td>Kjikvadrat</td><td>Testen for <em>kategoriske</em> data — der du teller personer i bokser i stedet for å måle noe på en skala. Uttales «ki». Skrives <code>χ²(2, N = 391) = 8.4</code>. Alle varianter bygger på det samme regnestykket: hvor langt er de <em>observerte</em> antallene fra de <em>forventede</em>?</td></tr>
+            <tr><td class="up">O vs. F</td><td>Observert mot forventet</td><td>Selve mekanikken. «Forventet» betyr: hvor mange ville havnet i denne cellen hvis nullhypotesen stemte? χ² summerer <code>(O − F)² / F</code> over alle cellene. Ingen avvik gir χ² = 0; jo større tallet blir, desto dårligere passer nullhypotesen.</td></tr>
+            <tr><td class="up">χ² tilpasning</td><td>Goodness-of-fit · én variabel</td><td>Fordeler én kategorisk variabel seg slik vi ventet? «Er en kjønnsfordeling på 44/31 forenlig med 50/50?» De forventede antallene kommer fra en fordeling du oppgir selv.</td></tr>
+            <tr><td class="up">χ² uavhengighet</td><td>Test of independence · to variabler</td><td>Henger to kategoriske variabler sammen? «Er medisinbruk fordelt likt mellom behandlingsgruppene?» Her regnes de forventede antallene ut fra rad- og kolonnesummene i krysstabellen.</td></tr>
+            <tr><td class="up">Fisher</td><td>Fishers eksakte test</td><td>Erstatter χ² i små 2×2-tabeller der de forventede antallene blir for lave. Regner ut den eksakte sannsynligheten i stedet for å bruke χ²-fordelingen som tilnærming.</td></tr>
             <tr><td>z</td><td>z-verdi</td><td>Hvor mange standardavvik fra gjennomsnittet. Brukes både som standardisert skåre og som testverdi i store utvalg.</td></tr>
           </tbody>
         </table></div>
+        <div class="aside"><b>Når kan du stole på en χ²?</b> <em>Uavhengige observasjoner:</em> hver deltager telles én gang, i én celle — måler du de samme personene før og etter, er forutsetningen brutt, og McNemars test er riktig verktøy. <em>Forventede antall bør stort sett være ≥ 5</em>, og JASP sier fra når de ikke er det. <em>Er tabellen liten og antallene lave</em>, bruk Fishers eksakte test. Og til slutt, det som oftest glemmes: <strong>χ² svarer bare på <em>om</em> det finnes en sammenheng, aldri på hvor sterk den er.</strong> Til det trenger du <a href="#fam-effekt">Cramérs V</a> — akkurat som <em class="v">r²</em> må stå ved siden av <em class="v">p</em>.</div>
       </div>
     </section>
 
     <!-- ---------- D: ANOVA ---------- -->
     <section class="entry" id="fam-anova">
-      <div class="glyphcol"><span class="step">22</span><span class="glyph">F</span></div>
+      <div class="glyphcol"><span class="step">23</span><span class="glyph">F</span></div>
       <div>
         <h2>ANOVA-familien</h2>
         <p class="asks">Tre eller flere grupper, eller flere faktorer samtidig</p>
@@ -1058,7 +1122,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- E: regresjon utvidet ---------- -->
     <section class="entry" id="fam-regresjon">
-      <div class="glyphcol"><span class="step">23</span><span class="glyph up">B</span></div>
+      <div class="glyphcol"><span class="step">24</span><span class="glyph up">B</span></div>
       <div>
         <h2>Regresjon utover den enkle</h2>
         <p class="asks">Flere prediktorer, andre utfallstyper, indirekte veier</p>
@@ -1089,7 +1153,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- F: reliabilitet ---------- -->
     <section class="entry" id="fam-reliabilitet">
-      <div class="glyphcol"><span class="step">24</span><span class="glyph">α</span></div>
+      <div class="glyphcol"><span class="step">25</span><span class="glyph">α</span></div>
       <div>
         <h2>Reliabilitet og måling</h2>
         <p class="asks">Måler instrumentet i det hele tatt noe stabilt?</p>
@@ -1111,7 +1175,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- G: faktoranalyse / SEM ---------- -->
     <section class="entry" id="fam-sem">
-      <div class="glyphcol"><span class="step">25</span><span class="glyph">λ</span></div>
+      <div class="glyphcol"><span class="step">26</span><span class="glyph">λ</span></div>
       <div>
         <h2>Faktoranalyse og SEM</h2>
         <p class="asks">Hvilken struktur ligger under svarene?</p>
@@ -1140,7 +1204,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- H: bayes ---------- -->
     <section class="entry" id="fam-bayes">
-      <div class="glyphcol"><span class="step">26</span><span class="glyph up">BF</span></div>
+      <div class="glyphcol"><span class="step">27</span><span class="glyph up">BF</span></div>
       <div>
         <h2>Bayesiansk statistikk</h2>
         <p class="asks">Hvor mye taler dataene for den ene hypotesen framfor den andre?</p>
@@ -1163,7 +1227,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- I: metaanalyse ---------- -->
     <section class="entry" id="fam-meta">
-      <div class="glyphcol"><span class="step">27</span><span class="glyph">I²</span></div>
+      <div class="glyphcol"><span class="step">28</span><span class="glyph">I²</span></div>
       <div>
         <h2>Metaanalyse</h2>
         <p class="asks">Hva sier alle studiene til sammen?</p>
@@ -1186,7 +1250,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- J: power ---------- -->
     <section class="entry" id="fam-power">
-      <div class="glyphcol"><span class="step">28</span><span class="glyph">1−β</span></div>
+      <div class="glyphcol"><span class="step">29</span><span class="glyph">1−β</span></div>
       <div>
         <h2>Styrke, feiltyper og forskningsetikk</h2>
         <p class="asks">Kunne studien i det hele tatt ha funnet noe?</p>
@@ -1211,7 +1275,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- K: greske bokstaver ---------- -->
     <section class="entry" id="fam-gresk">
-      <div class="glyphcol"><span class="step">29</span><span class="glyph">Σ</span></div>
+      <div class="glyphcol"><span class="step">30</span><span class="glyph">Σ</span></div>
       <div>
         <h2>De greske bokstavene</h2>
         <p class="asks">Hvorfor står det plutselig gresk?</p>
@@ -1242,7 +1306,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- L: falske venner ---------- -->
     <section class="entry" id="falske-venner">
-      <div class="glyphcol"><span class="step">30</span><span class="glyph up">⚠</span></div>
+      <div class="glyphcol"><span class="step">31</span><span class="glyph up">⚠</span></div>
       <div>
         <h2>Falske venner</h2>
         <p class="asks">Samme tegn, helt ulik betydning</p>
@@ -1324,7 +1388,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- full ordbok ---------- -->
     <section class="entry" id="ordbok">
-      <div class="glyphcol"><span class="step">31</span><span class="glyph up">☰</span></div>
+      <div class="glyphcol"><span class="step">32</span><span class="glyph up">☰</span></div>
       <div>
         <h2>Hele ordboka</h2>
         <p class="asks">Søk mens du leser</p>
@@ -2009,6 +2073,142 @@ function nullText(){
     '<span class="hit">Den andelen er nettopp det p-verdien anslår.</span>';
 }
 
+/* ---------- p-jakt: p-hacking og publikasjonsskjevhet ---------- */
+const PH_K = 20;                       /* analyser per «studie» */
+let phSeed = 4711;
+let phLast = [];                       /* p-verdiene fra siste studie */
+let phStudies = 0, phHits = 0;         /* studier kjørt / studier med minst ett funn */
+
+/* Én analyse under H0: to uavhengige variabler, ingen sammenheng bygget inn. */
+function nullP(n, rnd){
+  const a=[], b=[];
+  for(let i=0;i<n;i++){ a.push(normal(rnd)); b.push(normal(rnd)); }
+  return pOfR(pearson(a,b), n);
+}
+function runPhack(times){
+  const n = Math.max(5, S.n);
+  for(let t=0;t<times;t++){
+    const rnd = rng(phSeed++), study=[];
+    for(let k=0;k<PH_K;k++) study.push(nullP(n, rnd));
+    phLast = study; phStudies++;
+    if(study.some(v=>v<0.05)) phHits++;
+  }
+}
+
+const cPhack = setup('cvPhack', o=>{
+  const t=theme(), ctx=o.ctx, W=o.W, H=o.H;
+  ctx.clearRect(0,0,W,H);
+  const padL=34, padR=14, padB=26, top=16, base=H-padB;
+  const Y = v => base - v*(base-top);
+  const X = i => padL + (i+0.5)/PH_K*(W-padL-padR);
+
+  /* akse: p fra 0 til 1 */
+  ctx.strokeStyle=t.ruleSoft; ctx.lineWidth=1;
+  [0,0.25,0.5,0.75,1].forEach(v=>{
+    ctx.beginPath(); ctx.moveTo(padL, Y(v)+.5); ctx.lineTo(W-padR, Y(v)+.5); ctx.stroke();
+    label(ctx, v.toFixed(2).replace(/^0/,''), padL-7, Y(v), t.ink3, 'right', 10);
+  });
+  label(ctx, 'p-verdi', padL, top-13, t.ink3, 'left', 9.5);
+
+  /* signifikansgrensa */
+  ctx.strokeStyle=t.mark; ctx.lineWidth=1.2; ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(padL, Y(0.05)+.5); ctx.lineTo(W-padR, Y(0.05)+.5); ctx.stroke();
+  ctx.setLineDash([]);
+  label(ctx, 'α = .05', W-padR, Y(0.05)-9, t.mark, 'right', 10, '600');
+
+  if(!phLast.length){
+    label(ctx, 'Trykk «Kjør 20 analyser».', padL+(W-padL-padR)/2, (top+base)/2, t.ink3, 'center', 12);
+    return;
+  }
+  phLast.forEach((pv,i)=>{
+    const hit = pv<0.05;
+    ctx.strokeStyle = hit ? t.mark : t.rule; ctx.lineWidth = hit?1.6:1;
+    ctx.globalAlpha = hit?1:.6;
+    ctx.beginPath(); ctx.moveTo(X(i), base); ctx.lineTo(X(i), Y(pv)); ctx.stroke();
+    ctx.beginPath(); ctx.arc(X(i), Y(pv), hit?4.2:3, 0, 6.29);
+    ctx.fillStyle = hit ? t.mark : t.accent; ctx.fill();
+    ctx.globalAlpha = 1;
+  });
+});
+
+function phackText(){
+  const el=document.getElementById('phackRead'); if(!el) return;
+  const cnt=document.getElementById('phackN');
+  if(cnt) cnt.textContent = phStudies ? (phStudies===1 ? '1 studie kjørt' : phStudies+' studier kjørt') : 'ingen studier kjørt';
+  if(!phLast.length){ el.textContent='Ingen av de 20 analysene har en ekte effekt. Se hvor mange som likevel blir «signifikante».'; return; }
+  const hits = phLast.filter(v=>v<0.05).length;
+  let out = 'Siste studie: <b>'+hits+' av '+PH_K+'</b> analyser ga p < .05' + (hits? ' — alle sammen ren flaks.' : ' denne gangen.');
+  if(phStudies>1){
+    const pct = phHits/phStudies*100;
+    out += ' Over <b>'+phStudies+'</b> studier ga minst én analyse et «funn» i <span class="hit">'+phHits+' av dem ('+pct.toFixed(0)+' %)</span>. Teoretisk forventning: 64 %.';
+  }
+  el.innerHTML = out;
+}
+
+/* ---------- 100 laboratorier ---------- */
+let labs = [], labsPub = false, labsSeed = 991;
+function runLabs(){
+  const n = Math.max(5, S.n), rnd = rng(labsSeed++);
+  labs = [];
+  for(let i=0;i<100;i++){
+    const a=[], b=[];
+    for(let j=0;j<n;j++){ a.push(normal(rnd)); b.push(normal(rnd)); }
+    const r = pearson(a,b);
+    labs.push({r, p: pOfR(r,n)});
+  }
+}
+
+const cLabs = setup('cvLabs', o=>{
+  const t=theme(), ctx=o.ctx, W=o.W, H=o.H;
+  ctx.clearRect(0,0,W,H);
+  const padL=18, padR=18, padB=28, top=18, base=H-padB;
+  if(!labs.length){
+    label(ctx, 'Trykk «Kjør 100 laboratorier».', W/2, (top+base)/2, t.ink3, 'center', 12);
+    return;
+  }
+  const mx = Math.max(0.1, Math.max(...labs.map(l=>Math.abs(l.r)))*1.12);
+  const X = v => padL + (v+mx)/(2*mx)*(W-padL-padR);
+
+  ctx.strokeStyle=t.rule; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(padL, base+.5); ctx.lineTo(W-padR, base+.5); ctx.stroke();
+  [-mx, -mx/2, 0, mx/2, mx].forEach(v=>{
+    ctx.strokeStyle=t.ruleSoft;
+    ctx.beginPath(); ctx.moveTo(X(v), base); ctx.lineTo(X(v), base+4); ctx.stroke();
+    label(ctx, fr(v), X(v), base+14, t.ink3, 'center', 10);
+  });
+
+  /* sannheten */
+  ctx.strokeStyle=t.ink2; ctx.lineWidth=1.5; ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(X(0), top-6); ctx.lineTo(X(0), base); ctx.stroke();
+  ctx.setLineDash([]);
+  label(ctx, 'sannheten: r = 0', X(0), top-12, t.ink2, 'center', 10, '600');
+
+  const jr = rng(313), rTop = top+10, rBot = base-6;
+  labs.forEach(l=>{
+    const sig = l.p<0.05, shown = !labsPub || sig;
+    ctx.beginPath(); ctx.arc(X(l.r), rTop+jr()*(rBot-rTop), 3.2, 0, 6.29);
+    if(!shown){ ctx.fillStyle=t.rule; ctx.globalAlpha=.18; }
+    else { ctx.fillStyle = sig ? t.mark : t.accent; ctx.globalAlpha = sig?.85:.5; }
+    ctx.fill(); ctx.globalAlpha=1;
+  });
+});
+
+function labsText(){
+  const el=document.getElementById('labsRead'); if(!el) return;
+  const hint=document.getElementById('labsHint');
+  if(hint) hint.textContent = !labs.length ? 'ingen studier kjørt' : (labsPub ? 'bare publiserte studier' : 'alle studier vises');
+  if(!labs.length){ el.textContent='Ingen av de 100 laboratoriene studerer en ekte effekt. Den sanne verdien er r = 0.'; return; }
+  const sig = labs.filter(l=>l.p<0.05);
+  const absAll = mean(labs.map(l=>Math.abs(l.r)));
+  let out = '<b>'+sig.length+' av 100</b> studier ble signifikante. Gjennomsnittlig størrelse over <b>alle</b> 100: |r| = <b>'+fr(absAll)+'</b>.';
+  if(sig.length){
+    const absPub = mean(sig.map(l=>Math.abs(l.r)));
+    const gang = absAll>0 ? absPub/absAll : 0;
+    out += ' Blant de <b>publiserte</b>: <span class="hit">|r| = '+fr(absPub)+'</span> — '+fx(gang,1)+' ganger så stort, av en effekt som ikke finnes.';
+  }
+  el.innerHTML = out;
+}
+
 /* ---------- SE / utvalgsfordeling ---------- */
 let samples=[];
 const cSamp = setup('cvSamp', o=>{
@@ -2307,12 +2507,12 @@ function collText(){
 function rebuild(keepDemos){
   D = generate(STATE.n, STATE.seed, 0);
   computeStats();
-  if(!keepDemos){ nulls=[]; samples=[]; }
+  if(!keepDemos){ nulls=[]; samples=[]; phLast=[]; phStudies=0; phHits=0; labs=[]; }
   ub0 = S.simple.coef[0] - S.sdy*0.9;
   ub1 = 1.0;
   fillStats();
   redrawAll();
-  msdText(); distText(); mainText(); nullText(); sampText(); betaText(); dr2Text(); collText(); syncLine();
+  msdText(); distText(); mainText(); nullText(); phackText(); labsText(); sampText(); betaText(); dr2Text(); collText(); syncLine();
 }
 
 function setN(n, btn){
@@ -2342,6 +2542,7 @@ document.getElementById('resetAll').addEventListener('click', ()=>{
   showM=false; showSD=false;
   document.getElementById('chipM').setAttribute('aria-pressed','false');
   document.getElementById('chipSD').setAttribute('aria-pressed','false');
+  labsPub=false; document.getElementById('labsPub').setAttribute('aria-pressed','false');
   distView='hist'; distTypo=false;
   document.getElementById('chipHist').setAttribute('aria-pressed','true');
   document.getElementById('chipBox').setAttribute('aria-pressed','false');
@@ -2383,6 +2584,21 @@ document.getElementById('shuf1').addEventListener('click', ()=>{ nulls.push(shuf
 document.getElementById('shuf200').addEventListener('click', ()=>{ for(let i=0;i<200;i++) nulls.push(shuffledR()); cNull.draw(cNull); nullText(); });
 document.getElementById('shufReset').addEventListener('click', ()=>{ nulls=[]; cNull.draw(cNull); nullText(); });
 
+document.getElementById('phack1').addEventListener('click', ()=>{ runPhack(1); cPhack.draw(cPhack); phackText(); });
+document.getElementById('phack500').addEventListener('click', ()=>{ runPhack(500); cPhack.draw(cPhack); phackText(); });
+document.getElementById('phackReset').addEventListener('click', ()=>{
+  phLast=[]; phStudies=0; phHits=0; cPhack.draw(cPhack); phackText();
+});
+document.getElementById('labsRun').addEventListener('click', ()=>{ runLabs(); cLabs.draw(cLabs); labsText(); });
+document.getElementById('labsPub').addEventListener('click', e=>{
+  labsPub=!labsPub; e.currentTarget.setAttribute('aria-pressed', String(labsPub));
+  cLabs.draw(cLabs); labsText();
+});
+document.getElementById('labsReset').addEventListener('click', ()=>{
+  labs=[]; labsPub=false;
+  document.getElementById('labsPub').setAttribute('aria-pressed','false');
+  cLabs.draw(cLabs); labsText();
+});
 document.getElementById('samp200').addEventListener('click', ()=>{
   let sd0 = (STATE.seed*13 + samples.length*7717 + 99991)>>>0;
   for(let i=0;i<200;i++){

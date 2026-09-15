@@ -1,0 +1,13 @@
+{
+  "name": "statistikk-ve-side",
+  "private": true,
+  "description": "Statistikkens alfabet — interaktiv nettside om statistikk for PSY300",
+  "scripts": {
+    "dev": "wrangler dev",
+    "check": "wrangler deploy --dry-run",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.131.2"
+  }
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Siden finnes ikke · Statistikkens alfabet</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EDF0F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#11171D" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#EDF0F3; --surface:#FFFFFF; --ink:#141C24; --ink-2:#54636F;
+  --rule:#C6D0D9; --accent:#1B4B8F; --on-accent:#FFFFFF;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#11171D; --surface:#19212A; --ink:#E6EBF0; --ink-2:#A3B0BC;
+    --rule:#33404C; --accent:#7FA8E0; --on-accent:#11171D;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11171D; --surface:#19212A; --ink:#E6EBF0; --ink-2:#A3B0BC;
+  --rule:#33404C; --accent:#7FA8E0; --on-accent:#11171D;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:17px; line-height:1.6;
+  display:flex; align-items:center; justify-content:center; padding:24px;
+  -webkit-font-smoothing:antialiased;
+}
+main{
+  background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+  max-width:36rem; width:100%; padding:40px 32px;
+}
+.eyebrow{
+  font-family:var(--mono); font-size:12px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-2); margin:0 0 12px;
+}
+h1{font-size:1.9rem; font-weight:500; line-height:1.25; margin:0 0 12px}
+h1 em{font-style:italic}
+p{color:var(--ink-2); margin:0 0 24px}
+a.home{
+  display:inline-block; background:var(--accent); color:var(--on-accent);
+  text-decoration:none; padding:10px 20px; border-radius:3px;
+  font-family:var(--mono); font-size:14px;
+}
+a.home:hover{opacity:.9}
+a.home:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+@media (max-width:420px){ main{padding:28px 20px} h1{font-size:1.5rem} }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">404 · siden finnes ikke</p>
+  <h1>Her var det <em>ingenting</em></h1>
+  <p>Adressen du prøvde å åpne peker ikke på noen side. Kanskje lenken er utdatert, eller kanskje det har sneket seg inn en skrivefeil.</p>
+  <a class="home" href="/">Til Statistikkens alfabet</a>
+</main>
+</body>
+</html>

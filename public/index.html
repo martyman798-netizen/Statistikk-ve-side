@@ -337,8 +337,8 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
     <span class="pglyph">?!</span>
     <span>
       <b>Oppgaver</b>
-      <span class="pd">Les tallet, velg analysen, si hva resultatet betyr. Hvert feilalternativ er en bestemt misforståelse, og du får vite hvilken.</span>
-      <span class="pn">36 flervalgsoppgaver · eksamensformat</span>
+      <span class="pd">Les resultatet, forstå hvorfor analysen finnes, og vit når du skal bruke den. Hvert feilalternativ er en bestemt misforståelse, og du får vite hvilken.</span>
+      <span class="pn">60 flervalgsoppgaver · eksamensformat</span>
     </span>
   </a>
 </div>
@@ -1517,7 +1517,15 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
       <div>
         <h2>Oppgaver</h2>
         <p class="asks">Kan du bruke det, ikke bare gjenkjenne det?</p>
-        <p>Kortene tester om du kan ordene. Disse tester om du kan <em>tenke</em> med dem: lese et tall ut av en resultatsetning, velge riktig analyse for et design, og si hva et resultat betyr — og hva det <strong>ikke</strong> betyr. Det er den oppgavetypen eksamen består av.</p>
+        <p>Kortene tester om du kan ordene. Disse tester om du kan <em>tenke</em> med dem, og de dreier seg om tre spørsmål som henger sammen:</p>
+        <div class="scroller"><table class="dict terms tight" data-nocard>
+          <tbody>
+            <tr><td class="up">Les resultatet</td><td>Hva står det egentlig?</td><td>Plukk tallet ut av en resultatsetning eller en JASP-tabell, og vit hvilket av dem som svarer på hvilket spørsmål.</td></tr>
+            <tr><td class="up">Hvorfor analysen</td><td>Hvilket problem løser den?</td><td>Hver analyse finnes fordi noe ellers ville gått galt. Vet du hva som går galt uten den, husker du også når du trenger den.</td></tr>
+            <tr><td class="up">Når velger du hva</td><td>Hva peker designet mot?</td><td>Målenivå, antall grupper, og om det er de samme personene om igjen. Derfra følger valget nesten av seg selv.</td></tr>
+          </tbody>
+        </table></div>
+        <p>Det er den oppgavetypen eksamen består av — tolkning, ikke regning.</p>
         <p>Hvert feilalternativ her er en bestemt misforståelse, ikke et tilfeldig galt svar. Svarer du feil, får du vite nøyaktig hvilken felle du gikk i — det er som regel mer nyttig enn å få vite hva som var riktig.</p>
         <div class="panel">
           <div class="panel-head"><span id="oppgHead">Oppgave</span><span id="oppgScore">—</span></div>
@@ -3088,42 +3096,42 @@ const SENTENCES = [
   /* q = spørsmål, o = alternativer, c = indeks til riktig svar, f = begrunnelse per alternativ */
   const BANK = [
 /* ---- A: les tallet ---- */
-{t:'Les tallet', n:1, q:'En artikkel rapporterer: <code>t(73) = 2.41, p = .019, d = 0.56</code>. Hvilket tall forteller deg hvor <em>stor</em> forskjellen er?',
+{t:'Les resultatet', n:1, q:'En artikkel rapporterer: <code>t(73) = 2.41, p = .019, d = 0.56</code>. Hvilket tall forteller deg hvor <em>stor</em> forskjellen er?',
  o:['d = 0.56','t = 2.41','p = .019','73'], c:0,
  f:['Riktig. <b>d</b> er effektstørrelsen: forskjellen målt i standardavvik. 0.56 er en middels stor forskjell, og den står der nettopp fordi p ikke sier noe om størrelse.',
     'Nei. <b>t</b> er testtallet — forskjellen delt på standardfeilen. Den vokser med utvalgsstørrelsen, så en stor t kan like gjerne bety mange deltagere som en stor effekt.',
     'Nei. <b>p</b> sier hvor uvanlig resultatet er hvis nullhypotesen er sann. En bitteliten effekt får liten p bare N er stor nok.',
     'Nei. <b>73</b> er frihetsgrader, som her røper at studien hadde 75 deltagere fordelt på to grupper.']},
 
-{t:'Les tallet', n:2, q:'<code>F(2, 388) = 12.44, p &lt; .001</code>. Hva forteller <em>toeren</em> deg om studien?',
+{t:'Les resultatet', n:2, q:'<code>F(2, 388) = 12.44, p &lt; .001</code>. Hva forteller <em>toeren</em> deg om studien?',
  o:['Den ble sammenlignet tre grupper','Den hadde to grupper','Den hadde to prediktorer i tillegg til utfallet','Den brukte to måletidspunkter'], c:0,
  f:['Riktig. Første frihetsgrad i en enveis-ANOVA er antall grupper minus 1. <b>2</b> betyr altså <b>tre</b> grupper — og det er derfor man trengte ANOVA i stedet for en t-test.',
     'Nei — da hadde første frihetsgrad vært 1, og du kunne brukt en t-test. Frihetsgraden er antall grupper <em>minus 1</em>.',
     'Nei. Det ville vært en regresjon. I <code>F(2, 388)</code> fra en enveis-ANOVA handler toeren om grupper.',
     'Nei. Gjentatte målinger gir en annen oppstilling. Her er toeren antall grupper minus 1.']},
 
-{t:'Les tallet', n:3, q:'En studie med 80 deltagere rapporterer <code>r = .34, p = .002</code>. Hvor stor andel av variasjonen deler de to variablene?',
+{t:'Les resultatet', n:3, q:'En studie med 80 deltagere rapporterer <code>r = .34, p = .002</code>. Hvor stor andel av variasjonen deler de to variablene?',
  o:['Omtrent 12 %','Omtrent 34 %','Omtrent 58 %','Det kan man ikke vite fra r'], c:0,
  f:['Riktig. Delt variasjon er <b>r²</b> = .34² ≈ .12, altså omtrent 12 %. De resterende 88 % forklares av noe annet.',
     'Nei — det er r selv, ikke andelen variasjon. r og r² er to forskjellige skalaer, og forskjellen er stor: .34 høres nesten ut som en tredel, men er i praksis en åttedel.',
     'Nei. .58 ville vært kvadratroten av .34 — altså feil vei. Du skal kvadrere, ikke rotutdra.',
     'Nei, det er nettopp det r² gjør: kvadrer korrelasjonen, så har du andelen delt variasjon.']},
 
-{t:'Les tallet', n:4, q:'<code>χ²(2, N = 391) = 8.4, p = .015, V = .15</code>. Hva er <b>V</b> her?',
+{t:'Les resultatet', n:4, q:'<code>χ²(2, N = 391) = 8.4, p = .015, V = .15</code>. Hva er <b>V</b> her?',
  o:['Effektstørrelsen — hvor sterk sammenhengen er','En ny testverdi som bekrefter χ²','Andelen av utvalget som havnet i riktig kategori','Variansen i den ene variabelen'], c:0,
  f:['Riktig. <b>Cramérs V</b> er effektstørrelsen for kjikvadrat. χ² sier bare <em>om</em> det finnes en sammenheng; V sier hvor sterk den er. .15 er svak.',
     'Nei. V er ikke en test og har ingen egen p-verdi — den er et mål på styrke, på linje med r² ved siden av r.',
     'Nei, det er ikke det V måler. V går fra 0 til 1 og beskriver styrken i sammenhengen mellom de to kategoriske variablene.',
     'Nei. Varians hører til kontinuerlige variabler. Her telles personer i kategorier.']},
 
-{t:'Les tallet', n:5, q:'En regresjon gir <code>b = 2.51, SE = 0.62, 95 % KI [1.29, 3.73]</code>. Er koeffisienten signifikant på 5 %-nivå?',
+{t:'Les resultatet', n:5, q:'En regresjon gir <code>b = 2.51, SE = 0.62, 95 % KI [1.29, 3.73]</code>. Er koeffisienten signifikant på 5 %-nivå?',
  o:['Ja — intervallet inneholder ikke null','Nei — vi trenger p-verdien for å kunne si det','Ja — fordi b er større enn SE','Nei — intervallet er for bredt'], c:0,
  f:['Riktig. Et 95 % konfidensintervall som ikke dekker null, svarer til p &lt; .05. Intervallet gjør altså dobbelt arbeid: det viser både signifikans og hvilke verdier som er plausible.',
     'Ikke nødvendig. Intervallet inneholder informasjonen allerede — og forteller deg i tillegg <em>hvor mye</em> effekten kan tenkes å være, noe p aldri gjør.',
     'Nei, det er ikke regelen. Sammenligningen som gjelder er om <em>intervallet</em> dekker null, ikke hvordan b står seg mot SE.',
     'Nei. Bredden sier noe om presisjonen, ikke om signifikansen. Et bredt intervall som likevel utelukker null er fortsatt signifikant — bare upresist.']},
 
-{t:'Les tallet', n:6, q:'En regresjon har to prediktorer. Den ene har <code>B = 2.51</code>, den andre <code>B = 0.04</code>. Kan du konkludere med at den første er viktigst?',
+{t:'Les resultatet', n:6, q:'En regresjon har to prediktorer. Den ene har <code>B = 2.51</code>, den andre <code>B = 0.04</code>. Kan du konkludere med at den første er viktigst?',
  o:['Nei — B står i variablenes egne enheter, så de kan ikke sammenlignes direkte','Ja — større B betyr større betydning','Ja, men bare hvis begge er signifikante','Nei — B sier ingenting om styrke i det hele tatt'], c:0,
  f:['Riktig. <b>B</b> er ustandardisert: «poeng per time» og «poeng per krone» er ikke samme skala. Vil du rangere prediktorene, trenger du <b>β</b>, som er i standardavvik og dermed sammenlignbar.',
     'Nei — dette er en av de vanligste lesefeilene. En prediktor målt i kroner får liten B rett og slett fordi én krone er lite, ikke fordi den betyr lite.',
@@ -3165,35 +3173,35 @@ const SENTENCES = [
     'Nei, det er helt normalt. Store utvalg oppdager små effekter; det er styrken deres, og fallgruva.',
     'Nei. p og r måler ulike ting. r er anslaget på styrken, og det er .03 uansett hvor liten p er.']},
 /* ---- C: velg analysen ---- */
-{t:'Velg analysen', n:12, q:'Du sammenligner depresjonsskåre (0–63) mellom en behandlingsgruppe og en venteliste. Fordelingene er noenlunde normale. Hvilken test?',
+{t:'Når velger du hva', n:12, q:'Du sammenligner depresjonsskåre (0–63) mellom en behandlingsgruppe og en venteliste. Fordelingene er noenlunde normale. Hvilken test?',
  o:['Uavhengig t-test','Kjikvadrat','Enveis-ANOVA','Paret t-test'], c:0,
  f:['Riktig. To uavhengige grupper, ett kontinuerlig utfall, rimelig normalfordeling — det er t-testens kjerneoppgave. Welchs variant er trygg hvis spredningen er ulik.',
     'Nei. Kjikvadrat er for <em>kategoriske</em> data der du teller personer i bokser. Her har du en skala.',
     'Den ville faktisk gitt samme svar med to grupper (F = t²), men ANOVA er verktøyet når du har <em>tre eller flere</em>. Med to er t-testen det direkte valget.',
     'Nei. Paret t-test er for de <em>samme</em> personene målt to ganger. Her er det to forskjellige grupper.']},
 
-{t:'Velg analysen', n:13, q:'Du måler de samme 60 pasientene før behandling, rett etter, og ved tre måneders oppfølging. Hva passer?',
+{t:'Når velger du hva', n:13, q:'Du måler de samme 60 pasientene før behandling, rett etter, og ved tre måneders oppfølging. Hva passer?',
  o:['ANOVA for gjentatte målinger','Tre separate t-tester','Uavhengig t-test','Kjikvadrat'], c:0,
  f:['Riktig. Samme personer på flere tidspunkter gir avhengige observasjoner, og ANOVA for gjentatte målinger håndterer nettopp det.',
     'Fristende, men galt: tre tester på samme data blåser opp risikoen for falske positive. Det er p-hacking i miniatyr — én analyse som tar alle tre tidspunktene samtidig er riktig.',
     'Nei. Uavhengig t-test forutsetter at gruppene består av forskjellige personer.',
     'Nei, utfallet er en skala, ikke kategorier.']},
 
-{t:'Velg analysen', n:14, q:'Du vil vite om medisinbruk (ja/nei) fordeler seg likt mellom to behandlingsgrupper. Hvilken test?',
+{t:'Når velger du hva', n:14, q:'Du vil vite om medisinbruk (ja/nei) fordeler seg likt mellom to behandlingsgrupper. Hvilken test?',
  o:['Kjikvadrat for uavhengighet','Kjikvadrat for tilpasning','t-test','Korrelasjon'], c:0,
  f:['Riktig. To kategoriske variabler, og spørsmålet er om de henger sammen. De forventede antallene regnes ut fra rad- og kolonnesummene.',
     'Nesten. Tilpasningstesten brukes når du har <em>én</em> variabel og en forventet fordeling utenfra — «er kjønnsfordelingen 50/50?». Her har du to variabler.',
     'Nei. t-testen sammenligner gjennomsnitt, og «ja/nei» har ikke noe gjennomsnitt.',
     'Nei. Pearsons r forutsetter to kontinuerlige variabler og en rett linje.']},
 
-{t:'Velg analysen', n:15, q:'Utfallet er tydelig skjevt, og du har to uavhengige grupper med 18 deltagere i hver. Hva er tryggest?',
+{t:'Når velger du hva', n:15, q:'Utfallet er tydelig skjevt, og du har to uavhengige grupper med 18 deltagere i hver. Hva er tryggest?',
  o:['Mann–Whitney U','Pearsons r','Uavhengig t-test uten videre','Kjikvadrat'], c:0,
  f:['Riktig. Mann–Whitney sammenligner rangeringer i stedet for gjennomsnitt, og bryr seg derfor ikke om skjevhet. Med bare 18 per gruppe kan du ikke lene deg på sentralgrenseteoremet.',
     'Nei. r måler samvariasjon mellom to variabler, ikke forskjell mellom grupper.',
     'Med store utvalg hadde t-testen tålt skjevheten fint, men 18 per gruppe er for lite til at fordelingen av gjennomsnitt rekker å bli normal.',
     'Nei, utfallet er en skala.']},
 
-{t:'Velg analysen', n:16, q:'Du har en 2×2-tabell der to av cellene har forventet antall på 3. Hva gjør du?',
+{t:'Når velger du hva', n:16, q:'Du har en 2×2-tabell der to av cellene har forventet antall på 3. Hva gjør du?',
  o:['Bruker Fishers eksakte test','Kjører kjikvadrat som vanlig','Slår sammen kategoriene til én','Rapporterer at det ikke går an å teste'], c:0,
  f:['Riktig. Kjikvadrat bruker χ²-fordelingen som <em>tilnærming</em>, og den blir upålitelig når forventede antall er under 5. Fisher regner ut den eksakte sannsynligheten i stedet.',
     'Nei. Da bryter du forutsetningen om forventede antall ≥ 5, og p-verdien blir upålitelig. JASP sier vanligvis fra.',
@@ -3236,12 +3244,12 @@ const SENTENCES = [
     'Nei. Standardfeilen beskriver hvor mye estimatet ville variert mellom utvalg — den er et mål på usikkerheten i tallet, ikke tallet selv.',
     'Nei. Operasjonalisering er hvordan du bestemte deg for å <em>måle</em> depresjon, ikke resultatet av målingen.']},
 
-{t:'SPINE', n:22, q:'Hva beskriver standardfeilen til gjennomsnittet?',
- o:['Hvor mye utvalgsgjennomsnittet ville variert fra utvalg til utvalg','Hvor mye enkeltpersoner varierer rundt gjennomsnittet','Hvor stor målefeilen i spørreskjemaet er','Avstanden mellom gjennomsnittet og medianen'], c:0,
- f:['Riktig. SE handler om presisjonen i <em>anslaget ditt</em>: gjentok du hele studien med nye deltagere, hvor mye ville tallet hoppet? Det er bredden på utvalgsfordelingen.',
-    'Det er <b>standardavviket</b>. Forskjellen mellom SD og SE er den enkeltforvekslingen som koster flest poeng: SD beskriver folk, SE beskriver anslaget.',
-    'Nei. Målefeil i instrumentet hører til reliabilitet, ikke til standardfeilen.',
-    'Nei. Det er et mål på skjevhet, og har ingenting med SE å gjøre.']},
+{t:'SPINE', n:22, q:'Du har allerede standardavviket. Hvorfor trenger du standardfeilen i tillegg?',
+ o:['SD beskriver hvor ulike deltagerne er; SE beskriver hvor presist anslaget ditt er','SE er bare SD regnet om til prosent','SE erstatter SD når utvalget er lite','SE måler hvor stor målefeilen i spørreskjemaet er'], c:0,
+ f:['Riktig, og de svarer på to helt ulike spørsmål. SD er en <em>egenskap ved populasjonen</em> og krymper ikke om du samler flere data — folk er like ulike uansett. SE er en egenskap ved <em>studien din</em>, og krymper med √n. Derfor er det SE som brukes til konfidensintervall og tester, ikke SD.',
+    'Nei. SE = SD/√n, altså SD delt på kvadratroten av utvalgsstørrelsen — ikke en omregning til prosent.',
+    'Nei, begge rapporteres uansett størrelse. SD beskriver utvalget, SE beskriver presisjonen i anslaget.',
+    'Målefeil i instrumentet hører til reliabilitet. SE handler om utvalgsvariasjon: at et nytt utvalg ville gitt et litt annet tall.']},
 
 {t:'SPINE', n:23, q:'Du firedobler utvalget fra 25 til 100. Hva skjer med standardfeilen?',
  o:['Den halveres','Den blir en firedel','Den er uendret','Den dobles'], c:0,
@@ -3341,7 +3349,176 @@ const SENTENCES = [
  f:['Riktig. Boksplottet er et sammendrag — kvartiler og median. To fordelinger med helt ulik form kan gi nesten identiske bokser. Derfor er histogram eller raincloud verdt å se i tillegg.',
     'Tvert imot: medianen er streken inni boksen, og den er det tydeligste elementet i figuren.',
     'Det håndterer uteliggere svært godt — de tegnes som egne punkter utenfor værhårene.',
-    'Nei, boksplottet krever nettopp en kontinuerlig variabel.']}
+    'Nei, boksplottet krever nettopp en kontinuerlig variabel.']},
+
+/* ---- Hvorfor analysen finnes ---- */
+{t:'Hvorfor analysen', n:37, q:'Du har tre grupper. Hvorfor kjøre én ANOVA i stedet for tre t-tester mellom parene?',
+ o:['Tre tester tredobler nesten sjansen for en falsk positiv; ANOVA stiller ett spørsmål med ett α','ANOVA er mer presis enn t-testen','t-testen tåler ikke mer enn to grupper rent teknisk','ANOVA krever færre forutsetninger'], c:0,
+ f:['Riktig. Hver test har 5 % risiko for falsk positiv. Tre tester gir omtrent 14 %. ANOVA samler spørsmålet «finnes det <em>noen</em> forskjell her?» i én test med ett α, og først når den er signifikant går du videre til parvise sammenligninger — med korreksjon.',
+    'Nei, presisjonen er den samme. Det ANOVA styrer er <em>feilraten på tvers av</em> sammenligninger, ikke nøyaktigheten i hver enkelt.',
+    'Rent teknisk kan du godt kjøre t-tester på par av grupper. Problemet er ikke at det ikke lar seg gjøre, men hva det gjør med den samlede risikoen.',
+    'Forutsetningene er i praksis de samme: uavhengige observasjoner, normalfordelte residualer og noenlunde lik varians.']},
+
+{t:'Hvorfor analysen', n:38, q:'Hvorfor finnes Welchs t-test ved siden av den vanlige?',
+ o:['Den slipper kravet om lik varians i de to gruppene','Den tåler at utvalget er lite','Den gir alltid lavere p-verdi','Den kan brukes på kategoriske data'], c:0,
+ f:['Riktig. Den klassiske t-testen antar at gruppene har lik spredning. Brytes det — særlig med ulikt store grupper — blir p-verdien feil. Welch justerer frihetsgradene i stedet, og derfor ender de opp som desimaltall. Mange mener den bør være standardvalget.',
+    'Nei, liten n er et styrkeproblem som Welch ikke løser. Det den løser er ulik spredning.',
+    'Den er som regel litt mer konservativ, ikke mindre. Å velge test etter hvilken p den gir er uansett p-hacking.',
+    'Nei, begge varianter sammenligner gjennomsnitt og krever et kontinuerlig utfall.']},
+
+{t:'Hvorfor analysen', n:39, q:'Du har allerede B-ene fra en regresjon. Hvorfor bry seg med β i tillegg?',
+ o:['Fordi β er i standardavvik og dermed kan sammenlignes mellom prediktorer med ulike enheter','Fordi β alltid er mer nøyaktig enn B','Fordi β har en p-verdi og det har ikke B','Fordi β viser årsaksretningen'], c:0,
+ f:['Riktig. B er i variablenes egne enheter, så «per time» og «per krone» er usammenlignbare. β setter alle på samme skala — standardavvik — og først da kan du si hvilken prediktor som betyr mest i modellen.',
+    'Begge er like nøyaktige; de er samme tall i to ulike måleenheter.',
+    'Nei, begge har samme p-verdi. Standardiseringen endrer skalaen, ikke testen.',
+    'Nei. Ingen regresjonskoeffisient viser årsaksretning på egen hånd — det avgjøres av designet, ikke av tallet.']},
+
+{t:'Hvorfor analysen', n:40, q:'Hvorfor legge to prediktorer inn i <em>samme</em> regresjon, i stedet for å kjøre to enkle regresjoner?',
+ o:['Fordi hver koeffisient da viser effekten når det er kontrollert for den andre','Fordi det gir høyere R²','Fordi enkle regresjoner ikke har p-verdier','Fordi man ellers bryter forutsetningen om normalfordeling'], c:0,
+ f:['Riktig. Dette er hele poenget med multippel regresjon: koeffisienten svarer på «hva bidrar denne prediktoren med <em>utover</em> den andre?». To separate regresjoner ville telt den delen de deler to ganger, og begge ville sett sterkere ut enn de er.',
+    'R² blir riktignok høyere, men det er en konsekvens, ikke grunnen — og R² stiger uansett når du legger til prediktorer, også ubrukelige.',
+    'Jo, enkle regresjoner har p-verdier. Forskjellen ligger i hva koeffisienten <em>betyr</em>.',
+    'Antall prediktorer har ingenting med normalfordeling å gjøre.']},
+
+{t:'Hvorfor analysen', n:41, q:'Hvorfor rapportere <code>ΔR²</code> når man allerede har R² for hele modellen?',
+ o:['Fordi R² aldri synker når man legger til en prediktor — ΔR² viser hva den nye faktisk tilførte','Fordi ΔR² er lettere å tolke enn R²','Fordi R² ikke kan regnes ut med flere prediktorer','Fordi ΔR² viser om residualene er normalfordelte'], c:0,
+ f:['Riktig. Legger du til en prediktor som består av rent tilfeldige tall, stiger R² likevel litt. Derfor sier R² alene ingenting om at den nye variabelen var verdt å ta med. ΔR² isolerer bidraget, og testes med sin egen F.',
+    'De er like enkle å tolke — begge er andeler forklart variasjon. Forskjellen er hva de er andel <em>av</em>.',
+    'Jo da, R² regnes ut for hvor mange prediktorer som helst.',
+    'Nei, residualene sjekkes med plott, ikke med ΔR².']},
+
+{t:'Hvorfor analysen', n:42, q:'Hva er justert R² til for?',
+ o:['Den straffer for antall prediktorer, så en modell ikke ser bedre ut bare fordi den er større','Den justerer for at utvalget kan være skjevt','Den korrigerer for uteliggere','Den gjør R² sammenlignbar mellom ulike utfallsvariabler'], c:0,
+ f:['Riktig. Siden R² alltid stiger når du legger til prediktorer, trengs et mål som trekker fra for kompleksitet. Justert R² kan faktisk <em>synke</em> når du legger til noe som ikke bidrar — og det er nyttig informasjon.',
+    'Nei. Et skjevt utvalg er et designproblem som ingen justering i modellen kan reparere.',
+    'Nei, uteliggere håndteres ved å se på dem, ikke med justert R².',
+    'Nei, R² er allerede en andel og dermed enhetsløs.']},
+
+{t:'Hvorfor analysen', n:43, q:'Hvorfor er ANOVA for gjentatte målinger å foretrekke når de samme personene måles flere ganger?',
+ o:['Fordi den skiller ut de stabile forskjellene mellom personer, og dermed får mer styrke','Fordi den ikke krever normalfordeling','Fordi den tåler flere grupper','Fordi den gir høyere p-verdier'], c:0,
+ f:['Riktig. Når Per alltid ligger høyt og Kari alltid lavt, er den variasjonen støy for spørsmålet ditt. Gjentatte målinger trekker den ut av feilleddet, og da trengs færre deltagere for å oppdage den samme endringen. I tillegg er observasjonene avhengige, og det må analysen ta hensyn til uansett.',
+    'Den har sine egne forutsetninger, blant annet sfærisitet — som er grunnen til at Greenhouse–Geisser finnes.',
+    'Antall grupper er et annet spørsmål. Dette handler om at målingene henger sammen innad i hver person.',
+    'Tvert imot — å utnytte den parede strukturen gir som regel <em>lavere</em> p, fordi støyen krymper.']},
+
+{t:'Hvorfor analysen', n:44, q:'Hvorfor rapportere Cramérs V når χ² allerede har en p-verdi?',
+ o:['Fordi χ² vokser med utvalgsstørrelsen, mens V sier hvor sterk sammenhengen er uansett N','Fordi V er mer presis enn χ²','Fordi χ² ikke kan brukes på tabeller større enn 2×2','Fordi V erstatter p-verdien'], c:0,
+ f:['Riktig. Med 10 000 deltagere blir nesten enhver skjevhet i tabellen signifikant. V normaliserer for N og havner mellom 0 og 1, så den svarer på det χ² ikke svarer på: <em>hvor mye</em> henger de sammen. Samme forhold som mellom p og r².',
+    'De måler ulike ting, så presisjon er ikke sammenligningsgrunnlaget.',
+    'Jo, χ² håndterer tabeller av alle størrelser.',
+    'Nei, de utfyller hverandre: χ² svarer på <em>om</em>, V på <em>hvor sterkt</em>.']},
+
+{t:'Hvorfor analysen', n:45, q:'Hvorfor skal konfidensintervallet stå ved siden av p-verdien?',
+ o:['Fordi p bare sier om effekten skiller seg fra null, mens KI viser hvor stor den kan være og hvor presist målt','Fordi KI er en strengere test enn p','Fordi p er upålitelig ved små utvalg','Fordi tidsskriftene krever begge deler'], c:0,
+ f:['Riktig. To studier kan begge ha p = .04 og likevel fortelle helt forskjellige historier: den ene med KI [0.1, 0.3], den andre med [0.1, 9.8]. p skiller dem ikke. KI viser både størrelse og presisjon i ett tall.',
+    'De er matematisk to sider av samme sak — et 95 % KI som utelukker null svarer til p &lt; .05. KI gir bare mer informasjon.',
+    'p er like «pålitelig» ved små utvalg; den er bare mindre informativ, og det gjelder uansett størrelse.',
+    'Det stemmer at de kreves, men grunnen til at de kreves er den i alternativ A.']},
+
+{t:'Hvorfor analysen', n:46, q:'Hvorfor er Spearmans rangkorrelasjon noen ganger riktigere enn Pearsons r?',
+ o:['Fordi den bare bryr seg om rekkefølge, og dermed tåler skjevhet, uteliggere og ordinale data','Fordi den alltid gir høyere korrelasjon','Fordi den kan håndtere tre variabler samtidig','Fordi den ikke krever at man velger signifikansnivå'], c:0,
+ f:['Riktig. Pearson forutsetter at sammenhengen er en rett strek og regner med tallene slik de står. Spearman rangerer først, og fanger derfor enhver sammenheng som går jevnt én vei — også en krum en. Den lar seg heller ikke rive med av en enkelt ekstremverdi.',
+    'Nei, den kan godt bli lavere. Den svarer på et litt annet spørsmål: om rekkefølgen henger sammen, ikke om linja gjør det.',
+    'Nei, begge er mål på sammenhengen mellom to variabler.',
+    'Begge testes mot et signifikansnivå på vanlig vis.']},
+
+{t:'Hvorfor analysen', n:47, q:'Hvorfor sjekker man <em>residualene</em> og ikke rådataene når man skal vurdere om forutsetningene holder?',
+ o:['Fordi det er residualene modellen antar er normalfordelte, ikke variablene i seg selv','Fordi rådataene er for mange til å se på','Fordi residualene alltid er normalfordelte','Fordi rådataene ikke kan plottes'], c:0,
+ f:['Riktig. Dette er en vanlig misforståelse. Utfallet ditt kan godt være skjevt fordi det består av to grupper med ulikt nivå — det er helt greit. Forutsetningen gjelder det som blir igjen <em>etter</em> at modellen har forklart det den kan.',
+    'Antallet er ikke problemet — et histogram tar like lang tid uansett.',
+    'Tvert imot: når de ikke er det, er det nettopp da du har funnet noe å ta tak i.',
+    'Selvsagt kan rådata plottes, og det bør de. Men forutsetningen gjelder residualene.']},
+
+{t:'Hvorfor analysen', n:48, q:'Hvorfor er høy VIF et problem i en regresjon?',
+ o:['Prediktorene overlapper så mye at koeffisientene blir ustabile og standardfeilene blåser opp','Modellen forklarer for lite av variasjonen','Utfallet er ikke normalfordelt','Utvalget er for lite'], c:0,
+ f:['Riktig. Når to prediktorer måler nesten det samme, klarer ikke modellen å fordele æren mellom dem. Koeffisientene kan sprette voldsomt — og til og med bytte fortegn — av små endringer i dataene, samtidig som SE vokser og p-verdiene blir store selv om modellen samlet forklarer mye.',
+    'Nei. Du kan ha høy VIF og høy R² samtidig — det er nettopp det forvirrende: modellen <em>som helhet</em> er god, men de enkelte koeffisientene er upålitelige.',
+    'VIF handler om forholdet mellom prediktorene, ikke om utfallets fordeling.',
+    'Liten n gjør alt mer ustabilt, men VIF måler noe annet: overlappet mellom prediktorene.']},
+/* ---- Når velger du hva ---- */
+{t:'Når velger du hva', n:49, q:'To grupper måles før og etter behandling. Du vil vite om <em>endringen</em> er forskjellig i gruppene. Hva passer?',
+ o:['Blandet ANOVA — gruppe mellom personer, tid innad i personene','To uavhengige t-tester, én per tidspunkt','Enveis-ANOVA på ettermålingen','Korrelasjon mellom før og etter'], c:0,
+ f:['Riktig. Du har én faktor <em>mellom</em> personer (gruppe) og én <em>innad</em> i personene (tid). Spørsmålet ditt — om endringen skiller seg — er nettopp interaksjonen mellom dem, og den finner du bare i en blandet ANOVA.',
+    'To tester svarer på «var de ulike før?» og «var de ulike etter?», men aldri direkte på om <em>endringen</em> skilte seg. Og to tester dobler risikoen for falsk positiv.',
+    'Da kaster du førmålingen, som er den mest informative variabelen du har. Skal du bare bruke ett tidspunkt, er ANCOVA med førskåren som kovariat bedre.',
+    'Korrelasjonen sier om de som lå høyt før også lå høyt etter — et helt annet spørsmål enn om behandlingen virket.']},
+
+{t:'Når velger du hva', n:50, q:'Du vil vite om behandlingen virker <em>sterkere</em> for kvinner enn for menn. Hva ser du etter?',
+ o:['Interaksjonsleddet mellom gruppe og kjønn','Hovedeffekten av kjønn','Korrelasjonen mellom kjønn og utfall','To separate analyser, én for hvert kjønn'], c:0,
+ f:['Riktig. «Virker sterkere for» er per definisjon en <b>moderering</b>, og den bor i interaksjonsleddet. Er det ikke signifikant, har du ikke grunnlag for å si at effekten er ulik.',
+    'Hovedeffekten sier om kvinner skårer høyere enn menn generelt — ikke om <em>behandlingen</em> virker ulikt på dem.',
+    'Det ville bare sagt om kjønn henger sammen med utfallet, ikke om det endrer behandlingens effekt.',
+    'Dette er en klassisk felle: at effekten er signifikant hos kvinner og ikke hos menn betyr <em>ikke</em> at de er forskjellige fra hverandre. Den sammenligningen må gjøres direkte, med interaksjonen.']},
+
+{t:'Når velger du hva', n:51, q:'Utfallet er om pasienten fikk tilbakefall eller ikke (ja/nei), og du har tre prediktorer. Hva bruker du?',
+ o:['Logistisk regresjon','Vanlig lineær regresjon','Enveis-ANOVA','Paret t-test'], c:0,
+ f:['Riktig. Et binært utfall krever logistisk regresjon, som modellerer <em>sannsynligheten</em> for tilbakefall. Derfor rapporteres odds ratio i stedet for B, og derfor heter testen for hver koeffisient Wald og ikke t.',
+    'Lineær regresjon kan predikere 1,4 eller −0,3 tilbakefall, som ikke betyr noe. Den forutsetter et kontinuerlig utfall.',
+    'ANOVA sammenligner gjennomsnitt mellom grupper. «Ja/nei» har ikke noe meningsfullt gjennomsnitt, og her er det utfallet som er kategorisk, ikke prediktoren.',
+    'Paret t-test krever to målinger på de samme personene og et kontinuerlig utfall.']},
+
+{t:'Når velger du hva', n:52, q:'Gruppene skilte seg allerede før behandlingen startet. Du vil sammenligne dem etterpå. Hva er ryddigst?',
+ o:['ANCOVA med førskåren som kovariat','Sammenligne bare ettermålingene med t-test','Regne ut endringsskåre og sammenligne den','Droppe de deltagerne som lå skjevt før'], c:0,
+ f:['Riktig. ANCOVA justerer ettermålingen for hvor deltagerne startet, så du sammenligner grupper som om de hadde samme utgangspunkt. Som bonus fjerner den mye støy og gir mer styrke.',
+    'Da tolker du en forskjell som delvis var der fra før som om behandlingen skapte den.',
+    'Bedre enn ingenting, og fullt brukbart — men endringsskårer er mer støyete og tar ikke høyde for at de som starter høyt har mer å gå på. ANCOVA er som regel det sterkere valget.',
+    'Å fjerne deltagere etter å ha sett dataene skaper et nytt og verre problem, og ødelegger randomiseringen.']},
+
+{t:'Når velger du hva', n:53, q:'To forskere har kodet de samme 60 intervjuene uavhengig av hverandre. Du vil vise at kodingen er pålitelig. Hva rapporterer du?',
+ o:['ICC eller Cohens kappa, avhengig av om koden er tall eller kategori','Pearsons r mellom de to koderne','Cronbachs alfa','En t-test mellom de to koderne'], c:0,
+ f:['Riktig. Dette er <b>intervurderer-reliabilitet</b>. Kappa for kategoriske koder, ICC for kontinuerlige — begge korrigerer for hvor mye enighet man ville fått ved ren tilfeldighet.',
+    'Farlig valg: r blir høy så lenge de <em>rangerer</em> likt, selv om den ene systematisk gir to poeng mer enn den andre. r måler samvariasjon, ikke enighet.',
+    'Cronbachs alfa gjelder indre konsistens mellom <em>ledd i en skala</em>, ikke enighet mellom personer.',
+    'En t-test ville bare vist om koderne har ulikt gjennomsnitt — den sier ingenting om de er enige fra sak til sak.']},
+
+{t:'Når velger du hva', n:54, q:'Du har lagt til en fjerde prediktor i regresjonen. Hvordan avgjør du om den var verdt å ta med?',
+ o:['Se på ΔR² og testen av den','Se om R² gikk opp','Se om modellen fortsatt er signifikant','Se om de andre koeffisientene endret seg'], c:0,
+ f:['Riktig. ΔR² isolerer hva den nye prediktoren tilførte <em>utover</em> de tre andre, og har sin egen F-test som sier om økningen er større enn flaks skulle tilsi.',
+    'R² går opp uansett — også hvis du legger inn en kolonne med tilfeldige tall. Det alene er derfor ingen informasjon.',
+    'Hele modellen kan godt være signifikant på grunn av de tre første prediktorene, helt uavhengig av om den fjerde bidro med noe.',
+    'Det er verdt å legge merke til, og kan røpe kollinearitet — men det svarer ikke på om den nye prediktoren forklarte noe nytt.']},
+
+{t:'Når velger du hva', n:55, q:'Du har 12 ledd som skal måle det samme konstruktet. Hva rapporterer du før du slår dem sammen til én skåre?',
+ o:['Cronbachs alfa eller McDonalds omega','Cramérs V','Et konfidensintervall for gjennomsnittet','VIF for hvert ledd'], c:0,
+ f:['Riktig. Indre konsistens sier om leddene faktisk trekker i samme retning. Er den lav, måler du trolig flere ting samtidig, og et samlet snitt blir meningsløst. Omega bygger på færre forutsetninger enn alfa og er faglig å foretrekke.',
+    'Cramérs V er effektstørrelsen for kjikvadrat og har ingenting med skalakonstruksjon å gjøre.',
+    'Et KI for snittet forutsetter allerede at det gir mening å ta snittet — som er nettopp det du ikke har vist ennå.',
+    'VIF gjelder overlapp mellom prediktorer i en regresjon, ikke ledd i en skala.']},
+
+{t:'Når velger du hva', n:56, q:'Hvilken opplysning avgjør <em>først</em> hvilken analyse som er aktuell?',
+ o:['Målenivået til utfallet og til prediktorene','Utvalgsstørrelsen','Om resultatet ble signifikant','Hvilket program du bruker'], c:0,
+ f:['Riktig. Kontinuerlig utfall med kategorisk prediktor peker mot t-test eller ANOVA; kontinuerlig med kontinuerlig mot korrelasjon eller regresjon; kategorisk utfall mot kjikvadrat eller logistisk regresjon. Målenivå er porten alt annet går gjennom.',
+    'Utvalgsstørrelsen påvirker styrke, og noen ganger valget mellom parametrisk og ikke-parametrisk — men den bestemmer ikke hvilken <em>familie</em> av analyser som er aktuell.',
+    'Signifikans er et resultat, ikke et utgangspunkt. Å velge analyse etter hva som ble signifikant er p-hacking.',
+    'JASP, SPSS og R gir samme svar. Verktøyet avgjør ingenting faglig.']},
+/* ---- Les resultatet: lengre utdrag ---- */
+{t:'Les resultatet', n:57, q:'«Behandlingen ga lavere depresjonsskåre enn venteliste, <code>F(1, 71) = 9.82, p = .003, η² = .12</code>, og effekten var sterkere for kvinner, <code>F(1, 71) = 4.41, p = .039</code>.» Hva sier det <em>andre</em> tallparet?',
+ o:['At det er en interaksjon: effekten av behandling avhenger av kjønn','At kvinner er mer deprimerte enn menn','At behandlingen virket for kvinner, men ikke for menn','At modellen forklarer mer når kjønn er med'], c:0,
+ f:['Riktig. «Sterkere for» beskriver en <b>interaksjon</b> mellom gruppe og kjønn. Den sier at behandlingseffekten er ulik for de to, og ingenting mer.',
+    'Det ville vært en hovedeffekt av kjønn, som ikke rapporteres her.',
+    'Fristende, men for sterkt. En signifikant interaksjon sier at effektene er <em>ulike</em>, ikke at den ene er null. Skal du påstå det, må du vise hver enkelt effekt.',
+    'Det er en sidevirkning, men ikke det F-verdien tester. Den tester interaksjonsleddet.']},
+
+{t:'Les resultatet', n:58, q:'En regresjonstabell viser: studietimer <code>β = .48, p &lt; .001</code>, søvn <code>β = .21, p = .014</code>, alder <code>β = −.04, p = .61</code>. Hva er den ryddigste oppsummeringen?',
+ o:['Studietimer er den sterkeste prediktoren, søvn bidrar svakere, alder bidrar ikke målbart','Alle tre prediktorene påvirker utfallet','Alder trekker resultatet ned','Studietimer forklarer 48 % av variasjonen'], c:0,
+ f:['Riktig. β lar deg rangere prediktorene fordi de er på samme skala, og .48 mot .21 er en tydelig forskjell. For alder er både β liten og p stor — ingen målbar sammenheng i dette utvalget.',
+    'Alder gjør ikke det: p = .61 betyr at vi ikke kan skille koeffisienten fra null.',
+    'Fortegnet er negativt, men koeffisienten er ikke signifikant. Å tolke retningen på et ikke-signifikant funn er å lese mønster i støy.',
+    'Nei — det ville krevd r² eller ΔR². β = .48 betyr at ett standardavvik mer studietid henger sammen med .48 standardavvik høyere skåre.']},
+
+{t:'Les resultatet', n:59, q:'«Det var ingen signifikant forskjell mellom gruppene, <code>t(38) = 1.62, p = .11, d = 0.52, 95 % KI [−0.12, 1.15]</code>.» Hva er mest dekkende?',
+ o:['Studien er uavklart — effekten kan godt være middels stor, men utvalget er for lite til å avgjøre det','Behandlingene er like effektive','Resultatet viser en liten effekt','Studien motbeviser at behandlingen virker'], c:0,
+ f:['Riktig. Legg merke til at <b>d = 0.52</b> er en middels effekt, og at intervallet strekker seg helt opp til 1.15. Med 40 deltagere er studien rett og slett ikke presis nok. Dette er et lærebokeksempel på lav styrke — ikke på fravær av effekt.',
+    'Nei. Intervallet er forenlig med alt fra litt negativt til en stor positiv effekt. Å kalle det «like effektive» er å lese ikke-signifikans som bevis.',
+    'd = 0.52 er konvensjonelt en <em>middels</em> effekt. Det er presisjonen som mangler, ikke størrelsen.',
+    'En studie som dette motbeviser ingenting. Til det trengs et smalt intervall rundt null.']},
+
+{t:'Les resultatet', n:60, q:'I en JASP-output for enveis-ANOVA står det en rad for «Gruppe» og en for «Residuals». Hva står i residualraden?',
+ o:['Variasjonen modellen ikke klarte å forklare','Deltagerne som ble ekskludert','Feilmarginen i målingene','Forskjellen mellom gruppene'], c:0,
+ f:['Riktig. ANOVA-tabellen deler den samlede variasjonen i to: den delen gruppetilhørighet forklarer, og resten. F er forholdet mellom dem — forklart delt på uforklart, hver justert for sine frihetsgrader.',
+    'Ekskluderte deltagere er ikke med i tabellen i det hele tatt.',
+    'Målefeil i instrumentet hører til reliabilitet og står ikke i ANOVA-tabellen.',
+    'Det er gruppeplanens rad. Residualraden er alt den <em>ikke</em> fanget.']}
   ];
 
   const STORE = 'sa-oppg-v1';
@@ -3429,7 +3606,8 @@ const SENTENCES = [
       '<div class="fb ' + (chosen.ok ? 'ok' : 'no') + '">'
       + '<span class="verdict">' + (chosen.ok ? 'Riktig' : 'Ikke helt — du valgte ' + 'ABCD'[pick]) + '</span>'
       + chosen.fb
-      + (chosen.ok ? '' : '<br><br><b>Riktig svar var ' + 'ABCD'[correct] + ':</b> ' + opts[correct].fb)
+      + (chosen.ok ? '' : '<br><br><b>Riktig svar var ' + 'ABCD'[correct] + ':</b> '
+          + opts[correct].fb.replace(/^Riktig[,.]?\s*/, ''))
       + '</div>';
 
     hist[q.n] = {ok: chosen.ok, n: ((hist[q.n] && hist[q.n].n) || 0) + 1};

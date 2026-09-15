@@ -251,6 +251,8 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
   nav.index ol{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:2px}
   .masthead{grid-template-columns:minmax(0,1fr)}
   .entry{grid-template-columns:minmax(0,1fr);gap:14px}
+  .dict{min-width:560px}
+  .dict.terms td:first-child{width:150px}
   .glyph{font-size:44px}
   .trio{grid-template-columns:minmax(0,1fr)}
   .ffgrid{grid-template-columns:minmax(0,1fr)}
@@ -306,10 +308,12 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
       <li><a href="#studien"><span class="g">?</span> Studien vi later som</a></li>
       <li><a href="#variabler"><span class="g">X→Y</span> Variabelroller</a></li>
       <li><a href="#malenivaa"><span class="g">IV</span> Målenivå</a></li>
+      <li><a href="#fordeling"><span class="g">▁▅▂</span> Fordelingen</a></li>
       <li><a href="#utvalg"><span class="g">μ</span> Populasjon og utvalg</a></li>
       <li><a href="#design"><span class="g">⌗</span> Design</a></li>
       <li><a href="#kausalitet"><span class="g">→</span> Årsak</a></li>
       <li><a href="#kvalitet"><span class="g">⊙</span> Reliabilitet, validitet</a></li>
+      <li><a href="#spine"><span class="g">SP</span> Ryggraden</a></li>
     </ol>
     <p class="navgroup">Del I · tegnene</p>
     <ol>
@@ -406,17 +410,56 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
         <h2>Målenivå</h2>
         <p class="asks">Hva slags tall er dette egentlig?</p>
         <p>Målenivået avgjør hvilke analyser som er lov. Det er derfor JASP tvinger deg til å merke hver kolonne som nominal, ordinal eller skala før du får gjøre noe.</p>
-        <div class="scroller"><table class="dict terms tight" data-fam="Grunnbegreper">
+        <div class="scroller"><table class="dict terms tight" data-fam="Spørsmål 1 · målenivå">
           <tbody>
             <tr><td>Nominal</td><td>Kategorier uten rekkefølge</td><td>Kjønn, studieprogram, farge. Tallene er bare merkelapper — «3» er ikke mer enn «1». Du kan telle, ikke regne snitt.</td></tr>
-            <tr><td>Ordinal</td><td>Rangert, men ujevne trinn</td><td>«Helt uenig» til «helt enig», eller plassering i et løp. Rekkefølgen betyr noe, men avstanden mellom trinnene er ikke garantert lik.</td></tr>
-            <tr><td>Intervall</td><td>Like avstander, ingen ekte null</td><td>Celsius. 20° er ikke dobbelt så varmt som 10°, men forskjellen 10→20 er like stor som 20→30.</td></tr>
-            <tr><td>Forholdstall</td><td>Like avstander og ekte null</td><td>Timer studert, reaksjonstid, inntekt. Her betyr null faktisk ingenting av tingen, og «dobbelt så mye» gir mening.</td></tr>
-            <tr><td>Kontinuerlig</td><td>Alle mellomverdier mulige</td><td>Tid, vekt, poeng på en fin skala. Intervall og forholdstall slås ofte sammen til dette i praksis, og JASP kaller det <code>scale</code>.</td></tr>
-            <tr><td>Kategorisk</td><td>Diskrete grupper</td><td>Samlebetegnelse for nominal og ordinal. Kalles <em>dikotom</em> når det bare er to kategorier.</td></tr>
+            <tr><td>Ordinal</td><td>Rangert, men ujevne trinn</td><td>«Helt uenig» til «helt enig», plassering i et løp, eller antall tidligere behandlinger (1 / 2 / 3+). Rekkefølgen betyr noe, men avstanden mellom trinnene er ikke garantert lik.</td></tr>
+            <tr><td>Intervall</td><td>Like avstander, ingen ekte null</td><td>Celsius. 20° er ikke dobbelt så varmt som 10°, men forskjellen 10→20 er like stor som 20→30. En depresjonsskåre er også bare intervall: 30 er ikke «dobbelt så deprimert» som 15.</td></tr>
+            <tr><td>Forholdstall</td><td>Like avstander og ekte null</td><td>Timer studert, reaksjonstid, alder, inntekt. Her betyr null faktisk ingenting av tingen, og «dobbelt så mye» gir mening: 40 år er dobbelt så gammelt som 20.</td></tr>
           </tbody>
         </table></div>
+        <p>Så kommer et <em>helt annet</em> spørsmål, som er lett å blande med det første: kan variabelen anta alle mellomverdier, eller bare hele trinn?</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Spørsmål 2 · diskret eller kontinuerlig">
+          <tbody>
+            <tr><td>Diskret</td><td>Teller hele enheter</td><td>Mellom to naboverdier finnes ingenting. Antall barn, antall tidligere behandlinger, antall riktige svar på prøven. «2,4 behandlinger» betyr ingenting.</td></tr>
+            <tr><td>Kontinuerlig</td><td>Alle mellomverdier mulige</td><td>Alder, reaksjonstid, vekt. Bare måleinstrumentet setter grensen: 24,7 år er en fullt meningsfull verdi, vi valgte bare å runde av.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>To uavhengige spørsmål.</b> En variabel har ett svar på hver akse, og de henger ikke sammen. <em>Antall riktige svar</em> er diskret <em>og</em> forholdstall. En <em>depresjonsskåre</em> behandles som kontinuerlig, men er bare intervall. Den vanligste tabben er å tro at «kategorisk» og «kontinuerlig» er to av målenivåene — det er de ikke. <em>Kategorisk</em> er bare en samlebetegnelse for nominal og ordinal (og kalles <em>dikotom</em> når det er to kategorier), og i JASP heter intervall og forholdstall slått sammen <code>scale</code>.</div>
+        <div class="aside"><b>Hva de to spørsmålene brukes til.</b> Målenivået avgjør hvilken <em>analyse</em> som er lov. Diskret eller kontinuerlig avgjør hvordan du <em>plotter</em>: få diskrete verdier gir stolpediagram, kontinuerlige verdier gir histogram.</div>
         <div class="aside"><b>Den evige diskusjonen i psykologi:</b> en likert-skala fra 1 til 5 er strengt tatt ordinal, men behandles nesten alltid som kontinuerlig når man tar snittet av mange ledd. Det er en pragmatisk konvensjon, ikke en matematisk sannhet — og det er derfor mange kjører både Pearson og Spearman og sjekker at svaret blir det samme.</div>
+      </div>
+    </section>
+
+    <!-- ---------- fordelingen ---------- -->
+    <section class="entry" id="fordeling">
+      <div class="glyphcol"><span class="step">00</span><span class="glyph sm">▁▅▂</span></div>
+      <div>
+        <h2>Fordelingen</h2>
+        <p class="asks">Hvordan ser rådataene egentlig ut?</p>
+        <p>Før du regner ut et eneste tall: <em>se på dataene</em>. Et gjennomsnitt kan være identisk i to utvalg som ser helt forskjellige ut, og de fleste tabbene i statistikk blir synlige med en gang du tegner fordelingen. Tre figurer viser tre forskjellige ting om nøyaktig de samme tallene.</p>
+        <div class="panel">
+          <div class="panel-head"><span>Poeng på prøven — samme <span class="stat" data-s="n"></span> studenter, tre linser</span><span id="distHint">histogram</span></div>
+          <canvas id="cvDist" height="186"></canvas>
+          <div class="chips">
+            <button class="chip" id="chipHist" aria-pressed="true">Histogram</button>
+            <button class="chip" id="chipBox" aria-pressed="false">Boksplott</button>
+            <button class="chip" id="chipRain" aria-pressed="false">Raincloud</button>
+            <button class="chip" id="chipTypo" aria-pressed="false">Feiltast én skåre</button>
+          </div>
+          <div class="readout" id="distRead"></div>
+        </div>
+        <div class="scroller"><table class="dict terms tight" data-fam="Tre linser på de samme tallene">
+          <tbody>
+            <tr><td>Histogram</td><td>Formen</td><td>Deler skalaen i like brede kurver og teller hvor mange som havner i hver. Dette er figuren som viser deg om fordelingen er symmetrisk, skjev eller har to topper. Bruk den på kontinuerlige variabler; har variabelen bare noen få trinn, bruk stolpediagram i stedet.</td></tr>
+            <tr><td>Boksplott</td><td>Sammendraget</td><td>Boksen går fra 25.- til 75.-persentilen, streken inni er medianen, og værhårene strekker seg til de mest ekstreme verdiene innenfor 1,5 kvartilbredder. Punkter utenfor tegnes hver for seg — det er kandidatene til å være uteliggere. Utmerket til å sammenligne grupper, men den skjuler at fordelingen har to topper.</td></tr>
+            <tr><td>Raincloud</td><td>Alt på én gang</td><td>Skyen øverst er fordelingens form, boksen i midten er sammendraget, og «regnet» nederst er hver enkelt deltager som et eget punkt. Du ser formen og rådataene samtidig, og det er derfor den har blitt standarden i nyere psykologiartikler.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Skjevhet (skewness) er et tall, ikke en følelse.</b> <em class="v">0</em> betyr symmetrisk. <em class="v">Positiv</em> betyr at halen peker mot høyre: de fleste ligger lavt, noen få ligger veldig høyt. <em class="v">Negativ</em> betyr at halen peker mot venstre. Typisk årsak til venstreskjevhet er en <em>takeffekt</em> — skalaen stopper, og folk hoper seg opp mot toppen. Over omtrent ±2 begynner det å bli et problem for tester som antar normalfordeling.</div>
+        <div class="aside"><b>Tre sentralmål, ikke ett.</b> <em class="v">Gjennomsnittet</em> (M) er tyngdepunktet. <em class="v">Medianen</em> (Mdn) er verdien midt i rekka. <em class="v">Modus</em> (Mo) er den vanligste verdien. I en pen symmetrisk fordeling faller de nesten sammen, og da spiller det ingen rolle hvilken du bruker. Det er når de spriker at figuren har noe å fortelle deg.</div>
+        <div class="aside tryit"><b>Prøv:</b> trykk «Feiltast én skåre». Én student får skåren sin tastet inn som 5 poeng i stedet for det hun faktisk fikk — en helt vanlig tastefeil. Se hva som skjer med hvert av tallene under figuren. <strong>Gjennomsnittet og standardavviket flytter seg, medianen står helt stille.</strong> Det er hele grunnen til at medianen rapporteres når fordelingen er skjev eller har uteliggere. Bytt til boksplott, så ser du at punktet legger seg utenfor værhåret og blir merket som uteligger. Sett <em>N = 20</em> først, så blir utslaget mye tydeligere: én tastefeil veier tungt i et lite utvalg og nesten ingenting i et stort.</div>
+        <div class="aside"><b>Og hvis fordelingen har to topper?</b> Da beskriver <em>ingen</em> av sentralmålene «en typisk deltager» — gjennomsnittet lander i dalen mellom toppene, der nesten ingen faktisk ligger. To topper betyr som regel at du har to grupper blandet sammen, og da er svaret å beskrive gruppene hver for seg, ikke å lete etter et bedre sentralmål.</div>
       </div>
     </section>
 
@@ -432,6 +475,8 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
             <tr><td>Utvalg</td><td>De du faktisk målte</td><td>Verdiene du regner ut kalles <em>estimater</em> og skrives med latinske bokstaver: M, SD, r. De er anslag på parameterne.</td></tr>
             <tr><td>Representativitet</td><td>Ligner utvalget populasjonen?</td><td>Et skjevt utvalg gir skjeve svar uansett hvor stort det er. Flere deltagere reparerer ikke feil deltagere.</td></tr>
             <tr><td>Bekvemmelighetsutvalg</td><td>Convenience sample</td><td>De som var lettest å få tak i — typisk psykologistudenter. Svært vanlig, og en fast begrensning i diskusjonsdelen.</td></tr>
+            <tr><td>WEIRD</td><td>Western, Educated, Industrialised, Rich, Democratic</td><td>Navnet på psykologiens mest kjente utvalgsskjevhet: mesteparten av faget er bygget på vestlige, utdannede studenter fra rike demokratier, og så generaliseres funnene til «mennesker». Kjenn akronymet — det kommer igjen hver gang ytre validitet diskuteres.</td></tr>
+            <tr><td>Utvalgsskjevhet</td><td>Sampling bias</td><td>Utvalget skiller seg systematisk fra populasjonen, så anslagene blir misvisende. Poenget som overrasker flest: <em>flere deltagere hjelper ikke</em>. Skjevheten forsvinner ikke av seg selv — den blir bare målt mer presist.</td></tr>
             <tr><td>Deskriptiv statistikk</td><td>Beskrive</td><td>Hva viser dataene mine? M, SD, figurer. Ingen slutninger utover utvalget.</td></tr>
             <tr><td>Inferensiell statistikk</td><td>Slutte</td><td>Hva kan jeg si om populasjonen ut fra utvalget? Alt med p, KI, t og F hører hit.</td></tr>
             <tr><td>Frafall</td><td>Attrition</td><td>De som forsvinner underveis. Problematisk hvis de som falt fra skiller seg systematisk fra dem som ble.</td></tr>
@@ -503,6 +548,37 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
       </div>
     </section>
 
+    <!-- ---------- SPINE ---------- -->
+    <section class="entry" id="spine">
+      <div class="glyphcol"><span class="step">00</span><span class="glyph up">SPINE</span></div>
+      <div>
+        <h2>Ryggraden</h2>
+        <p class="asks">Fem ord som bærer hele emnet</p>
+        <p>Hver eneste analyse du møter resten av semesteret — t-test, ANOVA, regresjon, det spiller ingen rolle — er den samme runden om igjen med nye tall. Fem begreper utgjør den runden, og de forkortes <em class="v">SPINE</em>: statistikkens ryggrad.</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="SPINE">
+          <tbody>
+            <tr><td>S · Standardfeil</td><td>Standard error</td><td>Hvor mye anslaget ditt ville danset rundt hvis du gjorde studien om igjen med et nytt utvalg.</td></tr>
+            <tr><td>P · Parametere</td><td>Parameters</td><td>Det du egentlig vil vite noe om ute i populasjonen: μ, forskjellen mellom to μ-er, et stigningstall.</td></tr>
+            <tr><td>I · Intervaller</td><td>Intervals</td><td>Konfidensintervallet: et område av plausible verdier rundt anslaget, i stedet for ett enkelt tall.</td></tr>
+            <tr><td>N · Nullhypotesetesting</td><td>NHST</td><td>Å veie funnet mot det djevelens advokat ville sagt: at det bare var flaks.</td></tr>
+            <tr><td>E · Estimering</td><td>Estimation</td><td>Å bruke utvalget til å gjette parameteren — som regel ved minste kvadraters metode.</td></tr>
+          </tbody>
+        </table></div>
+        <p>Akronymet staver et ord, men det er ikke rekkefølgen du bruker dem i. Undervisningsrekkefølgen er <em class="v">P → E → S → I → N</em>, og den følger spørsmålene slik de faktisk dukker opp:</p>
+        <div class="scroller"><table class="dict terms tight">
+          <tbody>
+            <tr><td>1 · Parametere</td><td>Hva vil vi vite?</td><td>Hvilket tall i populasjonen er det egentlig vi er ute etter? Se <a href="#utvalg">Populasjon og utvalg</a>.</td></tr>
+            <tr><td>2 · Estimering</td><td>Hva er vårt beste gjett?</td><td>Regn det ut fra utvalget. Se <a href="#m">Gjennomsnittet</a> og <a href="#b">Linja</a>.</td></tr>
+            <tr><td>3 · Standardfeil</td><td>Hvor mye danser gjettet?</td><td>Hvor mye ville tallet variert mellom utvalg? Se <a href="#se">Standardfeilen</a>.</td></tr>
+            <tr><td>4 · Intervaller</td><td>Hvilke verdier er plausible?</td><td>Anslag ± omtrent to standardfeil. Se <a href="#ki">Konfidensintervallet</a>.</td></tr>
+            <tr><td>5 · NHST</td><td>Kunne dette vært flaks?</td><td>Test anslaget mot nullhypotesen. Se <a href="#p">Flakssjansen</a>.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Hvorfor E før S?</b> Fordi du må ha et anslag før det gir mening å spørre hvor presist det er. Standardfeilen er en egenskap ved et estimat — uten estimat er det ingenting å være presis om.</div>
+        <div class="aside tryit"><b>Bruk dette som kart.</b> Når en ny test dukker opp senere i semesteret og alt føles nytt: finn ut hvilken parameter den handler om, så er de fire andre stegene de samme som du allerede kan. Det er hele poenget med å ha en ryggrad — du lærer fem ting én gang, ikke fem nye ting per test.</div>
+      </div>
+    </section>
+
     <!-- ==================== DEL I ==================== -->
     <section class="partbreak" id="del1">
       <p class="eyebrow">Del I</p>
@@ -527,6 +603,8 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
           </div>
           <div class="readout" id="msdRead"></div>
         </div>
+        <div class="aside"><b>Gjennomsnittet er den enkleste statistiske modellen som finnes.</b> Hele emnet kan skrives som én setning: <em class="v">utfall = modell + feil</em>. Eller sagt på en annen måte: <em>observasjon = prediksjon + avvik</em>. Når du ikke vet noe som helst om en student, er gjennomsnittet ditt beste gjett på poengsummen hennes — det er modellen. Det hun faktisk fikk, minus det, er avviket, og avviket har sitt eget navn: <a href="#res">residual</a>. Alt du lærer senere er den samme setningen med en rikere modell: først et snitt, så to gruppesnitt, så en <a href="#b">linje</a>, så flere prediktorer.</div>
+        <div class="aside"><b>Hvorfor akkurat snittet, og ikke for eksempel medianen?</b> Fordi gjennomsnittet er den verdien som gjør de kvadrerte avvikene så små som mulig. Prøv å gjette hvilken som helst annen verdi som «midten», regn ut Σ(x − gjett)², og du får et større tall. Det er dette som kalles <em>minste kvadraters metode</em>, og det er den samme regelen som brukes til å legge regresjonslinja i <a href="#b">b</a> — der kan du dra i linja og se feilsummen bunne ut selv.</div>
       </div>
     </section>
 
@@ -537,7 +615,17 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
         <h2>Standardavviket</h2>
         <p class="asks">Hvor spredt ligger folk rundt gjennomsnittet?</p>
         <p>Mål avstanden fra hver student til snittet, og finn en slags typisk avstand. Det er standardavviket. Her ble <em class="v">SD</em> = <span class="stat" data-s="sdy"></span> poeng: studentene ligger typisk så langt fra snittet, i den ene eller andre retningen.</p>
-        <p>Skru på «± 1 SD» i demoen over. Båndet dekker omtrent to tredjedeler av deltagerne. Det er tommelfingerregelen: ca. 68 % innenfor ett standardavvik, ca. 95 % innenfor to.</p>
+        <p>Skru på «± 1 SD» i demoen over. Båndet dekker omtrent to tredjedeler av deltagerne. Det er tommelfingerregelen for en normalfordeling: ca. <em class="v">68 %</em> innenfor ett standardavvik, ca. <em class="v">95 %</em> innenfor to, og ca. <em class="v">99,7 %</em> innenfor tre. Er noen mer enn tre standardavvik unna, er det verdt å se nærmere på hvorfor.</p>
+        <p>«En slags typisk avstand» er upresist med vilje, for veien dit går gjennom fire steg som er verdt å kunne hver for seg — de dukker opp igjen i ANOVA og regresjon under navnet <em class="v">SS</em>:</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Fra avvik til standardavvik">
+          <tbody>
+            <tr><td>Avvik</td><td>x<sub>i</sub> − M</td><td>Hvor langt én observasjon ligger fra modellen. Summerer du dem rått, får du null — de positive og negative spiser hverandre opp. Derfor kvadrerer vi.</td></tr>
+            <tr><td>Kvadratsum (SS)</td><td>Σ(x<sub>i</sub> − M)²</td><td>Summen av alle kvadrerte avvik: den totale «feilen» i modellen. Dette tallet er byggeklossen i alt som kommer senere — <a href="#F">F</a> er i praksis én kvadratsum delt på en annen.</td></tr>
+            <tr><td>Varians</td><td>s² = SS / (n − 1)</td><td>Gjennomsnittlig kvadrert avvik. Regnes alltid med, rapporteres nesten aldri — enheten er «poeng i andre», som ingen har intuisjon for.</td></tr>
+            <tr><td>Standardavvik</td><td>s = √s²</td><td>Kvadratroten tar oss tilbake til variabelens egen enhet. Nå er tallet lesbart igjen: poeng.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Hvorfor n − 1 og ikke n?</b> Fordi du måler avvikene fra <em>utvalgets eget</em> gjennomsnitt, ikke fra populasjonens. Utvalgets snitt ligger per definisjon midt i akkurat disse tallene, så avvikene blir litt for små — og deler du på n, undervurderer du spredningen systematisk. Å dele på n − 1 retter opp nøyaktig den skjevheten. Det ene tallet du «mister» er en <a href="#df">frihetsgrad</a>: har du regnet ut snittet, kan n − 1 av observasjonene være hva som helst, men den siste er låst.</div>
         <div class="aside"><b>SD er grunnfjellet.</b> Nesten alle de andre tegnene på denne sida er «hvor mange standardavvik?» i forkledning. <em class="v">β</em>, <em class="v">t</em>, <em class="v">SE</em> og <em class="v">d</em> er alle bygget på denne ene ideen om typisk avstand.</div>
         <div class="aside tryit"><b>Prøv:</b> trekk nytt utvalg noen ganger med N = 20, og se på SD. Den spretter en del. Gjør det samme med N = 100 — snittet og spredningen legger seg raskt til ro rundt de sanne verdiene, mens enkeltpersonene er like ulike som før. <strong>Flere deltagere gjør anslagene stabile, ikke folk likere.</strong></div>
       </div>
@@ -654,6 +742,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
         </div>
         <p>Bredden på denne haugen <em>er</em> standardfeilen. Stigningstallet ditt har <em class="v">SE</em> = <span class="stat" data-s="seb1"></span>, som er lite når N er stor og stort når N er liten — nøyaktig som haugen.</p>
         <div class="aside tryit"><b>Prøv:</b> kjør demoen med N = 20, nullstill, sett N = 100 og kjør igjen. Den sanne verdien (den loddrette streken) står stille. Det som endrer seg er hvor mye enkeltstudier bommer på den. <strong>Én studie med N = 20 kan lande hvor som helst i den brede haugen — og forskeren vet ikke hvor.</strong></div>
+        <div class="aside"><b>Sentralgrenseteoremet.</b> To ting skjer med haugen når N vokser, og begge er rare nok til å ha fått et eget navn. Det første: bredden krymper med <em class="v">√N</em>, ikke med N. Firedobler du antall deltagere, halveres standardfeilen — <em>√4 = 2</em>. Det er derfor det er så dyrt å bli dobbelt så presis: du må firedoble studien. Det andre: haugen blir <em>normalfordelt</em> nesten uansett hvordan populasjonen selv ser ut. Populasjonen kan være skjev, kantete eller ha to topper — fordelingen av <em>gjennomsnitt</em> blir pen og klokkeformet likevel, bare N er stor nok. Det er den antakelsen som gjør at t-tester og konfidensintervaller i det hele tatt virker på virkelige data, som sjelden er pent normalfordelte.</div>
         <div class="aside"><b>Én mekanisme bak alt:</b> flere deltagere → mindre SE → smalere konfidensintervall → større t → mindre p. Alle de fire tegnene beveger seg sammen, fordi de alle er den samme størrelsen sett fra hver sin kant.</div>
       </div>
     </section>
@@ -1325,6 +1414,23 @@ function generate(n, seed, rxz){
 /* ---------- grunnleggende regning ---------- */
 const mean = a => a.reduce((s,v)=>s+v,0)/a.length;
 function sd(a){ const m=mean(a); return Math.sqrt(a.reduce((s,v)=>s+(v-m)*(v-m),0)/(a.length-1)); }
+function ss(a){ const m=mean(a); return a.reduce((s,v)=>s+(v-m)*(v-m),0); }
+function quantile(a,q){
+  const v=[...a].sort((p,r)=>p-r), pos=(v.length-1)*q, lo=Math.floor(pos), hi=Math.ceil(pos);
+  return lo===hi ? v[lo] : v[lo]+(v[hi]-v[lo])*(pos-lo);
+}
+const median = a => quantile(a,0.5);
+function skewness(a){
+  const n=a.length, m=mean(a), s=sd(a);
+  if(!isFinite(s)||s===0||n<3) return 0;
+  const m3=a.reduce((t,v)=>t+Math.pow(v-m,3),0)/n;
+  return (m3/Math.pow(s,3))*Math.sqrt(n*(n-1))/(n-2);
+}
+function modeBin(a,w){
+  const c=new Map(); let best=null, bc=0;
+  a.forEach(v=>{ const k=Math.floor(v/w); const n=(c.get(k)||0)+1; c.set(k,n); if(n>bc){bc=n;best=k;} });
+  return best===null ? NaN : best*w + w/2;
+}
 function pearson(a,b){
   const ma=mean(a), mb=mean(b);
   let num=0, da=0, db=0;
@@ -1582,6 +1688,150 @@ function msdText(){
   else if(showM) el.innerHTML='Gjennomsnittet er <b>'+S.my.toFixed(1)+'</b> poeng. Legg merke til at nesten ingen ligger nøyaktig der.';
   else if(showSD) el.innerHTML='Båndet er ett standardavvik til hver side: <b>'+(S.my-S.sdy).toFixed(1)+'</b> til <b>'+(S.my+S.sdy).toFixed(1)+'</b> poeng.';
   else el.textContent='Trykk på knappene for å legge på gjennomsnittet og spredningen.';
+}
+
+/* ---------- fordelingen: histogram / boksplott / raincloud ---------- */
+let distView='hist', distTypo=false;
+const TYPO_VAL = 5;
+function distData(){
+  const y=[...D.y];
+  if(distTypo && y.length){
+    let mi=0; for(let i=1;i<y.length;i++) if(y[i]<y[mi]) mi=i;
+    y[mi]=TYPO_VAL;
+  }
+  return y;
+}
+const cDist = setup('cvDist', o=>{
+  const t=theme(), ctx=o.ctx, W=o.W, H=o.H;
+  ctx.clearRect(0,0,W,H);
+  const y=distData(); if(!y.length) return;
+  const padL=18, padR=18, padB=30, top=28;
+  const dmin=Math.min(...y), dmax=Math.max(...y), span=Math.max(1,dmax-dmin);
+  const lo=Math.max(0, dmin-span*0.1-2), hi=Math.min(100, dmax+span*0.1+2);
+  const X = v => padL + (v-lo)/(hi-lo)*(W-padL-padR);
+  const base = H-padB;
+
+  /* akse */
+  ctx.strokeStyle=t.rule; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(padL, base+.5); ctx.lineTo(W-padR, base+.5); ctx.stroke();
+  const step = Math.max(5, Math.round((hi-lo)/6/5)*5);
+  for(let v=Math.ceil(lo/step)*step; v<=hi; v+=step){
+    ctx.strokeStyle=t.ruleSoft;
+    ctx.beginPath(); ctx.moveTo(X(v), base); ctx.lineTo(X(v), base+4); ctx.stroke();
+    label(ctx, String(v), X(v), base+14, t.ink3, 'center', 10.5);
+  }
+
+  const m=mean(y), mdn=median(y);
+  const markM = () => {
+    ctx.strokeStyle=t.mark; ctx.lineWidth=2; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(X(m), top-8); ctx.lineTo(X(m), base); ctx.stroke();
+    label(ctx,'M', X(m)+6, 12, t.mark, 'left', 10.5, '600');
+  };
+  const markMdn = () => {
+    ctx.strokeStyle=t.ink2; ctx.lineWidth=1.5; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(X(mdn), top-8); ctx.lineTo(X(mdn), base); ctx.stroke();
+    ctx.setLineDash([]);
+    label(ctx,'Mdn', X(mdn)-6, 12, t.ink2, 'right', 10.5, '600');
+  };
+
+  if(distView==='hist'){
+    const k = Math.min(18, Math.max(8, Math.round(Math.sqrt(y.length))));
+    const bw=(hi-lo)/k, counts=new Array(k).fill(0);
+    y.forEach(v=>{ let i=Math.floor((v-lo)/bw); i=i<0?0:(i>=k?k-1:i); counts[i]++; });
+    const mx=Math.max(...counts,1), avail=base-top-6;
+    counts.forEach((c,i)=>{
+      const x0=X(lo+i*bw), x1=X(lo+(i+1)*bw), h=c/mx*avail, w=Math.max(1,x1-x0-1.5);
+      if(h<=0) return;
+      ctx.fillStyle=t.accentSoft; ctx.fillRect(x0, base-h, w, h);
+      ctx.strokeStyle=t.accent; ctx.globalAlpha=.5; ctx.lineWidth=1;
+      ctx.strokeRect(x0+.5, base-h+.5, w, h); ctx.globalAlpha=1;
+    });
+    markMdn(); markM();
+  }
+
+  else if(distView==='box'){
+    const q1=quantile(y,.25), q3=quantile(y,.75), iqr=q3-q1;
+    const loF=q1-1.5*iqr, hiF=q3+1.5*iqr;
+    const inl=y.filter(v=>v>=loF&&v<=hiF);
+    const wLo=inl.length?Math.min(...inl):q1, wHi=inl.length?Math.max(...inl):q3;
+    const cy=top+(base-top)/2, bh=38;
+    ctx.strokeStyle=t.ink3; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(X(wLo),cy); ctx.lineTo(X(q1),cy);
+    ctx.moveTo(X(q3),cy); ctx.lineTo(X(wHi),cy); ctx.stroke();
+    [wLo,wHi].forEach(v=>{ ctx.beginPath(); ctx.moveTo(X(v),cy-9); ctx.lineTo(X(v),cy+9); ctx.stroke(); });
+    ctx.fillStyle=t.accentSoft; ctx.fillRect(X(q1), cy-bh/2, X(q3)-X(q1), bh);
+    ctx.strokeStyle=t.accent; ctx.lineWidth=1.2;
+    ctx.strokeRect(X(q1)+.5, cy-bh/2+.5, X(q3)-X(q1), bh);
+    ctx.strokeStyle=t.ink; ctx.lineWidth=2.5;
+    ctx.beginPath(); ctx.moveTo(X(mdn), cy-bh/2); ctx.lineTo(X(mdn), cy+bh/2); ctx.stroke();
+    y.filter(v=>v<loF||v>hiF).forEach(v=>{
+      ctx.beginPath(); ctx.arc(X(v), cy, 3.2, 0, 6.29);
+      ctx.fillStyle=t.mark; ctx.globalAlpha=.85; ctx.fill(); ctx.globalAlpha=1;
+    });
+    label(ctx,'Mdn', X(mdn), cy-bh/2-9, t.ink, 'center', 10.5, '600');
+    label(ctx,'25 %', X(q1), cy+bh/2+11, t.ink3, 'center', 10);
+    label(ctx,'75 %', X(q3), cy+bh/2+11, t.ink3, 'center', 10);
+    ctx.strokeStyle=t.mark; ctx.lineWidth=1.5; ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.moveTo(X(m), top-8); ctx.lineTo(X(m), cy+bh/2+4); ctx.stroke();
+    ctx.setLineDash([]);
+    label(ctx,'M', X(m)+6, 12, t.mark, 'left', 10.5, '600');
+  }
+
+  else {
+    const sdv=sd(y)||1, bwk=Math.max(.5, 1.06*sdv*Math.pow(y.length,-0.2));
+    const NP=72, dens=[];
+    for(let i=0;i<NP;i++){
+      const xv=lo+(hi-lo)*i/(NP-1);
+      let d=0; for(const v of y){ const u=(xv-v)/bwk; d+=Math.exp(-0.5*u*u); }
+      dens.push(d);
+    }
+    const dmx=Math.max(...dens,1e-9);
+    const cloudTop=top, cloudBase=top+62;
+    ctx.beginPath(); ctx.moveTo(X(lo), cloudBase);
+    dens.forEach((d,i)=>{ ctx.lineTo(X(lo+(hi-lo)*i/(NP-1)), cloudBase-(d/dmx)*(cloudBase-cloudTop)); });
+    ctx.lineTo(X(hi), cloudBase); ctx.closePath();
+    ctx.fillStyle=t.accentSoft; ctx.fill();
+    ctx.strokeStyle=t.accent; ctx.lineWidth=1.2; ctx.globalAlpha=.75; ctx.stroke(); ctx.globalAlpha=1;
+
+    const q1=quantile(y,.25), q3=quantile(y,.75);
+    const bcy=cloudBase+15, bh=15;
+    ctx.fillStyle=t.surface2; ctx.fillRect(X(q1), bcy-bh/2, X(q3)-X(q1), bh);
+    ctx.strokeStyle=t.ink3; ctx.lineWidth=1;
+    ctx.strokeRect(X(q1)+.5, bcy-bh/2+.5, X(q3)-X(q1), bh);
+    ctx.strokeStyle=t.ink; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(X(mdn), bcy-bh/2); ctx.lineTo(X(mdn), bcy+bh/2); ctx.stroke();
+
+    const jr=rng(9876), rTop=bcy+bh/2+7, rBot=base-4;
+    ctx.fillStyle=t.accent; ctx.globalAlpha=.5;
+    y.forEach(v=>{
+      ctx.beginPath(); ctx.arc(X(v), rTop+jr()*(rBot-rTop), 2.4, 0, 6.29); ctx.fill();
+    });
+    ctx.globalAlpha=1;
+    ctx.strokeStyle=t.ink2; ctx.lineWidth=1.2; ctx.setLineDash([4,3]); ctx.globalAlpha=.65;
+    ctx.beginPath(); ctx.moveTo(X(mdn), top-8); ctx.lineTo(X(mdn), bcy-bh/2); ctx.stroke();
+    ctx.globalAlpha=1;
+    ctx.strokeStyle=t.mark; ctx.lineWidth=1.5; ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.moveTo(X(m), top-8); ctx.lineTo(X(m), base); ctx.stroke();
+    ctx.setLineDash([]);
+    label(ctx,'M', X(m)+6, 12, t.mark, 'left', 10.5, '600');
+    label(ctx,'Mdn', X(mdn)-6, 12, t.ink2, 'right', 10.5, '600');
+  }
+});
+
+function distText(){
+  const el=document.getElementById('distRead'); if(!el) return;
+  const hint=document.getElementById('distHint');
+  if(hint) hint.textContent = distView==='hist' ? 'histogram' : (distView==='box' ? 'boksplott' : 'raincloud');
+  const y=distData(), clean=D.y;
+  const m=mean(y), mdn=median(y), s=sd(y), sk=skewness(y), mo=modeBin(y,5);
+  const skWord = Math.abs(sk)<.25 ? 'tilnærmet symmetrisk' : (sk>0 ? 'høyreskjev — halen peker mot høyre' : 'venstreskjev — halen peker mot venstre');
+  let out = 'M = <b>'+fx(m,1)+'</b> · Mdn = <b>'+fx(mdn,1)+'</b> · Mo ≈ <b>'+(isFinite(mo)?fx(mo,0):'—')+'</b> · SD = <b>'+fx(s,1)+'</b> · skjevhet = <b>'+fx(sk,2)+'</b> ('+skWord+').';
+  if(distTypo){
+    const dM=m-mean(clean), dMdn=mdn-median(clean), dS=s-sd(clean);
+    const f=v=>(v>=0?'+':'−')+Math.abs(v).toFixed(1);
+    out += ' <span class="hit">Tastefeilen flyttet M med '+f(dM)+' poeng og SD med '+f(dS)+' — medianen flyttet seg '+f(dMdn)+'.</span>';
+  }
+  el.innerHTML = out;
 }
 
 /* ---------- hovedspredningsdiagram ---------- */
@@ -2062,7 +2312,7 @@ function rebuild(keepDemos){
   ub1 = 1.0;
   fillStats();
   redrawAll();
-  msdText(); mainText(); nullText(); sampText(); betaText(); dr2Text(); collText(); syncLine();
+  msdText(); distText(); mainText(); nullText(); sampText(); betaText(); dr2Text(); collText(); syncLine();
 }
 
 function setN(n, btn){
@@ -2092,6 +2342,11 @@ document.getElementById('resetAll').addEventListener('click', ()=>{
   showM=false; showSD=false;
   document.getElementById('chipM').setAttribute('aria-pressed','false');
   document.getElementById('chipSD').setAttribute('aria-pressed','false');
+  distView='hist'; distTypo=false;
+  document.getElementById('chipHist').setAttribute('aria-pressed','true');
+  document.getElementById('chipBox').setAttribute('aria-pressed','false');
+  document.getElementById('chipRain').setAttribute('aria-pressed','false');
+  document.getElementById('chipTypo').setAttribute('aria-pressed','false');
   showRes=true; document.getElementById('chipRes').setAttribute('aria-pressed','true');
   collR=0; document.getElementById('collSlide').value=0;
   document.getElementById('collVal').textContent='0.00';
@@ -2106,6 +2361,21 @@ document.getElementById('chipM').addEventListener('click', e=>{
 document.getElementById('chipSD').addEventListener('click', e=>{
   showSD=!showSD; e.currentTarget.setAttribute('aria-pressed',showSD); cMSD.draw(cMSD); msdText();
 });
+(function(){
+  const views={chipHist:'hist', chipBox:'box', chipRain:'rain'};
+  Object.keys(views).forEach(id=>{
+    document.getElementById(id).addEventListener('click', ()=>{
+      distView=views[id];
+      Object.keys(views).forEach(o=>document.getElementById(o).setAttribute('aria-pressed', String(o===id)));
+      cDist.draw(cDist); distText();
+    });
+  });
+  document.getElementById('chipTypo').addEventListener('click', e=>{
+    distTypo=!distTypo;
+    e.currentTarget.setAttribute('aria-pressed', String(distTypo));
+    cDist.draw(cDist); distText();
+  });
+})();
 document.getElementById('rSlide').addEventListener('input', e=>setR(+e.target.value));
 document.querySelectorAll('button[data-r]').forEach(b=>b.addEventListener('click', ()=>setR(+b.dataset.r)));
 

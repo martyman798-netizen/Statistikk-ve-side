@@ -4,6 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Grunnbegreper, en interaktiv statistikksandkasse og en leseordbok for vitenskapelige artikler.">
+<title>Statistikkens alfabet</title>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EDF0F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#11171D" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:site_name" content="Statistikkens alfabet">
+<meta property="og:title" content="Statistikkens alfabet">
+<meta property="og:description" content="Grunnbegreper, en interaktiv statistikksandkasse og en leseordbok for vitenskapelige artikler.">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 html{color-scheme:light dark}
 body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -12,8 +26,6 @@ img{max-width:100%}
 </style>
 </head>
 <body>
-<title>Statistikkens alfabet</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
   --paper:#EDF0F3;
@@ -119,8 +131,8 @@ nav.index::-webkit-scrollbar-thumb:hover{background:var(--ink-3)}
 nav.index .navgroup{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:16px 0 8px;padding-left:6px;border-top:1px solid var(--rule-soft);padding-top:12px}
 nav.index .navgroup:first-of-type{border-top:none;margin-top:0;padding-top:0}
 nav.index ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px}
-nav.index a{display:grid;grid-template-columns:34px 1fr;align-items:baseline;gap:6px;text-decoration:none;color:var(--ink-2);padding:3px 6px;border-radius:3px;font-size:13.5px;line-height:1.35}
-nav.index a .g{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--accent)}
+nav.index a{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:baseline;gap:6px;text-decoration:none;color:var(--ink-2);padding:3px 6px;border-radius:3px;font-size:13.5px;line-height:1.35;overflow-wrap:break-word}
+nav.index a .g{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--accent);white-space:nowrap;overflow-wrap:normal}
 nav.index a:hover{background:var(--surface-2);color:var(--ink)}
 nav.index a.active{background:var(--accent-soft);color:var(--ink);font-weight:500}
 nav.index a.active .g{color:var(--mark)}
@@ -234,14 +246,14 @@ input[type=search]:focus-visible{outline:2px solid var(--accent);outline-offset:
 footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3);line-height:1.8}
 
 @media (max-width:900px){
-  .cols{grid-template-columns:1fr;gap:28px}
+  .cols{grid-template-columns:minmax(0,1fr);gap:28px}
   nav.index{position:static;max-height:none;overflow:visible;padding-right:0;-webkit-mask-image:none;mask-image:none}
   nav.index ol{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:2px}
-  .masthead{grid-template-columns:1fr}
-  .entry{grid-template-columns:1fr;gap:14px}
+  .masthead{grid-template-columns:minmax(0,1fr)}
+  .entry{grid-template-columns:minmax(0,1fr);gap:14px}
   .glyph{font-size:44px}
-  .trio{grid-template-columns:1fr}
-  .ffgrid{grid-template-columns:1fr}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .ffgrid{grid-template-columns:minmax(0,1fr)}
   .sentence{font-size:17px}
   .databar{position:static;margin:0 -24px}
 }

@@ -206,6 +206,25 @@ button:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
 .dict.terms td:nth-child(2){width:auto}
 .dict td b{font-family:var(--mono);font-size:.85em;font-weight:600;color:var(--ink);white-space:nowrap}
 .scroller{overflow-x:auto}
+.kortbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.kortlab{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.kortbar select{font-family:var(--mono);font-size:12.5px;padding:6px 8px;border:1px solid var(--rule);border-radius:3px;background:var(--surface);color:var(--ink);max-width:100%}
+.kort{border:1px solid var(--rule);border-radius:4px;background:var(--surface-2);min-height:168px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 20px;gap:10px;margin-top:12px;cursor:pointer}
+.kort:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.kort .face{font-family:var(--serif);font-style:italic;font-size:44px;line-height:1.1;color:var(--accent)}
+.kort .face.up{font-style:normal;font-family:var(--mono);font-size:30px;font-weight:600}
+.kort .nm{font-family:var(--mono);font-size:13.5px;font-weight:600;color:var(--ink)}
+.kort .bd{font-size:15px;line-height:1.55;color:var(--ink-2);max-width:48ch}
+.kort .fm{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.kort .hint{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.kort .bd code{font-family:var(--mono);font-size:.88em}
+.boxes{display:flex;gap:3px;margin-top:11px;height:7px}
+.boxes i{border-radius:2px;background:var(--rule-soft);transition:flex-grow .25s}
+.boxes i.b1{background:var(--rule)}
+.boxes i.b2{background:var(--mark-soft)}
+.boxes i.b3{background:var(--accent-soft)}
+.boxes i.b4{background:var(--accent)}
+.boxes i.b5{background:var(--good)}
 
 /* ---------- setningsleser ---------- */
 .sentence{font-family:var(--serif);font-size:19px;line-height:1.85;margin:16px 0 0;max-width:none;color:var(--ink)}
@@ -352,6 +371,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
       <li><a href="#fam-gresk"><span class="g">Σ</span> Greske bokstaver</a></li>
       <li><a href="#falske-venner"><span class="g">⚠</span> Falske venner</a></li>
       <li><a href="#ordbok"><span class="g">☰</span> Hele ordboka</a></li>
+      <li><a href="#kort"><span class="g">⇄</span> Øvingskort</a></li>
     </ol>
   </nav>
 
@@ -708,7 +728,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
         <p class="asks">Kunne tilfeldigheter alene gitt meg dette?</p>
         <p><em class="v">p</em> svarer på ett bestemt spørsmål: <strong>hvis det i virkeligheten ikke fantes noen sammenheng, hvor ofte ville ren flaks gitt meg et resultat minst så tydelig som mitt?</strong> Her ble <em class="v">p</em> = <span class="stat" data-s="p"></span>.</p>
         <p>Bak det spørsmålet ligger en fast prosedyre. Den har fire trinn, og den er den samme for hver eneste test du møter resten av semesteret:</p>
-        <div class="scroller"><table class="dict terms tight" data-fam="Nullhypotesetesting">
+        <div class="scroller"><table class="dict terms tight" data-fam="Nullhypotesetesting" data-nocard>
           <tbody>
             <tr><td>1 · Sett opp</td><td>H₀ og H₁</td><td><em class="v">H₀</em> er «ingen effekt, ingen sammenheng». <em class="v">H₁</em> er at det finnes en. H₀ er den du tester — H₁ er bare det som står igjen hvis H₀ ryker.</td></tr>
             <tr><td>2 · Lat som</td><td>Anta at H₀ er sann</td><td>Og finn ut hvilke resultater den verdenen ville produsert. Det er <em class="v">nullfordelingen</em>: alle utfallene du kunne fått hvis ingenting var på gang.</td></tr>
@@ -1402,6 +1422,39 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
           <tbody></tbody>
         </table></div>
         <p class="nores" id="dictNone" hidden>Ingen treff. Prøv et kortere søkeord.</p>
+      </div>
+    </section>
+
+    <!-- ---------- øvingskort ---------- -->
+    <section class="entry" id="kort">
+      <div class="glyphcol"><span class="step">33</span><span class="glyph up">⇄</span></div>
+      <div>
+        <h2>Øvingskort</h2>
+        <p class="asks">Kan du dem uten å slå opp?</p>
+        <p>Å lese en forklaring til den føles opplagt er ikke det samme som å kunne den. Kortene under henter oppslagene rett fra ordboka over — hver eneste term på denne sida, uten unntak — og snur spørsmålet: du får tegnet, og må si hva det betyr <em>før</em> du snur.</p>
+        <p>Det er hele poenget. Å hente noe fram fra hukommelsen fester det langt bedre enn å lese det om igjen, og det er den eneste måten å oppdage forskjellen på «dette kjenner jeg igjen» og «dette kan jeg».</p>
+        <div class="panel">
+          <div class="panel-head"><span>Øvingskort</span><span id="kortScope">—</span></div>
+          <div class="kortbar">
+            <label class="kortlab" for="kortFam">Område</label>
+            <select id="kortFam" aria-label="Velg hvilket område du vil øve på"></select>
+            <button class="chip" id="kortHard" aria-pressed="false">Bare de jeg sliter med</button>
+          </div>
+          <div class="kort" id="kortCard" tabindex="0" role="button" aria-describedby="kortRead"></div>
+          <div class="boxes" id="kortBoxes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="controls">
+            <button id="kortFlip">Snu kortet</button>
+            <button class="ghost" id="kortAgain" hidden>Måtte tenke</button>
+            <button class="ghost" id="kortGot" hidden>Kunne den</button>
+            <button class="ghost" id="kortShuffle">Stokk om</button>
+            <button class="ghost" id="kortForget">Nullstill framgang</button>
+          </div>
+          <div class="readout" id="kortRead" aria-live="polite"></div>
+        </div>
+        <div class="aside"><b>Tastatur:</b> klikk på kortet én gang, så kan du kjøre resten med tastene. <em class="v">Mellomrom</em> snur kortet, <em class="v">1</em> er «måtte tenke», <em class="v">2</em> er «kunne den». Da går det fort nok til at du rekker en runde mens kaffen trekker.</div>
+        <div class="aside"><b>Hvordan framgangen regnes.</b> Hvert kort har fem trinn. «Kunne den» flytter det ett trinn opp, «måtte tenke» sender det helt tilbake til start — for det er den ærlige responsen: kunne du det ikke nå, kan du det ikke. Stripa under kortet viser hvor hele bunken står, fra grått (ikke øvd ennå) til grønt (sitter). Målet er en grønn stripe, ikke et høyt tall.</div>
+        <div class="aside tryit"><b>Slik ville jeg brukt dem:</b> velg ett område om gangen i stedet for alle 200+ på én gang — «Effektstørrelse» før en innlevering, «Greske bokstaver» når du sliter med å lese formler. Når et område begynner å sitte, slå på «bare de jeg sliter med», så blir bunken bare de kortene som fortsatt ikke har festet seg.</div>
+        <div class="aside"><b>Framgangen lagres i denne nettleseren</b>, ikke på en server. Bytter du til mobilen eller en annen maskin, starter du på nytt der. Ingenting sendes noe sted, og ingen andre ser hvordan du ligger an.</div>
       </div>
     </section>
 
@@ -2783,6 +2836,158 @@ const SENTENCES = [
   update();
 })();
 
+
+/* ================= Øvingskort: henter termene fra de samme tabellene som ordboka ================= */
+(function flashcards(){
+  const card = document.getElementById('kortCard');
+  if(!card) return;
+  const famSel  = document.getElementById('kortFam'),
+        hardBtn = document.getElementById('kortHard'),
+        flipBtn = document.getElementById('kortFlip'),
+        againBtn= document.getElementById('kortAgain'),
+        gotBtn  = document.getElementById('kortGot'),
+        shufBtn = document.getElementById('kortShuffle'),
+        forgetBtn=document.getElementById('kortForget'),
+        readEl  = document.getElementById('kortRead'),
+        scopeEl = document.getElementById('kortScope'),
+        boxesEl = document.getElementById('kortBoxes');
+
+  const STORE = 'sa-kort-v1', LEVELS = 5;
+  let progress = {};
+  try { progress = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch(e) { progress = {}; }
+  const save = () => { try { localStorage.setItem(STORE, JSON.stringify(progress)); } catch(e){} };
+  const lvl = k => Math.min(LEVELS-1, Math.max(0, progress[k]|0));
+
+  /* ---- samle kortene: samme kilde som ordboka, minus tabeller merket data-nocard ---- */
+  const all = [], seen = new Set();
+  document.querySelectorAll('table.dict[data-fam]').forEach(src=>{
+    if(src.hasAttribute('data-nocard')) return;
+    const fam = src.getAttribute('data-fam');
+    src.querySelectorAll('tbody tr').forEach(tr=>{
+      const td = tr.querySelectorAll('td');
+      if(td.length < 3) return;
+      const sign = td[0].textContent.trim(), name = td[1].textContent.trim();
+      if(!sign || !name) return;
+      const key = (sign + '|' + name).toLowerCase();
+      if(seen.has(key)) return;
+      seen.add(key);
+      all.push({key, signHTML: td[0].innerHTML.trim(), up: td[0].classList.contains('up'),
+                name, body: td[2].innerHTML.trim(), fam});
+    });
+  });
+  if(!all.length) return;
+
+  /* ---- områdevelgeren, i sidas egen rekkefølge ---- */
+  const fams = [];
+  all.forEach(c=>{ if(!fams.includes(c.fam)) fams.push(c.fam); });
+  const opt = (v,t)=>{ const o=document.createElement('option'); o.value=v; o.textContent=t; famSel.appendChild(o); };
+  opt('*', 'Alle oppslag (' + all.length + ')');
+  fams.forEach(f=> opt(f, f + ' (' + all.filter(c=>c.fam===f).length + ')'));
+
+  let deck = [], idx = 0, flipped = false, hardOnly = false;
+
+  const scoped = () => all.filter(c => famSel.value === '*' || c.fam === famSel.value);
+  function build(){
+    let pool = scoped();
+    if(hardOnly) pool = pool.filter(c => lvl(c.key) <= 1);
+    deck = pool.slice();
+    for(let i=deck.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [deck[i],deck[j]]=[deck[j],deck[i]]; }
+    deck.sort((a,b)=> lvl(a.key) - lvl(b.key));   /* stabil: svake kort først, tilfeldig innbyrdes */
+    idx = 0; flipped = false;
+    render();
+  }
+
+  function renderBoxes(){
+    const pool = scoped(), counts = new Array(LEVELS).fill(0);
+    pool.forEach(c=> counts[lvl(c.key)]++);
+    [...boxesEl.children].forEach((el,i)=>{
+      el.className = counts[i] ? 'b'+(i+1) : '';
+      el.style.flexGrow = counts[i] || 0.04;
+    });
+  }
+
+  function render(){
+    const pool = scoped();
+    scopeEl.textContent = famSel.value === '*' ? 'alle oppslag' : famSel.value;
+    renderBoxes();
+    const solid = pool.filter(c=>lvl(c.key) >= 3).length;
+
+    if(!deck.length){
+      card.innerHTML = '<div class="bd">' + (hardOnly
+        ? 'Ingen kort igjen å slite med i dette området. Slå av filteret for å gå gjennom alle.'
+        : 'Ingen kort i dette området.') + '</div>';
+      flipBtn.hidden = true; againBtn.hidden = true; gotBtn.hidden = true;
+      readEl.textContent = '';
+      return;
+    }
+    if(idx >= deck.length){
+      card.innerHTML = '<div class="nm">Bunken er gjennomgått.</div>'
+        + '<div class="bd">Du gikk gjennom <b>' + deck.length + '</b> kort. '
+        + 'I dette området sitter nå <b>' + solid + ' av ' + pool.length + '</b>.</div>'
+        + '<div class="hint">Trykk «Stokk om» for en ny runde.</div>';
+      flipBtn.hidden = true; againBtn.hidden = true; gotBtn.hidden = true;
+      readEl.textContent = 'Ferdig. Kortene du måtte tenke på kommer tidlig tilbake neste runde.';
+      return;
+    }
+
+    const c = deck[idx];
+    if(!flipped){
+      card.innerHTML = '<div class="face' + (c.up ? ' up' : '') + '">' + c.signHTML + '</div>'
+        + '<div class="hint">hva betyr det? · trykk for å snu</div>';
+      flipBtn.hidden = false; againBtn.hidden = true; gotBtn.hidden = true;
+    } else {
+      card.innerHTML = '<div class="face' + (c.up ? ' up' : '') + '">' + c.signHTML + '</div>'
+        + '<div class="nm">' + c.name + '</div>'
+        + '<div class="bd">' + c.body + '</div>'
+        + '<div class="fm">' + c.fam + '</div>';
+      flipBtn.hidden = true; againBtn.hidden = false; gotBtn.hidden = false;
+    }
+    readEl.innerHTML = 'Kort <b>' + (idx+1) + '</b> av <b>' + deck.length + '</b>'
+      + ' · trinn <b>' + (lvl(c.key)+1) + '</b> av ' + LEVELS
+      + ' · <b>' + solid + '</b> av <b>' + pool.length + '</b> sitter i dette området.';
+  }
+
+  const flip  = () => { if(deck.length && idx < deck.length){ flipped = true; render(); } };
+  function grade(ok){
+    if(!flipped || idx >= deck.length) return;
+    const k = deck[idx].key;
+    progress[k] = ok ? Math.min(LEVELS-1, lvl(k)+1) : 0;
+    save();
+    if(!ok) deck.push(deck[idx]);          /* kom tilbake senere i samme runde */
+    idx++; flipped = false; render();
+  }
+
+  card.addEventListener('click', e=>{ if(e.target.closest('a')) return; if(!flipped) flip(); });
+  card.addEventListener('keydown', e=>{
+    if(e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); if(!flipped) flip(); }
+  });
+  flipBtn.addEventListener('click', flip);
+  gotBtn.addEventListener('click', ()=>grade(true));
+  againBtn.addEventListener('click', ()=>grade(false));
+  shufBtn.addEventListener('click', build);
+  famSel.addEventListener('change', build);
+  hardBtn.addEventListener('click', ()=>{
+    hardOnly = !hardOnly;
+    hardBtn.setAttribute('aria-pressed', String(hardOnly));
+    build();
+  });
+  forgetBtn.addEventListener('click', ()=>{
+    progress = {}; save(); build();
+    readEl.textContent = 'Framgangen er nullstilt.';
+  });
+
+  document.addEventListener('keydown', e=>{
+    const t = e.target;
+    if(t && (t.tagName === 'INPUT' || t.tagName === 'SELECT' || t.tagName === 'TEXTAREA')) return;
+    if(!card.getBoundingClientRect().height) return;
+    const r = card.getBoundingClientRect();
+    if(r.bottom < 0 || r.top > innerHeight) return;   /* bare når kortet er synlig */
+    if(e.key === '1'){ grade(false); }
+    else if(e.key === '2'){ grade(true); }
+  });
+
+  build();
+})();
 
 /* ================= navigasjon: rull uten å stole på lenkehopp ================= */
 (function navScroll(){

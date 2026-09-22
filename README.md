@@ -64,6 +64,12 @@ npm run deploy
 
 ## Notater
 
+- Søket (`/` eller knappen i toppbaren) slår opp i alle ordbokstabellene,
+  alle seksjonsoverskriftene og «falske venner»-boksene. Greske tegn
+  indekseres både på lyden og på formen, så `n2`, `eta2` og `η²` gir samme
+  treff, og hevet skrift kan skrives rett på linja. Logikken ligger i
+  `SEARCHTEXT` øverst i skriptet, og brukes både av søkeruta og av
+  filteret i den samlede ordboka.
 - Skriftene lastes fra Google Fonts. Uten nett faller siden tilbake på
   Georgia og en systemmono, og alt fungerer fortsatt.
 - Lys og mørk drakt følger `prefers-color-scheme` automatisk.

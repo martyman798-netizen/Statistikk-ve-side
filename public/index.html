@@ -314,12 +314,13 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
   <div>
     <p class="eyebrow">PSY300 · statistikk og metode</p>
     <h1>Statistikkens <em>alfabet</em></h1>
-    <p class="standfirst">Tre deler: først grunnbegrepene og hva variablene dine egentlig heter, så hvert statistisk tegn forklart med demoer du kan dra i, og til slutt en leseordbok for artikler. Alt i midtdelen kjører på et oppdiktet datasett du selv bestemmer størrelsen på. Nederst ligger øvingskortene og oppgavene — de to lenkene under tar deg rett dit.</p>
+    <p class="standfirst">Fire deler: først grunnbegrepene og hva variablene dine egentlig heter, så hvert statistisk tegn forklart med demoer du kan dra i, så en leseordbok for artikler, og til slutt resonnementet som binder det sammen til en studie — hvilken analyse som svarer på hvilken hypotese, og hvordan svaret skrives ned. Alt i Del I kjører på et oppdiktet datasett du selv bestemmer størrelsen på. Nederst ligger øvingskortene og oppgavene — de to lenkene under tar deg rett dit.</p>
   </div>
   <div class="dataplate">
     <b>Del 0</b> — grunnbegrepene<br>
     <b>Del I</b> — tegnene, med sandkasse<br>
     <b>Del II</b> — leseordbok for artikler<br>
+    <b>Del III</b> — fra emne til artikkel<br>
     <b>Øving</b> — kort og oppgaver
   </div>
 </header>
@@ -330,7 +331,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
     <span>
       <b>Øvingskort</b>
       <span class="pd">Tegnet på forsiden, betydningen bak. Hentet rett fra ordboka, så de dekker hvert eneste begrep på sida.</span>
-      <span class="pn">206 kort · 20 områder</span>
+      <span class="pn">262 kort · 27 områder</span>
     </span>
   </a>
   <a class="pcard" href="#oppgaver">
@@ -338,7 +339,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
     <span>
       <b>Oppgaver</b>
       <span class="pd">Les tallet, velg analysen, si hva resultatet betyr. Hvert feilalternativ er en bestemt misforståelse, og du får vite hvilken.</span>
-      <span class="pn">36 flervalgsoppgaver · eksamensformat</span>
+      <span class="pn">54 flervalgsoppgaver · eksamensformat</span>
     </span>
   </a>
 </div>
@@ -423,6 +424,20 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
       <li><a href="#fam-gresk"><span class="g">Σ</span> Greske bokstaver</a></li>
       <li><a href="#falske-venner"><span class="g">⚠</span> Falske venner</a></li>
       <li><a href="#ordbok"><span class="g">☰</span> Hele ordboka</a></li>
+    </ol>
+    <p class="navgroup">Del III · arbeidskravet</p>
+    <ol>
+      <li><a href="#modellen"><span class="g">V→S</span> Sårbarhet–stress</a></li>
+      <li><a href="#faktorer"><span class="g">2×2</span> Design og faktorer</a></li>
+      <li><a href="#hypoteser"><span class="g">H₁</span> Hypotese til test</a></li>
+      <li><a href="#interaksjon"><span class="g">A×B</span> Interaksjonen</a></li>
+      <li><a href="#endring"><span class="g">Δ</span> Før og etter</a></li>
+      <li><a href="#sjekkene"><span class="g">✓</span> Sjekkene først</a></li>
+      <li><a href="#brister"><span class="g">⊘</span> Forutsetninger</a></li>
+      <li><a href="#mange"><span class="g">α/k</span> Mange tester</a></li>
+      <li><a href="#samme"><span class="g">GLM</span> Samme modell</a></li>
+      <li><a href="#rapportering"><span class="g">APA</span> Skrive resultater</a></li>
+      <li><a href="#loypa"><span class="g">⇉</span> Analyseløypa</a></li>
       <li><a href="#kort"><span class="g">⇄</span> Øvingskort</a></li>
       <li><a href="#oppgaver"><span class="g">?!</span> Oppgaver</a></li>
     </ol>
@@ -1059,7 +1074,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
     <section class="partbreak" id="del2">
       <p class="eyebrow">Del II</p>
       <h2 class="parttitle">Leseordbok for artikler</h2>
-      <p class="partlede">Herfra og ut handler det ikke om arbeidskravet ditt, men om alt annet du kommer til å møte i pensum. Ordnet etter hvilken analyse du sitter med foran deg — og med en advarsel til slutt om tegnene som betyr forskjellige ting på forskjellige sider i samme artikkel.</p>
+      <p class="partlede">Denne delen handler ikke om arbeidskravet ditt, men om alt annet du kommer til å møte i pensum. Ordnet etter hvilken analyse du sitter med foran deg — og med en advarsel til slutt om tegnene som betyr forskjellige ting på forskjellige sider i samme artikkel. Så, i Del III, kommer arbeidskravet tilbake.</p>
     </section>
 
     <!-- ---------- setningsleseren ---------- -->
@@ -1459,9 +1474,355 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
       </div>
     </section>
 
+    <!-- ==================== DEL III ==================== -->
+    <section class="partbreak" id="del3">
+      <p class="eyebrow">Del III</p>
+      <h2 class="parttitle">Fra emne til artikkel</h2>
+      <p class="partlede">De to forrige delene handler om enkelttegn. Denne handler om hva som skjer når de settes sammen til en studie: hvilken modell hypotesene kommer fra, hvilken analyse som faktisk svarer på hver av dem, hvilke sjekker som må kjøres før hypotesetestene i det hele tatt betyr noe — og hvordan resultatet skrives ned uten å påstå mer enn det er dekning for. Det er ingen nye tegn her, bare rekkefølgen og resonnementet de inngår i.</p>
+    </section>
+
+    <!-- ---------- sårbarhet–stress ---------- -->
+    <section class="entry" id="modellen">
+      <div class="glyphcol"><span class="step">32</span><span class="glyph sm up">V→S</span></div>
+      <div>
+        <h2>Sårbarhet–stress-modellen</h2>
+        <p class="asks">Hvorfor en teori må oversettes til en interaksjon</p>
+        <p>En god del psykologiske modeller har samme form: noe skjer med folk, og det går verre for noen enn for andre. Sårbarhet–stress-modellen — også kalt diatese–stress — setter dette opp som to ting som må være til stede samtidig. <strong>Stressoren</strong> er den ytre hendelsen. <strong>Sårbarheten</strong> er en egenskap personen har med seg inn i situasjonen. Modellen påstår at reaksjonen blir størst der begge finnes.</p>
+        <div class="roles">
+          <div><h4>Stressor</h4><p>Hendelsen som utfordrer personen. I et eksperiment er den manipulert, slik at den kan tilskrives en årsak.<span class="ex">et nederlag, en avvisning, et tap</span></p></div>
+          <div><h4>Sårbarhet</h4><p>Egenskapen som avgjør hvor hardt hendelsen rammer. Nesten alltid målt, ikke manipulert.<span class="ex">en personlighetsstil, en historikk, en gruppetilhørighet</span></p></div>
+          <div><h4>Utfall</h4><p>Reaksjonen du måler etterpå — og helst også før, slik at du snakker om endring og ikke bare nivå.<span class="ex">humør, selvtillit, symptomtrykk</span></p></div>
+        </div>
+        <p>Det avgjørende er hva modellen <em>ikke</em> påstår. Den sier ikke bare at stressoren er skadelig, og ikke bare at sårbare folk har det verre. Begge de påstandene er hovedeffekter, og begge kan være sanne uten at modellen stemmer. Modellen påstår at <strong>effekten av stressoren avhenger av sårbarheten</strong>. Det er en interaksjon, og det er den raden i tabellen som er selve hypotesetesten.</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Sårbarhet–stress">
+          <tbody>
+            <tr><td>Sårbarhet–stress</td><td>Diathesis–stress</td><td>Modellen der en ytre belastning gir større negativ reaksjon hos den som fra før har en bestemt sårbarhet. Predikerer en interaksjon, ikke to hovedeffekter.</td></tr>
+            <tr><td>Stressor</td><td>Stressor</td><td>Den utløsende hendelsen. I et eksperiment er den operasjonalisert som en manipulasjon deltagerne fordeles tilfeldig til.</td></tr>
+            <tr><td>Diatese</td><td>Diathesis</td><td>Eldre ord for sårbarhetsfaktoren. Ligger der før hendelsen, og måles derfor før manipulasjonen.</td></tr>
+            <tr><td>Differensiell sårbarhet</td><td>Differential vulnerability</td><td>At den samme hendelsen ikke rammer alle likt. Er selve påstanden modellen skal testes på.</td></tr>
+            <tr><td>Egenskap mot tilstand</td><td>Trait vs. state</td><td>En egenskap er stabil og måles én gang; en tilstand svinger og måles før og etter. Sårbarheten er som regel en egenskap, utfallet en tilstand.</td></tr>
+            <tr><td>Mestringstro</td><td>Self-efficacy</td><td>Troen på egen evne til å få til en bestemt oppgave. Er både et utfall som kan skades, og en prediktor for hvordan man går inn i neste oppgave.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Moderator eller mediator?</b> Begge står i <a href="#variabler">Variabelrollene</a>, men det er her forskjellen får konsekvenser. Spør hva setningen gjør. «Effekten var større for dem med høy perfeksjonisme» peker på <em>hvem</em> — moderator, testes som interaksjon. «Nederlaget virket fordi det senket mestringstroen» peker på <em>hvordan</em> — mediator, testes med en kjede av modeller. De to forveksles hele tiden, og de svarer på helt forskjellige spørsmål.</div>
+        <div class="aside tryit"><b>Test deg selv på en vilkårlig artikkel.</b> Finn hypotesene, og avgjør for hver av dem om den påstår en hovedeffekt eller en interaksjon. Gå så til resultatdelen og se om den raden faktisk er rapportert. Det hender oftere enn man skulle tro at en interaksjonshypotese «bekreftes» med to separate tester — og det er ikke det samme.</div>
+      </div>
+    </section>
+
+    <!-- ---------- designet ---------- -->
+    <section class="entry" id="faktorer">
+      <div class="glyphcol"><span class="step">33</span><span class="glyph sm up">2×2</span></div>
+      <div>
+        <h2>Manipulert, målt eller gjentatt</h2>
+        <p class="asks">Tre spørsmål som bestemmer hele analysen</p>
+        <p>Før du velger test må du vite hva slags faktorer du har. Det er tre spørsmål, og svarene avgjør både hvilken analyse som er riktig og hvilke påstander du har lov til å skrive i diskusjonen.</p>
+        <div class="roles">
+          <div><h4>Er den manipulert?</h4><p>Bestemte forskeren hvem som fikk hva, ved loddtrekning? Da — og bare da — kan forskjellen tilskrives faktoren.<span class="ex">lett mot vanskelig prøve</span></p></div>
+          <div><h4>Eller bare målt?</h4><p>Kjønn, personlighet, fagfelt og alder er kvasi-eksperimentelle faktorer. De kan sammenlignes, men aldri forårsake noe i en slik analyse.<span class="ex">kjønn, perfeksjonisme, fagfelt</span></p></div>
+          <div><h4>Gjentas den innen person?</h4><p>Er det de samme personene på begge nivåene? Da er observasjonene avhengige, og analysen må ta hensyn til det.<span class="ex">før mot etter</span></p></div>
+        </div>
+        <p>Et design som har både en mellom-faktor og en innen-faktor kalles <em class="v">blandet</em>. Det er nettopp det en pre–post-studie med to grupper er: tid varierer innen person, betingelse varierer mellom personer. Har du i stedet to mellom-faktorer med to nivåer hver, har du et <em class="v">2 × 2</em> faktorielt design — fire celler, og tre rader i tabellen: to hovedeffekter og én interaksjon.</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Design og faktorer">
+          <tbody>
+            <tr><td>Faktor</td><td>Factor</td><td>En gruppevariabel i en ANOVA. «Nivå» er verdiene den kan ha: to grupper er to nivåer.</td></tr>
+            <tr><td>Mellom-gruppe-faktor</td><td>Between-subjects</td><td>Hver deltager er på ett nivå. Ulike personer sammenlignes.</td></tr>
+            <tr><td>Innen-gruppe-faktor</td><td>Within-subjects</td><td>Hver deltager er på alle nivåene. Samme person sammenlignes med seg selv, som gir mer presisjon for samme antall deltagere.</td></tr>
+            <tr><td>Blandet design</td><td>Mixed design</td><td>Minst én faktor av hver type. Analyseres med blandet ANOVA, der interaksjonen som regel er hypotesetesten.</td></tr>
+            <tr><td>Faktorielt design</td><td>Factorial design</td><td>To eller flere faktorer krysset med hverandre, slik at alle kombinasjoner finnes. Skrives 2 × 2, 2 × 3 og så videre.</td></tr>
+            <tr><td>Celle</td><td>Cell</td><td>Én kombinasjon av faktornivåer. I et 2 × 2 er det fire celler, og gjennomsnittene i dem er det interaksjonen leses av.</td></tr>
+            <tr><td>Kvasi-eksperimentell faktor</td><td>Quasi-experimental</td><td>Gruppevariabel som ikke er randomisert. Gir gyldige sammenligninger, men ingen årsakspåstander.</td></tr>
+            <tr><td>Ubalansert design</td><td>Unbalanced design</td><td>Ulikt antall i cellene. Vanlig når faktoren er målt og ikke manipulert, og gjør analysen mer sårbar for brutte forutsetninger.</td></tr>
+            <tr><td>Primærutfall</td><td>Primary outcome</td><td>Variabelen studien er designet for å svare på. Oppgis på forhånd, nettopp for at ikke det mest signifikante utfallet velges i etterkant.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Rekkefølgen i prosedyren er et argument.</b> Måles bakgrunnsvariablene <em>før</em> loddtrekningen, kan ingen av dem være påvirket av hvilken betingelse deltageren senere havnet i. Det er ikke en teknisk detalj — det er grunnen til at du kan bruke dem som utgangspunkt uten å bekymre deg for at manipulasjonen har farget dem. Står rekkefølgen motsatt, faller argumentet.</div>
+        <div class="aside"><b>Hvorfor ubalanse er verdt å merke seg.</b> ANOVA tåler ulike gruppestørrelser, men den tåler dem dårligere når variansene også er ulike — og verst når den minste gruppen er den med størst spredning. Det er derfor <em class="v">n</em> per gruppe alltid skal stå i tabellen, ikke bare totalt <em class="v">N</em>.</div>
+      </div>
+    </section>
+
+    <!-- ---------- hypotese til test ---------- -->
+    <section class="entry" id="hypoteser">
+      <div class="glyphcol"><span class="step">34</span><span class="glyph sm up">H₁</span></div>
+      <div>
+        <h2>Fra hypotese til testrad</h2>
+        <p class="asks">Hvilken linje i tabellen er egentlig svaret?</p>
+        <p>En hypotese er en påstand om verden. En test er én rad i en resultattabell. Den vanligste feilen i en arbeidskravsbesvarelse er ikke å regne feil, men å lese av feil rad — å rapportere en hovedeffekt som om den var svaret på en interaksjonshypotese.</p>
+        <p>Mønsteret er alltid det samme: se på formen på påstanden, så vet du hvilken rad du skal til.</p>
+        <div class="scroller"><table class="dict terms tight">
+          <tbody>
+            <tr><td>«A henger sammen med B»</td><td>Korrelasjon</td><td>Svaret er <em class="v">r</em> med p og konfidensintervall. Effektstørrelsen er r selv, eller r².</td></tr>
+            <tr><td>«A predikerer B»</td><td>Regresjon</td><td>Svaret er koeffisienten for A, med SE, t og p. Modellen som helhet vurderes med R² og F.</td></tr>
+            <tr><td>«A predikerer B utover C»</td><td>Hierarkisk regresjon</td><td>Svaret er <em class="v">ΔR²</em> og p for endringen — ikke R² i den fulle modellen.</td></tr>
+            <tr><td>«Gruppene skiller seg»</td><td>t-test eller ANOVA</td><td>To grupper: t med df, p og d. Tre eller flere: F med begge df, p og η². Så post hoc for å si hvilke.</td></tr>
+            <tr><td>«Utfallet endrer seg over tid»</td><td>Paret t-test</td><td>Samme personer målt to ganger. Svaret er t, df, p og d for endringen.</td></tr>
+            <tr><td>«Endringen er større i den ene gruppen»</td><td>Interaksjon</td><td>Blandet ANOVA: raden Tid × Gruppe. Ikke hovedeffekten av tid, og ikke to separate t-tester.</td></tr>
+            <tr><td>«Effekten er større for noen»</td><td>Interaksjon</td><td>Toveis ANOVA: raden A × B. Hovedeffektene svarer på andre spørsmål enn det som ble spurt.</td></tr>
+            <tr><td>«Fordelingen avviker fra forventet»</td><td>χ² tilpasning</td><td>Svaret er χ² med df og p, pluss en effektstørrelse. Gjelder én kategorisk variabel.</td></tr>
+            <tr><td>«De to kategoriene henger sammen»</td><td>χ² uavhengighet</td><td>Svaret er χ² med df, p og Cramérs V. Gjelder to kategoriske variabler i en krysstabell.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Hovedeffekt og interaksjon svarer på ulike spørsmål.</b> Hovedeffekten av betingelse sier «i snitt, på tvers av sårbarhetsnivå, gikk det slik». Interaksjonen sier «men forskjellen mellom betingelsene var ikke den samme på de to nivåene». En studie kan ha en tydelig hovedeffekt og ingen interaksjon i det hele tatt — da er stressoren skadelig, men modellen om differensiell sårbarhet får ikke støtte.</div>
+        <div class="aside tryit"><b>Skriv hypotesen om til en rad før du åpner programmet.</b> Ta hver hypotese, og noter hvilken analyse den krever, hvilken rad i utskriften som er svaret, og hvilke tre–fire tall du skal ha derfra. Da slipper du å lete i en full utskrift etterpå — og du oppdager med én gang om en hypotese er formulert slik at ingen rad kan svare på den.</div>
+      </div>
+    </section>
+
+    <!-- ---------- interaksjonen ---------- -->
+    <section class="entry" id="interaksjon">
+      <div class="glyphcol"><span class="step">35</span><span class="glyph sm up">A×B</span></div>
+      <div>
+        <h2>Å lese en interaksjon</h2>
+        <p class="asks">Forskjellen mellom forskjellene</p>
+        <p>En interaksjon er ikke et vanskeligere tall enn de andre — den er bare et tall om et tall. Hovedeffekten spør «er det forskjell?». Interaksjonen spør «er forskjellen den samme overalt?».</p>
+        <p>Regn det ut for hånd én gang på fire cellegjennomsnitt, så slipper du aldri taket i det igjen: finn forskjellen mellom de to betingelsene på det ene nivået av den andre faktoren, finn den samme forskjellen på det andre nivået, og trekk dem fra hverandre. Er de to forskjellene like, er differansen null, og det er nettopp det nullhypotesen for interaksjonen sier.</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Interaksjon">
+          <tbody>
+            <tr><td>Interaksjon</td><td>Interaction</td><td>At effekten av én faktor avhenger av nivået på en annen. Formelt: forskjellen mellom forskjellene er ikke null.</td></tr>
+            <tr><td>Hovedeffekt</td><td>Main effect</td><td>Effekten av én faktor gjennomsnittet over nivåene på den andre. Kan være misvisende å tolke alene når interaksjonen er sterk.</td></tr>
+            <tr><td>Interaksjonsplott</td><td>Interaction plot</td><td>Cellegjennomsnittene tegnet som to linjer. Parallelle linjer betyr ingen interaksjon; ulik helning betyr at det finnes en.</td></tr>
+            <tr><td>Vifteinteraksjon</td><td>Fan / ordinal</td><td>Begge linjene peker samme vei, men den ene er brattere. Effekten finnes overalt, bare i ulik grad. Vanligst i sårbarhetsstudier.</td></tr>
+            <tr><td>Kryssende interaksjon</td><td>Crossover / disordinal</td><td>Linjene krysser: effekten snur retning. Her blir hovedeffekten nesten alltid meningsløs å tolke alene.</td></tr>
+            <tr><td>Enkle effekter</td><td>Simple effects</td><td>Effekten av den ene faktoren innenfor ett enkelt nivå av den andre. Det du kjører <em>etter</em> en signifikant interaksjon for å si hva den består i.</td></tr>
+            <tr><td>Marginalt gjennomsnitt</td><td>Marginal mean</td><td>Snittet for én rad eller kolonne i celletabellen. Hovedeffektene leses av disse, interaksjonen av cellene selv.</td></tr>
+            <tr><td>Ordensfeil</td><td>—</td><td>Å konkludere med interaksjon fordi den ene gruppen ble signifikant og den andre ikke. Å sammenligne to p-verdier er ikke en test på at de er forskjellige.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Signifikant i den ene gruppen, ikke i den andre.</b> Det er ikke en interaksjon. Den ene gruppen kan være mindre, eller ha større spredning, og da blir p-verdiene ulike uten at effektene er det. Skal du påstå at effekten er større ett sted, må du teste differansen direkte — det er akkurat det interaksjonsraden gjør, og den eneste raden som gjør det.</div>
+        <div class="aside"><b>Rekkefølgen på oppfølgingen.</b> Er interaksjonen signifikant, bryt den opp i enkle effekter og tolk dem. Er den ikke signifikant, hold deg til hovedeffektene og la være å lete videre i cellene — det er der p-jakten i <a href="#pjakt">Jakten på p</a> begynner.</div>
+      </div>
+    </section>
+
+    <!-- ---------- før og etter ---------- -->
+    <section class="entry" id="endring">
+      <div class="glyphcol"><span class="step">36</span><span class="glyph">Δ</span></div>
+      <div>
+        <h2>Før og etter</h2>
+        <p class="asks">Endringsskåre, blandet ANOVA — og mediansplittens pris</p>
+        <p>Når du har målt det samme utfallet to ganger, har du to måter å stille det samme spørsmålet på. Du kan regne ut <strong>endringsskåren</strong> — etter minus før — og analysere den som én variabel. Eller du kan legge tid inn som en innen-faktor og kjøre en <strong>blandet ANOVA</strong>. Med to måletidspunkter er dette samme test: interaksjonen Tid × Gruppe er nøyaktig spørsmålet «er endringen forskjellig i de to gruppene?».</p>
+        <p>Poenget med å bruke endring i stedet for nivået etterpå er at utgangspunktet trekkes ut. To grupper kan ha ulik selvtillit fra starten av uten at det har noe med manipulasjonen å gjøre — og skal faktoren din ikke være randomisert, som kjønn eller en personlighetsstil, er ulikt utgangspunkt nærmest å regne med. Endringsskåren gjør at forskjellen i startnivå ikke får telle med i svaret.</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Før og etter">
+          <tbody>
+            <tr><td>Endringsskåre</td><td>Change score</td><td>Etter minus før, per deltager. Fjerner forskjeller i utgangspunkt, men arver måleusikkerheten fra begge målingene.</td></tr>
+            <tr><td>Baseline</td><td>Baseline</td><td>Målingen før manipulasjonen. Brukes både som utgangspunkt og som kontroll på at gruppene startet likt.</td></tr>
+            <tr><td>Blandet ANOVA</td><td>Mixed ANOVA</td><td>Minst én innen-faktor og én mellom-faktor. Med to tidspunkter er Tid × Gruppe det samme som en test på endringsskåren.</td></tr>
+            <tr><td>Sfærisitet</td><td>Sphericity</td><td>Forutsetning i gjentatte målinger med tre eller flere nivåer: at variansen til alle parvise differanser er lik. Med bare to nivåer finnes det bare én differanse, så den kan ikke brytes.</td></tr>
+            <tr><td>Mediansplitt</td><td>Median split</td><td>Å dele en kontinuerlig variabel i «høy» og «lav» ved medianen for å bruke den som faktor. Enkelt å forklare, men kaster bort informasjon.</td></tr>
+            <tr><td>Dikotomisering</td><td>Dichotomisation</td><td>Samme grep, generelt. Kostnaden er lavere styrke og en kunstig grense der to nesten like deltagere havner i hver sin gruppe.</td></tr>
+            <tr><td>Regresjon mot gjennomsnittet</td><td>Regression to the mean</td><td>At ekstreme skårer naturlig trekker mot snittet ved neste måling. Kan alene produsere «endring» i grupper valgt ut fra høye eller lave startverdier.</td></tr>
+            <tr><td>Takeffekt og gulveffekt</td><td>Ceiling / floor</td><td>Skalaen stopper. Den som allerede skårer nær toppen kan ikke stige, og endringsskåren undervurderer effekten der.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Mediansplitten er et kompromiss, ikke en forbedring.</b> Den gjør en toveis-ANOVA mulig og et interaksjonsplott lettlest, og den er derfor vanlig i undervisning. Prisen er reell: du mister styrke, grensa er tilfeldig satt av akkurat dette utvalget, og to deltagere på hver sin side av medianen behandles som forskjellige selv om de skårer nesten likt. Den ryddige varianten er å beholde variabelen kontinuerlig og teste interaksjonen i en regresjon. Bruker du splitten, si at du gjorde det og hvorfor.</div>
+        <div class="aside tryit"><b>Sjekk at du forstår ekvivalensen.</b> Kjør en toveis-ANOVA på endringsskåren, og en blandet ANOVA med tid som innen-faktor på de samme dataene. Interaksjonen skal gi samme F og samme p. Ser du at det er to fremstillinger av én analyse, er du ferdig med å lure på hvilken av dem som er «riktig».</div>
+      </div>
+    </section>
+
+    <!-- ---------- sjekkene ---------- -->
+    <section class="entry" id="sjekkene">
+      <div class="glyphcol"><span class="step">37</span><span class="glyph up">✓</span></div>
+      <div>
+        <h2>Sjekkene før hypotesene</h2>
+        <p class="asks">Analyser som ikke er funn, men forutsetninger for funn</p>
+        <p>Resultatdelen åpner sjelden med hypotesetesten. Først kommer en serie analyser som ikke handler om problemstillingen i det hele tatt — de handler om hvorvidt studien er i stand til å svare på den. Å forveksle de to er en klassisk feil: en signifikant kjønnsforskjell i utvalget er ikke et funn om temaet ditt, det er en opplysning om hvem som meldte seg.</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Innledende sjekker">
+          <tbody>
+            <tr><td>Utvalgsbeskrivelse</td><td>Sample description</td><td>N, alder, kjønn, bakgrunn. Skal gjøre det mulig for en leser å vurdere hvem resultatet eventuelt gjelder for.</td></tr>
+            <tr><td>Randomiseringssjekk</td><td>Randomisation check</td><td>Testen på at fordelingen til betingelsene faktisk ble omtrent jevn. Svarer på om loddtrekningen virket, ikke på problemstillingen.</td></tr>
+            <tr><td>Manipulasjonssjekk</td><td>Manipulation check</td><td>Testen på at manipulasjonen gjorde det den skulle. Slår den feil, er et nullfunn på hypotesen uten informasjonsverdi — du vet ikke om teorien tok feil eller om stimulus var for svak.</td></tr>
+            <tr><td>Baselinesjekk</td><td>Baseline equivalence</td><td>Startet gruppene likt på utfallet? Ved randomisering er avvik tilfeldige; ved målte faktorer er de regelen, og en grunn til å analysere endring.</td></tr>
+            <tr><td>Forventet frekvens</td><td>Expected count</td><td>Antallet en celle skulle hatt under nullhypotesen. Under 5 i for mange celler er kjikvadrattesten upålitelig.</td></tr>
+            <tr><td>Frafall</td><td>Attrition</td><td>De som ikke fullførte. Problemet er sjelden antallet, men om frafallet er skjevt — at det er en bestemt type deltager som forsvinner.</td></tr>
+            <tr><td>Manglende data</td><td>Missing data</td><td>Hull i datasettet. Hvordan de er håndtert skal alltid oppgis, fordi valget endrer både N og resultatet.</td></tr>
+            <tr><td>Listevis utelatelse</td><td>Listwise deletion</td><td>Å stryke hele deltageren hvis én verdi mangler. Standard i mange programmer, og grunnen til at df kan variere mellom analyser i samme artikkel.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>En signifikant sjekk er ikke et funn.</b> At det er flere kvinner enn menn i utvalget, eller at flere kvinner enn menn tar realfag, er sant og verdt å rapportere — men det er en beskrivelse av utvalget, ikke et svar på hva studien spør om. Skriv det i utvalgsavsnittet, ikke i hypotesedelen, og ikke la effektstørrelsen der bli en del av konklusjonen.</div>
+        <div class="aside"><b>Samme test, to ganger på rad.</b> Er kjønnsfordelingen skjev i hele utvalget, men ikke blant dem som fullførte, har ikke verden endret seg — utvalget ble mindre, og med mindre N flytter p seg. Det er en god påminnelse om hvor lite en p-verdi like under grensa egentlig tåler.</div>
+      </div>
+    </section>
+
+    <!-- ---------- forutsetningene ---------- -->
+    <section class="entry" id="brister">
+      <div class="glyphcol"><span class="step">38</span><span class="glyph up">⊘</span></div>
+      <div>
+        <h2>Når forutsetningene brister</h2>
+        <p class="asks">Hva du sjekker, hva du gjør, og hva du skriver</p>
+        <p>Hver test har antakelser, og de er ikke pynt: brytes de alvorlig nok, er p-verdien ikke lenger det tallet du tror. Men en brutt forutsetning er heller ikke slutten på analysen. For nesten alle finnes det et alternativ som tåler bruddet, og jobben din er å vite hvilket — og å si hva du så, ikke bare at du sjekket.</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Forutsetninger">
+          <tbody>
+            <tr><td>Varianshomogenitet</td><td>Homogeneity of variance</td><td>At spredningen er omtrent lik i gruppene. Brudd rammer hardest når gruppene også er ulikt store.</td></tr>
+            <tr><td>Levenes test</td><td>Levene's test</td><td>Tester varianshomogenitet. Signifikant Levene betyr at forutsetningen er brutt — her er et <em>lavt</em> p-tall det dårlige tegnet.</td></tr>
+            <tr><td>Welchs ANOVA</td><td>Welch's F</td><td>ANOVA som ikke antar like varianser. Brukes når Levene slår ut. Frihetsgradene blir brøktall og ofte mye lavere.</td></tr>
+            <tr><td>Games–Howell</td><td>Games–Howell</td><td>Post hoc-test for ulike varianser. Den naturlige partneren til Welch, slik Tukey er det til vanlig ANOVA.</td></tr>
+            <tr><td>Normalitet av residualer</td><td>Normality of residuals</td><td>Antakelsen gjelder residualene, ikke råvariabelen. Vurderes med Q–Q-plott framfor en test, fordi tester på normalitet blir for følsomme ved stor N.</td></tr>
+            <tr><td>Skjevhet</td><td>Skewness</td><td>Om halen peker den ene veien. Fortegnet peker mot halen: negativ skjevhet betyr lang hale til venstre.</td></tr>
+            <tr><td>Kurtose</td><td>Kurtosis</td><td>Hvor tunge halene er. Høy kurtose betyr flere ekstreme verdier enn normalfordelingen tilsier — ofte noen få uteliggere.</td></tr>
+            <tr><td>Uteligger</td><td>Outlier</td><td>En observasjon langt fra resten. Skal undersøkes, ikke automatisk fjernes — og fjernes den, skal både begrunnelsen og resultatet begge veier stå.</td></tr>
+            <tr><td>Sensitivitetsanalyse</td><td>Sensitivity analysis</td><td>Å kjøre analysen om igjen uten den problematiske gruppen, uteliggeren eller kodingen. Holder konklusjonen, er den robust; endrer den seg, er det en begrensning.</td></tr>
+            <tr><td>Uavhengige observasjoner</td><td>Independence</td><td>Den forutsetningen ingen test kan redde deg fra. Brytes den — samme person flere ganger, deltagere i samme gruppe — må designet inn i modellen.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Antakelsestester er selv avhengige av N.</b> Med 40 deltagere slår Levene sjelden ut selv ved ganske ulike varianser; med 4 000 slår den ut på avvik uten praktisk betydning. Derfor teller plottene mer enn p-verdien: se på boksene og på Q–Q-linja, og bruk testen som et supplement.</div>
+        <div class="aside"><b>Hvorfor frihetsgradene faller i Welch.</b> Welch betaler for å slippe antakelsen ved å justere df ned — jo mer ulike variansene og gruppestørrelsene er, jo mer. Ser du df gå fra 386 til noe sånt som 80, er det ikke en feil: det er prisen for robusthet, og den forteller deg samtidig hvor alvorlig bruddet var.</div>
+        <div class="aside tryit"><b>Skriv setningen mens du ser på plottet.</b> «Levenes test var signifikant, og Welchs korreksjon ble derfor brukt» er en fullgod setning. «Forutsetningene ble sjekket» er ikke — den sier ingenting om hva som ble funnet, og en leser kan ikke vurdere analysen ut fra den.</div>
+      </div>
+    </section>
+
+    <!-- ---------- mange tester ---------- -->
+    <section class="entry" id="mange">
+      <div class="glyphcol"><span class="step">39</span><span class="glyph sm up">α/k</span></div>
+      <div>
+        <h2>Mange tester, ett datasett</h2>
+        <p class="asks">Hva korreksjonen kjøper, og hva den koster</p>
+        <p>Med ti sammenligninger på α = .05 er sjansen for minst én falsk positiv ikke fem prosent. Den er <em class="v">1 − .95¹⁰</em>, altså rundt 40 prosent, selv om ingen av gruppene i sannhet skiller seg. Regn det ut én gang for hånd — det er den mest overbevisende utregningen i hele emnet, og den forklarer hvorfor post hoc-tester finnes.</p>
+        <p>Korreksjonen holder den <strong>familievise</strong> feilraten på fem prosent i stedet for feilraten per test. Det er et bytte: du kjøper kontroll over falske positive, og betaler i styrke. Hver enkelt sammenligning blir vanskeligere å få signifikant, og sanne forskjeller kan derfor bli oversett. Det er ikke en gratis forsikring, det er en avveining mellom to typer feil.</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Mange tester">
+          <tbody>
+            <tr><td>Familievis feilrate</td><td>Familywise error rate</td><td>Sjansen for minst én falsk positiv i hele settet av tester. 1 − (1 − α)ᵏ når testene er uavhengige.</td></tr>
+            <tr><td>Omnibustest</td><td>Omnibus test</td><td>Den samlede testen: «finnes det noen forskjell?». Sier aldri hvilken, og det er derfor post hoc trengs.</td></tr>
+            <tr><td>Post hoc-test</td><td>Post hoc</td><td>Parvise sammenligninger etter en signifikant omnibus, med justering for antall par. Ikke planlagt på forhånd — derav navnet.</td></tr>
+            <tr><td>Konservativ test</td><td>Conservative</td><td>En test som heller tar feil ved å overse enn ved å finne. Prisen for kontroll over falske positive er alltid flere oversette effekter.</td></tr>
+            <tr><td>Holm</td><td>Holm–Bonferroni</td><td>Trinnvis variant av Bonferroni. Kontrollerer det samme, men gir mer styrke. Bør foretrekkes der Bonferroni ellers ville vært valgt.</td></tr>
+            <tr><td>Scheffé</td><td>Scheffé</td><td>Den strengeste. Tillater til gjengjeld enhver kontrast, også dem du fant på etter å ha sett dataene.</td></tr>
+            <tr><td>Planlagt kontrast</td><td>Planned contrast</td><td>En bestemt sammenligning bestemt før analysen. Krever mindre korreksjon, fordi du ikke har lett gjennom alle par.</td></tr>
+            <tr><td>Falsk oppdagelsesrate</td><td>FDR</td><td>Alternativ strategi: kontroller andelen falske blant de signifikante i stedet for sjansen for én. Vanlig når testene er mange, som i hjerneavbildning.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Post hoc bare der omnibus var signifikant.</b> Rekkefølgen er hele poenget: omnibustesten er porten som holder den familievise feilraten nede. Kjører du parvise tester uansett, har du gått rundt porten, og korreksjonen i post hoc-testen er ikke lenger dekkende for alt du har sett på.</div>
+        <div class="aside"><b>Paret som havner rett over grensa.</b> I nesten alle post hoc-utskrifter finnes ett par som er signifikant ukorrigert og ikke signifikant etter korreksjon. Det er ikke et halvt funn. Det riktige er å rapportere den korrigerte p-verdien, nevne differansen og la være å gi paret mer plass enn de andre. Se også <a href="#pjakt">Jakten på p under .05</a>.</div>
+      </div>
+    </section>
+
+    <!-- ---------- én modell ---------- -->
+    <section class="entry" id="samme">
+      <div class="glyphcol"><span class="step">40</span><span class="glyph sm up">GLM</span></div>
+      <div>
+        <h2>Samme modell, flere navn</h2>
+        <p class="asks">t-test, ANOVA og regresjon er én ting</p>
+        <p>Emnet presenterer testene som en liste, og det er lett å lære dem som en liste: fem prosedyrer med hver sin utskrift. De er ikke det. Nesten alt du møter er den samme lineære modellen — <em class="v">utfall = konstant + vekter × prediktorer + bom</em> — satt opp med ulike prediktorer. Tre likheter viser det, og de er verdt å regne etter på minst én gang.</p>
+        <div class="ff">
+          <h3>r = β</h3>
+          <div class="ffgrid">
+            <div><b>I en enkel regresjon</b><span>Den standardiserte koeffisienten er nøyaktig Pearsons r, og R² er nøyaktig r². Med én prediktor er regresjon og korrelasjon samme regnestykke, skrevet på to måter.</span></div>
+            <div><b>Med flere prediktorer</b><span>Likheten brekker: β for én prediktor er nå korrelasjonen <em>kontrollert for</em> de andre, og kan bli mindre, større eller skifte fortegn.</span></div>
+          </div>
+          <p class="ffhint">Det er derfor et avvik mellom r og β i en multippel modell ikke er en feil, men informasjon: det forteller deg at prediktorene overlapper. Se <a href="#vif">Overlappet</a>.</p>
+        </div>
+        <div class="ff">
+          <h3>F = t²</h3>
+          <div class="ffgrid">
+            <div><b>Med to grupper</b><span>En enveis-ANOVA og en uavhengig t-test på de samme dataene gir nøyaktig samme p, og F er t opphøyd i andre. Samme spørsmål, samme svar.</span></div>
+            <div><b>Med tre eller flere</b><span>t-testen finnes ikke lenger som ett alternativ, og ANOVA er den eneste av de to som kan stille spørsmålet samlet. Det er hele grunnen til at den er der.</span></div>
+          </div>
+          <p class="ffhint">Kvadreringen forklarer også hvorfor F aldri er negativ, og hvorfor ANOVA ikke har noen retning: den sier at det finnes en forskjell, ikke hvilken vei den går.</p>
+        </div>
+        <div class="ff">
+          <h3>ANOVA = regresjon</h3>
+          <div class="ffgrid">
+            <div><b>Fem grupper, fire koeffisienter</b><span>Legges en faktor med k nivåer inn i en regresjon, blir den til k − 1 dummyvariabler. Gruppen som ikke får noen egen koeffisient er referansekategorien.</span></div>
+            <div><b>Konstantleddet</b><span>Er gjennomsnittet i referansegruppen. Hver koeffisient er differansen fra den, og modellens F og R² er ANOVAens F og η².</span></div>
+          </div>
+          <p class="ffhint">Det er ikke to metoder som tilfeldigvis gir samme svar. Det er én modell, og valget mellom dem handler bare om hvilken utskrift som er lettest å lese for det du skal si.</p>
+        </div>
+        <div class="scroller"><table class="dict terms tight" data-fam="Én modell, flere navn">
+          <tbody>
+            <tr><td>Generell lineær modell</td><td>General linear model</td><td>Fellesnavnet: t-test, ANOVA, ANCOVA og regresjon er spesialtilfeller av samme ligning.</td></tr>
+            <tr><td>Dummyvariabel</td><td>Dummy variable</td><td>En 0/1-variabel som representerer ett nivå av en kategorisk faktor. k nivåer gir k − 1 dummyer.</td></tr>
+            <tr><td>Referansekategori</td><td>Reference category</td><td>Nivået de andre måles mot. Har ingen egen koeffisient, men ligger i konstantleddet.</td></tr>
+            <tr><td>η²</td><td>Eta-kvadrat</td><td>Kvadratsummen for faktoren delt på total kvadratsum. Med én faktor er det samme tall som R².</td></tr>
+            <tr><td>η<sub>p</sub>²</td><td>Partiell eta-kvadrat</td><td>Deler i stedet på faktorens egen kvadratsum pluss residualen. Blir større enn η² når det er flere faktorer, og de to skal ikke sammenlignes på tvers av studier.</td></tr>
+            <tr><td>Kontrast</td><td>Contrast</td><td>En vektet sammenligning av gruppegjennomsnitt. Lar deg stille et mer spisset spørsmål enn «er noen forskjellige».</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside tryit"><b>Regn F for hånd én gang.</b> Ta kvadratsummene fra en ANOVA-tabell, del hver på sin df for å få gjennomsnittskvadratene, og del så den ene på den andre. Du får F. Gjør det samme med η²: kvadratsummen for faktoren delt på summen av begge. Etter det er ikke ANOVA-tabellen en utskrift du stoler på lenger — den er et regnestykke du kan.</div>
+      </div>
+    </section>
+
+    <!-- ---------- rapportering ---------- -->
+    <section class="entry" id="rapportering">
+      <div class="glyphcol"><span class="step">41</span><span class="glyph sm up">APA</span></div>
+      <div>
+        <h2>Å skrive resultatdelen</h2>
+        <p class="asks">Rapporter i resultatene, tolk i diskusjonen</p>
+        <p>Resultatdelen har én jobb: å gjøre det mulig for en leser å se hva du fant, uten å måtte tro deg på ordet. Det betyr fire ting i hver eneste setning — <strong>hvilken test, teststatistikken med frihetsgrader, den eksakte p-verdien, og en effektstørrelse</strong> — pluss retningen på effekten når den finnes. Mangler effektstørrelsen, vet leseren bare at noe var usannsynlig under nullhypotesen, ikke om det betyr noe.</p>
+        <div class="ff">
+          <h3>Nullfunn</h3>
+          <div class="ffgrid">
+            <div><b>Skriv</b><span>«Vi fant ingen signifikant forskjell mellom gruppene, F(4, 386) = 1.94, p = .10, η² = .020.»</span></div>
+            <div><b>Ikke skriv</b><span>«Det var ingen forskjell mellom gruppene.» Testen din kan ikke skille mellom «ingen effekt» og «en effekt vi ikke fanget opp».</span></div>
+          </div>
+          <p class="ffhint">Et nullfunn rapporteres like nøkternt og like fullstendig som et funn — med teststatistikk, p og effektstørrelse. Det er ikke en manglende setning, det er et resultat.</p>
+        </div>
+        <div class="ff">
+          <h3>Grenseverdier</h3>
+          <div class="ffgrid">
+            <div><b>Skriv</b><span>«var ikke signifikant, p = .07». Grensa er satt på forhånd, og .07 er på den ene siden av den.</span></div>
+            <div><b>Ikke skriv</b><span>«en tendens til», «nærmet seg signifikans», «marginalt signifikant». Det er å påstå halv signifikans, som ikke finnes.</span></div>
+          </div>
+          <p class="ffhint">Vil du si noe mer nyansert enn ja eller nei, er konfidensintervallet verktøyet: det viser hvilke verdier som fortsatt er plausible, uten å smugle inn en konklusjon.</p>
+        </div>
+        <div class="ff">
+          <h3>Årsak</h3>
+          <div class="ffgrid">
+            <div><b>Manipulert faktor</b><span>«Den vanskelige prøven førte til større nedgang.» Lov, fordi deltagerne ble fordelt tilfeldig.</span></div>
+            <div><b>Målt faktor</b><span>«Studenter med høy perfeksjonisme hadde større nedgang.» Beskriv sammenhengen — ingen «førte til», «påvirket» eller «effekt av».</span></div>
+          </div>
+          <p class="ffhint">Regelen er mekanisk: se etter om loddtrekningen bestemte hvem som fikk hva. Gjorde den ikke det, finnes det alltid en tredje variabel du ikke har utelukket.</p>
+        </div>
+        <div class="ff">
+          <h3>Tall og tegnsetting</h3>
+          <div class="ffgrid">
+            <div><b>Skriv</b><span>p &lt; .001 når programmet viser 0,000 · begge frihetsgradene i F(4, 386) · to desimaler på teststatistikk · ledende null utelatt på p, r og β.</span></div>
+            <div><b>Ikke skriv</b><span>p = .000 — en sannsynlighet er aldri null · F(386) · «p = 0.05» der grensa og den eksakte verdien blandes sammen.</span></div>
+          </div>
+          <p class="ffhint">Tallene som ikke kan overstige 1 — p, r, β, η² — skrives uten null foran punktumet. De som kan, som M, SD og t, beholder den.</p>
+        </div>
+        <div class="ff">
+          <h3>Resultat mot diskusjon</h3>
+          <div class="ffgrid">
+            <div><b>Resultatdelen</b><span>Hva du fant. Tall, retning, effektstørrelse, forutsetninger. Ingen forklaringer på hvorfor.</span></div>
+            <div><b>Diskusjonen</b><span>Hva det betyr. Kobling til modellen, forskjellen mellom statistisk signifikans og praktisk viktighet, begrensninger, veien videre.</span></div>
+          </div>
+          <p class="ffhint">Er resultatdelen for lang, er det nesten alltid fordi den har begynt å tolke. Flytt setningen ned, så løser begge deler seg samtidig.</p>
+        </div>
+        <div class="aside"><b>Tabell og figur gjør ulik jobb.</b> Tabellen er for presise tall som skal kunne leses av og brukes videre — en korrelasjonsmatrise, et sett regresjonskoeffisienter. Figuren er for mønsteret du vil at leseren skal <em>se</em> — en interaksjon, en fordeling. Står det samme i begge, er den ene overflødig. Og alt som står i en tabell skal være nevnt i teksten, men ikke gjentatt tall for tall.</div>
+        <div class="aside"><b>Ikke-signifikante resultater skal med i tabellen.</b> En korrelasjonsmatrise der bare de signifikante parene er fylt inn, er en publikasjonsskjevhet i miniatyr — se <a href="#pjakt">skuffdemoen</a>. Fullstendigheten er hele poenget med en matrise.</div>
+        <div class="aside tryit"><b>Les ditt eget avsnitt med denne testen:</b> stryk alle tallene, og se om det som står igjen fortsatt påstår noe. Gjør det ikke det, er avsnittet en oppramsing og trenger en ledende setning. Påstår det mer enn tallene bærer, er det tolkning som hører hjemme i diskusjonen.</div>
+      </div>
+    </section>
+
+    <!-- ---------- analyseløypa ---------- -->
+    <section class="entry" id="loypa">
+      <div class="glyphcol"><span class="step">42</span><span class="glyph up">⇉</span></div>
+      <div>
+        <h2>Analyseløypa</h2>
+        <p class="asks">Hvilket spørsmål, hvilken analyse, hvilke tall</p>
+        <p>Til slutt hele veien sett ovenfra. Kolonnen til høyre er det du faktisk skal ha med deg videre til teksten — ikke hele utskriften, bare de tallene en leser trenger for å vurdere påstanden.</p>
+        <div class="scroller"><table class="dict terms tight">
+          <tbody>
+            <tr><td>Hvem var deltagerne?</td><td>Deskriptiv statistikk, frekvenstabeller</td><td>N, M og SD for kontinuerlige variabler, antall og prosent for kategoriske.</td></tr>
+            <tr><td>Ser fordelingene rimelige ut?</td><td>Histogram, boksplott, Q–Q, skjevhet og kurtose</td><td>Hva du så, i én setning — ikke bare at du så etter.</td></tr>
+            <tr><td>Fordeler én kategori seg som forventet?</td><td>χ² tilpasningstest</td><td>χ² med df, N, eksakt p, effektstørrelse.</td></tr>
+            <tr><td>Henger to kategorier sammen?</td><td>χ² uavhengighetstest</td><td>χ² med df, N, p, Cramérs V, minste forventede frekvens.</td></tr>
+            <tr><td>Virket manipulasjonen?</td><td>Uavhengig t-test på manipulasjonssjekken</td><td>M og SD per betingelse, t med df, p, Cohens d.</td></tr>
+            <tr><td>Henger de kontinuerlige variablene sammen?</td><td>Korrelasjonsmatrise</td><td>r for alle par — også de ikke-signifikante — med p, og r² for dem du omtaler.</td></tr>
+            <tr><td>Predikerer den ene den andre?</td><td>Enkel lineær regresjon</td><td>b med SE og KI, β, t, p, R², F for modellen.</td></tr>
+            <tr><td>Tilfører prediktor nummer to noe?</td><td>Hierarkisk regresjon</td><td>ΔR² og p for endringen, koeffisientene i begge blokkene, VIF.</td></tr>
+            <tr><td>Skiller to grupper seg?</td><td>Uavhengig t-test</td><td>M og SD per gruppe, t med df, p, d, og Levene hvis den slo ut.</td></tr>
+            <tr><td>Endret det seg fra før til etter?</td><td>Paret t-test</td><td>M og SD på begge tidspunkt, t med df, p, d for endringen.</td></tr>
+            <tr><td>Skiller tre eller flere grupper seg?</td><td>Enveis-ANOVA</td><td>F med begge df, p, η², n per gruppe, Levene — og post hoc bare hvis F ble signifikant.</td></tr>
+            <tr><td>Hvilke grupper er det som skiller seg?</td><td>Post hoc med korreksjon</td><td>Differanse, korrigert p, og hvilken korreksjon som ble brukt.</td></tr>
+            <tr><td>Er endringen ulik i de to gruppene?</td><td>Blandet ANOVA, Tid × Gruppe</td><td>F med begge df, p og η<sub>p</sub>² for <em>interaksjonen</em>, og et figurplott.</td></tr>
+            <tr><td>Rammer det noen hardere enn andre?</td><td>Toveis ANOVA på endringsskåren</td><td>Interaksjonsraden først, så hovedeffektene, med effektstørrelse på hver.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Legg merke til hva som går igjen.</b> Uansett rad består høyre kolonne av de samme fire elementene: et anslag, et presisjonsmål, en p og en effektstørrelse. Det er <a href="#spine">SPINE</a> igjen — parameter, estimat, standardfeil, intervall, test — bare med nye navn på testen. Når en ny analyse dukker opp som ikke står i denne tabellen, er det de fire du skal lete etter.</div>
+        <div class="aside tryit"><b>Bruk tabellen baklengs på en publisert artikkel.</b> Ta resultatdelen, og sjekk for hver setning om alle tallene i høyre kolonne faktisk er der. Manglende effektstørrelser og manglende frihetsgrader er de to vanligste hullene — og når du har sett det noen ganger, ser du det i ditt eget utkast også.</div>
+      </div>
+    </section>
+
     <!-- ---------- full ordbok ---------- -->
     <section class="entry" id="ordbok">
-      <div class="glyphcol"><span class="step">32</span><span class="glyph up">☰</span></div>
+      <div class="glyphcol"><span class="step">43</span><span class="glyph up">☰</span></div>
       <div>
         <h2>Hele ordboka</h2>
         <p class="asks">Søk mens du leser</p>
@@ -1480,7 +1841,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
 
     <!-- ---------- øvingskort ---------- -->
     <section class="entry" id="kort">
-      <div class="glyphcol"><span class="step">33</span><span class="glyph up">⇄</span></div>
+      <div class="glyphcol"><span class="step">44</span><span class="glyph up">⇄</span></div>
       <div>
         <h2>Øvingskort</h2>
         <p class="asks">Kan du dem uten å slå opp?</p>
@@ -1506,14 +1867,14 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:20px;font-fa
         </div>
         <div class="aside"><b>Tastatur:</b> klikk på kortet én gang, så kan du kjøre resten med tastene. <em class="v">Mellomrom</em> snur kortet, <em class="v">1</em> er «måtte tenke», <em class="v">2</em> er «kunne den». Da går det fort nok til at du rekker en runde mens kaffen trekker.</div>
         <div class="aside"><b>Hvordan framgangen regnes.</b> Hvert kort har fem trinn. «Kunne den» flytter det ett trinn opp, «måtte tenke» sender det helt tilbake til start — for det er den ærlige responsen: kunne du det ikke nå, kan du det ikke. Stripa under kortet viser hvor hele bunken står, fra grått (ikke øvd ennå) til grønt (sitter). Målet er en grønn stripe, ikke et høyt tall.</div>
-        <div class="aside tryit"><b>Slik ville jeg brukt dem:</b> velg ett område om gangen i stedet for alle 200+ på én gang — «Effektstørrelse» før en innlevering, «Greske bokstaver» når du sliter med å lese formler. Når et område begynner å sitte, slå på «bare de jeg sliter med», så blir bunken bare de kortene som fortsatt ikke har festet seg.</div>
+        <div class="aside tryit"><b>Slik ville jeg brukt dem:</b> velg ett område om gangen i stedet for alle 250+ på én gang — «Effektstørrelse» før en innlevering, «Greske bokstaver» når du sliter med å lese formler. Når et område begynner å sitte, slå på «bare de jeg sliter med», så blir bunken bare de kortene som fortsatt ikke har festet seg.</div>
         <div class="aside"><b>Framgangen lagres i denne nettleseren</b>, ikke på en server. Bytter du til mobilen eller en annen maskin, starter du på nytt der. Ingenting sendes noe sted, og ingen andre ser hvordan du ligger an.</div>
       </div>
     </section>
 
     <!-- ---------- oppgaver ---------- -->
     <section class="entry" id="oppgaver">
-      <div class="glyphcol"><span class="step">34</span><span class="glyph up">?!</span></div>
+      <div class="glyphcol"><span class="step">45</span><span class="glyph up">?!</span></div>
       <div>
         <h2>Oppgaver</h2>
         <p class="asks">Kan du bruke det, ikke bare gjenkjenne det?</p>
@@ -3341,7 +3702,137 @@ const SENTENCES = [
  f:['Riktig. Boksplottet er et sammendrag — kvartiler og median. To fordelinger med helt ulik form kan gi nesten identiske bokser. Derfor er histogram eller raincloud verdt å se i tillegg.',
     'Tvert imot: medianen er streken inni boksen, og den er det tydeligste elementet i figuren.',
     'Det håndterer uteliggere svært godt — de tegnes som egne punkter utenfor værhårene.',
-    'Nei, boksplottet krever nettopp en kontinuerlig variabel.']}
+    'Nei, boksplottet krever nettopp en kontinuerlig variabel.']},
+/* ---- G: design og årsak ---- */
+{t:'Design og årsak', n:37, q:'Deltagerne ble tilfeldig fordelt til lett eller vanskelig prøve. Kjønn ble bare registrert. Hvilken av de to faktorene tåler en årsakspåstand?',
+ o:['Bare vanskelighetsgrad, fordi den ble randomisert','Begge, siden begge står i samme analyse','Bare kjønn, fordi det ligger fast fra før','Ingen av dem — årsak kan aldri vises statistisk'], c:0,
+ f:['Riktig. Randomisering er det som gjør at gruppene i snitt er like på alt annet, også det du ikke har målt. Kjønn er en <b>målt</b>, ikke manipulert faktor, og en forskjell der kan like gjerne skyldes noe som henger sammen med kjønn.',
+    'Nei. At to faktorer står i samme tabell gir dem ikke samme status. Den ene ble bestemt ved loddtrekning, den andre fulgte deltageren inn i studien.',
+    'Motsatt. At noe ligger fast fra før er nettopp grunnen til at du ikke kan utelukke tredjevariabler — det finnes hundre ting som varierer sammen med kjønn.',
+    'For strengt. Et randomisert eksperiment er designet nettopp for dette, og er den ene situasjonen der en årsakspåstand er forsvarlig.']},
+
+{t:'Design og årsak', n:38, q:'Hvorfor er det viktig at perfeksjonisme og selvtillit ble målt <em>før</em> deltagerne ble fordelt til betingelse?',
+ o:['Fordi baselinemålene da umulig kan være påvirket av manipulasjonen','Fordi rekkefølgen gjør analysen enklere å kjøre','Fordi det gir høyere reliabilitet på skalaene','Fordi randomiseringen ellers ikke ville vært tilfeldig'], c:0,
+ f:['Riktig. Måles noe før loddtrekningen, kan ingen forskjell i det skyldes betingelsen. Det er derfor slike mål kan brukes som utgangspunkt og som sårbarhetsfaktor uten forbehold.',
+    'Nei, rekkefølgen i prosedyren er et <em>argument</em>, ikke en praktisk forenkling. Den avgjør hva du har lov til å påstå.',
+    'Reliabilitet er en egenskap ved skalaen og påvirkes ikke av når i prosedyren den fylles ut.',
+    'Randomiseringen ville vært like tilfeldig, men baselinemålene ville vært mistenkeliggjort — du kunne ikke lenger vite om de var farget av betingelsen.']},
+
+{t:'Design og årsak', n:39, q:'Et design har tid (før/etter) som innen-faktor og betingelse som mellom-faktor. Hva kalles det?',
+ o:['Et blandet design','Et faktorielt mellom-gruppe-design','Et gjentatte-målinger-design','Et kvasi-eksperiment'], c:0,
+ f:['Riktig. <b>Blandet design</b> betyr at minst én faktor varierer innen person og minst én mellom personer. Analysen er en blandet ANOVA, og hypotesetesten er som regel interaksjonen.',
+    'Nei — da måtte begge faktorene variere mellom personer. Her måles de samme deltagerne to ganger.',
+    'Nesten, men ikke helt: rene gjentatte målinger har bare innen-faktorer. Her er betingelse en mellom-faktor.',
+    'Kvasi-eksperiment betyr at gruppevariabelen ikke er randomisert. Her <em>er</em> betingelsen randomisert.']},
+
+/* ---- H: interaksjon ---- */
+{t:'Interaksjon', n:40, q:'En hypotese sier at nederlaget rammer perfeksjonistiske studenter hardere. Hvilken rad i en toveis-ANOVA er hypotesetesten?',
+ o:['Interaksjonen Vanskegrad × Perfeksjonisme','Hovedeffekten av vanskegrad','Hovedeffekten av perfeksjonisme','Modellens samlede F'], c:0,
+ f:['Riktig. «Rammer hardere» betyr at effekten av vanskegrad <em>avhenger av</em> perfeksjonisme — og det er nøyaktig hva interaksjonen tester. Hovedeffektene svarer på andre spørsmål.',
+    'Den sier at prøven hadde en effekt i snitt, på tvers av perfeksjonismenivå. Det kan være sant uten at noen rammes hardere enn andre.',
+    'Den sier at perfeksjonistiske studenter skårer annerledes generelt — også i den lette betingelsen. Det er ikke en sårbarhetspåstand.',
+    'Den samlede F sier bare at modellen forklarer noe. Den peker ikke på hvilken av de tre effektene det er.']},
+
+{t:'Interaksjon', n:41, q:'Effekten var signifikant i kvinnegruppen (<code>p = .01</code>) og ikke i mannegruppen (<code>p = .21</code>). Kan du konkludere med at effekten er større for kvinner?',
+ o:['Nei — du må teste interaksjonen direkte','Ja, det er nettopp det de to p-verdiene viser','Ja, hvis gruppene er omtrent like store','Nei — du må kjøre en korreksjon på de to testene først'], c:0,
+ f:['Riktig. To p-verdier på hver sin side av grensa er ikke en test på at effektene er forskjellige. Gruppene kan ha ulik størrelse eller ulik spredning. <b>Differansen mellom effektene</b> har sin egen test, og det er interaksjonsraden.',
+    'Nei — dette er en av de mest utbredte feilslutningene i litteraturen. Forskjellen mellom «signifikant» og «ikke signifikant» er i seg selv ikke signifikant.',
+    'Like store grupper hjelper, men løser det ikke. Du har fortsatt ikke testet om de to effektene skiller seg fra hverandre.',
+    'Korreksjon handler om falske positive ved mange tester. Problemet her er et annet: du har ikke stilt spørsmålet i det hele tatt.']},
+
+{t:'Interaksjon', n:42, q:'I et interaksjonsplott er de to linjene tydelig ikke-parallelle, men krysser ikke hverandre. Hva kalles det?',
+ o:['En vifteinteraksjon — effekten finnes begge steder, men er sterkere det ene','En kryssende interaksjon','Ingen interaksjon, siden linjene ikke krysser','En hovedeffekt uten interaksjon'], c:0,
+ f:['Riktig. Ved en <b>vifteinteraksjon</b> peker begge linjene samme vei, men med ulik helning. Det er den vanligste formen i sårbarhetsstudier: alle rammes, noen bare mer.',
+    'Kryssende interaksjon er når linjene faktisk krysser, altså at effekten snur retning. Da blir hovedeffektene ofte meningsløse å tolke alene.',
+    'Nei. Det er helningen som teller, ikke om linjene møtes. Ikke-parallelle linjer betyr interaksjon.',
+    'En hovedeffekt uten interaksjon ville gitt to <em>parallelle</em> linjer på ulik høyde.']},
+
+/* ---- I: før og etter ---- */
+{t:'Før og etter', n:43, q:'Hvorfor analysere endringsskåren (etter minus før) i stedet for selvtilliten etter prøven?',
+ o:['Fordi den fjerner forskjeller i utgangspunkt, som er store når faktoren ikke er randomisert','Fordi endringsskårer alltid er mer normalfordelte','Fordi det gir høyere statistisk styrke uansett design','Fordi APA krever endringsskårer i pre–post-design'], c:0,
+ f:['Riktig. Kjønn og perfeksjonisme er <b>målte</b> faktorer, og gruppene starter derfor sjelden likt. Endringsskåren gjør at ulikt startnivå ikke får telle med i svaret.',
+    'Nei — en differanse mellom to variabler arver formen på begge, og blir ikke automatisk penere.',
+    'Ikke uansett. Endringsskåren arver måleusikkerhet fra to målinger i stedet for én, og kan gi lavere styrke når før- og etter-målingen korrelerer svakt.',
+    'Det finnes ingen slik regel. Valget er faglig, og skal begrunnes i metodedelen.']},
+
+{t:'Før og etter', n:44, q:'Med to måletidspunkter: hva er forholdet mellom en toveis-ANOVA på endringsskåren og interaksjonen Tid × Gruppe i en blandet ANOVA?',
+ o:['Det er samme test — samme F og samme p','Den blandede ANOVA-en er alltid kraftigere','Endringsskåren gir alltid mindre p','De svarer på to helt ulike spørsmål'], c:0,
+ f:['Riktig. Med bare to tidspunkter er interaksjonen Tid × Gruppe definisjonsmessig en test på om <em>endringen</em> er ulik i gruppene. De to oppstillingene er to måter å skrive den samme analysen på.',
+    'Nei. Med to tidspunkter er de identiske. Med tre eller flere er det derimot den blandede ANOVA-en som er verktøyet.',
+    'Nei — resultatene er de samme, tall for tall.',
+    'De svarer på nøyaktig samme spørsmål. Forskjellen er bare hvordan utskriften ser ut.']},
+
+{t:'Før og etter', n:45, q:'Hva er hovedinnvendingen mot å dele en kontinuerlig sårbarhetsvariabel i «høy» og «lav» ved medianen?',
+ o:['Informasjon kastes bort, styrken faller, og grensa er bestemt av akkurat dette utvalget','Mediansplitt er bare gyldig ved normalfordelte variabler','Det gjør at variabelen ikke lenger kan brukes i en ANOVA','Det er ingen reell innvending — mediansplitt er standard'], c:0,
+ f:['Riktig. To deltagere som skårer nesten likt havner i hver sin gruppe, alt over medianen behandles som ett nivå, og medianen flytter seg i neste utvalg. Den ryddige varianten er å beholde variabelen kontinuerlig og teste interaksjonen i en regresjon.',
+    'Normalfordeling er ikke poenget. Problemet er at informasjon forsvinner uansett form.',
+    'Tvert imot — det er nettopp for å <em>kunne</em> bruke den som faktor i en ANOVA at splitten gjøres.',
+    'Den er vanlig, særlig i undervisning, men det er et kompromiss med en kjent kostnad — ikke en anbefalt metode.']},
+
+/* ---- J: forutsetninger ---- */
+{t:'Forutsetninger', n:46, q:'Levenes test gir <code>p = .003</code>. Hva betyr det, og hva gjør du?',
+ o:['Variansene er ulike — bruk Welch og Games-Howell i stedet','Variansene er like — kjør vanlig ANOVA','Dataene er ikke normalfordelte — bruk en ikke-parametrisk test','Resultatet er signifikant, så hypotesen er støttet'], c:0,
+ f:['Riktig. Her er et <b>lavt</b> p-tall det dårlige tegnet: nullhypotesen i Levene er at variansene er like. Welchs F og Games-Howell post hoc er de robuste alternativene.',
+    'Motsatt. En signifikant Levene betyr at forutsetningen er brutt, ikke oppfylt.',
+    'Levene tester varianshomogenitet, ikke normalitet. Normalitet ser du på i Q–Q-plottet.',
+    'Levene sier ingenting om hypotesen din. Den er en sjekk på om analysen holder, ikke et resultat.']},
+
+{t:'Forutsetninger', n:47, q:'Du bytter fra vanlig ANOVA til Welch, og frihetsgradene faller fra 386 til 92. Hva forteller det deg?',
+ o:['At variansene og gruppestørrelsene er svært ulike — det er prisen for robusthet','At noen deltagere ble utelatt fra analysen','At Welch er en dårligere test','At datasettet inneholder manglende verdier'], c:0,
+ f:['Riktig. Welch justerer df ned for å slippe antakelsen om like varianser, og justeringen er større jo mer ulike variansene er. Fallet er derfor selv et mål på hvor alvorlig bruddet var.',
+    'Nei, ingen deltagere forsvinner. Det er utregningen av df som endres, ikke N.',
+    'Welch er mer robust, ikke dårligere. Den betaler bare for robustheten i styrke.',
+    'Manglende verdier reduserer N og dermed også df, men ikke på denne måten — og ikke når bare valget av test er endret.']},
+
+{t:'Forutsetninger', n:48, q:'Normalitetsantakelsen i en regresjon gjelder egentlig hva?',
+ o:['Residualene','Den uavhengige variabelen','Den avhengige variabelen før analysen','Alle variablene i datasettet'], c:0,
+ f:['Riktig. Det er <b>bommene</b> — residualene — som skal være omtrent normalfordelte. Derfor er Q–Q-plottet av standardiserte residualer den relevante figuren, ikke et histogram av råvariabelen.',
+    'Prediktoren har ingen normalitetsantakelse i det hele tatt. Den kan være binær, og da er analysen en t-test i forkledning.',
+    'En vanlig misforståelse. Utfallet kan være skjevt uten at residualene er det, når skjevheten skyldes prediktoren.',
+    'For bredt. Antakelsen gjelder én ting, og det er modellens residualer.']},
+
+/* ---- K: mange tester og rapportering ---- */
+{t:'Mange tester', n:49, q:'Du gjør ti parvise sammenligninger på α = .05, og ingen av gruppene skiller seg i sannhet. Hvor stor er sjansen for minst én falsk positiv?',
+ o:['Omtrent 40 %','5 %, som alltid','50 %','Omtrent 10 %'], c:0,
+ f:['Riktig. <b>1 − .95¹⁰ ≈ .40.</b> Feilraten på fem prosent gjelder per test, ikke for hele settet. Det er hele begrunnelsen for at post hoc-tester korrigerer.',
+    'Fem prosent er sjansen per enkelttest. Med ti tester har du ti muligheter til å bomme, og de legger seg sammen.',
+    'Høyere enn det faktiske svaret. Regn heller etter: .95 opphøyd i 10 er omtrent .60, og resten er svaret.',
+    'For lavt — det ville vært omtrent riktig med to tester, ikke ti.']},
+
+{t:'Mange tester', n:50, q:'Omnibus-ANOVA-en er ikke signifikant (<code>p = .12</code>). Bør du kjøre post hoc-testene likevel for å se etter?',
+ o:['Nei — omnibustesten er porten som holder den familievise feilraten nede','Ja, post hoc korrigerer jo uansett for antall tester','Ja, hvis effektstørrelsen er over .01','Nei, fordi post hoc krever minst fire grupper'], c:0,
+ f:['Riktig. Rekkefølgen er hele mekanismen: er porten stengt, stopper du. Leter du videre uansett, har du gått rundt beskyttelsen, og det du finner er p-jakt.',
+    'Korreksjonen i post hoc dekker parene den sammenligner — den dekker ikke at du valgte å lete etter at omnibus sa nei.',
+    'Effektstørrelsen endrer ikke beslutningsregelen. Den er relevant når du skal <em>tolke</em> et resultat, ikke når du skal avgjøre om du får lete.',
+    'Det finnes ingen slik regel. Post hoc er aktuelt fra tre grupper og opp.']},
+
+{t:'Rapportering', n:51, q:'JASP viser <code>p = 0.000</code>. Hva skriver du i artikkelen?',
+ o:['p &lt; .001','p = .000','p = 0','p ≈ .0001'], c:0,
+ f:['Riktig. En sannsynlighet er aldri nøyaktig null — programmet har bare rundet av. <b>p &lt; .001</b> er konvensjonen, og den er ærlig om hva du faktisk vet.',
+    'Nei. Det påstår at resultatet er umulig under nullhypotesen, og det er aldri sant.',
+    'Samme problem, bare mer direkte formulert.',
+    'Ikke gjett på desimaler du ikke har. Har du flere siffer tilgjengelig kan du oppgi dem, ellers er &lt; .001 riktig.']},
+
+{t:'Rapportering', n:52, q:'En ANOVA over fem fagfelt ga <code>p = .10</code>. Hvilken formulering er riktig?',
+ o:['«Vi fant ingen signifikant forskjell mellom fagfeltene»','«Det var ingen forskjell mellom fagfeltene»','«Fagfeltene var like»','«Det var en tendens til forskjell mellom fagfeltene»'], c:0,
+ f:['Riktig. Setningen sier hva testen faktisk viste: du fant den ikke. Den påstår ikke at forskjellen er null — noe testen ikke kan vise.',
+    'For sterkt. Manglende bevis er ikke bevis for fravær; en reell forskjell kan ha unnsluppet en test med begrenset styrke.',
+    'Samme feil, formulert enda mer bastant. Du har ikke vist likhet, bare latt være å vise ulikhet.',
+    '«Tendens» er halv signifikans, og det finnes ikke. Grensa var satt på forhånd, og .10 er på den ene siden av den.']},
+
+{t:'Rapportering', n:53, q:'To ANOVA-er gir <code>η² = .040</code> og <code>η² = .020</code>. Den første er signifikant, den andre ikke. Hva er forskjellen?',
+ o:['Effekten er dobbelt så stor i den første — og signifikans avhenger av både effektstørrelse og N','Den andre effekten er null','Den første analysen brukte flere deltagere','Den andre analysen brøt en forutsetning'], c:0,
+ f:['Riktig. Begge er små effekter, men .040 er dobbelt så mye forklart variasjon som .020. Med samme N og samme df er det nettopp størrelsen som avgjør hvilken av dem som havner under grensa.',
+    'Nei. η² = .020 er et anslag på to prosent forklart variasjon — ikke null, bare for lite til å bli signifikant med dette utvalget.',
+    'Samme datasett gir som regel samme N i begge analysene. Det er effektstørrelsen som skiller dem her.',
+    'Et brudd på forutsetningene kan påvirke p, men det forklarer ikke forskjellen mellom to effektstørrelser.']},
+
+{t:'Rapportering', n:54, q:'Hvilken av disse hører hjemme i <em>diskusjonen</em>, ikke i resultatdelen?',
+ o:['«Funnet er forenlig med sårbarhet–stress-modellen»','«F(1, 387) = 8.12, p = .005, η²p = .021»','«Levenes test var signifikant, og Welch ble derfor brukt»','«Gjennomsnittlig endring var −0,42 poeng (SD = 0,88)»'], c:0,
+ f:['Riktig. Å koble funnet til en teori er <b>tolkning</b>. Resultatdelen rapporterer hva som skjedde; diskusjonen sier hva det betyr.',
+    'Dette er en ren resultatsetning: test, frihetsgrader, eksakt p og effektstørrelse.',
+    'Antakelsessjekker og hvordan brudd ble håndtert hører hjemme i resultatdelen — eller i dataanalyseavsnittet.',
+    'Deskriptive tall er kjernen i en resultatdel.']}
   ];
 
   const STORE = 'sa-oppg-v1';

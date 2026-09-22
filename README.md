@@ -1,8 +1,10 @@
 # Statistikkens alfabet
 
-En interaktiv, selvstendig nettside om statistikk for PSY300. Tre deler:
-grunnbegrepene, tegnene med en sandkasse du kan dra i, og en leseordbok for
-vitenskapelige artikler.
+En interaktiv, selvstendig nettside om statistikk for PSY300. Fire deler:
+grunnbegrepene, tegnene med en sandkasse du kan dra i, en leseordbok for
+vitenskapelige artikler, og til slutt resonnementet som binder det sammen til
+en studie — modellen hypotesene kommer fra, hvilken analyse som svarer på
+hvilken hypotese, og hvordan svaret rapporteres.
 
 Alt ligger i `public/index.html` — ingen byggesteg, ingen avhengigheter i
 sida selv, ingen serverkode. Sandkassen genererer sitt eget datasett i

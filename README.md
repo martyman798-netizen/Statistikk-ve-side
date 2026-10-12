@@ -106,6 +106,11 @@ npm run deploy
   vanlige. Logikken ligger i `SEARCHTEXT` øverst i skriptet (`parse`,
   `Index`, `mark`), og brukes både av søkeruta og av filteret i den
   samlede ordboka. De siste søkene huskes i nettleseren.
+- «Grupper mot grupper» (`#ttest`, `#anova1`, `#anova2`) har egne demoer
+  som regner ut nøyaktig det JASP ville vist for like store grupper.
+  Startverdiene gjenskaper forelesningenes tall: terapistudien
+  (t ≈ 7.2, d ≈ 1.67), tidligere behandlingsforsøk (F(2, 72) = 15.27,
+  η² = .30) og Roediger & Karpicke (F(1, 116) = 2.13 og 13.33).
 - Forklaringsboksene er `<details class="more">`. Varianten `more easy`
   («Enkelt forklart») står øverst i de tyngste seksjonene og forklarer
   ideen med hverdagseksempler; de andre har utregninger, formler og maler.

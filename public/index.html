@@ -167,6 +167,34 @@ code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding
 .tryit{border-left-color:var(--mark);background:var(--mark-soft)}
 .tryit b{color:var(--ink)}
 
+/* ---------- forklaringer som kan foldes ut ---------- */
+details.more{max-width:66ch;margin:16px 0;border:1px solid var(--rule-soft);border-radius:4px;background:var(--surface);scroll-margin-top:92px}
+details.more > summary{display:flex;gap:10px;align-items:baseline;cursor:pointer;list-style:none;padding:10px 14px;
+  font-family:var(--mono);font-size:12.5px;line-height:1.5;color:var(--accent);border-radius:4px}
+details.more > summary::-webkit-details-marker{display:none}
+details.more > summary::before{content:"+";flex:none;width:1em;text-align:center;font-weight:600;color:var(--mark)}
+details.more[open] > summary::before{content:"−"}
+details.more[open] > summary{border-bottom:1px solid var(--rule-soft);border-radius:4px 4px 0 0}
+details.more > summary:hover{background:var(--surface-2)}
+details.more > summary:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.more-body{padding:2px 18px 16px;font-size:15.5px;line-height:1.6;color:var(--ink-2)}
+.entry .more-body p{margin:12px 0 0;max-width:none}
+.more-body b{color:var(--ink)}
+.more-body .calc{font-family:var(--mono);font-size:13px;line-height:1.9;color:var(--ink);background:var(--surface-2);
+  border-radius:3px;padding:10px 14px;margin:12px 0 0;overflow-x:auto;white-space:nowrap;font-variant-numeric:tabular-nums}
+.more-body table.mini{border-collapse:collapse;margin:12px 0 0;font-size:14px;width:100%;font-variant-numeric:tabular-nums}
+.more-body table.mini th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:500;text-align:left;padding:0 12px 6px 0;border-bottom:1px solid var(--rule);vertical-align:bottom}
+.more-body table.mini td{padding:7px 12px 7px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.more-body table.mini td:first-child{color:var(--ink);font-weight:500}
+.more-body ul{margin:10px 0 0;padding-left:20px}
+.more-body li{margin:6px 0}
+.more-body .tpl{display:block;margin-top:4px;padding-left:12px;border-left:2px solid var(--accent-soft);color:var(--ink)}
+.more-body table.mini.wide{min-width:540px}
+/* «Enkelt forklart»: samme boks, men merket som inngangen før detaljene */
+details.more.easy{border-left:3px solid var(--good)}
+details.more.easy > summary{color:var(--good)}
+
 /* ---------- demopaneler ---------- */
 .panel{background:var(--surface);border:1px solid var(--rule-soft);border-radius:4px;box-shadow:var(--shadow);padding:18px;margin:22px 0 6px}
 .panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
@@ -338,6 +366,8 @@ button.pcard{font:inherit;letter-spacing:normal;text-align:left;width:100%}
 .palette-foot .spacer{flex:1}
 .palette-empty{padding:22px 14px 24px;font-family:var(--mono);font-size:12.5px;color:var(--ink-3);line-height:1.9}
 .palette-empty b{display:block;color:var(--ink-2);font-weight:600;margin-bottom:8px;letter-spacing:.06em}
+.palette-empty p{margin:0 0 14px}
+.palette-empty .exq + b{margin-top:10px}
 .palette-empty .exq{font-family:var(--mono);font-size:11.5px;padding:4px 9px;border-radius:3px;
   border:1px solid var(--rule);background:transparent;color:var(--ink-2);cursor:pointer;margin:0 4px 5px 0}
 .palette-empty .exq:hover{border-color:var(--accent);color:var(--ink);opacity:1}
@@ -358,6 +388,8 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
   .trio{grid-template-columns:minmax(0,1fr)}
   .ffgrid{grid-template-columns:minmax(0,1fr)}
   .sentence{font-size:17px}
+  .more-body{padding:2px 14px 14px}
+  .more-body .calc{white-space:normal}
   .databar{position:static;margin:0 -24px}
   .palette{padding:5vh 10px 10px}
   .palette-box{max-height:84vh}
@@ -395,7 +427,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
     <span>
       <b>Øvingskort</b>
       <span class="pd">Tegnet på forsiden, betydningen bak. Hentet rett fra ordboka, så de dekker hvert eneste begrep på sida.</span>
-      <span class="pn">262 kort · 27 områder</span>
+      <span class="pn" id="kortCount">292 kort · 27 områder</span>
     </span>
   </a>
   <a class="pcard" href="#oppgaver">
@@ -403,15 +435,15 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
     <span>
       <b>Oppgaver</b>
       <span class="pd">Les tallet, velg analysen, si hva resultatet betyr. Hvert feilalternativ er en bestemt misforståelse, og du får vite hvilken.</span>
-      <span class="pn">54 flervalgsoppgaver · eksamensformat</span>
+      <span class="pn" id="oppgCount">62 flervalgsoppgaver · eksamensformat</span>
     </span>
   </a>
   <button class="pcard" data-pal-open type="button">
     <span class="pglyph">⌕</span>
     <span>
       <b>Søk</b>
-      <span class="pd">Skriv tegnet slik du klarer — <em class="v">n2</em> finner η², <em class="v">kji</em> finner χ². Søket kjenner igjen greske bokstaver skrevet med vanlige.</span>
-      <span class="pn">alle oppslag og alle seksjoner · tast /</span>
+      <span class="pd">Skriv et tegn, et ord eller et helt spørsmål — <em class="v">n2</em> finner η², og «forskjellen på SD og SE» finner rett boks. Tåler skrivefeil, bøyde ord og engelske navn.</span>
+      <span class="pn">oppslag, seksjoner og all tekst · tast /</span>
     </span>
   </button>
 </div>
@@ -591,6 +623,22 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         </table></div>
         <div class="aside"><b>To uavhengige spørsmål.</b> En variabel har ett svar på hver akse, og de henger ikke sammen. <em>Antall riktige svar</em> er diskret <em>og</em> forholdstall. En <em>depresjonsskåre</em> behandles som kontinuerlig, men er bare intervall. Den vanligste tabben er å tro at «kategorisk» og «kontinuerlig» er to av målenivåene — det er de ikke. <em>Kategorisk</em> er bare en samlebetegnelse for nominal og ordinal (og kalles <em>dikotom</em> når det er to kategorier), og i JASP heter intervall og forholdstall slått sammen <code>scale</code>.</div>
         <div class="aside"><b>Hva de to spørsmålene brukes til.</b> Målenivået avgjør hvilken <em>analyse</em> som er lov. Diskret eller kontinuerlig avgjør hvordan du <em>plotter</em>: få diskrete verdier gir stolpediagram, kontinuerlige verdier gir histogram.</div>
+        <details class="more">
+          <summary>Hvilke analyser passer til hvilket nivå?</summary>
+          <div class="more-body">
+            <p>Hvert nivå kan alt nivået under kan, pluss litt til. Det som er lov på ordinalnivå, er altså også lov på intervallnivå.</p>
+            <div class="scroller"><table class="mini wide">
+              <thead><tr><th>Nivå</th><th>Sentrum og spredning</th><th>Typiske analyser</th></tr></thead>
+              <tbody>
+                <tr><td>Nominal</td><td>Modus, antall og prosent</td><td>χ², Cramérs V</td></tr>
+                <tr><td>Ordinal</td><td>+ median, kvartiler, IQR</td><td>Spearman, Mann–Whitney, Wilcoxon, Kruskal–Wallis</td></tr>
+                <tr><td>Intervall</td><td>+ gjennomsnitt, SD</td><td>Pearson, t-test, ANOVA, regresjon</td></tr>
+                <tr><td>Forholdstall</td><td>+ «dobbelt så mye»</td><td>Det samme som intervall</td></tr>
+              </tbody>
+            </table></div>
+            <p>Det er <b>utfallet</b> som avgjør. At gruppevariabelen er nominal, hindrer deg ikke i å bruke t-test eller ANOVA — så lenge utfallet du sammenligner er et tall på en skala.</p>
+          </div>
+        </details>
         <div class="aside"><b>Den evige diskusjonen i psykologi:</b> en likert-skala fra 1 til 5 er strengt tatt ordinal, men behandles nesten alltid som kontinuerlig når man tar snittet av mange ledd. Det er en pragmatisk konvensjon, ikke en matematisk sannhet — og det er derfor mange kjører både Pearson og Spearman og sjekker at svaret blir det samme.</div>
       </div>
     </section>
@@ -622,6 +670,17 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         </table></div>
         <div class="aside"><b>Skjevhet (skewness) er et tall, ikke en følelse.</b> <em class="v">0</em> betyr symmetrisk. <em class="v">Positiv</em> betyr at halen peker mot høyre: de fleste ligger lavt, noen få ligger veldig høyt. <em class="v">Negativ</em> betyr at halen peker mot venstre. Typisk årsak til venstreskjevhet er en <em>takeffekt</em> — skalaen stopper, og folk hoper seg opp mot toppen. Over omtrent ±2 begynner det å bli et problem for tester som antar normalfordeling.</div>
         <div class="aside"><b>Tre sentralmål, ikke ett.</b> <em class="v">Gjennomsnittet</em> (M) er tyngdepunktet. <em class="v">Medianen</em> (Mdn) er verdien midt i rekka. <em class="v">Modus</em> (Mo) er den vanligste verdien. I en pen symmetrisk fordeling faller de nesten sammen, og da spiller det ingen rolle hvilken du bruker. Det er når de spriker at figuren har noe å fortelle deg.</div>
+        <details class="more">
+          <summary>Slik får du disse tallene i JASP</summary>
+          <div class="more-body">
+            <p><b>Descriptives → Descriptive Statistics.</b> Legg variabelen i <em>Variables</em>. Vil du ha tallene per gruppe, legg gruppevariabelen i <em>Split</em>.</p>
+            <ul>
+              <li><b>Statistics:</b> kryss av for Mean, Median, Mode, Std. deviation, Skewness og Kurtosis. Shapiro–Wilk ligger samme sted, hvis du vil teste normalitet.</li>
+              <li><b>Plots:</b> <em>Distribution plots</em> gir histogrammet, og <em>Boxplots</em> gir boksplottet.</li>
+            </ul>
+            <p>Navnene kan variere litt mellom JASP-versjoner, men alt ligger under Descriptives.</p>
+          </div>
+        </details>
         <div class="aside tryit"><b>Prøv:</b> trykk «Feiltast én skåre». Én student får skåren sin tastet inn som 5 poeng i stedet for det hun faktisk fikk — en helt vanlig tastefeil. Se hva som skjer med hvert av tallene under figuren. <strong>Gjennomsnittet og standardavviket flytter seg, medianen står helt stille.</strong> Det er hele grunnen til at medianen rapporteres når fordelingen er skjev eller har uteliggere. Bytt til boksplott, så ser du at punktet legger seg utenfor værhåret og blir merket som uteligger. Sett <em>N = 20</em> først, så blir utslaget mye tydeligere: én tastefeil veier tungt i et lite utvalg og nesten ingenting i et stort.</div>
         <div class="aside"><b>Og hvis fordelingen har to topper?</b> Da beskriver <em>ingen</em> av sentralmålene «en typisk deltager» — gjennomsnittet lander i dalen mellom toppene, der nesten ingen faktisk ligger. To topper betyr som regel at du har to grupper blandet sammen, og da er svaret å beskrive gruppene hver for seg, ikke å lete etter et bedre sentralmål.</div>
       </div>
@@ -789,6 +848,17 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td>Standardavvik</td><td>s = √s²</td><td>Kvadratroten tar oss tilbake til variabelens egen enhet. Nå er tallet lesbart igjen: poeng.</td></tr>
           </tbody>
         </table></div>
+        <details class="more">
+          <summary>Regn det ut selv: fem tall, fire steg</summary>
+          <div class="more-body">
+            <div class="calc">Tallene: 2, 4, 4, 6, 9<br>
+            1 · Gjennomsnitt: (2 + 4 + 4 + 6 + 9) / 5 = 5<br>
+            2 · Avvik fra snittet: −3, −1, −1, 1, 4 (summen er alltid 0)<br>
+            3 · Kvadrert: 9, 1, 1, 1, 16 → SS = 28<br>
+            4 · Varians: 28 / (5 − 1) = 7 → SD = √7 ≈ 2.65</div>
+            <p>Legg merke til at 9-eren alene står for 16 av de 28. Kvadreringen gjør at store avvik teller ekstra mye — og derfor drar én uteligger standardavviket så kraftig.</p>
+          </div>
+        </details>
         <div class="aside"><b>Hvorfor n − 1 og ikke n?</b> Fordi du måler avvikene fra <em>utvalgets eget</em> gjennomsnitt, ikke fra populasjonens. Utvalgets snitt ligger per definisjon midt i akkurat disse tallene, så avvikene blir litt for små — og deler du på n, undervurderer du spredningen systematisk. Å dele på n − 1 retter opp nøyaktig den skjevheten. Det ene tallet du «mister» er en <a href="#df">frihetsgrad</a>: har du regnet ut snittet, kan n − 1 av observasjonene være hva som helst, men den siste er låst.</div>
         <div class="aside"><b>SD er grunnfjellet.</b> Nesten alle de andre tegnene på denne sida er «hvor mange standardavvik?» i forkledning. <em class="v">β</em>, <em class="v">t</em>, <em class="v">SE</em> og <em class="v">d</em> er alle bygget på denne ene ideen om typisk avstand.</div>
         <div class="aside tryit"><b>Prøv:</b> trekk nytt utvalg noen ganger med N = 20, og se på SD. Den spretter en del. Gjør det samme med N = 100 — snittet og spredningen legger seg raskt til ro rundt de sanne verdiene, mens enkeltpersonene er like ulike som før. <strong>Flere deltagere gjør anslagene stabile, ikke folk likere.</strong></div>
@@ -844,6 +914,21 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           </div>
         </div>
         <div class="aside"><b>Pearson eller Spearman?</b> Pearsons <em class="v">r</em> regner med tallene slik de står og forutsetter at sammenhengen er en rett strek. Spearmans <em class="v">r<sub>s</sub></em> rangerer først deltagerne fra lavest til høyest og korrelerer rangeringene — den bryr seg bare om rekkefølge. Bruk Spearman når fordelingen er skjev, når det finnes uteliggere, eller når en variabel bare har noen få trinn.</div>
+        <details class="more">
+          <summary>Hvor kommer r fra? Kovariansen</summary>
+          <div class="more-body">
+            <p>For hver student ganger du to avvik med hverandre: hvor langt fra snittet hun er i studietid, og hvor langt fra snittet hun er i poeng.</p>
+            <ul>
+              <li>Over snittet på begge: pluss ganger pluss gir <b>pluss</b>.</li>
+              <li>Under snittet på begge: minus ganger minus gir også <b>pluss</b>.</li>
+              <li>Over på den ene og under på den andre: <b>minus</b>.</li>
+            </ul>
+            <p>Snittet av alle disse produktene heter <b>kovariansen</b>. Er den stor og positiv, går variablene opp og ned sammen. Men enheten er «timer ganger poeng», som ingen kan tolke. Derfor deler vi på de to standardavvikene, og da havner tallet mellom −1 og +1:</p>
+            <div class="calc">cov = Σ(x − M<sub>x</sub>)(y − M<sub>y</sub>) / (n − 1)<br>
+            r = cov / (SD<sub>x</sub> · SD<sub>y</sub>)</div>
+            <p>Med ditt utvalg: cov = <span class="stat" data-s="cov"></span>, og <span class="stat" data-s="cov"></span> / (<span class="stat" data-s="sdx2"></span> × <span class="stat" data-s="sdy2"></span>) ≈ <span class="stat" data-s="r"></span>. Det er korrelasjonen.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -869,6 +954,14 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Flakssjansen</h2>
         <p class="asks">Kunne tilfeldigheter alene gitt meg dette?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva p betyr</summary>
+          <div class="more-body">
+            <p>Du kaster en mynt ti ganger og får krone ni ganger. Er mynten jukset? For å finne ut av det spør du: <b>hvis mynten var helt vanlig, hvor ofte ville jeg fått ni eller flere kron?</b> Svaret er omtrent én gang av hundre. Det tallet er p-verdien: <em class="v">p</em> ≈ .01.</p>
+            <p>I en studie betyr «vanlig mynt» at det <em>ikke</em> finnes noen effekt. En liten p sier: hvis det ikke fantes noen effekt, ville et resultat som ditt vært sjeldent. Da er det rimeligere å tro at effekten finnes.</p>
+            <p>To ting p <em>ikke</em> sier: hvor stor effekten er, og hvor sannsynlig det er at hypotesen din stemmer.</p>
+          </div>
+        </details>
         <p><em class="v">p</em> svarer på ett bestemt spørsmål: <strong>hvis det i virkeligheten ikke fantes noen sammenheng, hvor ofte ville ren flaks gitt meg et resultat minst så tydelig som mitt?</strong> Her ble <em class="v">p</em> = <span class="stat" data-s="p"></span>.</p>
         <p>Bak det spørsmålet ligger en fast prosedyre. Den har fire trinn, og den er den samme for hver eneste test du møter resten av semesteret:</p>
         <div class="scroller"><table class="dict terms tight" data-fam="Nullhypotesetesting" data-nocard>
@@ -892,6 +985,17 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         </div>
         <div class="aside tryit"><b>Dette er den viktigste demoen på sida.</b> Sett N = 20, stokk om 200 ganger, og se hvor bred flakshaugen er — den strekker seg gjerne til ±.45. Med så få deltagere <em>må</em> en korrelasjon være enorm for å skille seg fra flaks. Sett så N = 100 og gjør det samme: haugen krymper til rundt ±.20. <strong>Det er hele grunnen til at store utvalg gir små p-verdier.</strong></div>
         <div class="aside"><b>Grensa på .05</b> er en konvensjon, ikke en naturlov. Og <em class="v">p</em> sier ingenting om hvor stor sammenhengen er — bare hvor sikre vi er på at den ikke er null. Derfor skal <em class="v">r²</em> alltid stå ved siden av.</div>
+        <details class="more">
+          <summary>Fire vanlige feiltolkninger av p</summary>
+          <div class="more-body">
+            <ul>
+              <li><b>«p = .03 betyr 3 % sjanse for at H₀ er sann.»</b> Nei. p er regnet ut <em>under forutsetning av</em> at H₀ er sann. Den kan ikke samtidig si hvor sannsynlig forutsetningen er.</li>
+              <li><b>«p = .03 betyr 3 % sjanse for at resultatet skyldes flaks.»</b> Den samme feilen i nye klær.</li>
+              <li><b>«p = .03 betyr 97 % sjanse for å få det samme igjen.»</b> Nei. Er p like under .05, og den sanne effekten akkurat så stor som du fant, er sjansen for et nytt signifikant resultat bare rundt 50 %.</li>
+              <li><b>«Liten p betyr stor effekt.»</b> Nei. Med mange nok deltagere blir selv bittesmå effekter signifikante. Størrelsen må du hente fra effektstørrelsen.</li>
+            </ul>
+          </div>
+        </details>
         <div class="aside"><b>Aldri skriv «tendens».</b> En p over .05 er ikke «nesten signifikant» — omstokkingsdemoen viser hvorfor: den verdien er helt vanlig ren flaks. Skriv «var ikke signifikant», og oppgi tallene.</div>
         <div class="aside"><b>Rettssaken er den samme logikken, på et språk du kjenner.</b> Tiltalte antas uskyldig: det er <em class="v">H₀</em>. «Utover rimelig tvil» er <em class="v">α</em>. En fellende dom er å forkaste H₀. Og det viktigste punktet: <strong>en frifinnelse er ikke det samme som bevist uskyldig.</strong> Et ikke-signifikant resultat betyr «ikke motbevist», ikke «H₀ er sann». Retten kan mangle bevis fordi det ikke skjedde — eller fordi etterforskningen var for dårlig. En studie kan mangle signifikans fordi effekten ikke finnes — eller fordi utvalget var for lite. Du kan aldri se forskjell på de to fra p-verdien alene.</div>
         <div class="aside"><b>Og «rimelig tvil» er en konvensjon.</b> Bevisbildet endrer seg ikke mellom <em class="v">p</em> = .049 og <em class="v">p</em> = .051, men konklusjonen gjør det. Det bør gjøre deg mistenksom overfor alt som ligger og vipper rundt grensa.</div>
@@ -952,6 +1056,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Standardfeilen</h2>
         <p class="asks">Hvor presist er anslaget mitt?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: SD mot SE</summary>
+          <div class="more-body">
+            <p><b>SD handler om folk:</b> hvor forskjellige deltagerne er. <b>SE handler om tallet ditt:</b> hvor mye gjennomsnittet ville flyttet seg hvis du gjorde studien på nytt med andre deltagere.</p>
+            <p>Spør du fem tilfeldige personer om høyden deres, kan snittet bli ganske misvisende — kanskje tre av dem tilfeldigvis spiller basketball. Spør du 500, jevner det seg ut. Folk er like forskjellige i begge tilfellene (samme SD), men snittet av 500 er mye sikrere (mindre SE).</p>
+          </div>
+        </details>
         <p>Ikke å forveksle med SD. <strong>SD</strong> handler om hvor spredt <em>deltagerne</em> er. <strong>SE</strong> handler om hvor mye <em>anslaget ditt</em> ville hoppet rundt hvis du gjentok hele studien om og om igjen med nye deltagere.</p>
         <p>Vanligvis er dette et tankeeksperiment. Her kan du faktisk gjøre det: knappen under trekker 200 helt nye utvalg av samme størrelse fra den samme populasjonen, og tegner opp hvilke korrelasjoner de gir.</p>
         <div class="panel">
@@ -964,6 +1075,15 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <div class="readout" id="sampRead"></div>
         </div>
         <p>Bredden på denne haugen <em>er</em> standardfeilen. Stigningstallet ditt har <em class="v">SE</em> = <span class="stat" data-s="seb1"></span>, som er lite når N er stor og stort når N er liten — nøyaktig som haugen.</p>
+        <details class="more">
+          <summary>Formelen for standardfeilen, med dine tall</summary>
+          <div class="more-body">
+            <p>For et gjennomsnitt er standardfeilen standardavviket delt på kvadratroten av antall deltagere:</p>
+            <div class="calc">SE = SD / √N</div>
+            <p>Poengene i ditt utvalg: SD = <span class="stat" data-s="sdy2"></span>, N = <span class="stat" data-s="n"></span>. Da er SE = <span class="stat" data-s="sdy2"></span> / √<span class="stat" data-s="n"></span> = <span class="stat" data-s="sem"></span> poeng. Snittet ditt på <span class="stat" data-s="my"></span> poeng ville altså typisk bommet med rundt <span class="stat" data-s="sem"></span> poeng om du gjentok studien.</p>
+            <p>Formelen viser to ting. Mer spredning blant folk gir større SE. Flere deltagere gir mindre SE — men bare med kvadratroten, så du må firedoble N for å halvere SE.</p>
+          </div>
+        </details>
         <div class="aside tryit"><b>Prøv:</b> kjør demoen med N = 20, nullstill, sett N = 100 og kjør igjen. Den sanne verdien (den loddrette streken) står stille. Det som endrer seg er hvor mye enkeltstudier bommer på den. <strong>Én studie med N = 20 kan lande hvor som helst i den brede haugen — og forskeren vet ikke hvor.</strong></div>
         <div class="aside"><b>Sentralgrenseteoremet.</b> To ting skjer med haugen når N vokser, og begge er rare nok til å ha fått et eget navn. Det første: bredden krymper med <em class="v">√N</em>, ikke med N. Firedobler du antall deltagere, halveres standardfeilen — <em>√4 = 2</em>. Det er derfor det er så dyrt å bli dobbelt så presis: du må firedoble studien. Det andre: haugen blir <em>normalfordelt</em> nesten uansett hvordan populasjonen selv ser ut. Populasjonen kan være skjev, kantete eller ha to topper — fordelingen av <em>gjennomsnitt</em> blir pen og klokkeformet likevel, bare N er stor nok. Det er den antakelsen som gjør at t-tester og konfidensintervaller i det hele tatt virker på virkelige data, som sjelden er pent normalfordelte.</div>
         <div class="aside"><b>Én mekanisme bak alt:</b> flere deltagere → mindre SE → smalere konfidensintervall → større t → mindre p. Alle de fire tegnene beveger seg sammen, fordi de alle er den samme størrelsen sett fra hver sin kant.</div>
@@ -976,6 +1096,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Konfidensintervallet</h2>
         <p class="asks">Hvor mye kan den sanne verdien avvike fra min?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva intervallet betyr</summary>
+          <div class="more-body">
+            <p>Et konfidensintervall er et anslag med feilmargin, akkurat som i en meningsmåling: «partiet får 25 %, pluss/minus 3 prosentpoeng». Intervallet er de verdiene som passer med dataene dine.</p>
+            <p><b>Smalt intervall:</b> du vet ganske nøyaktig hvor den sanne verdien ligger. <b>Bredt intervall:</b> du vet lite. <b>Ligger null inne i intervallet,</b> kan du ikke utelukke at det ikke finnes noen sammenheng i det hele tatt — og da er resultatet ikke signifikant.</p>
+          </div>
+        </details>
         <p>Du har målt <span class="stat" data-s="n"></span> studenter, ikke alle. Konfidensintervallet er spennet der den sanne verdien rimeligvis ligger. Her: <em class="v">r</em> = <span class="stat" data-s="r"></span>, 95 % KI <span class="stat" data-s="ci"></span>.</p>
         <div class="panel">
           <div class="panel-head"><span>De tre korrelasjonene med usikkerhet</span><span>Pearson, 95 % KI</span></div>
@@ -984,6 +1111,17 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         </div>
         <p>Det praktiske trikset: <strong>inneholder intervallet 0, er resultatet ikke signifikant.</strong> Det er samme informasjon som p-verdien, men langt mer opplysende — for bredden forteller deg i tillegg hvor lite du egentlig vet.</p>
         <div class="aside tryit"><b>Prøv:</b> med N = 20 blir intervallet ofte så bredt at det spenner fra «nesten ingenting» til «veldig sterkt». Da er konklusjonen «vi vet lite», selv om p tilfeldigvis skulle bli under .05. Legg også merke til: den sanne verdien havner utenfor intervallet omtrent én gang av tjue. Det er akkurat det «95 %» betyr.</div>
+        <details class="more">
+          <summary>Hvorfor er intervallet for r ikke symmetrisk?</summary>
+          <div class="more-body">
+            <p>Se på tallene: intervallet strekker seg ofte lenger ned enn opp fra r. Det er ikke en feil. r kan aldri bli større enn 1, så når r er høy, er det rett og slett mindre plass på oversiden.</p>
+            <p>Programmet løser det med et triks. Det regner om r til en skala uten tak (Fishers <em class="v">z′</em>), lager et vanlig symmetrisk intervall der, og regner så tilbake:</p>
+            <div class="calc">r = <span data-s="r"></span> → z′ = <span data-s="fz"></span><br>
+            z′ ± 1.96 × 1/√(N − 3) = <span data-s="fz"></span> ± 1.96 × <span data-s="fzse"></span><br>
+            → [<span data-s="fzlo"></span>, <span data-s="fzhi"></span>] på z′-skalaen<br>
+            → <span data-s="ci"></span> tilbake på r-skalaen</div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1024,9 +1162,34 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Testtallet</h2>
         <p class="asks">Hvor mange standardfeil unna null ligger anslaget?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva t måler</summary>
+          <div class="more-body">
+            <p>t er et forhold mellom <b>signal og støy</b>. Over brøkstreken står det du fant — for eksempel 2,5 poeng per time. Under står hvor mye det tallet kunne variert av ren tilfeldighet, altså standardfeilen.</p>
+            <p>t = 1 betyr at funnet er like stort som støyen. Da kan det like gjerne være flaks. t = 4 betyr at funnet er fire ganger så stort som støyen, og da er flaks en dårlig forklaring. Grensen for «signifikant» går ved omtrent 2.</p>
+          </div>
+        </details>
         <p>En enkel divisjon: anslaget delt på standardfeilen. Her: <span class="stat" data-s="b1"></span> ÷ <span class="stat" data-s="seb1"></span> = <span class="stat" data-s="t"></span>.</p>
         <p>Tolkningen er nesten avvæpnende enkel. Er <em class="v">t</em> større enn omtrent 2 i tallverdi, ligger anslaget så langt fra null at flaks er en dårlig forklaring. Derfra kommer p-verdien — <em class="v">p</em> er bare <em class="v">t</em> oversatt til sannsynlighet, gitt frihetsgradene.</p>
         <div class="aside"><b>Rekkefølgen å huske:</b> anslag ÷ SE = <em class="v">t</em> → <em class="v">t</em> og <em class="v">df</em> gir <em class="v">p</em>. De tre kolonnene ved siden av hverandre i enhver koeffisienttabell er det samme tallet i tre forkledninger.</div>
+        <details class="more">
+          <summary>Hvor kommer «omtrent 2» fra?</summary>
+          <div class="more-body">
+            <p>Grensen heter den <b>kritiske verdien</b>: den t-en som gir akkurat p = .05. Den er litt høyere i små utvalg, fordi små utvalg har mer tilfeldig variasjon — da må du lenger ut før det blir overbevisende.</p>
+            <table class="mini">
+              <thead><tr><th>Frihetsgrader</th><th>Kritisk t (tosidig, α = .05)</th></tr></thead>
+              <tbody>
+                <tr><td>5</td><td>2.57</td></tr>
+                <tr><td>10</td><td>2.23</td></tr>
+                <tr><td>20</td><td>2.09</td></tr>
+                <tr><td>30</td><td>2.04</td></tr>
+                <tr><td>60</td><td>2.00</td></tr>
+                <tr><td>uendelig mange</td><td>1.96</td></tr>
+              </tbody>
+            </table>
+            <p>Med dine <span class="stat" data-s="df"></span> frihetsgrader er grensen <span class="stat" data-s="tcrit"></span>, og din t er <span class="stat" data-s="t"></span>.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1036,8 +1199,32 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Frihetsgrader</h2>
         <p class="asks">Hvor mange uavhengige biter informasjon står igjen?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: frihetsgrader</summary>
+          <div class="more-body">
+            <p>Frihetsgrader er hvor mange tall som fikk «velge fritt». Si at tre tall skal ha gjennomsnitt 10, altså sum 30. De to første kan være hva som helst — 8 og 13, for eksempel. Men da <em>må</em> det tredje være 9, ellers stemmer ikke snittet. To tall var frie, ett var låst: df = 2.</p>
+            <p>Hver gang en analyse regner ut noe fra dataene, låses ett tall til. Derfor er df omtrent «antall deltagere minus det modellen har regnet ut». Du trenger ikke tolke tallet — bare skrive det av og rapportere det.</p>
+          </div>
+        </details>
         <p>Du starter med <span class="stat" data-s="n"></span> deltagere. Hver ting modellen anslår, bruker opp én. Den enkle regresjonen anslår to (konstantledd og stigningstall), så <em class="v">df</em> = <span class="stat" data-s="df"></span>. Legger du til én prediktor, blir det én mindre.</p>
         <p>Du trenger ikke tolke df. Du skal rapportere det, fordi det forteller leseren hvor mye materiale konklusjonen hviler på. Derfor skrives det alltid som <code>t(<span data-s="df"></span>) = <span data-s="t"></span></code> og <code>F(1, <span data-s="df"></span>)</code>.</p>
+        <details class="more">
+          <summary>Slik regnes df ut i de vanligste testene</summary>
+          <div class="more-body">
+            <table class="mini">
+              <thead><tr><th>Analyse</th><th>Frihetsgrader</th></tr></thead>
+              <tbody>
+                <tr><td>Korrelasjon</td><td>N − 2</td></tr>
+                <tr><td>Regresjon</td><td>N − k − 1, der k er antall prediktorer</td></tr>
+                <tr><td>t-test, to grupper</td><td>n₁ + n₂ − 2</td></tr>
+                <tr><td>Paret t-test</td><td>antall par − 1</td></tr>
+                <tr><td>Enveis-ANOVA</td><td>grupper − 1, og N − grupper</td></tr>
+                <tr><td>χ²</td><td>(rader − 1) × (kolonner − 1)</td></tr>
+                <tr><td>Welch</td><td>et desimaltall som programmet regner ut</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1047,6 +1234,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Residualer og antakelser</h2>
         <p class="asks">Kan jeg stole på tallene modellen ga meg?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva en residual er</summary>
+          <div class="more-body">
+            <p>En residual er en bom. Modellen gjettet at en student skulle få 62 poeng, men hun fikk 70. Bommen — residualen — er +8.</p>
+            <p>Er modellen god, skal bommene være tilfeldige: noen over, noen under, uten system. Ser du et mønster i dem — for eksempel at modellen alltid bommer mest på dem som studerte mye — har den gått glipp av noe.</p>
+          </div>
+        </details>
         <p>En <strong>residual</strong> er en bom: hva én student faktisk fikk, minus hva modellen predikerte for henne. En regresjon regner alltid ut noen tall, uansett hvor uegnet dataene er. Antakelsessjekken finnes for å oppdage når tallene ikke betyr det de ser ut som — og den gjøres på residualene.</p>
         <div class="panel">
           <div class="panel-head"><span>Residualer mot predikerte verdier</span><span>vi vil at dette skal se kjedelig ut</span></div>
@@ -1069,6 +1263,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Den standardiserte koeffisienten</h2>
         <p class="asks">Hvilken prediktor veier tyngst?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: b mot β</summary>
+          <div class="more-body">
+            <p>b svarer i variablenes egne enheter: «én time mer studert gir 2,5 poeng mer». Det er lett å forstå, men vanskelig å sammenligne. Hva veier mest — 2,5 poeng per time studert eller 1,5 poeng per time søvn — når folk varierer mye mer i studietid enn i søvn?</p>
+            <p>Det er som å sammenligne lønn i kroner og euro: du må gjøre om til samme valuta først. β er den felles valutaen. Alt regnes om til standardavvik, og da kan prediktorene sammenlignes direkte. Den med størst β (uansett fortegn) veier tyngst.</p>
+          </div>
+        </details>
         <p><em class="v">b</em> er i råenheter — poeng per time — og avhenger av hvilken skala variabelen tilfeldigvis er målt på. Det gjør at to b-er ikke kan sammenlignes direkte: timer studert og timer søvn har ulik spredning, så «per time» betyr ikke det samme for de to. <em class="v">β</em> løser dette ved å regne alt om til standardavvik.</p>
         <div class="panel">
           <div class="panel-head"><span>Begge prediktorene, to målestokker</span><span>full modell</span></div>
@@ -1076,6 +1277,14 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <div class="readout" id="betaRead"></div>
         </div>
         <p>Og her er sammenhengen som forvirrer flest: i en regresjon med <strong>bare én</strong> prediktor er <em class="v">β</em> nøyaktig det samme tallet som <em class="v">r</em>. I den enkle modellen din er begge <span class="stat" data-s="r"></span>. Det er ikke en tilfeldighet, men samme analyse skrevet på to måter.</p>
+        <details class="more">
+          <summary>Fra b til β, med dine tall</summary>
+          <div class="more-body">
+            <div class="calc">β = b × SD<sub>x</sub> / SD<sub>y</sub><br>
+            = <span data-s="b1"></span> × <span data-s="sdx2"></span> / <span data-s="sdy2"></span> ≈ <span data-s="r"></span></div>
+            <p>Altså: ett standardavvik mer studietid gir <span class="stat" data-s="r"></span> standardavvik høyere predikert poengsum. Og med bare én prediktor er det nøyaktig r.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1085,8 +1294,23 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Forklart variasjon</h2>
         <p class="asks">Hvor mye av utfallet fanger modellen opp?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva R² betyr</summary>
+          <div class="more-body">
+            <p>Studentene fikk ulike poeng. R² sier hvor stor del av de forskjellene modellen klarer å forklare. R² = .30 betyr at studietid står for 30 % av forskjellene i poeng. De andre 70 % skyldes ting modellen ikke vet om — søvn, dagsform, flaks.</p>
+            <p>I ditt utvalg forklarer studietid <span class="stat" data-s="R2pct"></span>.</p>
+          </div>
+        </details>
         <p>Stor <em class="v">R²</em> er modellens versjon av lille <em class="v">r²</em>. Den enkle modellen din har R² = <span class="stat" data-s="R2"></span>: timer studert alene fanger opp <span class="stat" data-s="R2pct"></span> av variasjonen i poeng. Resten er alt modellen ikke vet noe om — søvn, dagsform, flaks med oppgavene.</p>
         <p><strong>Justert R²</strong> (<span class="stat" data-s="adjR2"></span>) er samme tall med et lite fradrag for hvor mange prediktorer du har brukt. Enhver ny prediktor løfter R² litt, også ren støy. Justert R² gir tilbake den gratis-økningen, så modeller med ulikt antall prediktorer kan sammenlignes ærlig.</p>
+        <details class="more">
+          <summary>Formelen for justert R²</summary>
+          <div class="more-body">
+            <div class="calc">justert R² = 1 − (1 − R²) × (N − 1) / (N − k − 1)<br>
+            = 1 − (1 − <span data-s="R2"></span>) × (<span data-s="n"></span> − 1) / <span data-s="df"></span> = <span data-s="adjR2"></span></div>
+            <p>k er antall prediktorer — her 1. Brøken (N − 1) / (N − k − 1) er straffen. Med mange deltagere er den nesten 1, og fradraget blir lite. Med få deltagere per prediktor blir den stor.</p>
+          </div>
+        </details>
         <div class="aside tryit"><b>Prøv:</b> sett N helt ned til 20 og se på forskjellen mellom R² og justert R². Der er fradraget merkbart. Med N = 100 er de nesten like. <strong>Jo færre deltagere per prediktor, jo mer lurer R² deg</strong> — modellen begynner å tilpasse seg støyen i akkurat ditt utvalg. Det kalles overtilpasning.</div>
       </div>
     </section>
@@ -1097,8 +1321,30 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Helhetstesten</h2>
         <p class="asks">Forklarer modellen som helhet noe i det hele tatt?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva F måler</summary>
+          <div class="more-body">
+            <p>F sammenligner to mengder: hvor mye modellen forklarer, og hvor mye som er igjen uforklart. Begge regnes per frihetsgrad, så sammenligningen blir rettferdig.</p>
+            <p>Forklarer modellen ingenting ekte, havner F rundt 1 — da forklarer den ikke mer enn tilfeldig støy ville gjort. Jo større F, jo mer forklarer modellen sammenlignet med støyen.</p>
+          </div>
+        </details>
         <p>Der <em class="v">t</em> tester én koeffisient om gangen, tester <em class="v">F</em> hele modellen samtidig: er den forklarte variasjonen større enn det du kunne fått uten noen ekte sammenheng?</p>
         <p>Her: <em class="v">F</em>(1, <span class="stat" data-s="df"></span>) = <span class="stat" data-s="F"></span>. De to tallene i parentes er frihetsgradene — først antall prediktorer, så det som er igjen. Ved bare én prediktor er F rett og slett <em class="v">t</em> kvadrert: <span class="stat" data-s="t"></span>² ≈ <span class="stat" data-s="F"></span>. Nok en gang det samme tallet i ny drakt.</p>
+        <details class="more">
+          <summary>Fra kvadratsummer til F, steg for steg</summary>
+          <div class="more-body">
+            <p>Et oppdiktet eksempel med 40 deltagere og én prediktor:</p>
+            <div class="scroller"><table class="mini">
+              <thead><tr><th>Kilde</th><th>SS</th><th>df</th><th>MS = SS / df</th><th>F</th></tr></thead>
+              <tbody>
+                <tr><td>Modell</td><td>120</td><td>1</td><td>120</td><td>120 / 10 = 12.0</td></tr>
+                <tr><td>Residual</td><td>380</td><td>38</td><td>10</td><td></td></tr>
+                <tr><td>Total</td><td>500</td><td>39</td><td></td><td></td></tr>
+              </tbody>
+            </table></div>
+            <p>Det er bare tre divisjoner. SS delt på df gir MS. MS for modellen delt på MS for residualene gir F. Det skrives F(1, 38) = 12.0, p = .001. Og R² = 120 / 500 = .24 — andelen av den totale kvadratsummen modellen fanger opp.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1108,6 +1354,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Endringen i forklart variasjon</h2>
         <p class="asks">Hva tjente jeg på å legge til en prediktor til?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva ΔR² er</summary>
+          <div class="more-body">
+            <p>ΔR² er det du fikk <em>i tillegg</em>. Modell 1 forklarer 30 % av forskjellene. Du legger til en prediktor, og nå forklarer modellen 32 %. ΔR² = .02 — to prosentpoeng ekstra.</p>
+            <p>Testen som følger med svarer på ett spørsmål: er de ekstra prosentpoengene mer enn det en tilfeldig prediktor ville gitt?</p>
+          </div>
+        </details>
         <p>Den greske bokstaven delta betyr «endring i». Du sammenligner to modeller: én med bare timer studert, og én der timer søvn også er med.</p>
         <div class="panel">
           <div class="panel-head"><span>Hva søvn la til</span><span>modell 1 → modell 2</span></div>
@@ -1115,6 +1368,14 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <div class="readout" id="dr2Read"></div>
         </div>
         <p>Dette er kjernen i <strong>hierarkisk regresjon</strong>: man legger inn prediktorer i blokker og spør hva hver blokk bidrar med utover den forrige. Og det er også her uttrykket «å <strong>kontrollere for</strong>» hører hjemme — koeffisienten for søvn i modell 2 er effekten av søvn <em>når studietimer allerede er tatt hensyn til</em>.</p>
+        <details class="more">
+          <summary>Del- og partiell korrelasjon: det én prediktor bidrar med alene</summary>
+          <div class="more-body">
+            <p>Når du legger inn én prediktor til slutt, er ΔR² nøyaktig det den bidrar med <em>alene</em> — det den ikke deler med de andre. Det tallet har et eget navn: den kvadrerte <b>delkorrelasjonen</b>, <em class="v">sr²</em> (semipartiell). I ditt utvalg la søvn til ΔR² = <span class="stat" data-s="dR2"></span>, og det er sr² for søvn.</p>
+            <p>Den <b>partielle korrelasjonen</b>, <em class="v">pr</em>, er en slektning. Den fjerner de andre prediktorene fra både prediktoren og utfallet, og spør hvor mye av det som er <em>igjen</em> av utfallet prediktoren forklarer. Fordi «det som er igjen» er mindre enn helheten, er pr alltid minst like stor som sr.</p>
+            <p>JASP viser begge under <em>Part and partial correlations</em> i lineær regresjon. Summen av alle sr² er mindre enn R² når prediktorene overlapper: det felles stykket eier ingen av dem alene.</p>
+          </div>
+        </details>
         <div class="aside tryit"><b>Prøv:</b> med N = 20 blir ΔR² for søvn ofte ikke signifikant, selv om effekten i sannhet finnes (1,5 poeng per time). Med N = 100 dukker den som regel opp. <strong>Små effekter krever store utvalg</strong> — og det er nøyaktig derfor svake, men ekte sammenhenger er så vanskelige å studere.</div>
       </div>
     </section>
@@ -1125,6 +1386,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Overlapp mellom prediktorene</h2>
         <p class="asks">Forteller prediktorene mine den samme historien?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva overlapp er</summary>
+          <div class="more-body">
+            <p>Tenk deg to vitner som forteller nesten nøyaktig den samme historien. Begge kan ha rett, men du klarer ikke å si hvem av dem du egentlig fikk opplysningen fra. Slik er det med to prediktorer som henger tett sammen: modellen ser at <em>en av dem</em> forklarer utfallet, men ikke hvem.</p>
+            <p>VIF måler hvor ille det er. 1 betyr ingen overlapp. Jo høyere tallet blir, jo mer usikre blir koeffisientene.</p>
+          </div>
+        </details>
         <p>Hvis to prediktorer måler nesten det samme, blir det umulig for modellen å avgjøre hvem av dem som fortjener æren. Koeffisientene begynner å vippe ustabilt, standardfeilene blåser opp, og resultatet blir upålitelig. Det kalles <strong>multikollinearitet</strong>, og <em class="v">VIF</em> setter et tall på faren. <b>1.00 er absolutt minimum</b> og betyr null overlapp. Over 5 begynner man å bli urolig, over 10 er det et problem.</p>
         <p>I studien vår er timer studert og timer søvn laget uavhengige av hverandre, så VIF ligger rundt <span class="stat" data-s="vif"></span>. Men du kan tvinge dem sammen og se hva som skjer:</p>
         <div class="panel">
@@ -1140,6 +1408,16 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         </div>
         <div class="aside tryit"><b>Dra kontrollen sakte mot høyre.</b> Legg merke til hva som skjer med de to prikkene og strekene rundt dem: koeffisientene sklir vekk fra de sanne verdiene (de røde strekene), og konfidensintervallene blir dobbelt så brede. Samtidig predikerer modellen som helhet like godt eller bedre. <strong>Den treffer fortsatt riktig poengsum — den klarer bare ikke lenger å si hvem av de to prediktorene som fortjener æren.</strong> Det er nettopp dette VIF advarer om.</div>
         <div class="aside"><b>Tre måter å si det samme:</b> korrelasjonen mellom prediktorene, hvor mye koeffisienten flytter seg når den andre kommer inn i modellen, og VIF. Når du merker at tall gjentar seg slik, har du som regel forstått noe riktig.</div>
+        <details class="more">
+          <summary>Hvor kommer VIF-tallet fra?</summary>
+          <div class="more-body">
+            <p>For hver prediktor sjekker programmet hvor godt de <em>andre</em> prediktorene kan forutsi den. Den forklarte andelen kalles R²<sub>j</sub>, og:</p>
+            <div class="calc">VIF = 1 / (1 − R²<sub>j</sub>)<br>
+            toleranse = 1 − R²<sub>j</sub> = 1 / VIF</div>
+            <p>Med to prediktorer er R²<sub>j</sub> bare korrelasjonen mellom dem i andre. Grensene oversatt: <b>VIF = 5</b> betyr at prediktorene korrelerer rundt .89. <b>VIF = 10</b> betyr rundt .95. Det skal altså mye overlapp til før det blir alvorlig.</p>
+            <p>Navnet forklarer seg selv: √VIF er hvor mange ganger større standardfeilen blir på grunn av overlappet. VIF = 4 dobler den.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1187,11 +1465,16 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td class="up">Mo</td><td>Modus</td><td>Den vanligste verdien. Sjelden rapportert alene.</td></tr>
             <tr><td class="up">SD</td><td>Standardavvik</td><td>Typisk avstand fra gjennomsnittet. Populasjonens heter <em>σ</em>.</td></tr>
             <tr><td>s²</td><td>Varians</td><td>Standardavviket kvadrert. Regnes med, rapporteres sjelden.</td></tr>
+            <tr><td class="up">cov</td><td>Kovarians</td><td>Hvor mye to variabler varierer sammen, i enheten «x ganger y». Uleselig alene, men byggeklossen i r: r = cov / (SD<sub>x</sub> · SD<sub>y</sub>).</td></tr>
             <tr><td class="up">SE</td><td>Standardfeil</td><td>Usikkerheten i et anslag — ikke spredningen blant folk.</td></tr>
             <tr><td class="up">IQR</td><td>Kvartilbredde</td><td>Fra 25.- til 75.-persentilen. Medianens motstykke til SD.</td></tr>
+            <tr><td class="up">Q1, Q3</td><td>Kvartiler</td><td>Verdiene som skiller ut den laveste og den høyeste fjerdedelen. Q2 er medianen, og IQR = Q3 − Q1.</td></tr>
+            <tr><td class="up">P<sub>90</sub></td><td>Persentil</td><td>Verdien en gitt andel ligger under: 90 % skårer lavere enn 90.-persentilen. Brukes i normtabeller for psykologiske tester.</td></tr>
             <tr><td class="up">Range</td><td>Variasjonsbredde</td><td>Laveste til høyeste verdi.</td></tr>
+            <tr><td class="up">CV</td><td>Variasjonskoeffisient</td><td>SD delt på M: spredningen i prosent av snittet, så variabler på ulike skalaer kan sammenlignes. Gir bare mening på forholdstallsnivå.</td></tr>
             <tr><td class="up">Skjevhet</td><td>Skewness</td><td>0 = symmetrisk. Positiv = hale mot høyre. Over ±2 begynner det å bli problematisk.</td></tr>
             <tr><td class="up">Kurtose</td><td>Kurtosis</td><td>Hvor spiss eller flat toppen er. 0 = normalfordelt (i de fleste programmer).</td></tr>
+            <tr><td class="up">N(μ, σ²)</td><td>Normalfordeling</td><td>Den symmetriske klokkeformen. N(100, 15²) betyr snitt 100 og SD 15. Ca. 68 % ligger innenfor ±1 SD, og 95 % innenfor ±1.96 SD.</td></tr>
             <tr><td class="up">%</td><td>Andel</td><td>For kategoriske variabler. Oppgis alltid med rå antall i parentes.</td></tr>
           </tbody>
         </table></div>
@@ -1204,27 +1487,50 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Effektstørrelser</h2>
         <p class="asks">Hvor stort er det egentlig?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hvorfor effektstørrelse</summary>
+          <div class="more-body">
+            <p>p sier om noe <em>finnes</em>. Effektstørrelsen sier hvor mye det <em>betyr</em>.</p>
+            <p>Eksempel: en ny lesemetode testes på 20 000 elever og gir signifikant bedre resultat, p &lt; .001. Men forskjellen er et halvt poeng på en prøve med 100 poeng. Signifikant — fordi utvalget er enormt — men nesten uten praktisk verdi. Det er effektstørrelsen som avslører det.</p>
+          </div>
+        </details>
         <p>Dette er den viktigste familien i hele ordboka. <em class="v">p</em> forteller bare om noe er der; effektstørrelsen forteller om det betyr noe. En artikkel uten effektstørrelser er en artikkel du skal være skeptisk til.</p>
         <p>Alle grenseverdiene under er <strong>Cohens tommelfingerregler</strong> — nyttige å kjenne, men de er konvensjoner han selv kalte vilkårlige. I et felt der alt er svakt, er .30 stort.</p>
         <div class="scroller"><table class="dict tight" data-fam="Effektstørrelse">
           <tbody>
             <tr><td>d</td><td>Cohens d</td><td>Forskjell mellom to gjennomsnitt, målt i standardavvik. <b>0.20</b> liten · <b>0.50</b> middels · <b>0.80</b> stor.</td></tr>
             <tr><td>g</td><td>Hedges' g</td><td>Cohens d justert for små utvalg. Nesten identisk når N er stor.</td></tr>
+            <tr><td>d<sub>z</sub></td><td>Cohens d for parede målinger</td><td>Gjennomsnittlig endring delt på SD for endringene. Blir ofte større enn en vanlig d for den samme forskjellen, fordi det å måle de samme personene to ganger fjerner mye av spredningen. Si alltid hvilken d du har brukt.</td></tr>
             <tr><td>r</td><td>Korrelasjon</td><td>Også en effektstørrelse. <b>.10</b> liten · <b>.30</b> middels · <b>.50</b> stor.</td></tr>
             <tr><td>r²</td><td>Delt variasjon</td><td>Andel felles variasjon mellom to variabler.</td></tr>
+            <tr><td>τ</td><td>Kendalls tau</td><td>Rangkorrelasjon, som Spearman, men regnet ut fra hvor mange par som står i samme rekkefølge på begge variablene. Blir lavere enn Spearman på de samme dataene, og tåler mange like verdier bedre. JASP tilbyr den ved siden av Pearson og Spearman.</td></tr>
+            <tr><td>r<sub>pb</sub></td><td>Punktbiserial korrelasjon</td><td>Pearsons r når den ene variabelen bare har to verdier, for eksempel gruppe. Henger direkte sammen med t-testen og Cohens d.</td></tr>
+            <tr><td>r<sub>rb</sub></td><td>Rangbiserial korrelasjon</td><td>Effektstørrelsen JASP gir for Mann–Whitney og Wilcoxon. Fra −1 til +1: andelen par der den ene gruppen skårer høyest, minus andelen der den andre gjør det.</td></tr>
             <tr><td class="up">R²</td><td>Forklart variasjon</td><td>Andelen av utfallet hele modellen fanger opp.</td></tr>
             <tr><td>η²</td><td>Eta-kvadrat</td><td>ANOVAs R². Andel av total variasjon som skyldes én faktor. <b>.01</b> · <b>.06</b> · <b>.14</b>.</td></tr>
             <tr><td>η<sub>p</sub>²</td><td>Partiell eta-kvadrat</td><td>Samme, men etter at andre faktorer er trukket ut av nevneren. <strong>Alltid større enn η²</strong> — derfor er det den folk helst rapporterer.</td></tr>
             <tr><td>ω²</td><td>Omega-kvadrat</td><td>Som η², men mindre forventningsskjev. Faglig sett bedre, sjeldnere brukt.</td></tr>
             <tr><td>f</td><td>Cohens f</td><td>Effektstørrelse for ANOVA i styrkeberegning. <b>.10</b> · <b>.25</b> · <b>.40</b>.</td></tr>
+            <tr><td>f²</td><td>Cohens f²</td><td>Effektstørrelse for regresjon i styrkeberegning: R² / (1 − R²). <b>.02</b> liten · <b>.15</b> middels · <b>.35</b> stor.</td></tr>
             <tr><td class="up">V</td><td>Cramérs V</td><td>Effektstørrelse for kjikvadrat. 0 til 1. Grensene avhenger av tabellens størrelse.</td></tr>
             <tr><td>φ</td><td>Phi</td><td>Cramérs V for en ren 2 × 2-tabell.</td></tr>
+            <tr><td class="up">Kendalls W</td><td>Samstemmighet</td><td>Effektstørrelse for Friedmans test, fra 0 til 1. Brukes også som mål på hvor enige flere vurderere er om en rangering.</td></tr>
             <tr><td class="up">OR</td><td>Odds ratio</td><td>1.00 = ingen forskjell. 2.0 = dobbelt så høy odds. Under 1 = lavere odds. Merk: odds er ikke sannsynlighet.</td></tr>
             <tr><td class="up">RR</td><td>Relativ risiko</td><td>Forholdet mellom to sannsynligheter. Lettere å tolke enn OR, men krever prospektive data.</td></tr>
             <tr><td class="up">NNT</td><td>Number needed to treat</td><td>Hvor mange må behandles for at én skal ha nytte. Vanlig i klinisk forskning.</td></tr>
           </tbody>
         </table></div>
         <div class="aside"><b>Hvordan lese en effektstørrelse riktig:</b> spør alltid «hva ville jeg merket i praksis?». d = 0.50 betyr at gjennomsnittspersonen i den ene gruppen skårer høyere enn omtrent 69 % av den andre gruppen. Det er tydelig, men langt fra to atskilte grupper.</div>
+        <details class="more">
+          <summary>Regn ut Cohens d — og hvor «69 %» kommer fra</summary>
+          <div class="more-body">
+            <p>Cohens d er forskjellen mellom to gruppesnitt, delt på standardavviket de har til felles:</p>
+            <div class="calc">d = (M₁ − M₂) / SD<sub>felles</sub></div>
+            <p>Eksempelet fra setningsleseren: kvinner M = 3.42 (SD = 0.81, n = 214), menn M = 3.05 (SD = 0.77, n = 177). Det felles standardavviket er et vektet snitt av de to, omtrent 0.79. Da er d = (3.42 − 3.05) / 0.79 = 0.37 / 0.79 ≈ 0.47.</p>
+            <p>Har du bare t og gruppestørrelsene, kan du regne baklengs: d ≈ t × √(1/n₁ + 1/n₂) = 4.62 × √(1/214 + 1/177) ≈ 0.47.</p>
+            <p><b>«69 %»</b> kommer fra normalfordelingen. Med d = 0.50 ligger gjennomsnittspersonen i den ene gruppen et halvt standardavvik over snittet i den andre — og et halvt standardavvik over midten har omtrent 69 % av fordelingen under seg. d = 0.20 gir 58 %, og d = 0.80 gir 79 %.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1238,11 +1544,16 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         <div class="scroller"><table class="dict tight" data-fam="Gruppesammenligning">
           <tbody>
             <tr><td>t</td><td>t-test</td><td>Skiller to gjennomsnitt seg mer enn tilfeldigheter tilsier? Skrives <code>t(df) = 4.62</code>.</td></tr>
+            <tr><td class="up">Paret t</td><td>Paret t-test</td><td>To målinger på de samme personene, for eksempel før og etter. Tester om den gjennomsnittlige endringen er forskjellig fra null. df = antall par − 1.</td></tr>
+            <tr><td class="up">Ettutvalgs t</td><td>One-sample t-test</td><td>Sammenligner ett gjennomsnitt med en fast verdi, for eksempel et normtall eller midtpunktet på en skala.</td></tr>
             <tr><td class="up">Welch</td><td>Welchs t-test</td><td>t-test som tåler ulik spredning i gruppene. Kjennetegnes ved at df blir et desimaltall (f.eks. 371.4). Bør egentlig være standardvalget.</td></tr>
             <tr><td class="up">Levene</td><td>Levenes test</td><td>Tester om gruppene har lik varians. <strong>Her vil du at p skal være stor</strong> — signifikant Levene betyr at forutsetningen er brutt.</td></tr>
+            <tr><td class="up">Shapiro–Wilk</td><td>Normalitetstest (W)</td><td>Tester om dataene, eller residualene, avviker fra normalfordelingen. Skrives <code>W = 0.97, p = .21</code>. Som for Levene vil du ha <strong>stor p</strong>. Blir overfølsom i store utvalg — se på Q–Q-plottet også.</td></tr>
             <tr><td class="up">U</td><td>Mann–Whitney U</td><td>Ikke-parametrisk versjon av t-testen for to uavhengige grupper. Sammenligner rangeringer, ikke gjennomsnitt.</td></tr>
             <tr><td class="up">W</td><td>Wilcoxon signed-rank</td><td>Samme idé for to målinger på de samme personene (før/etter).</td></tr>
+            <tr><td class="up">McNemar</td><td>McNemars test</td><td>Kjikvadrat for de samme personene målt to ganger på en ja/nei-variabel. Ser bare på dem som byttet svar.</td></tr>
             <tr><td class="up">H</td><td>Kruskal–Wallis H</td><td>Ikke-parametrisk for tre eller flere grupper.</td></tr>
+            <tr><td class="up">Friedman</td><td>Friedmans test</td><td>Ikke-parametrisk versjon av ANOVA for gjentatte målinger: de samme personene målt tre eller flere ganger. Effektstørrelsen er Kendalls W.</td></tr>
             <tr><td>χ²</td><td>Kjikvadrat</td><td>Testen for <em>kategoriske</em> data — der du teller personer i bokser i stedet for å måle noe på en skala. Uttales «ki». Skrives <code>χ²(2, N = 391) = 8.4</code>. Alle varianter bygger på det samme regnestykket: hvor langt er de <em>observerte</em> antallene fra de <em>forventede</em>?</td></tr>
             <tr><td class="up">O vs. F</td><td>Observert mot forventet</td><td>Selve mekanikken. «Forventet» betyr: hvor mange ville havnet i denne cellen hvis nullhypotesen stemte? χ² summerer <code>(O − F)² / F</code> over alle cellene. Ingen avvik gir χ² = 0; jo større tallet blir, desto dårligere passer nullhypotesen.</td></tr>
             <tr><td class="up">χ² tilpasning</td><td>Goodness-of-fit · én variabel</td><td>Fordeler én kategorisk variabel seg slik vi ventet? «Er en kjønnsfordeling på 44/31 forenlig med 50/50?» De forventede antallene kommer fra en fordeling du oppgir selv.</td></tr>
@@ -1252,6 +1563,38 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           </tbody>
         </table></div>
         <div class="aside"><b>Når kan du stole på en χ²?</b> <em>Uavhengige observasjoner:</em> hver deltager telles én gang, i én celle — måler du de samme personene før og etter, er forutsetningen brutt, og McNemars test er riktig verktøy. <em>Forventede antall bør stort sett være ≥ 5</em>, og JASP sier fra når de ikke er det. <em>Er tabellen liten og antallene lave</em>, bruk Fishers eksakte test. Og til slutt, det som oftest glemmes: <strong>χ² svarer bare på <em>om</em> det finnes en sammenheng, aldri på hvor sterk den er.</strong> Til det trenger du <a href="#fam-effekt">Cramérs V</a> — akkurat som <em class="v">r²</em> må stå ved siden av <em class="v">p</em>.</div>
+        <details class="more">
+          <summary>Regn ut χ² for hånd</summary>
+          <div class="more-body">
+            <p>Spørsmålet fra tabellen over: er 44 kvinner og 31 menn (N = 75) forenlig med 50/50? Med 50/50 skulle det vært 37,5 av hver.</p>
+            <div class="scroller"><table class="mini">
+              <thead><tr><th></th><th>Observert (O)</th><th>Forventet (F)</th><th>(O − F)² / F</th></tr></thead>
+              <tbody>
+                <tr><td>Kvinner</td><td>44</td><td>37.5</td><td>42.25 / 37.5 = 1.127</td></tr>
+                <tr><td>Menn</td><td>31</td><td>37.5</td><td>42.25 / 37.5 = 1.127</td></tr>
+                <tr><td>Sum</td><td>75</td><td>75</td><td>χ² = 2.25</td></tr>
+              </tbody>
+            </table></div>
+            <p>To kategorier gir df = 1. Resultatet: χ²(1, N = 75) = 2.25, p = .13 — ikke signifikant. Skjevheten er ikke større enn det tilfeldig trekning fra en 50/50-populasjon ofte gir med 75 personer.</p>
+            <p>I en krysstabell er oppskriften den samme. Forventet antall i hver celle er da radsummen × kolonnesummen / N.</p>
+          </div>
+        </details>
+        <details class="more">
+          <summary>Hvilken test? Hele familien i én tabell</summary>
+          <div class="more-body">
+            <p>Finn designet ditt i venstre kolonne, og gå mot høyre til du finner typen data du har.</p>
+            <div class="scroller"><table class="mini wide">
+              <thead><tr><th>Hva du sammenligner</th><th>Tall, omtrent normalfordelt</th><th>Skjevt, rangert eller lite utvalg</th><th>Kategorier (du teller)</th></tr></thead>
+              <tbody>
+                <tr><td>To ulike grupper</td><td>t-test (helst Welch)</td><td>Mann–Whitney U</td><td>χ² eller Fisher</td></tr>
+                <tr><td>Samme personer to ganger</td><td>Paret t-test</td><td>Wilcoxon</td><td>McNemar</td></tr>
+                <tr><td>Tre eller flere ulike grupper</td><td>Enveis-ANOVA</td><td>Kruskal–Wallis</td><td>χ²</td></tr>
+                <tr><td>Samme personer tre eller flere ganger</td><td>ANOVA for gjentatte målinger</td><td>Friedman</td><td>Cochrans Q-test</td></tr>
+                <tr><td>Sammenheng mellom to variabler</td><td>Pearsons r</td><td>Spearman eller Kendall</td><td>χ² og Cramérs V</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1273,13 +1616,27 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td class="up">Hovedeffekt</td><td>Main effect</td><td>Effekten av én faktor alene, sett bort fra de andre.</td></tr>
             <tr><td>W</td><td>Mauchlys W</td><td>Tester sfærisitet i gjentatte målinger. Signifikant W = forutsetningen brutt.</td></tr>
             <tr><td>ε</td><td>Greenhouse–Geisser ε</td><td>Korreksjonsfaktor når sfærisiteten er brutt. Krymper df. Huynh–Feldt er en mildere variant.</td></tr>
+            <tr><td class="up">Brown–Forsythe</td><td>Robust F</td><td>Alternativ til Welchs ANOVA når variansene er ulike. JASP tilbyr begge under homogenitetskorreksjoner.</td></tr>
             <tr><td class="up">Tukey HSD</td><td>Post hoc-test</td><td>Sammenligner alle par etter en signifikant ANOVA, og justerer for at man tester mange ganger.</td></tr>
+            <tr><td class="up">Dunnett</td><td>Post hoc mot kontroll</td><td>Sammenligner hver gruppe bare med kontrollgruppen, ikke alle par med alle. Færre sammenligninger gir mer styrke.</td></tr>
             <tr><td class="up">Bonferroni</td><td>Korreksjon</td><td>Del signifikansgrensa på antall tester. Enkelt, men strengt. Holm er en bedre variant.</td></tr>
             <tr><td>p<sub>adj</sub></td><td>Justert p-verdi</td><td>p etter korreksjon for antall tester. Alltid større enn den ujusterte.</td></tr>
             <tr><td class="up">ANCOVA</td><td>Kovariansanalyse</td><td>ANOVA der man først trekker ut effekten av en kontinuerlig kontrollvariabel.</td></tr>
             <tr><td>Λ</td><td>Wilks' lambda</td><td>MANOVA-versjonen av F, når du har flere utfallsvariabler samtidig. <strong>Lav Λ = stor effekt</strong> — motsatt av det du forventer.</td></tr>
           </tbody>
         </table></div>
+        <details class="more">
+          <summary>Slik finner du tallene i JASP</summary>
+          <div class="more-body">
+            <p><b>ANOVA → ANOVA.</b> Utfallet i <em>Dependent Variable</em>, gruppevariabelen i <em>Fixed Factors</em>. Så, i denne rekkefølgen:</p>
+            <ul>
+              <li><b>Display:</b> kryss av for <em>Descriptive statistics</em> og <em>Estimates of effect size</em> (η² eller ω²).</li>
+              <li><b>Assumption Checks:</b> <em>Homogeneity tests</em> gir Levene, og <em>Q-Q plot of residuals</em> viser normaliteten. Slår Levene ut, velg Welch under <em>Homogeneity corrections</em>.</li>
+              <li><b>Post Hoc Tests:</b> flytt faktoren over og velg Tukey — eller Games–Howell hvis variansene er ulike. Bare hvis F ble signifikant.</li>
+            </ul>
+            <p>Navnene kan variere litt mellom JASP-versjoner, men rekkefølgen er den samme: beskriv, sjekk, test, følg opp.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1298,8 +1655,12 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td class="up">F change</td><td>Test av endringen</td><td>Er ΔR² større enn tilfeldig? Rapporteres som <code>F(1, 388) = 11.11</code>.</td></tr>
             <tr><td class="up">VIF</td><td>Variance inflation factor</td><td>Overlapp mellom prediktorer. Over 5 uroende, over 10 problematisk.</td></tr>
             <tr><td class="up">Toleranse</td><td>Tolerance</td><td>1 delt på VIF. Under 0.20 er samme advarsel, sagt motsatt vei.</td></tr>
+            <tr><td>sr²</td><td>Kvadrert delkorrelasjon</td><td>Andelen av utfallet som <em>bare</em> denne prediktoren forklarer. Det samme som ΔR² når prediktoren legges inn sist. JASP kaller den <em>part correlation</em>.</td></tr>
+            <tr><td>pr</td><td>Partiell korrelasjon</td><td>Sammenhengen mellom prediktoren og utfallet når de andre prediktorene er fjernet fra begge. Alltid minst like stor som sr.</td></tr>
             <tr><td class="up">DW</td><td>Durbin–Watson</td><td>Tester om residualene henger sammen. Rundt 2 er bra, under 1 eller over 3 er ikke.</td></tr>
             <tr><td class="up">Cooks D</td><td>Cook's distance</td><td>Hvor mye én enkelt deltager flytter hele modellen. Over 1 er en observasjon å se nærmere på.</td></tr>
+            <tr><td class="up">Std. residual</td><td>Standardisert residual</td><td>Bommen målt i standardavvik. Over ±3 er en mulig uteligger; JASP lister dem under <em>Casewise diagnostics</em>.</td></tr>
+            <tr><td class="up">Mahalanobis</td><td>Mahalanobis-avstand</td><td>Hvor uvanlig en persons <em>kombinasjon</em> av verdier er. Fanger uteliggere som ser helt vanlige ut på hver variabel for seg — for eksempel 1,90 m høy og 50 kg.</td></tr>
             <tr><td class="up">exp(B)</td><td>Odds ratio</td><td>I logistisk regresjon. B er på log-odds-skala og er uleselig; exp(B) er den tolkbare versjonen.</td></tr>
             <tr><td class="up">Wald</td><td>Wald-test</td><td>Logistisk regresjons svar på t: er denne koeffisienten forskjellig fra null?</td></tr>
             <tr><td class="up">Nagelkerke R²</td><td>Pseudo-R²</td><td>Logistisk regresjon har ingen ekte R². Dette er en tilnærming, og den er systematisk lavere enn folk forventer.</td></tr>
@@ -1331,8 +1692,27 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td class="up">Item–total</td><td>Ledd–total-korrelasjon</td><td>Henger dette ene spørsmålet sammen med resten av skalaen? Under .30 vurderes leddet fjernet.</td></tr>
             <tr><td class="up">AVE</td><td>Average variance extracted</td><td>Konvergent validitet i SEM. <b>≥ .50</b>.</td></tr>
             <tr><td class="up">CR</td><td>Composite reliability</td><td>Reliabilitet regnet ut fra faktorladningene. <b>≥ .70</b>.</td></tr>
+            <tr><td class="up">Split-half</td><td>Delt-test-reliabilitet</td><td>Del testen i to halvdeler og korreler dem. Korrigeres med Spearman–Brown, fordi hver halvdel er kortere enn hele testen.</td></tr>
+            <tr><td class="up">Spearman–Brown</td><td>Forlengelsesformelen</td><td>Regner ut hva reliabiliteten blir hvis testen gjøres lengre eller kortere. Forklarer hvorfor lange skalaer får høy α.</td></tr>
+            <tr><td class="up">SEM</td><td>Standard error of measurement</td><td>Hvor mye én persons skåre typisk bommer på grunn av måleusikkerhet: SD · √(1 − reliabilitet). Ikke det samme som SEM i faktoranalyse — se falske venner.</td></tr>
           </tbody>
         </table></div>
+        <details class="more">
+          <summary>Hvorfor blir α høyere med flere ledd?</summary>
+          <div class="more-body">
+            <p>Cronbachs α avhenger av to ting: hvor godt leddene henger sammen, og <em>hvor mange</em> ledd det er. Her er α når den gjennomsnittlige korrelasjonen mellom leddene er den samme, .30, men antall ledd øker:</p>
+            <table class="mini">
+              <thead><tr><th>Antall ledd</th><th>α</th></tr></thead>
+              <tbody>
+                <tr><td>5</td><td>.68</td></tr>
+                <tr><td>10</td><td>.81</td></tr>
+                <tr><td>20</td><td>.90</td></tr>
+              </tbody>
+            </table>
+            <div class="calc">α ≈ k · r̄ / (1 + (k − 1) · r̄)</div>
+            <p>En lang skala kan altså få høy α selv om leddene bare henger svakt sammen. Høy α betyr ikke at skalaen måler én ting — bare at summen av mange ledd er stabil. Formelen er den samme som <b>Spearman–Brown</b>, som brukes til å regne ut hva som skjer med reliabiliteten hvis en test gjøres lengre eller kortere.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1371,6 +1751,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Bayesiansk statistikk</h2>
         <p class="asks">Hvor mye taler dataene for den ene hypotesen framfor den andre?</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva en Bayesfaktor er</summary>
+          <div class="more-body">
+            <p>En Bayesfaktor sammenligner to forklaringer og sier hvilken dataene passer best med. BF₁₀ = 6 betyr: dataene passer seks ganger bedre med «det finnes en effekt» enn med «det finnes ingen effekt».</p>
+            <p>Den kan også peke den andre veien. BF₀₁ = 6 betyr at dataene passer seks ganger bedre med «ingen effekt». Det er den store fordelen framfor p-verdien, som aldri kan gi støtte til at det ikke finnes noe.</p>
+          </div>
+        </details>
         <p>Dette er hele høyre halvdel av menyen i JASP, og det kommer til å dukke opp i pensum. Forskjellen fra vanlig statistikk er verdt å forstå:</p>
         <p><strong>En p-verdi kan bare avvise nullhypotesen, aldri støtte den.</strong> «Ikke signifikant» betyr «vi fant ingenting», ikke «det er ingenting». En Bayesfaktor kan derimot gi <em>positiv evidens for</em> at det ikke er noen forskjell. Det er den store praktiske gevinsten.</p>
         <div class="scroller"><table class="dict tight" data-fam="Bayes">
@@ -1385,6 +1772,14 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td class="up">Robusthetssjekk</td><td>Prior sensitivity</td><td>Endrer konklusjonen seg hvis man velger en annen prior? JASP tegner dette som en kurve.</td></tr>
           </tbody>
         </table></div>
+        <details class="more">
+          <summary>Hvordan leser jeg en Bayesfaktor under 1?</summary>
+          <div class="more-body">
+            <p>BF₁₀ og BF₀₁ er den samme brøken snudd opp ned: BF₀₁ = 1 / BF₁₀. Får du BF₁₀ = 0.25, er BF₀₁ = 4. Dataene passer da fire ganger bedre med nullhypotesen — moderat evidens <em>for</em> at det ikke er noen effekt.</p>
+            <p>Tips: rapporter den som er større enn 1, og si hvilken vei den peker. «BF₀₁ = 4.0» er lettere å lese enn «BF₁₀ = 0.25». BF = 1 betyr at dataene ikke skiller mellom hypotesene i det hele tatt.</p>
+            <p>Ikke bland skalaene: en p like under .05 tilsvarer typisk en Bayesfaktor på høyst rundt 2,5 — det Bayes-skalaen kaller «knapt verdt å nevne».</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1426,11 +1821,15 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td class="up">Type II</td><td>Falsk negativ</td><td>Å overse en effekt som faktisk finnes. Sannsynligheten kalles β.</td></tr>
             <tr><td>1 − β</td><td>Statistisk styrke</td><td>Sjansen for å oppdage en effekt som er der. <b>≥ .80</b> er konvensjonen. Underpowered studier er psykologiens største metodeproblem.</td></tr>
             <tr><td class="up">Ensidig / tosidig</td><td>One- / two-tailed</td><td>Tosidig er standard. Ensidig krever at retningen var bestemt på forhånd, og gir «gratis» signifikans hvis den velges etterpå.</td></tr>
+            <tr><td class="up">Kritisk verdi</td><td>Critical value</td><td>Grensa teststatistikken må over for å bli signifikant. For z og store utvalg er den 1.96 (tosidig, α = .05). For t er den litt høyere når df er lav.</td></tr>
             <tr><td class="up">FWER</td><td>Familiewise error rate</td><td>Risikoen for minst én falsk positiv når man tester mange ting. Bonferroni og Holm holder den nede.</td></tr>
             <tr><td class="up">FDR</td><td>False discovery rate</td><td>Mildere alternativ (Benjamini–Hochberg): kontrollerer andelen falske funn i stedet for risikoen for én.</td></tr>
             <tr><td class="up">p-hacking</td><td>Analysefrihet</td><td>Å prøve seg fram til p &lt; .05. Ofte utilsiktet.</td></tr>
             <tr><td class="up">HARKing</td><td>Hypotese i etterkant</td><td>Å presentere et funn man snublet over som om det var forutsagt.</td></tr>
             <tr><td class="up">Preregistrering</td><td>Forhåndsregistrering</td><td>Analyseplanen låses før dataene samles inn. Motgiften mot begge de to over.</td></tr>
+            <tr><td class="up">A priori-analyse</td><td>Styrkeberegning på forhånd</td><td>Hvor mange deltagere trengs for å oppdage en gitt effekt med styrke .80? Regnes ut før datainnsamlingen, for eksempel i G*Power eller JASP. «Observert styrke» regnet ut etterpå er meningsløst — det er bare p-verdien i en annen drakt.</td></tr>
+            <tr><td class="up">SESOI</td><td>Minste interessante effekt</td><td>Smallest effect size of interest: den minste effekten som ville betydd noe i praksis. Bestemmes på forhånd, og brukes både i styrkeberegning og ekvivalenstest.</td></tr>
+            <tr><td class="up">TOST</td><td>Ekvivalenstest</td><td>To ensidige tester som spør om effekten er mindre enn SESOI i begge retninger. Gir det p-verdien aldri kan: støtte for at en effekt er for liten til å bety noe.</td></tr>
           </tbody>
         </table></div>
       </div>
@@ -1458,6 +1857,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td>λ</td><td>lambda</td><td>Faktorladning. Stor Λ er Wilks' lambda i MANOVA.</td></tr>
             <tr><td>ε</td><td>epsilon</td><td>Greenhouse–Geisser-korreksjonen. I formler også feilleddet.</td></tr>
             <tr><td>τ²</td><td>tau-kvadrat</td><td>Variansen mellom studier i metaanalyse.</td></tr>
+            <tr><td>τ</td><td>tau</td><td>Kendalls rangkorrelasjon. Kvadrert, τ², er det variansen mellom studier i metaanalyse.</td></tr>
             <tr><td>κ</td><td>kappa</td><td>Cohens kappa — enighet mellom vurderere.</td></tr>
             <tr><td>φ</td><td>phi</td><td>Effektstørrelse for 2 × 2-tabeller.</td></tr>
             <tr><td>Δ</td><td>delta, stor</td><td>«Endring i». ΔR² er endringen i R².</td></tr>
@@ -1529,6 +1929,23 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <p class="ffhint">De rapporteres ofte uten at det sies hvilken det er, og de kan ikke sammenlignes på tvers av studier med ulikt design. Vær forsiktig med å veie dem mot hverandre.</p>
         </div>
 
+        <div class="ff">
+          <h3>W</h3>
+          <div class="ffgrid">
+            <div><b>Wilcoxon og Shapiro–Wilk</b><span>Wilcoxons W er en ikke-parametrisk test for parede målinger. Shapiro–Wilks W tester normalitet — der vil du ha stor p.</span></div>
+            <div><b>Mauchly og Kendall</b><span>Mauchlys W tester sfærisitet i gjentatte målinger. Kendalls W er en effektstørrelse fra 0 til 1 for Friedmans test.</span></div>
+          </div>
+          <p class="ffhint">Fire betydninger av én bokstav. Se på hvilken test som står i nærheten, og om det står en p ved siden av: Kendalls W er et mål på styrke, de tre andre er tester.</p>
+        </div>
+
+        <div class="ff">
+          <h3>SEM</h3>
+          <div class="ffgrid">
+            <div><b>Structural equation modelling</b><span>En hel modell av underliggende faktorer, testet samtidig. Står sammen med CFI og RMSEA.</span></div>
+            <div><b>Standard error of measurement</b><span>Hvor mye én persons skåre bommer på grunn av måleusikkerhet. Står sammen med reliabiliteten til en test.</span></div>
+          </div>
+          <p class="ffhint">Noen bruker også SEM om standardfeilen til et gjennomsnitt (standard error of the mean). Tre betydninger — sjekk hva forfatteren har definert.</p>
+        </div>
         <div class="ff">
           <h3>Konfidensintervall mot kredibelt intervall</h3>
           <div class="ffgrid">
@@ -1647,6 +2064,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Å lese en interaksjon</h2>
         <p class="asks">Forskjellen mellom forskjellene</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva en interaksjon er</summary>
+          <div class="more-body">
+            <p>En interaksjon betyr «det kommer an på». Kaffe gjør deg mer våken — men mye mer når du er trøtt enn når du er uthvilt. Effekten av kaffe <em>avhenger av</em> hvor trøtt du er. Det er en interaksjon mellom kaffe og trøtthet.</p>
+            <p>I et plott med to linjer er det lett å se: <b>parallelle linjer</b> betyr ingen interaksjon — effekten er lik for alle. <b>Linjer med ulik helning</b> betyr at det finnes en.</p>
+          </div>
+        </details>
         <p>En interaksjon er ikke et vanskeligere tall enn de andre — den er bare et tall om et tall. Hovedeffekten spør «er det forskjell?». Interaksjonen spør «er forskjellen den samme overalt?».</p>
         <p>Regn det ut for hånd én gang på fire cellegjennomsnitt, så slipper du aldri taket i det igjen: finn forskjellen mellom de to betingelsene på det ene nivået av den andre faktoren, finn den samme forskjellen på det andre nivået, og trekk dem fra hverandre. Er de to forskjellene like, er differansen null, og det er nettopp det nullhypotesen for interaksjonen sier.</p>
         <div class="scroller"><table class="dict terms tight" data-fam="Interaksjon">
@@ -1748,6 +2172,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Mange tester, ett datasett</h2>
         <p class="asks">Hva korreksjonen kjøper, og hva den koster</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hvorfor man korrigerer</summary>
+          <div class="more-body">
+            <p>Kjøp ett lodd, og du vinner nesten aldri. Kjøp tjue, og sjansen for å vinne <em>noe</em> blir mye større. Hver test med α = .05 er et lodd med 5 % sjanse for et falskt «funn». Kjører du mange tester, slår nesten helt sikkert minst én ut av ren flaks.</p>
+            <p>Korreksjonen gjør hvert lodd strengere, slik at sjansen for minst ett falskt funn i hele runden holder seg på 5 %.</p>
+          </div>
+        </details>
         <p>Med ti sammenligninger på α = .05 er sjansen for minst én falsk positiv ikke fem prosent. Den er <em class="v">1 − .95¹⁰</em>, altså rundt 40 prosent, selv om ingen av gruppene i sannhet skiller seg. Regn det ut én gang for hånd — det er den mest overbevisende utregningen i hele emnet, og den forklarer hvorfor post hoc-tester finnes.</p>
         <p>Korreksjonen holder den <strong>familievise</strong> feilraten på fem prosent i stedet for feilraten per test. Det er et bytte: du kjøper kontroll over falske positive, og betaler i styrke. Hver enkelt sammenligning blir vanskeligere å få signifikant, og sanne forskjeller kan derfor bli oversett. Det er ikke en gratis forsikring, det er en avveining mellom to typer feil.</p>
         <div class="scroller"><table class="dict terms tight" data-fam="Mange tester">
@@ -1763,6 +2194,25 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           </tbody>
         </table></div>
         <div class="aside"><b>Post hoc bare der omnibus var signifikant.</b> Rekkefølgen er hele poenget: omnibustesten er porten som holder den familievise feilraten nede. Kjører du parvise tester uansett, har du gått rundt porten, og korreksjonen i post hoc-testen er ikke lenger dekkende for alt du har sett på.</div>
+        <details class="more">
+          <summary>Bonferroni og Holm, steg for steg</summary>
+          <div class="more-body">
+            <p>Fire tester ga p = .010, .015, .030 og .040.</p>
+            <p><b>Bonferroni:</b> del grensa på antall tester: .05 / 4 = .0125. Bare .010 er under. Ett funn.</p>
+            <p><b>Holm:</b> sorter p-ene fra minst til størst, og gjør grensa litt mildere for hvert steg. Stopp første gang en p er over grensa.</p>
+            <table class="mini">
+              <thead><tr><th>p</th><th>Holm-grensen</th><th>Resultat</th></tr></thead>
+              <tbody>
+                <tr><td>.010</td><td>.05 / 4 = .0125</td><td>signifikant</td></tr>
+                <tr><td>.015</td><td>.05 / 3 = .0167</td><td>signifikant</td></tr>
+                <tr><td>.030</td><td>.05 / 2 = .025</td><td>ikke — stopp her</td></tr>
+                <tr><td>.040</td><td>—</td><td>ikke</td></tr>
+              </tbody>
+            </table>
+            <p>To funn i stedet for ett, med den samme beskyttelsen mot falske funn. Derfor er Holm et bedre standardvalg enn Bonferroni.</p>
+            <p>Programmer viser ofte <em>justerte p-verdier</em> i stedet. Bonferroni ganger da hver p med antall tester (.010 × 4 = .040), og så sammenligner du med .05 som vanlig. Det er samme regnestykke, snudd.</p>
+          </div>
+        </details>
         <div class="aside"><b>Paret som havner rett over grensa.</b> I nesten alle post hoc-utskrifter finnes ett par som er signifikant ukorrigert og ikke signifikant etter korreksjon. Det er ikke et halvt funn. Det riktige er å rapportere den korrigerte p-verdien, nevne differansen og la være å gi paret mer plass enn de andre. Se også <a href="#pjakt">Jakten på p under .05</a>.</div>
       </div>
     </section>
@@ -1773,6 +2223,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Samme modell, flere navn</h2>
         <p class="asks">t-test, ANOVA og regresjon er én ting</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: én modell, mange navn</summary>
+          <div class="more-body">
+            <p>t-test, ANOVA og regresjon høres ut som tre ulike verktøy, men de gjør det samme: de gjetter utfallet ut fra noe annet, og ser hvor mye de bommer. Forskjellen er bare <em>hva</em> de gjetter ut fra — to grupper, flere grupper, eller en skala.</p>
+            <p>Derfor gir de samme svar når de brukes på de samme dataene. Det er ikke tilfeldig; det er samme regnestykke under ulike navn.</p>
+          </div>
+        </details>
         <p>Emnet presenterer testene som en liste, og det er lett å lære dem som en liste: fem prosedyrer med hver sin utskrift. De er ikke det. Nesten alt du møter er den samme lineære modellen — <em class="v">utfall = konstant + vekter × prediktorer + bom</em> — satt opp med ulike prediktorer. Tre likheter viser det, og de er verdt å regne etter på minst én gang.</p>
         <div class="ff">
           <h3>r = β</h3>
@@ -1859,6 +2316,19 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           </div>
           <p class="ffhint">Er resultatdelen for lang, er det nesten alltid fordi den har begynt å tolke. Flytt setningen ned, så løser begge deler seg samtidig.</p>
         </div>
+        <details class="more">
+          <summary>Maler for de vanligste resultatsetningene</summary>
+          <div class="more-body">
+            <p>Bytt ut tallene med dine egne. Tallene her er oppdiktede, men henger sammen innbyrdes.</p>
+            <p><b>Uavhengig t-test</b><span class="tpl">Kvinnene (M = 3.42, SD = 0.81) skåret høyere enn mennene (M = 3.05, SD = 0.77), t(389) = 4.62, p &lt; .001, d = 0.47.</span></p>
+            <p><b>Paret t-test</b><span class="tpl">Selvtilliten sank fra før (M = 3.80, SD = 0.62) til etter prøven (M = 3.38, SD = 0.71), t(74) = 5.12, p &lt; .001, d = 0.59.</span></p>
+            <p><b>Enveis-ANOVA</b><span class="tpl">Gruppene skilte seg signifikant, F(2, 72) = 5.31, p = .007, η² = .13. Tukeys post hoc-test viste at …</span></p>
+            <p><b>Korrelasjon</b><span class="tpl">Timer studert hang sammen med poeng, r(73) = .43, p &lt; .001, 95 % KI [.23, .60].</span></p>
+            <p><b>Enkel regresjon</b><span class="tpl">Timer studert predikerte poeng, b = 2.51, 95 % KI [1.29, 3.73], β = .43, t(73) = 4.10, p &lt; .001. Modellen forklarte 19 % av variasjonen, R² = .19, F(1, 73) = 16.81, p &lt; .001.</span></p>
+            <p><b>Kjikvadrat</b><span class="tpl">Medisinbruk var ulikt fordelt mellom gruppene, χ²(1, N = 120) = 6.45, p = .011, φ = .23.</span></p>
+            <p><b>Nullfunn</b><span class="tpl">Det var ingen signifikant forskjell mellom gruppene, t(38) = 1.12, p = .27, d = 0.35.</span></p>
+          </div>
+        </details>
         <div class="aside"><b>Tabell og figur gjør ulik jobb.</b> Tabellen er for presise tall som skal kunne leses av og brukes videre — en korrelasjonsmatrise, et sett regresjonskoeffisienter. Figuren er for mønsteret du vil at leseren skal <em>se</em> — en interaksjon, en fordeling. Står det samme i begge, er den ene overflødig. Og alt som står i en tabell skal være nevnt i teksten, men ikke gjentatt tall for tall.</div>
         <div class="aside"><b>Ikke-signifikante resultater skal med i tabellen.</b> En korrelasjonsmatrise der bare de signifikante parene er fylt inn, er en publikasjonsskjevhet i miniatyr — se <a href="#pjakt">skuffdemoen</a>. Fullstendigheten er hele poenget med en matrise.</div>
         <div class="aside tryit"><b>Les ditt eget avsnitt med denne testen:</b> stryk alle tallene, og se om det som står igjen fortsatt påstår noe. Gjør det ikke det, er avsnittet en oppramsing og trenger en ledende setning. Påstår det mer enn tallene bærer, er det tolkning som hører hjemme i diskusjonen.</div>
@@ -1901,7 +2371,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <div>
         <h2>Hele ordboka</h2>
         <p class="asks">Søk mens du leser</p>
-        <p>Alt fra alle delene, samlet. Skriv inn et tegn eller et ord, så filtreres lista. Greske bokstaver kan skrives med vanlige: <em class="v">n2</em> og <em class="v">eta2</em> finner begge η², og <em class="v">kji</em> finner χ².</p>
+        <p>Alt fra alle delene, samlet. Skriv inn et tegn eller et ord, så filtreres lista. Greske bokstaver kan skrives med vanlige: <em class="v">n2</em> og <em class="v">eta2</em> finner begge η², og <em class="v">kji</em> finner χ². Engelske navn og små skrivefeil går også: <em class="v">outlier</em> finner uteligger.</p>
         <div class="searchrow">
           <input type="search" id="dictSearch" placeholder="Søk: n2, eta, kji, RMSEA, standardfeil, BF …" aria-label="Søk i ordboka">
           <span class="hits" id="dictHits"></span>
@@ -1942,7 +2412,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         </div>
         <div class="aside"><b>Tastatur:</b> klikk på kortet én gang, så kan du kjøre resten med tastene. <em class="v">Mellomrom</em> snur kortet, <em class="v">1</em> er «måtte tenke», <em class="v">2</em> er «kunne den». Da går det fort nok til at du rekker en runde mens kaffen trekker.</div>
         <div class="aside"><b>Hvordan framgangen regnes.</b> Hvert kort har fem trinn. «Kunne den» flytter det ett trinn opp, «måtte tenke» sender det helt tilbake til start — for det er den ærlige responsen: kunne du det ikke nå, kan du det ikke. Stripa under kortet viser hvor hele bunken står, fra grått (ikke øvd ennå) til grønt (sitter). Målet er en grønn stripe, ikke et høyt tall.</div>
-        <div class="aside tryit"><b>Slik ville jeg brukt dem:</b> velg ett område om gangen i stedet for alle 250+ på én gang — «Effektstørrelse» før en innlevering, «Greske bokstaver» når du sliter med å lese formler. Når et område begynner å sitte, slå på «bare de jeg sliter med», så blir bunken bare de kortene som fortsatt ikke har festet seg.</div>
+        <div class="aside tryit"><b>Slik ville jeg brukt dem:</b> velg ett område om gangen i stedet for alle 290 på én gang — «Effektstørrelse» før en innlevering, «Greske bokstaver» når du sliter med å lese formler. Når et område begynner å sitte, slå på «bare de jeg sliter med», så blir bunken bare de kortene som fortsatt ikke har festet seg.</div>
         <div class="aside"><b>Framgangen lagres i denne nettleseren</b>, ikke på en server. Bytter du til mobilen eller en annen maskin, starter du på nytt der. Ingenting sendes noe sted, og ingen andre ser hvordan du ligger an.</div>
       </div>
     </section>
@@ -2014,7 +2484,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
     <div class="palette-top">
       <span class="pt-ico" aria-hidden="true">⌕</span>
       <input type="search" id="palQ" autocomplete="off" spellcheck="false"
-             placeholder="Søk: n2, eta, kji, RMSEA, interaksjon, standardfeil …"
+             placeholder="Søk: n2, kji, effect size, hvilken test for to grupper …"
              aria-label="Søk på siden" role="combobox" aria-expanded="true"
              aria-controls="palRes" aria-autocomplete="list">
       <button class="ghost" id="palClose" type="button">Lukk</button>
@@ -2117,7 +2587,268 @@ const SEARCHTEXT = (function(){
     }
     return [...new Set(outs)].filter(Boolean);
   }
-  return {fold, flat, variants};
+
+  /* ---------------------------------------------------------
+     Ord, ikke bare tegn
+     ---------------------------------------------------------
+     norm()   — fold() pluss faste uttrykk slått sammen til ett ord,
+                både i teksten og i søket: «t-test», «t test» og
+                «ttest» blir det samme, «effect size» blir
+                «effektstorrelse».
+     parse()  — et søk blir til ord, uten småord som «hva», «er»
+                og «forskjellen på», så et helt spørsmål kan skrives.
+     Index()  — slår opp hvert ord i alt som er indeksert, og godtar
+                synonymer (også engelske), bøyning («korrelasjonen»),
+                ord som skrives ferdig («korre») og én–to skrivefeil
+                («standrdavvik»).
+     mark()   — uthever ordene som traff, i den teksten som vises.
+     --------------------------------------------------------- */
+  const PHRASES = [
+    [/\b([ptfz])[\s-]+(test|verdi|fordeling)/g, '$1$2'],
+    [/\bstandard[\s-]+deviations?\b/g, 'standardavvik'],
+    [/\bstandard[\s-]+errors?\b/g, 'standardfeil'],
+    [/\bconfidence[\s-]+intervals?\b/g, 'konfidensintervall'],
+    [/\beffect[\s-]+sizes?\b/g, 'effektstorrelse'],
+    [/\bdegrees?[\s-]+of[\s-]+freedom\b/g, 'frihetsgrader'],
+    [/\bnull[\s-]*hypothes[ie]s\b/g, 'nullhypotese'],
+    [/\b(chi|khi|kji)[\s-]*(squared?|kvadrat)/g, 'kjikvadrat'],
+    [/\bpost[\s-]+hoc/g, 'posthoc'],
+    [/\bq[\s-]+q\b/g, 'qq'],
+    [/\bmeta[\s-]+analy/g, 'metaanaly'],
+    [/\bbox[\s-]*plot/g, 'boksplott'],
+    [/\bscatter[\s-]*plot/g, 'spredningsplott'],
+    [/\b(non|ikke)[\s-]*parametri/g, 'ikkeparametri'],
+    [/\btype[\s-]+(ii|2)\b/g, 'type2'],
+    [/\btype[\s-]+(i|1)\b/g, 'type1']
+  ];
+  const norm = s => PHRASES.reduce((t, [re, to]) => t.replace(re, to), fold(s));
+  const SPLIT = /[^a-z0-9Ͱ-Ͽ]+/;
+  const words = s => norm(s).split(SPLIT).filter(Boolean);
+
+  /* småord som ikke sier noe om hva du leter etter */
+  const STOP = new Set(('hva hvem hvor hvordan hvorfor hvilken hvilket hvilke nar er var blir ble '
+    + 'en ei et og eller i pa av for fra med til om at a som det den de jeg du vi man seg '
+    + 'kan skal ma bor vil bruke bruker brukes gjor gjore betyr mener egentlig noe '
+    + 'passer riktig riktige beste best velge velger finne finner gjelder trenger '
+    + 'forskjell forskjellen forskjeller forskjellig mellom mot vs versus '
+    + 'the an of is are what how why when which does do in on and or').split(' '));
+
+  /* samme ting, ulike ord — også engelske, siden artiklene er det */
+  const SYN = new Map();
+  ['gjennomsnitt snitt mean average middelverdi',
+   'standardavvik sd',
+   'standardfeil se',
+   'konfidensintervall ki ci',
+   'korrelasjon correlation samvariasjon',
+   'effektstorrelse effektmal',
+   'styrke power teststyrke',
+   'frihetsgrader frihetsgrad df',
+   'signifikant significant signifikans significance',
+   'nullhypotese h0',
+   'uteligger outlier ekstremverdi',
+   'regresjon regression',
+   'varians variance',
+   'median mdn',
+   'modus mode typetall',
+   'skjevhet skewness skew',
+   'kurtose kurtosis',
+   'reliabilitet reliability palitelighet',
+   'validitet validity gyldighet',
+   'utvalg sample',
+   'populasjon population',
+   'prediktor predictor',
+   'kjikvadrat chi khi kji',
+   'deltager deltaker participant',
+   'interaksjon interaction samspill',
+   'mediator mediering mediation',
+   'moderator moderering moderation',
+   'multikollinearitet kollinearitet multicollinearity',
+   'residual residualer residuals',
+   'forutsetning antakelse assumption',
+   'normalfordeling normalfordelt normal klokkekurve',
+   'persentil percentile kvantil',
+   'kvartil quartile',
+   'sannsynlighet probability',
+   'hypotese hypothesis',
+   'kovarians covariance',
+   'anova variansanalyse',
+   'boksplott boxplot',
+   'spredningsplott punktsky',
+   'paret paired',
+   'kovariat covariate kontrollvariabel',
+   'konfunderende confounder konfundering',
+   'stigningstall slope helning',
+   'konstantledd intercept',
+   'kvadratsum ss',
+   'bayesfaktor bf'
+  ].forEach(g=>{
+    const ws = g.split(' ');
+    ws.forEach(w=> SYN.set(w, ws.filter(x=>x !== w)));
+  });
+
+  function parse(raw){
+    const ws = [...new Set(words(raw))];
+    const kept = ws.filter(w=>!STOP.has(w));
+    return {raw: String(raw).trim(), q: flat(raw), words: kept.length ? kept : ws};
+  }
+
+  /* lett norsk bøying: «korrelasjonen», «gruppene», «testene» */
+  const SUFFIX = ['ene','ane','ens','ets','ere','er','en','et','es','e','a','s'];
+  function stem(t){
+    if(t.length < 5 || /\d/.test(t)) return t;
+    for(const s of SUFFIX){
+      if(s === 'et' && t.endsWith('het')) continue;     /* «skjevhet», ikke «skjevh» */
+      if(t.endsWith(s) && t.length - s.length >= 4) return t.slice(0, -s.length);
+    }
+    return t;
+  }
+
+  /* redigeringsavstand med ombytting, som gir opp så snart den passerer max */
+  function near(a, b, max){
+    const la = a.length, lb = b.length;
+    if(Math.abs(la - lb) > max) return false;
+    let pp = null, p = Array.from({length: lb + 1}, (_, j)=>j);
+    for(let i = 1; i <= la; i++){
+      const c = [i]; let low = i;
+      for(let j = 1; j <= lb; j++){
+        let v = Math.min(p[j] + 1, c[j-1] + 1, p[j-1] + (a[i-1] === b[j-1] ? 0 : 1));
+        if(i > 1 && j > 1 && a[i-1] === b[j-2] && a[i-2] === b[j-1]) v = Math.min(v, pp[j-2] + 1);
+        c[j] = v; if(v < low) low = v;
+      }
+      if(low > max) return false;
+      pp = p; p = c;
+    }
+    return p[lb] <= max;
+  }
+
+  const BODY = 0.45;     /* treff i forklaringen veier under halvparten av treff i navnet */
+  function Index(docs){
+    const post = new Map();                 /* ord → Map(dokument → vekt) */
+    const prose = new Set();                /* dokumenter der hodet er vanlig tekst, ikke et tegn */
+    docs.forEach((d, i)=>{
+      if(d.prose) prose.add(i);
+      /* både «ttest» og «t», «test», så ingen av skrivemåtene faller utenfor */
+      const toks = s => new Set([...words(s || ''), ...fold(s || '').split(SPLIT).filter(Boolean)]);
+      const put = (s, w)=> toks(s).forEach(t=>{
+        let m = post.get(t);
+        if(!m){ m = new Map(); post.set(t, m); }
+        if((m.get(i) || 0) < w) m.set(i, w);
+      });
+      put(d.body, BODY);
+      put(d.head, 1);
+    });
+    const vocab = [...post.keys()], vstem = vocab.map(stem);
+    const memo = new Map();
+
+    /* alle ord i indeksen som kan menes med w, med hvor sikkert */
+    function lookup(w){
+      if(memo.has(w)) return memo.get(w);
+      const alts = [[w, 1], ...(SYN.get(w) || []).map(s=>[s, 0.9])];
+      const out = new Map();
+      for(const [a, aw] of alts){
+        const la = a.length, sa = stem(a), exact = la < 3 || /^\d+$/.test(a);
+        const fz = la < 5 ? 0 : (la < 8 ? 1 : 2);
+        for(let i = 0; i < vocab.length; i++){
+          const t = vocab[i];
+          let v = 0;
+          if(t === a) v = 1;
+          else if(exact) continue;
+          else if(vstem[i] === sa) v = 0.9;
+          else if(t.startsWith(a)) v = 0.85;
+          else if(sa.length >= 4 && t.startsWith(sa)) v = 0.8;
+          else if(la >= 4 && t.includes(a)) v = 0.6;
+          else if(fz && near(a, t, fz)) v = 0.55;
+          else if(fz && t.length > la && (near(a, t.slice(0, la), 1) || near(a, t.slice(0, la + 1), 1))) v = 0.45;
+          if(v && (out.get(t) || 0) < v * aw) out.set(t, v * aw);
+        }
+      }
+      memo.set(w, out);
+      return out;
+    }
+
+    /* → [{doc, rel (0–1), cov (andel av ordene som traff), toks}] */
+    function query(p){
+      const ws = p.words;
+      if(!ws.length) return [];
+      const N = docs.length;
+      const per = ws.map(w=>{
+        const best = new Map();
+        lookup(w).forEach((mw, tok)=>{
+          post.get(tok).forEach((fw, doc)=>{
+            /* «se», «sd»: korte ord teller bare i navnet, aldri i løpende tekst —
+               og i en tekstoverskrift bare hvis de er skrevet nøyaktig slik */
+            if(tok.length <= 2 && (fw < 1 || (mw < 1 && prose.has(doc)))) return;
+            const s = mw * fw, b = best.get(doc);
+            if(!b || b[0] < s) best.set(doc, [s, tok]);
+          });
+        });
+        return {best, idf: Math.log(1 + N / (1 + best.size))};
+      });
+      const total = per.reduce((s, x)=>s + x.idf, 0) || 1;
+      const acc = new Map();
+      per.forEach(({best, idf})=> best.forEach(([s, tok], doc)=>{
+        let o = acc.get(doc);
+        if(!o){ o = {doc, rel:0, hit:0, toks:[]}; acc.set(doc, o); }
+        o.rel += s * idf / total; o.hit++; o.toks.push(tok);
+      }));
+      const need = Math.max(1, Math.ceil(ws.length / 2));
+      return [...acc.values()].filter(o=>o.hit >= need).map(o=>({doc:o.doc, rel:o.rel, cov:o.hit / ws.length, toks:o.toks}));
+    }
+    return {query};
+  }
+
+  /* fold() tegn for tegn, med peker tilbake til originalteksten */
+  function foldMap(src){
+    let f = ''; const at = [];
+    for(let i = 0; i < src.length;){
+      const ch = String.fromCodePoint(src.codePointAt(i)), n = ch.length, lc = ch.toLowerCase();
+      const r = LINE[lc] !== undefined ? LINE[lc] : (FOLD[lc] !== undefined ? FOLD[lc] : lc);
+      for(let k = 0; k < r.length; k++){ f += r[k]; at.push([i, i + n]); }
+      i += n;
+    }
+    return {f, at};
+  }
+  const isWordChar = c => /[a-z0-9Ͱ-Ͽ]/.test(c || '');
+  /* hvor i teksten ordene står: [[fra, til], …] i originalteksten */
+  function spans(text, toks){
+    const {f, at} = foldMap(String(text));
+    const out = [];
+    toks.forEach(t=>{
+      if(!t || t.length < 2) return;
+      for(let pos = f.indexOf(t); pos >= 0; pos = f.indexOf(t, pos + 1)){
+        if(isWordChar(f[pos - 1])) continue;          /* bare fra starten av et ord */
+        if(t.length <= 3 && isWordChar(f[pos + t.length])) continue;   /* «se», men ikke «seg» */
+        out.push([at[pos][0], at[pos + t.length - 1][1]]);
+      }
+    });
+    out.sort((a, b)=>a[0] - b[0]);
+    const merged = [];
+    out.forEach(s=>{
+      const last = merged[merged.length - 1];
+      if(last && s[0] <= last[1]) last[1] = Math.max(last[1], s[1]); else merged.push(s.slice());
+    });
+    return merged;
+  }
+  const esc = t => String(t).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function mark(text, toks){
+    const src = String(text), sp = spans(src, toks);
+    let html = '', from = 0;
+    sp.forEach(([a, b])=>{ html += esc(src.slice(from, a)) + '<mark>' + esc(src.slice(a, b)) + '</mark>'; from = b; });
+    return html + esc(src.slice(from));
+  }
+  /* et utdrag rundt det første treffet, så du ser hvorfor avsnittet kom opp */
+  function snippet(text, toks, width){
+    const src = String(text).replace(/\s+/g, ' ').trim(), w = width || 150;
+    if(src.length <= w) return src;
+    const sp = spans(src, toks);
+    let a = sp.length ? Math.max(0, sp[0][0] - 45) : 0;
+    if(a > 0){ const s = src.indexOf(' ', a); a = s >= 0 && s < sp[0][0] ? s + 1 : a; }
+    let b = Math.min(src.length, a + w);
+    if(b < src.length){ const s = src.lastIndexOf(' ', b); if(s > a + w / 2) b = s; }
+    return (a > 0 ? '… ' : '') + src.slice(a, b) + (b < src.length ? ' …' : '');
+  }
+
+  return {fold, flat, variants, parse, Index, mark, snippet, esc};
 })();
 
 /* =========================================================
@@ -2214,6 +2945,13 @@ function betai(a,b,x){
 }
 const pFromT = (t,df)=> (df<=0)?1:betai(df/2, 0.5, df/(df+t*t));
 const pFromF = (F,d1,d2)=> (d2<=0||!(F>0))?1:betai(d2/2, d1/2, d2/(d2+d1*F));
+/* kritisk t for tosidig α = .05: den t-en som gir akkurat p = .05 */
+function tCrit(df){
+  if(!(df>0)) return NaN;
+  let lo=0, hi=60;
+  for(let i=0;i<60;i++){ const m=(lo+hi)/2; if(pFromT(m,df)>0.05) lo=m; else hi=m; }
+  return (lo+hi)/2;
+}
 
 /* ---------- minste kvadraters metode ---------- */
 function ols(cols, y){
@@ -2341,7 +3079,15 @@ const STATTEXT = () => ({
   R2: fr(S.simple.R2,3), R2pct: (S.simple.R2*100).toFixed(1).replace('.',',')+' %',
   adjR2: fr(S.simple.adjR2,3),
   F: fx(S.simple.F,1),
-  vif: fx(S.vif,2)
+  vif: fx(S.vif,2),
+  /* til forklaringsboksene: regnestykkene vist med dine egne tall */
+  sdx2: fx(S.sdx,2), sdy2: fx(S.sdy,2),
+  cov: fx(S.r*S.sdx*S.sdy,2),
+  sem: fx(S.sdy/Math.sqrt(S.n),2),
+  tcrit: fx(tCrit(S.simple.df),2),
+  dR2: fr(S.dR2,3),
+  ...(()=>{ const z=Math.atanh(clamp(S.r,-0.999999,0.999999)), se=1/Math.sqrt(Math.max(1,S.n-3));
+            return {fz: fx(z,3), fzse: fx(se,3), fzlo: fx(z-1.959964*se,3), fzhi: fx(z+1.959964*se,3)}; })()
 });
 
 function fillStats(){
@@ -3415,7 +4161,7 @@ const SENTENCES = [
   if(!table) return;
   const tbody = table.querySelector('tbody');
   const seen = new Set();
-  const rows = [];
+  const rows = [], docs = [];
 
   document.querySelectorAll('table.dict[data-fam]').forEach(src=>{
     const fam = src.getAttribute('data-fam');
@@ -3435,26 +4181,28 @@ const SENTENCES = [
       const c2 = document.createElement('td'); c2.innerHTML = tds[2].innerHTML.trim();
       const c3 = document.createElement('td'); c3.textContent = fam;
       row.append(c0,c1,c2,c3);
-      row.dataset.q = SEARCHTEXT.fold(tds[0].textContent+' '+tds[1].textContent+' '+tds[2].textContent+' '+fam);
       /* alle skrivemåter av tegnet, så «n2» finner η² */
       row.dataset.k = SEARCHTEXT.variants(tds[0].textContent.trim()).concat(SEARCHTEXT.flat(tds[1].textContent)).join(' ');
+      docs.push({head: tds[0].textContent + ' ' + tds[1].textContent, body: tds[2].textContent + ' ' + fam});
       rows.push(row);
       tbody.appendChild(row);
     });
   });
+  /* ordene slås opp på samme måte som i søkeruta: synonymer, bøyning, skrivefeil */
+  const index = SEARCHTEXT.Index(docs);
 
   const input = document.getElementById('dictSearch');
   const hits = document.getElementById('dictHits');
   const none = document.getElementById('dictNone');
   function update(){
-    const raw   = input.value.trim(),
-          q     = SEARCHTEXT.flat(raw),
-          words = SEARCHTEXT.fold(raw).split(' ').filter(Boolean);
+    const p = SEARCHTEXT.parse(input.value), raw = p.raw, q = p.q;
+    /* et filter skal ikke gi halve treff: alle ordene må finnes i raden */
+    const byWord = new Set(index.query(p).filter(h=>h.cov === 1).map(h=>h.doc));
     let n = 0;
-    rows.forEach(r=>{
+    rows.forEach((r, i)=>{
       const on = !raw
         || (q && r.dataset.k.split(' ').some(v=>v.includes(q)))
-        || words.every(w=>r.dataset.q.includes(w));
+        || byWord.has(i);
       r.hidden = !on;
       if(on) n++;
     });
@@ -3475,13 +4223,22 @@ const SENTENCES = [
         list  = document.getElementById('palRes'),
         count = document.getElementById('palCount'),
         closeBtn = document.getElementById('palClose');
-  const {fold, flat, variants} = SEARCHTEXT;
+  const {flat, variants, parse, Index, mark, snippet, esc} = SEARCHTEXT;
   const calm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   const scroll = (el, block) => el.scrollIntoView({behavior: calm ? 'auto' : 'smooth', block});
+  const clean = s => String(s || '').replace(/\s+/g, ' ').trim();
+  /* teksten i et element, uten overskriften sin */
+  const without = (el, skip) => clean([...el.childNodes].filter(n=>n !== skip).map(n=>n.textContent).join(' '));
+  const secOf = el => el.closest('section[id]');
+  const secTitle = sec => sec ? clean(sec.querySelector('h2')?.textContent) : '';
+  const secGlyph = sec => sec ? clean((sec.querySelector('.glyph') || sec.querySelector('.eyebrow'))?.textContent) || '¶' : '¶';
 
-  /* ---- indeksen: oppslagene, seksjonene og falske venner-boksene ---- */
+  /* ---- indeksen ----
+     Hvert element har et hode (tegn, navn, overskrift) og en kropp (forklaringen).
+     Ord i hodet veier mer enn ord i kroppen. */
   const items = [], seen = new Set();
 
+  /* 1 · oppslagene i ordbokstabellene */
   document.querySelectorAll('table.dict[data-fam]').forEach(src=>{
     const fam = src.getAttribute('data-fam');
     /* Del I-tabellen er skjult og finnes bare som kilde til ordboka */
@@ -3497,80 +4254,177 @@ const SENTENCES = [
       const key = (sign + '|' + name).toLowerCase();
       if(seen.has(key)) return;
       seen.add(key);
-      const desc = td[2].textContent.trim();
-      const sec = tr.closest('section[id]');
-      const glyph = sec && sec.querySelector('.glyph');
-      items.push({kind:'term', sign, name, desc, fam,
+      const desc = clean(td[2].textContent);
+      const sec = secOf(tr);
+      items.push({kind:'term', sign, name, fam,
                   title: worded ? sign : name,
-                  lead:  worded ? (glyph ? glyph.textContent.trim() : '·') : sign,
+                  lead:  worded ? secGlyph(sec) : sign,
                   leadUp: worded ? true : td[0].classList.contains('up'),
                   sub:   worded && name !== '—' ? name + ' · ' + desc : desc,
                   row: buried ? null : tr,
                   target: buried ? null : (sec || tr),
                   sv: variants(sign), svlen: sign.length, nf: flat(name),
-                  hay: fold(sign + ' ' + name + ' ' + desc + ' ' + fam)});
+                  head: sign + ' ' + name, body: desc + ' ' + fam});
     });
   });
 
+  /* 2 · seksjonene */
   document.querySelectorAll('section.entry[id]').forEach(sec=>{
     const h = sec.querySelector('h2');
     if(!h) return;
-    const name = h.textContent.trim(),
-          desc = (sec.querySelector('.asks')?.textContent || '').trim(),
-          g    = sec.querySelector('.glyph'),
-          sign = g ? g.textContent.trim() : '¶';
-    items.push({kind:'sec', sign, name, desc, fam:'Seksjon',
+    const name = clean(h.textContent),
+          desc = clean(sec.querySelector('.asks')?.textContent),
+          sign = secGlyph(sec);
+    items.push({kind:'sec', sign, name, fam:'seksjon',
                 title:name, lead:sign, leadUp:true, sub:desc,
                 row:null, target:sec, sv:variants(sign), svlen: sign.length, nf:flat(name),
-                hay: fold(name + ' ' + desc)});
+                head: name + ' ' + sign, body: desc});
   });
 
+  /* 3 · «mot»-boksene: falske venner, samme modell, rapporteringsreglene */
   document.querySelectorAll('.ff').forEach((ff, i)=>{
     const h = ff.querySelector('h3');
     if(!h) return;
     if(!ff.id) ff.id = 'ff-' + (i + 1);
-    const name = h.textContent.trim(),
-          desc = [...ff.querySelectorAll('.ffgrid b')].map(b=>b.textContent.trim()).join(' · '),
-          from = (ff.closest('section.entry')?.querySelector('h2')?.textContent || '').trim();
-    items.push({kind:'ff', sign:'⚠', name, desc, fam: from,
+    const name = clean(h.textContent),
+          desc = [...ff.querySelectorAll('.ffgrid b')].map(b=>clean(b.textContent)).join(' · '),
+          from = secTitle(secOf(ff));
+    items.push({kind:'ff', sign:'⚠', name, fam: from,
                 title:name, lead:'⚠', leadUp:true, sub:desc,
                 row:null, target:ff, sv:variants(name), svlen: name.length, nf:flat(name),
-                hay: fold(name + ' ' + desc + ' ' + from)});
+                head: name, body: without(ff, h) + ' ' + from});
   });
 
-  /* ---- rangering: tegnet veier tyngst, så navnet, så forklaringen ---- */
-  function score(it, q, words){
-    let s = 0;
-    if(q){
-      if(it.sv.includes(q))                          s = 1000 - Math.min(it.svlen, 30);
-      else if(it.sv.some(v=>v.startsWith(q)))        s = 820 - Math.min(it.svlen, 30);
-      else if(it.nf === q)                           s = 780;
-      else if(it.nf.startsWith(q))                   s = 620;
-      else if(q.length > 1 && it.sv.some(v=>v.includes(q))) s = 540;
-      else if(q.length > 1 && it.nf.includes(q))     s = 420;
+  /* 4 · veivisertabellene (hypotese → test, analyseløypa), som ikke er ordbok */
+  document.querySelectorAll('table.dict:not([data-fam]):not(#bigDict)').forEach(src=>{
+    if(src.closest('[hidden]')) return;
+    const sec = secOf(src), st = secTitle(sec);
+    src.querySelectorAll('tbody tr').forEach(tr=>{
+      const td = tr.querySelectorAll('td');
+      if(td.length < 3) return;
+      const a = clean(td[0].textContent), b = clean(td[1].textContent), c = clean(td[2].textContent);
+      items.push({kind:'row', name:a, fam:st, title:a, lead:secGlyph(sec), leadUp:true, sub:b + ' · ' + c,
+                  row:tr, target:sec, sv:[], svlen:0, nf:'',
+                  head: a + ' ' + b, body: c, prose:true});
+    });
+  });
+
+  /* 5 · forklaringsboksene (de som kan foldes ut) */
+  document.querySelectorAll('details.more').forEach((d, i)=>{
+    const s = d.querySelector('summary');
+    if(!s) return;
+    if(!d.id) d.id = 'mer-' + (i + 1);
+    const sec = secOf(d), name = clean(s.textContent),
+          text = without(d, s);
+    items.push({kind:'more', name, fam: secTitle(sec),
+                title:name, lead:'+', leadUp:true, sub:text, text,
+                row:null, target:d, sv:[], svlen:0, nf:flat(name),
+                head: name, body: text + ' ' + secTitle(sec), prose:true});
+  });
+
+  /* 6 · den løpende teksten: avsnitt, kommentarbokser og rolleruter */
+  document.querySelectorAll('main .entry p, main .entry .aside, main .entry .roles > div, main .partbreak .partlede').forEach(el=>{
+    if(el.closest('.ff, details.more, .panel, table, .roles') && !el.matches('.roles > div')) return;
+    if(el.matches('.asks, .ffhint') || (el.matches('p') && el.closest('.roles'))) return;
+    const sec = secOf(el), st = secTitle(sec);
+    const leadEl = el.matches('.aside') ? el.querySelector(':scope > b') : (el.matches('.roles > div') ? el.querySelector('h4') : null);
+    const lead = leadEl ? clean(leadEl.textContent).replace(/[.:]+$/, '') : '';
+    const full = clean(el.textContent);
+    const text = leadEl ? clean(full.slice(clean(leadEl.textContent).length)) : full;
+    if(text.length < 20) return;
+    /* «Prøv:» alene sier ingenting i en treffliste — da får seksjonen navnet */
+    const title = !lead ? st : (lead.split(' ').length <= 2 ? st + ' · ' + lead.toLowerCase() : lead);
+    items.push({kind:'text', name:title, fam: st,
+                title, lead: secGlyph(sec), leadUp:true, sub:text, text,
+                row:null, target:el, sv:[], svlen:0, nf:'',
+                head: lead, body: text, prose:true});
+  });
+
+  const index = Index(items);
+
+  /* ---- rangering ----
+     Først tegnet (så «n2» treffer η²), så ordene. Et ord i navnet slår
+     et ord i forklaringen, og sjeldne ord teller mer enn vanlige. */
+  function signScore(it, q){
+    if(!q || !it.sv.length && !it.nf) return 0;
+    if(it.sv.includes(q))                          return 1000 - Math.min(it.svlen, 30);
+    if(it.sv.some(v=>v.startsWith(q)))             return 820 - Math.min(it.svlen, 30);
+    if(it.nf === q)                                return 780;
+    if(it.nf && it.nf.startsWith(q))               return 620;
+    if(q.length > 1 && it.sv.some(v=>v.includes(q))) return 540;
+    if(q.length > 1 && it.nf.includes(q))          return 420;
+    return 0;
+  }
+  const BONUS = {sec:30, term:10, ff:20, row:15, more:5, text:0};
+
+  function search(p){
+    const byDoc = new Map(index.query(p).map(h=>[h.doc, h]));
+    const out = [];
+    items.forEach((it, i)=>{
+      const w = byDoc.get(i);
+      const ws = w ? 600 * w.rel * (w.cov === 1 ? 1 : 0.7 * w.cov) : 0;
+      const s = Math.max(signScore(it, p.q), ws);
+      if(s > 0) out.push({it, s: s + BONUS[it.kind], toks: w ? w.toks : []});
+    });
+    out.sort((a, b)=> b.s - a.s || a.it.title.length - b.it.title.length);
+    /* avsnitt er nyttige, men skal ikke drukne oppslagene: maks to per seksjon */
+    const perSec = new Map(), res = [];
+    let texts = 0;
+    for(const h of out){
+      if(h.it.kind === 'text'){
+        const k = h.it.fam, n = perSec.get(k) || 0;
+        if(n >= 2 || texts >= 12) continue;
+        perSec.set(k, n + 1); texts++;
+      }
+      res.push(h);
+      if(res.length >= 40) break;
     }
-    if(!s && words.length && words.every(w=>it.hay.includes(w))) s = 240;
-    if(!s) return 0;
-    if(it.kind === 'sec') s += 30;
-    return s;
+    return res;
   }
 
   /* ---- vis treff ---- */
-  const esc = t => t.replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  function hl(text, raw){
+  function hl(text, raw, toks){
+    if(toks && toks.length){
+      const m = mark(text, toks);
+      if(m.includes('<mark>')) return m;
+    }
     if(!raw) return esc(text);
     const i = text.toLowerCase().indexOf(raw.toLowerCase());
     if(i < 0) return esc(text);
     return esc(text.slice(0, i)) + '<mark>' + esc(text.slice(i, i + raw.length)) + '</mark>' + esc(text.slice(i + raw.length));
   }
 
-  const EXAMPLES = ['n2', 'kji', 'ηp²', 'Levene', 'interaksjon', 'BF10', 'standardfeil'];
+  const LABEL = {sec:'seksjon', row:'tabell', more:'forklaring', text:'i teksten'};
+  const EXAMPLES = ['n2', 'kji', 'effect size', 'forskjellen på SD og SE', 'hvilken test for to grupper', 'sentralgrenseteoremet', 'standrdavvik'];
+
+  /* de siste søkene du faktisk gikk videre fra, bare i denne nettleseren */
+  const RECENT = 'sa-sok-v1';
+  let recent = [];
+  try { recent = JSON.parse(localStorage.getItem(RECENT) || '[]') || []; } catch(e) { recent = []; }
+  function remember(q){
+    q = q.trim();
+    if(!q) return;
+    recent = [q, ...recent.filter(x=>x.toLowerCase() !== q.toLowerCase())].slice(0, 6);
+    try { localStorage.setItem(RECENT, JSON.stringify(recent)); } catch(e){}
+  }
+
   let hits = [], sel = 0;
 
+  function chips(box, label, qs){
+    if(!qs.length) return;
+    const b = document.createElement('b');
+    b.textContent = label;
+    box.appendChild(b);
+    qs.forEach(x=>{
+      const c = document.createElement('button');
+      c.type = 'button'; c.className = 'exq'; c.textContent = x;
+      c.addEventListener('click', ()=>{ input.value = x; input.focus(); render(); });
+      box.appendChild(c);
+    });
+  }
+
   function render(){
-    const raw   = input.value.trim(),
-          q     = flat(raw),
-          words = fold(raw).split(' ').filter(w=>w.length > 1);
+    const p = parse(input.value), raw = p.raw;
     list.innerHTML = '';
     sel = 0;
 
@@ -3578,47 +4432,47 @@ const SENTENCES = [
       count.textContent = items.length + ' oppføringer';
       const box = document.createElement('div');
       box.className = 'palette-empty';
-      box.innerHTML = '<b>Skriv tegnet slik du klarer</b>'
-        + 'Greske bokstaver finnes både på lyden og på formen: <em class="v">n2</em>, '
-        + '<em class="v">eta2</em> og <em class="v">η²</em> gir samme treff. '
-        + 'Hevet og senket skrift kan skrives rett på linja.<br><br>';
-      EXAMPLES.forEach(x=>{
-        const b = document.createElement('button');
-        b.type = 'button'; b.className = 'exq'; b.textContent = x;
-        b.addEventListener('click', ()=>{ input.value = x; input.focus(); render(); });
-        box.appendChild(b);
-      });
+      const intro = document.createElement('p');
+      intro.innerHTML = '<b>Skriv slik du ville spurt</b>'
+        + 'Tegn, ord eller et helt spørsmål. Greske bokstaver finnes både på lyden og på formen: '
+        + '<em class="v">n2</em>, <em class="v">eta2</em> og <em class="v">η²</em> gir samme treff. '
+        + 'Engelske navn, bøyde ord og små skrivefeil går også.';
+      box.appendChild(intro);
+      if(recent.length) chips(box, 'Siste søk', recent);
+      chips(box, 'Prøv for eksempel', EXAMPLES);
       list.appendChild(box);
       hits = [];
       return;
     }
 
-    hits = items.map(it=>({it, s: score(it, q, words)}))
-                .filter(x=>x.s > 0)
-                .sort((a, b)=> b.s - a.s || a.it.title.length - b.it.title.length)
-                .slice(0, 40)
-                .map(x=>x.it);
-
+    hits = search(p);
     count.textContent = hits.length ? hits.length + (hits.length === 40 ? '+ treff' : ' treff') : 'ingen treff';
 
     if(!hits.length){
-      list.innerHTML = '<div class="palette-empty">Ingen treff på «' + esc(raw) + '». '
-        + 'Prøv et kortere søkeord, eller navnet på bokstaven — <em class="v">eta</em> i stedet for <em class="v">η</em>.</div>';
+      const box = document.createElement('div');
+      box.className = 'palette-empty';
+      box.innerHTML = '<p>Ingen treff på «' + esc(raw) + '». '
+        + 'Prøv et kortere ord, eller navnet på bokstaven — <em class="v">eta</em> i stedet for <em class="v">η</em>.</p>';
+      chips(box, 'Eller prøv', EXAMPLES.slice(0, 4));
+      list.appendChild(box);
       return;
     }
 
-    hits.forEach((it, i)=>{
+    hits.forEach((h, i)=>{
+      const it = h.it;
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'pres';
       b.id = 'pres-' + i;
       b.setAttribute('role', 'option');
       b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      const sub = it.text ? snippet(it.text, h.toks) : it.sub;
+      const where = LABEL[it.kind] ? LABEL[it.kind] + (it.kind !== 'sec' && it.fam ? ' · ' + it.fam : '') : it.fam;
       b.innerHTML =
         '<span class="ps' + (it.leadUp ? ' up' : '') + '">' + esc(it.lead) + '</span>'
-        + '<span><span class="pnm">' + hl(it.title, raw) + '</span>'
-        + (it.sub ? '<span class="pdsc">' + esc(it.sub) + '</span>' : '')
-        + '<span class="pfam">' + esc(it.kind === 'sec' ? 'seksjon' : it.fam) + '</span></span>';
+        + '<span><span class="pnm">' + hl(it.title, raw, h.toks) + '</span>'
+        + (sub ? '<span class="pdsc">' + hl(sub, '', h.toks) + '</span>' : '')
+        + '<span class="pfam">' + esc(where) + '</span></span>';
       b.addEventListener('click', ()=>go(it));
       list.appendChild(b);
     });
@@ -3644,17 +4498,25 @@ const SENTENCES = [
     flashing = el;
     setTimeout(()=>{ el.classList.remove('flashfind'); if(flashing === el) flashing = null; }, 2800);
   }
+  /* et treff inne i en lukket forklaringsboks må foldes ut før det kan vises */
+  function unfold(el){
+    for(let d = el.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true;
+  }
 
   function go(it){
+    remember(input.value);
     close();
     if(it.row){
+      unfold(it.row);
       scroll(it.row, 'center');
       flash(it.row);
       return;
     }
     if(it.target){
-      scroll(it.target, 'start');
-      if(it.kind === 'ff') flash(it.target);
+      if(it.kind === 'more') it.target.open = true;
+      unfold(it.target);
+      scroll(it.target, it.kind === 'text' ? 'center' : 'start');
+      if(it.kind !== 'sec') flash(it.target);
       return;
     }
     /* oppslag som bare finnes i den samlede ordboka */
@@ -3687,7 +4549,10 @@ const SENTENCES = [
     if(pal.hidden) return;
     pal.hidden = true;
     document.body.style.overflow = '';
-    if(restore && restore.focus) restore.focus();
+    if(restore && restore !== document.body && restore.focus) restore.focus({preventScroll:true});
+    /* ble søket åpnet uten at noe hadde fokus, må fokuset ikke bli hengende
+       i det skjulte feltet — ellers virker ikke «/» neste gang */
+    if(document.activeElement === input) input.blur();
   }
 
   openers.forEach(b=> b.addEventListener('click', open));
@@ -3697,7 +4562,7 @@ const SENTENCES = [
   input.addEventListener('keydown', e=>{
     if(e.key === 'ArrowDown'){ e.preventDefault(); move(1); }
     else if(e.key === 'ArrowUp'){ e.preventDefault(); move(-1); }
-    else if(e.key === 'Enter'){ e.preventDefault(); if(hits[sel]) go(hits[sel]); }
+    else if(e.key === 'Enter'){ e.preventDefault(); if(hits[sel]) go(hits[sel].it); }
     else if(e.key === 'Escape'){ e.preventDefault(); close(); }
   });
   document.addEventListener('keydown', e=>{
@@ -3755,6 +4620,8 @@ const SENTENCES = [
   const opt = (v,t)=>{ const o=document.createElement('option'); o.value=v; o.textContent=t; famSel.appendChild(o); };
   opt('*', 'Alle oppslag (' + all.length + ')');
   fams.forEach(f=> opt(f, f + ' (' + all.filter(c=>c.fam===f).length + ')'));
+  const countEl = document.getElementById('kortCount');
+  if(countEl) countEl.textContent = all.length + ' kort · ' + fams.length + ' områder';
 
   let deck = [], idx = 0, flipped = false, hardOnly = false;
 
@@ -4260,7 +5127,64 @@ const SENTENCES = [
  f:['Riktig. Å koble funnet til en teori er <b>tolkning</b>. Resultatdelen rapporterer hva som skjedde; diskusjonen sier hva det betyr.',
     'Dette er en ren resultatsetning: test, frihetsgrader, eksakt p og effektstørrelse.',
     'Antakelsessjekker og hvordan brudd ble håndtert hører hjemme i resultatdelen — eller i dataanalyseavsnittet.',
-    'Deskriptive tall er kjernen i en resultatdel.']}
+    'Deskriptive tall er kjernen i en resultatdel.']},
+
+/* ---- de nyere målene: rangtester, delkorrelasjon, normalitet, ekvivalens, α ---- */
+{t:'Velg analysen', n:55, q:'De samme 30 personene måles tre ganger, og utfallet er tydelig skjevt. Hvilken test passer?',
+ o:['Friedmans test','Kruskal–Wallis','Wilcoxon signed-rank','Tre uavhengige t-tester'], c:0,
+ f:['Riktig. <b>Friedman</b> er den ikke-parametriske versjonen av ANOVA for gjentatte målinger: de samme personene, tre eller flere målinger, og den tåler skjeve data.',
+    'Nei. Kruskal–Wallis er for tre eller flere <em>ulike</em> grupper. Her er det de samme personene hver gang, så målingene henger sammen.',
+    'Nesten. Wilcoxon er riktig for de samme personene — men bare for <em>to</em> målinger. Med tre trenger du Friedman.',
+    'Nei. Tre separate tester øker sjansen for et falskt funn, og uavhengige tester passer ikke når det er de samme personene.']},
+
+{t:'Velg analysen', n:56, q:'80 pasienter svarer ja eller nei på «Har du søvnproblemer?» både før og etter behandling. Hvilken test passer?',
+ o:['McNemars test','Vanlig kjikvadrattest for uavhengighet','Paret t-test','Fishers eksakte test'], c:0,
+ f:['Riktig. <b>McNemar</b> er laget for en ja/nei-variabel målt to ganger på de samme personene. Den ser bare på dem som byttet svar.',
+    'Nei. Den vanlige kjikvadrattesten krever at hver person telles én gang. Her telles alle to ganger, før og etter.',
+    'Nei. Utfallet er ja/nei, ikke et tall på en skala, så et gjennomsnitt er ikke det testen trenger.',
+    'Nei. Fisher er for små krysstabeller der hver person telles én gang — samme problem som den vanlige kjikvadrattesten.']},
+
+{t:'Forutsetninger', n:57, q:'JASP viser <code>Shapiro–Wilk W = 0.98, p = .003</code> for residualene i en studie med 400 deltagere. Hva gjør du?',
+ o:['Ser på Q–Q-plottet før du bestemmer noe — med 400 deltagere slår testen ut på bittesmå avvik','Konkluderer med at residualene er normalfordelte, siden W er nær 1','Bytter straks til en ikke-parametrisk test','Fjerner deltagerne med størst residual til testen ikke slår ut lenger'], c:0,
+ f:['Riktig. Liten p betyr at testen fant et avvik fra normalfordelingen. Men i store utvalg finner den også avvik som ikke betyr noe. Q–Q-plottet viser om avviket er stort nok til å bry seg om.',
+    'Nei. Det er p som avgjør her, og p = .003 betyr at testen <em>fant</em> et avvik. At W er nær 1 sier bare at avviket er lite — som er grunnen til å se på plottet.',
+    'For raskt. Med 400 deltagere tåler t-tester og regresjon ganske mye, og testen slår ut på avvik uten praktisk betydning. Se på plottet først.',
+    'Nei. Å fjerne data til testen blir fornøyd er en form for p-jakt. Uteliggere skal undersøkes, ikke fjernes for å få et bestemt resultat.']},
+
+{t:'Les tallet', n:58, q:'En regresjon med to prediktorer har <code>R² = .30</code>. De kvadrerte delkorrelasjonene er <code>sr² = .12</code> og <code>sr² = .08</code>. Hva er de resterende .10?',
+ o:['Det de to prediktorene forklarer sammen — overlappet ingen av dem eier alene','Variasjon modellen ikke forklarer','Konstantleddets bidrag','En regnefeil — sr² skal alltid summere til R²'], c:0,
+ f:['Riktig. sr² er det hver prediktor forklarer <em>alene</em>. Når prediktorene henger sammen, forklarer de også en del i fellesskap, og den delen tilhører ingen av dem.',
+    'Nei. Den uforklarte variasjonen er 1 − R² = .70. Spørsmålet gjelder hvordan de forklarte .30 er fordelt.',
+    'Nei. Konstantleddet forklarer ingen variasjon — det bare plasserer linja i riktig høyde.',
+    'Nei. sr² summerer bare til R² når prediktorene ikke henger sammen i det hele tatt. Med overlapp blir summen mindre.']},
+
+{t:'Hva betyr det', n:59, q:'På de samme dataene gir Spearman <code>rₛ = .56</code> og Kendall <code>τ = .41</code>. Hvordan forklarer du forskjellen?',
+ o:['τ er på en annen skala og blir nesten alltid lavere — begge viser den samme sammenhengen','Den ene må være feil utregnet','Kendall viser at sammenhengen egentlig er svakere','Spearman overvurderer fordi den bruker rangeringer'], c:0,
+ f:['Riktig. Kendall og Spearman måler det samme på ulike måter, og τ blir typisk rundt to tredjedeler av rₛ. Tallene kan ikke sammenlignes direkte, men de forteller den samme historien.',
+    'Nei. Forskjellen er helt normal. De to målene regnes ut på ulike måter og havner på ulike nivåer.',
+    'Nei. τ er ikke strengere eller mer sann. Den er bare på en annen skala, så .41 betyr ikke svakere enn .56 i Spearmans mål.',
+    'Nei. Begge bruker rangeringer. Forskjellen ligger i hvordan rangeringene sammenlignes, ikke i at den ene overdriver.']},
+
+{t:'Feil og styrke', n:60, q:'En studie finner <code>p = .30</code> og rapporterer «observert styrke = .18». Forfatterne skriver at studien derfor var for liten. Hva er problemet?',
+ o:['Observert styrke er bare p-verdien regnet om — den sier ingenting nytt','.18 er faktisk høy styrke','Styrke kan ikke regnes ut for t-tester','De burde brukt α = .10 i stedet'], c:0,
+ f:['Riktig. Styrke regnet ut fra effekten man <em>fant</em> henger helt fast i p-verdien: høy p gir alltid lav «observert styrke». Styrke må regnes ut på forhånd, fra en effekt man bryr seg om.',
+    'Nei. Konvensjonen er minst .80, så .18 ville vært svært lav — men problemet er at tallet uansett ikke sier noe nytt.',
+    'Nei. Styrke kan regnes ut for nesten alle tester, også t-tester. Problemet er <em>når</em> og <em>hvordan</em> den regnes ut.',
+    'Nei. Å endre grensa i etterkant er å flytte målstreken. Det løser ingenting.']},
+
+{t:'Hva betyr det', n:61, q:'En ekvivalenstest (TOST) med grensene ±0.30 gir <code>p = .01</code>. Hva kan du konkludere?',
+ o:['At effekten ligger mellom −0.30 og 0.30 — for liten til å bety noe etter grensene du satte','At det finnes en signifikant effekt','At effekten er nøyaktig null','Ingenting — man kan aldri konkludere med at noe mangler'], c:0,
+ f:['Riktig. En ekvivalenstest snur spørsmålet: den tester om effekten er <em>mindre enn</em> en grense du har bestemt på forhånd. Signifikant betyr her at effekten er for liten til å være interessant.',
+    'Nei. Her er det motsatt av en vanlig test: signifikant betyr at effekten er <em>innenfor</em> grensene, altså liten.',
+    'Nei. Ingen test kan vise at noe er nøyaktig null. TOST viser bare at effekten er mindre enn grensene.',
+    'Nei. Det gjelder en vanlig p-verdi. En ekvivalenstest er laget nettopp for å kunne si at en effekt er for liten til å bety noe.']},
+
+{t:'Måling', n:62, q:'En skala med 30 ledd har <code>α = .91</code>, men den gjennomsnittlige korrelasjonen mellom leddene er bare <code>.25</code>. Hva viser det?',
+ o:['At α vokser med antall ledd — høy α betyr ikke at leddene henger tett sammen','At skalaen måler én enkelt ting svært presist','At det må være en regnefeil, for svake korrelasjoner kan ikke gi høy α','At noen ledd må fjernes for å få α over .95'], c:0,
+ f:['Riktig. Med 30 ledd blir α = .91 selv om hvert par av ledd bare korrelerer .25. Mange svake ledd gir en stabil sum — men det sier ikke at de måler det samme.',
+    'Nei. Høy α betyr ikke at skalaen måler én ting. Den kan måle flere ting og likevel få høy α, bare den er lang nok.',
+    'Nei. Regnestykket stemmer: 30 × .25 / (1 + 29 × .25) ≈ .91.',
+    'Nei. Over .95 er tvert imot mistenkelig — da er leddene nesten like. Og å fjerne ledd vil som regel <em>senke</em> α.']}
   ];
 
   const STORE = 'sa-oppg-v1';
@@ -4272,6 +5196,8 @@ const SENTENCES = [
   BANK.forEach(q=>{ if(!temaer.includes(q.t)) temaer.push(q.t); });
   const mkOpt = (v,t)=>{ const o=document.createElement('option'); o.value=v; o.textContent=t; temaSel.appendChild(o); };
   mkOpt('*', 'Alle temaer (' + BANK.length + ')');
+  const countEl = document.getElementById('oppgCount');
+  if(countEl) countEl.textContent = BANK.length + ' flervalgsoppgaver · eksamensformat';
   temaer.forEach(t=> mkOpt(t, t + ' (' + BANK.filter(q=>q.t===t).length + ')'));
 
   let deck = [], idx = 0, answered = false, wrongOnly = false, roundRight = 0, roundDone = 0;

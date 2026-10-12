@@ -65,11 +65,24 @@ npm run deploy
 ## Notater
 
 - Søket (`/` eller knappen i toppbaren) slår opp i alle ordbokstabellene,
-  alle seksjonsoverskriftene og «falske venner»-boksene. Greske tegn
-  indekseres både på lyden og på formen, så `n2`, `eta2` og `η²` gir samme
-  treff, og hevet skrift kan skrives rett på linja. Logikken ligger i
-  `SEARCHTEXT` øverst i skriptet, og brukes både av søkeruta og av
-  filteret i den samlede ordboka.
+  seksjonene, «falske venner»-boksene, veivisertabellene, forklaringsboksene
+  og den løpende teksten. Greske tegn indekseres både på lyden og på formen,
+  så `n2`, `eta2` og `η²` gir samme treff, og hevet skrift kan skrives rett
+  på linja. Ord slås opp med synonymer (også engelske: `effect size`,
+  `outlier`), lett norsk bøying (`korrelasjonen`), ord som ikke er skrevet
+  ferdig (`korre`) og én–to skrivefeil (`standrdavvik`). Småord som «hva»,
+  «er» og «forskjellen på» ignoreres, så hele spørsmål kan skrives. Treff
+  i navnet veier mer enn treff i forklaringen, og sjeldne ord mer enn
+  vanlige. Logikken ligger i `SEARCHTEXT` øverst i skriptet (`parse`,
+  `Index`, `mark`), og brukes både av søkeruta og av filteret i den
+  samlede ordboka. De siste søkene huskes i nettleseren.
+- Forklaringsboksene er `<details class="more">`. Varianten `more easy`
+  («Enkelt forklart») står øverst i de tyngste seksjonene og forklarer
+  ideen med hverdagseksempler; de andre har utregninger, formler og maler.
+  Tall i `data-s`-spenn inne i boksene følger datasettet i sandkassen.
+  Et søketreff inne i en lukket boks folder den ut.
+- Antall øvingskort og oppgaver på kortene øverst regnes ut av skriptet;
+  tallene i HTML-en er bare reserve uten JavaScript.
 - Skriftene lastes fra Google Fonts. Uten nett faller siden tilbake på
   Georgia og en systemmono, og alt fungerer fortsatt.
 - Lys og mørk drakt følger `prefers-color-scheme` automatisk.

@@ -106,11 +106,22 @@ npm run deploy
   vanlige. Logikken ligger i `SEARCHTEXT` øverst i skriptet (`parse`,
   `Index`, `mark`), og brukes både av søkeruta og av filteret i den
   samlede ordboka. De siste søkene huskes i nettleseren.
+- «Grupper mot grupper» (`#ttest`, `#anova1`, `#anova2`) har egne demoer
+  som regner ut nøyaktig det JASP ville vist for like store grupper.
+  Startverdiene gjenskaper forelesningenes tall: terapistudien
+  (t ≈ 7.2, d ≈ 1.67), tidligere behandlingsforsøk (F(2, 72) = 15.27,
+  η² = .30) og Roediger & Karpicke (F(1, 116) = 2.13 og 13.33).
 - Forklaringsboksene er `<details class="more">`. Varianten `more easy`
   («Enkelt forklart») står øverst i de tyngste seksjonene og forklarer
   ideen med hverdagseksempler; de andre har utregninger, formler og maler.
   Tall i `data-s`-spenn inne i boksene følger datasettet i sandkassen.
   Et søketreff inne i en lukket boks folder den ut.
+- `#formler` er formelarket: alt som må pugges til en eksamen uten
+  hjelpemidler. Tabellene har `data-fam="Formler: …"`, så hver linje også
+  blir et øvingskort.
+- Oppgavepanelet har en prøveeksamen: 30 oppgaver trukket på tvers av alle
+  temaene, uten fasit underveis, med resultat per tema til slutt. Svarene
+  lagres som vanlig, så «bare de jeg har bommet på» fanger dem opp.
 - Antall øvingskort og oppgaver på kortene øverst regnes ut av skriptet;
   tallene i HTML-en er bare reserve uten JavaScript.
 - Skriftene lastes fra Google Fonts. Uten nett faller siden tilbake på

@@ -596,7 +596,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td>Skalaskår</td><td>Sumskår</td><td>Snittet eller summen av flere ledd, brukt som én variabel.</td></tr>
           </tbody>
         </table></div>
-        <div class="aside"><b>Den vanligste forvekslingen:</b> hvilken vei går pila? I studien vår er poeng den avhengige variabelen fordi vi tror studietimer påvirker poeng, ikke omvendt. Men <strong>dataene vet ikke dette</strong> — regner du motsatt vei, får du en helt gyldig analyse med nesten samme r. Retningen kommer fra teorien og designet, aldri fra tallene.</div>
+        <div class="aside"><b>Den vanligste forvekslingen:</b> hvilken vei går pila? I studien vår er poeng den avhengige variabelen fordi vi tror studietimer påvirker poeng, ikke omvendt. Men <strong>dataene vet ikke dette</strong> — regner du motsatt vei, får du en helt gyldig analyse med nøyaktig samme r — bare stigningstallet blir et annet. Retningen kommer fra teorien og designet, aldri fra tallene.</div>
       </div>
     </section>
 
@@ -611,7 +611,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td>Nominal</td><td>Kategorier uten rekkefølge</td><td>Kjønn, studieprogram, farge. Tallene er bare merkelapper — «3» er ikke mer enn «1». Du kan telle, ikke regne snitt.</td></tr>
             <tr><td>Ordinal</td><td>Rangert, men ujevne trinn</td><td>«Helt uenig» til «helt enig», plassering i et løp, eller antall tidligere behandlinger (1 / 2 / 3+). Rekkefølgen betyr noe, men avstanden mellom trinnene er ikke garantert lik.</td></tr>
             <tr><td>Intervall</td><td>Like avstander, ingen ekte null</td><td>Celsius. 20° er ikke dobbelt så varmt som 10°, men forskjellen 10→20 er like stor som 20→30. En depresjonsskåre er også bare intervall: 30 er ikke «dobbelt så deprimert» som 15.</td></tr>
-            <tr><td>Forholdstall</td><td>Like avstander og ekte null</td><td>Timer studert, reaksjonstid, alder, inntekt. Her betyr null faktisk ingenting av tingen, og «dobbelt så mye» gir mening: 40 år er dobbelt så gammelt som 20.</td></tr>
+            <tr><td>Forholdstall (ratio)</td><td>Like avstander og ekte null</td><td>Timer studert, reaksjonstid, alder, inntekt. Her betyr null faktisk ingenting av tingen, og «dobbelt så mye» gir mening: 40 år er dobbelt så gammelt som 20.</td></tr>
           </tbody>
         </table></div>
         <p>Så kommer et <em>helt annet</em> spørsmål, som er lett å blande med det første: kan variabelen anta alle mellomverdier, eller bare hele trinn?</p>
@@ -668,7 +668,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td>Raincloud</td><td>Alt på én gang</td><td>Skyen øverst er fordelingens form, boksen i midten er sammendraget, og «regnet» nederst er hver enkelt deltager som et eget punkt. Du ser formen og rådataene samtidig, og det er derfor den har blitt standarden i nyere psykologiartikler.</td></tr>
           </tbody>
         </table></div>
-        <div class="aside"><b>Skjevhet (skewness) er et tall, ikke en følelse.</b> <em class="v">0</em> betyr symmetrisk. <em class="v">Positiv</em> betyr at halen peker mot høyre: de fleste ligger lavt, noen få ligger veldig høyt. <em class="v">Negativ</em> betyr at halen peker mot venstre. Typisk årsak til venstreskjevhet er en <em>takeffekt</em> — skalaen stopper, og folk hoper seg opp mot toppen. Over omtrent ±2 begynner det å bli et problem for tester som antar normalfordeling.</div>
+        <div class="aside"><b>Skjevhet (skewness) er et tall, ikke en følelse.</b> <em class="v">0</em> betyr symmetrisk. <em class="v">Positiv</em> betyr at halen peker mot høyre: de fleste ligger lavt, noen få ligger veldig høyt. <em class="v">Negativ</em> betyr at halen peker mot venstre. Typisk årsak til venstreskjevhet er en <em>takeffekt</em> — skalaen stopper, og folk hoper seg opp mot toppen. Rundt ±1 er fordelingen <em>tydelig</em> skjev — depresjonsskårene ved oppstart i terapistudien har −1,06. Over omtrent ±2 begynner det å bli et problem for tester som antar normalfordeling.</div>
         <div class="aside"><b>Tre sentralmål, ikke ett.</b> <em class="v">Gjennomsnittet</em> (M) er tyngdepunktet. <em class="v">Medianen</em> (Mdn) er verdien midt i rekka. <em class="v">Modus</em> (Mo) er den vanligste verdien. I en pen symmetrisk fordeling faller de nesten sammen, og da spiller det ingen rolle hvilken du bruker. Det er når de spriker at figuren har noe å fortelle deg.</div>
         <details class="more">
           <summary>Slik får du disse tallene i JASP</summary>
@@ -695,7 +695,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         <div class="scroller"><table class="dict terms tight" data-fam="Grunnbegreper">
           <tbody>
             <tr><td>Populasjon</td><td>Alle det gjelder</td><td>Alle norske psykologistudenter, for eksempel. Populasjonens sanne verdier kalles <em>parametere</em> og skrives med greske bokstaver: μ, σ, ρ.</td></tr>
-            <tr><td>Utvalg</td><td>De du faktisk målte</td><td>Verdiene du regner ut kalles <em>estimater</em> og skrives med latinske bokstaver: M, SD, r. De er anslag på parameterne.</td></tr>
+            <tr><td>Utvalg</td><td>De du faktisk målte</td><td>Verdiene du regner ut kalles <em>estimater</em> (eller <em>statistikker</em>) og skrives med latinske bokstaver: M, SD, r. I formler skrives gjennomsnittet ofte x̄ og standardavviket s. De er anslag på parameterne.</td></tr>
             <tr><td>Representativitet</td><td>Ligner utvalget populasjonen?</td><td>Et skjevt utvalg gir skjeve svar uansett hvor stort det er. Flere deltagere reparerer ikke feil deltagere.</td></tr>
             <tr><td>Bekvemmelighetsutvalg</td><td>Convenience sample</td><td>De som var lettest å få tak i — typisk psykologistudenter. Svært vanlig, og en fast begrensning i diskusjonsdelen.</td></tr>
             <tr><td>WEIRD</td><td>Western, Educated, Industrialised, Rich, Democratic</td><td>Navnet på psykologiens mest kjente utvalgsskjevhet: mesteparten av faget er bygget på vestlige, utdannede studenter fra rike demokratier, og så generaliseres funnene til «mennesker». Kjenn akronymet — det kommer igjen hver gang ytre validitet diskuteres.</td></tr>
@@ -787,13 +787,13 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td>E · Estimering</td><td>Estimation</td><td>Å bruke utvalget til å gjette parameteren — som regel ved minste kvadraters metode.</td></tr>
           </tbody>
         </table></div>
-        <p>Akronymet staver et ord, men det er ikke rekkefølgen du bruker dem i. Undervisningsrekkefølgen er <em class="v">P → E → S → I → N</em>, og den følger spørsmålene slik de faktisk dukker opp:</p>
+        <p>Akronymet staver et ord, men det er ikke rekkefølgen du bruker dem i. Undervisningsrekkefølgen er <em class="v">P → E → S → I → N</em> — i forelesningene kalt <em class="v">PESIN</em> — og den følger spørsmålene slik de faktisk dukker opp:</p>
         <div class="scroller"><table class="dict terms tight">
           <tbody>
             <tr><td>1 · Parametere</td><td>Hva vil vi vite?</td><td>Hvilket tall i populasjonen er det egentlig vi er ute etter? Se <a href="#utvalg">Populasjon og utvalg</a>.</td></tr>
             <tr><td>2 · Estimering</td><td>Hva er vårt beste gjett?</td><td>Regn det ut fra utvalget. Se <a href="#m">Gjennomsnittet</a> og <a href="#b">Linja</a>.</td></tr>
             <tr><td>3 · Standardfeil</td><td>Hvor mye danser gjettet?</td><td>Hvor mye ville tallet variert mellom utvalg? Se <a href="#se">Standardfeilen</a>.</td></tr>
-            <tr><td>4 · Intervaller</td><td>Hvilke verdier er plausible?</td><td>Anslag ± omtrent to standardfeil. Se <a href="#ki">Konfidensintervallet</a>.</td></tr>
+            <tr><td>4 · Intervaller</td><td>Hvilke verdier er plausible?</td><td>Estimat ± kritisk verdi · SE, altså omtrent ± 2 SE (1,96 i store utvalg). Se <a href="#ki">Konfidensintervallet</a>.</td></tr>
             <tr><td>5 · NHST</td><td>Kunne dette vært flaks?</td><td>Test anslaget mot nullhypotesen. Se <a href="#p">Flakssjansen</a>.</td></tr>
           </tbody>
         </table></div>
@@ -872,7 +872,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         <h2>Antall deltagere</h2>
         <p class="asks">Hvor mye vet vi egentlig?</p>
         <p>Akkurat nå er <em class="v">N</em> = <span class="stat" data-s="n"></span>. Antallet gjør to ting samtidig, og de blandes stadig sammen: det gjør anslagene dine <strong>mer presise</strong>, og det gjør at selv <strong>bitte små</strong> sammenhenger blir statistisk signifikante.</p>
-        <p>Det andre er verdt å tygge på. Med N = 20 kan en ganske tydelig sammenheng bli «ikke signifikant» fordi datamaterialet er for tynt til å utelukke flaks. Med N = 5000 blir en fullstendig ubetydelig sammenheng «høyst signifikant». <strong>Signifikant betyr «ikke tilfeldig», aldri «stort».</strong></p>
+        <p>Det andre er verdt å tygge på. Med N = 20 kan en ganske tydelig sammenheng bli «ikke signifikant» fordi datamaterialet er for tynt til å utelukke flaks. Med N = 5000 blir en fullstendig ubetydelig sammenheng «høyst signifikant». <strong>Signifikant betyr «vanskelig å forklare med flaks alene», aldri «stort».</strong></p>
         <div class="aside tryit"><b>Prøv:</b> sett N = 20 og trekk nytt utvalg til du får en p-verdi over .05 — det skjer ganske ofte, selv om sammenhengen i sannhet er sterk (ρ = .67). Det er en <em>type II-feil</em>: å overse noe som faktisk er der. Sett så N = 100 og prøv å få det til å skje igjen.</div>
       </div>
     </section>
@@ -913,7 +913,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <figure><canvas id="cvT3" height="170"></canvas><figcaption><b data-s="rxzL"></b>Timer studert og søvn</figcaption></figure>
           </div>
         </div>
-        <div class="aside"><b>Pearson eller Spearman?</b> Pearsons <em class="v">r</em> regner med tallene slik de står og forutsetter at sammenhengen er en rett strek. Spearmans <em class="v">r<sub>s</sub></em> rangerer først deltagerne fra lavest til høyest og korrelerer rangeringene — den bryr seg bare om rekkefølge. Bruk Spearman når fordelingen er skjev, når det finnes uteliggere, eller når en variabel bare har noen få trinn.</div>
+        <div class="aside"><b>Pearson eller Spearman?</b> Pearsons <em class="v">r</em> regner med tallene slik de står og forutsetter at sammenhengen er en rett strek. Spearmans <em class="v">r<sub>s</sub></em> rangerer først deltagerne fra lavest til høyest og korrelerer rangeringene — den bryr seg bare om rekkefølge. Bruk Spearman når data er ordinale, eller når sammenhengen er <em>monoton</em> men krum — den går hele tiden samme vei, bare ikke som en rett strek. Er det en uteligger, kjør analysen både med og uten den, og rapporter begge. Ingen av dem fanger en U-formet sammenheng.</div>
         <details class="more">
           <summary>Hvor kommer r fra? Kovariansen</summary>
           <div class="more-body">
@@ -984,7 +984,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <div class="readout" id="nullRead"></div>
         </div>
         <div class="aside tryit"><b>Dette er den viktigste demoen på sida.</b> Sett N = 20, stokk om 200 ganger, og se hvor bred flakshaugen er — den strekker seg gjerne til ±.45. Med så få deltagere <em>må</em> en korrelasjon være enorm for å skille seg fra flaks. Sett så N = 100 og gjør det samme: haugen krymper til rundt ±.20. <strong>Det er hele grunnen til at store utvalg gir små p-verdier.</strong></div>
-        <div class="aside"><b>Grensa på .05</b> er en konvensjon, ikke en naturlov. Og <em class="v">p</em> sier ingenting om hvor stor sammenhengen er — bare hvor sikre vi er på at den ikke er null. Derfor skal <em class="v">r²</em> alltid stå ved siden av.</div>
+        <div class="aside"><b>Grensa på .05</b> er en konvensjon, ikke en naturlov. Og <em class="v">p</em> sier ingenting om hvor stor sammenhengen er — bare hvor uvanlig resultatet ville vært hvis den sanne verdien var null. Derfor skal <em class="v">r²</em> alltid stå ved siden av.</div>
         <details class="more">
           <summary>Fire vanlige feiltolkninger av p</summary>
           <div class="more-body">
@@ -1297,7 +1297,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         <details class="more easy">
           <summary>Enkelt forklart: hva R² betyr</summary>
           <div class="more-body">
-            <p>Studentene fikk ulike poeng. R² sier hvor stor del av de forskjellene modellen klarer å forklare. R² = .30 betyr at studietid står for 30 % av forskjellene i poeng. De andre 70 % skyldes ting modellen ikke vet om — søvn, dagsform, flaks.</p>
+            <p>Studentene fikk ulike poeng. R² sier hvor stor del av de forskjellene modellen klarer å forklare. R² = .30 betyr at modellen med studietid fanger opp 30 % av forskjellene i poeng. De andre 70 % er variasjon modellen ikke fanger — søvn, dagsform, flaks.</p>
             <p>I ditt utvalg forklarer studietid <span class="stat" data-s="R2pct"></span>.</p>
           </div>
         </details>
@@ -1376,7 +1376,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <p>JASP viser begge under <em>Part and partial correlations</em> i lineær regresjon. Summen av alle sr² er mindre enn R² når prediktorene overlapper: det felles stykket eier ingen av dem alene.</p>
           </div>
         </details>
-        <div class="aside tryit"><b>Prøv:</b> med N = 20 blir ΔR² for søvn ofte ikke signifikant, selv om effekten i sannhet finnes (1,5 poeng per time). Med N = 100 dukker den som regel opp. <strong>Små effekter krever store utvalg</strong> — og det er nøyaktig derfor svake, men ekte sammenhenger er så vanskelige å studere.</div>
+        <div class="aside tryit"><b>Prøv:</b> med N = 20 blir ΔR² for søvn ofte ikke signifikant, selv om effekten i sannhet finnes (1,5 poeng per time). Med N = 100 blir den signifikant drøyt halvparten av gangene. <strong>Små effekter krever store utvalg</strong> — og det er nøyaktig derfor svake, men ekte sammenhenger er så vanskelige å studere.</div>
       </div>
     </section>
 
@@ -1406,7 +1406,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <canvas id="cvColl" height="248"></canvas>
           <div class="readout" id="collRead"></div>
         </div>
-        <div class="aside tryit"><b>Dra kontrollen sakte mot høyre.</b> Legg merke til hva som skjer med de to prikkene og strekene rundt dem: koeffisientene sklir vekk fra de sanne verdiene (de røde strekene), og konfidensintervallene blir dobbelt så brede. Samtidig predikerer modellen som helhet like godt eller bedre. <strong>Den treffer fortsatt riktig poengsum — den klarer bare ikke lenger å si hvem av de to prediktorene som fortjener æren.</strong> Det er nettopp dette VIF advarer om.</div>
+        <div class="aside tryit"><b>Dra kontrollen sakte mot høyre.</b> Legg merke til hva som skjer med de to prikkene og strekene rundt dem: koeffisientene kan skli langt fra de sanne verdiene (de røde strekene) — i et annet utvalg kunne de like gjerne sklidd motsatt vei, og konfidensintervallene blir dobbelt så brede. Samtidig predikerer modellen som helhet like godt eller bedre. <strong>Den treffer fortsatt riktig poengsum — den klarer bare ikke lenger å si hvem av de to prediktorene som fortjener æren.</strong> Det er nettopp dette VIF advarer om.</div>
         <div class="aside"><b>Tre måter å si det samme:</b> korrelasjonen mellom prediktorene, hvor mye koeffisienten flytter seg når den andre kommer inn i modellen, og VIF. Når du merker at tall gjentar seg slik, har du som regel forstått noe riktig.</div>
         <details class="more">
           <summary>Hvor kommer VIF-tallet fra?</summary>
@@ -1473,7 +1473,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td class="up">Range</td><td>Variasjonsbredde</td><td>Laveste til høyeste verdi.</td></tr>
             <tr><td class="up">CV</td><td>Variasjonskoeffisient</td><td>SD delt på M: spredningen i prosent av snittet, så variabler på ulike skalaer kan sammenlignes. Gir bare mening på forholdstallsnivå.</td></tr>
             <tr><td class="up">Skjevhet</td><td>Skewness</td><td>0 = symmetrisk. Positiv = hale mot høyre. Over ±2 begynner det å bli problematisk.</td></tr>
-            <tr><td class="up">Kurtose</td><td>Kurtosis</td><td>Hvor spiss eller flat toppen er. 0 = normalfordelt (i de fleste programmer).</td></tr>
+            <tr><td class="up">Kurtose</td><td>Kurtosis</td><td>Hvor tunge halene er: høy kurtose betyr flere ekstreme verdier enn normalfordelingen tilsier. 0 = normalfordelt (i de fleste programmer).</td></tr>
             <tr><td class="up">N(μ, σ²)</td><td>Normalfordeling</td><td>Den symmetriske klokkeformen. N(100, 15²) betyr snitt 100 og SD 15. Ca. 68 % ligger innenfor ±1 SD, og 95 % innenfor ±1.96 SD.</td></tr>
             <tr><td class="up">%</td><td>Andel</td><td>For kategoriske variabler. Oppgis alltid med rå antall i parentes.</td></tr>
           </tbody>
@@ -1501,15 +1501,16 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td>d</td><td>Cohens d</td><td>Forskjell mellom to gjennomsnitt, målt i standardavvik. <b>0.20</b> liten · <b>0.50</b> middels · <b>0.80</b> stor.</td></tr>
             <tr><td>g</td><td>Hedges' g</td><td>Cohens d justert for små utvalg. Nesten identisk når N er stor.</td></tr>
             <tr><td>d<sub>z</sub></td><td>Cohens d for parede målinger</td><td>Gjennomsnittlig endring delt på SD for endringene. Blir ofte større enn en vanlig d for den samme forskjellen, fordi det å måle de samme personene to ganger fjerner mye av spredningen. Si alltid hvilken d du har brukt.</td></tr>
-            <tr><td>r</td><td>Korrelasjon</td><td>Også en effektstørrelse. <b>.10</b> liten · <b>.30</b> middels · <b>.50</b> stor.</td></tr>
+            <tr><td>r</td><td>Korrelasjon</td><td>Også en effektstørrelse. <b>.10</b> liten · <b>.30</b> middels (moderat) · <b>.50</b> stor.</td></tr>
             <tr><td>r²</td><td>Delt variasjon</td><td>Andel felles variasjon mellom to variabler.</td></tr>
             <tr><td>τ</td><td>Kendalls tau</td><td>Rangkorrelasjon, som Spearman, men regnet ut fra hvor mange par som står i samme rekkefølge på begge variablene. Blir lavere enn Spearman på de samme dataene, og tåler mange like verdier bedre. JASP tilbyr den ved siden av Pearson og Spearman.</td></tr>
-            <tr><td>r<sub>pb</sub></td><td>Punktbiserial korrelasjon</td><td>Pearsons r når den ene variabelen bare har to verdier, for eksempel gruppe. Henger direkte sammen med t-testen og Cohens d.</td></tr>
+            <tr><td>r<sub>pb</sub></td><td>Punktbiseriell korrelasjon</td><td>Pearsons r når den ene variabelen bare har to verdier, for eksempel gruppe. Henger direkte sammen med t-testen og Cohens d.</td></tr>
             <tr><td>r<sub>rb</sub></td><td>Rangbiserial korrelasjon</td><td>Effektstørrelsen JASP gir for Mann–Whitney og Wilcoxon. Fra −1 til +1: andelen par der den ene gruppen skårer høyest, minus andelen der den andre gjør det.</td></tr>
             <tr><td class="up">R²</td><td>Forklart variasjon</td><td>Andelen av utfallet hele modellen fanger opp.</td></tr>
             <tr><td>η²</td><td>Eta-kvadrat</td><td>ANOVAs R². Andel av total variasjon som skyldes én faktor. <b>.01</b> · <b>.06</b> · <b>.14</b>.</td></tr>
-            <tr><td>η<sub>p</sub>²</td><td>Partiell eta-kvadrat</td><td>Samme, men etter at andre faktorer er trukket ut av nevneren. <strong>Alltid større enn η²</strong> — derfor er det den folk helst rapporterer.</td></tr>
-            <tr><td>ω²</td><td>Omega-kvadrat</td><td>Som η², men mindre forventningsskjev. Faglig sett bedre, sjeldnere brukt.</td></tr>
+            <tr><td>η<sub>p</sub>²</td><td>Partiell eta-kvadrat</td><td>Samme, men etter at andre faktorer er trukket ut av nevneren. <strong>Minst like stor som η²</strong>: lik med én faktor, større når det er flere.</td></tr>
+            <tr><td>ω²</td><td>Omega-kvadrat</td><td>Som η², men justert for at η² alltid blir litt for høy. Mindre forventningsskjev. JASP krysser av for ω² som standard; en negativ ω² rapporteres som 0.</td></tr>
+            <tr><td>ω<sub>p</sub>²</td><td>Partiell omega-kvadrat</td><td>Den partielle varianten av ω². <strong>Emnets anbefalte mål i faktoriell ANOVA</strong> — si alltid hvilket mål du bruker.</td></tr>
             <tr><td>f</td><td>Cohens f</td><td>Effektstørrelse for ANOVA i styrkeberegning. <b>.10</b> · <b>.25</b> · <b>.40</b>.</td></tr>
             <tr><td>f²</td><td>Cohens f²</td><td>Effektstørrelse for regresjon i styrkeberegning: R² / (1 − R²). <b>.02</b> liten · <b>.15</b> middels · <b>.35</b> stor.</td></tr>
             <tr><td class="up">V</td><td>Cramérs V</td><td>Effektstørrelse for kjikvadrat. 0 til 1. Grensene avhenger av tabellens størrelse.</td></tr>
@@ -1526,7 +1527,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <div class="more-body">
             <p>Cohens d er forskjellen mellom to gruppesnitt, delt på standardavviket de har til felles:</p>
             <div class="calc">d = (M₁ − M₂) / SD<sub>felles</sub></div>
-            <p>Eksempelet fra setningsleseren: kvinner M = 3.42 (SD = 0.81, n = 214), menn M = 3.05 (SD = 0.77, n = 177). Det felles standardavviket er et vektet snitt av de to, omtrent 0.79. Da er d = (3.42 − 3.05) / 0.79 = 0.37 / 0.79 ≈ 0.47.</p>
+            <p>Eksempelet fra setningsleseren: kvinner M = 3.42 (SD = 0.81, n = 214), menn M = 3.05 (SD = 0.77, n = 177). Det felles standardavviket (s<sub>p</sub>) regnes fra de to variansene, vektet etter gruppestørrelse, og blir omtrent 0.79. Da er d = (3.42 − 3.05) / 0.79 = 0.37 / 0.79 ≈ 0.47.</p>
             <p>Har du bare t og gruppestørrelsene, kan du regne baklengs: d ≈ t × √(1/n₁ + 1/n₂) = 4.62 × √(1/214 + 1/177) ≈ 0.47.</p>
             <p><b>«69 %»</b> kommer fra normalfordelingen. Med d = 0.50 ligger gjennomsnittspersonen i den ene gruppen et halvt standardavvik over snittet i den andre — og et halvt standardavvik over midten har omtrent 69 % av fordelingen under seg. d = 0.20 gir 58 %, og d = 0.80 gir 79 %.</p>
           </div>
@@ -1555,7 +1556,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td class="up">H</td><td>Kruskal–Wallis H</td><td>Ikke-parametrisk for tre eller flere grupper.</td></tr>
             <tr><td class="up">Friedman</td><td>Friedmans test</td><td>Ikke-parametrisk versjon av ANOVA for gjentatte målinger: de samme personene målt tre eller flere ganger. Effektstørrelsen er Kendalls W.</td></tr>
             <tr><td>χ²</td><td>Kjikvadrat</td><td>Testen for <em>kategoriske</em> data — der du teller personer i bokser i stedet for å måle noe på en skala. Uttales «ki». Skrives <code>χ²(2, N = 391) = 8.4</code>. Alle varianter bygger på det samme regnestykket: hvor langt er de <em>observerte</em> antallene fra de <em>forventede</em>?</td></tr>
-            <tr><td class="up">O vs. F</td><td>Observert mot forventet</td><td>Selve mekanikken. «Forventet» betyr: hvor mange ville havnet i denne cellen hvis nullhypotesen stemte? χ² summerer <code>(O − F)² / F</code> over alle cellene. Ingen avvik gir χ² = 0; jo større tallet blir, desto dårligere passer nullhypotesen.</td></tr>
+            <tr><td class="up">O vs. F</td><td>Observert mot forventet</td><td>Selve mekanikken. «Forventet» betyr: hvor mange ville havnet i denne cellen hvis nullhypotesen stemte? χ² summerer <code>(O − E)² / E</code> over alle cellene (E = <em>expected</em>, forventet; noen norske tekster skriver F). Ingen avvik gir χ² = 0; jo større tallet blir, desto dårligere passer nullhypotesen.</td></tr>
             <tr><td class="up">χ² tilpasning</td><td>Goodness-of-fit · én variabel</td><td>Fordeler én kategorisk variabel seg slik vi ventet? «Er en kjønnsfordeling på 44/31 forenlig med 50/50?» De forventede antallene kommer fra en fordeling du oppgir selv.</td></tr>
             <tr><td class="up">χ² uavhengighet</td><td>Test of independence · to variabler</td><td>Henger to kategoriske variabler sammen? «Er medisinbruk fordelt likt mellom behandlingsgruppene?» Her regnes de forventede antallene ut fra rad- og kolonnesummene i krysstabellen.</td></tr>
             <tr><td class="up">Fisher</td><td>Fishers eksakte test</td><td>Erstatter χ² i små 2×2-tabeller der de forventede antallene blir for lave. Regner ut den eksakte sannsynligheten i stedet for å bruke χ²-fordelingen som tilnærming.</td></tr>
@@ -1566,12 +1567,12 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         <details class="more">
           <summary>Regn ut χ² for hånd</summary>
           <div class="more-body">
-            <p>Spørsmålet fra tabellen over: er 44 kvinner og 31 menn (N = 75) forenlig med 50/50? Med 50/50 skulle det vært 37,5 av hver.</p>
+            <p>Spørsmålet fra tabellen over: er en fordeling på 44 av det ene kjønnet og 31 av det andre (N = 75) forenlig med 50/50? Med 50/50 skulle det vært 37,5 av hver.</p>
             <div class="scroller"><table class="mini">
-              <thead><tr><th></th><th>Observert (O)</th><th>Forventet (F)</th><th>(O − F)² / F</th></tr></thead>
+              <thead><tr><th></th><th>Observert (O)</th><th>Forventet (E)</th><th>(O − E)² / E</th></tr></thead>
               <tbody>
-                <tr><td>Kvinner</td><td>44</td><td>37.5</td><td>42.25 / 37.5 = 1.127</td></tr>
-                <tr><td>Menn</td><td>31</td><td>37.5</td><td>42.25 / 37.5 = 1.127</td></tr>
+                <tr><td>Det ene kjønnet</td><td>44</td><td>37.5</td><td>42.25 / 37.5 = 1.127</td></tr>
+                <tr><td>Det andre</td><td>31</td><td>37.5</td><td>42.25 / 37.5 = 1.127</td></tr>
                 <tr><td>Sum</td><td>75</td><td>75</td><td>χ² = 2.25</td></tr>
               </tbody>
             </table></div>
@@ -1611,7 +1612,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td class="up">SS</td><td>Sum of squares</td><td>Kvadratsum — rå mengde variasjon. Deles i «forklart» og «residual».</td></tr>
             <tr><td class="up">MS</td><td>Mean square</td><td>SS delt på df. F er MS forklart delt på MS residual.</td></tr>
             <tr><td class="up">df1, df2</td><td>Frihetsgrader</td><td>Første tall: antall grupper minus 1. Andre: det som er igjen av utvalget.</td></tr>
-            <tr><td>η<sub>p</sub>²</td><td>Partiell eta-kvadrat</td><td>Standard effektstørrelse i ANOVA. Se effektstørrelser.</td></tr>
+            <tr><td>η<sub>p</sub>²</td><td>Partiell eta-kvadrat</td><td>Mye brukt effektstørrelse i ANOVA. I enveis ANOVA er η² tallet emnet spør om; i faktoriell ANOVA anbefaler emnet ω<sub>p</sub>². Si alltid hvilket mål du bruker.</td></tr>
             <tr><td class="up">A × B</td><td>Interaksjon</td><td>Virker faktor A forskjellig avhengig av nivået på B? Dette er ofte hele poenget med studien.</td></tr>
             <tr><td class="up">Hovedeffekt</td><td>Main effect</td><td>Effekten av én faktor alene, sett bort fra de andre.</td></tr>
             <tr><td>W</td><td>Mauchlys W</td><td>Tester sfærisitet i gjentatte målinger. Signifikant W = forutsetningen brutt.</td></tr>
@@ -1620,7 +1621,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td class="up">Tukey HSD</td><td>Post hoc-test</td><td>Sammenligner alle par etter en signifikant ANOVA, og justerer for at man tester mange ganger.</td></tr>
             <tr><td class="up">Dunnett</td><td>Post hoc mot kontroll</td><td>Sammenligner hver gruppe bare med kontrollgruppen, ikke alle par med alle. Færre sammenligninger gir mer styrke.</td></tr>
             <tr><td class="up">Bonferroni</td><td>Korreksjon</td><td>Del signifikansgrensa på antall tester. Enkelt, men strengt. Holm er en bedre variant.</td></tr>
-            <tr><td>p<sub>adj</sub></td><td>Justert p-verdi</td><td>p etter korreksjon for antall tester. Alltid større enn den ujusterte.</td></tr>
+            <tr><td>p<sub>adj</sub></td><td>Justert p-verdi</td><td>p etter korreksjon for antall tester. Aldri mindre enn den ujusterte.</td></tr>
             <tr><td class="up">ANCOVA</td><td>Kovariansanalyse</td><td>ANOVA der man først trekker ut effekten av en kontinuerlig kontrollvariabel.</td></tr>
             <tr><td>Λ</td><td>Wilks' lambda</td><td>MANOVA-versjonen av F, når du har flere utfallsvariabler samtidig. <strong>Lav Λ = stor effekt</strong> — motsatt av det du forventer.</td></tr>
           </tbody>
@@ -1630,9 +1631,10 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <div class="more-body">
             <p><b>ANOVA → ANOVA.</b> Utfallet i <em>Dependent Variable</em>, gruppevariabelen i <em>Fixed Factors</em>. Så, i denne rekkefølgen:</p>
             <ul>
-              <li><b>Display:</b> kryss av for <em>Descriptive statistics</em> og <em>Estimates of effect size</em> (η² eller ω²).</li>
-              <li><b>Assumption Checks:</b> <em>Homogeneity tests</em> gir Levene, og <em>Q-Q plot of residuals</em> viser normaliteten. Slår Levene ut, velg Welch under <em>Homogeneity corrections</em>.</li>
-              <li><b>Post Hoc Tests:</b> flytt faktoren over og velg Tukey — eller Games–Howell hvis variansene er ulike. Bare hvis F ble signifikant.</li>
+              <li><b>Additional Options:</b> kryss av for <em>Descriptives</em> og under <em>Effect size</em> for η². ω² er avhuket fra før — η² må du krysse av selv, og det er η² emnet spør om i enveis ANOVA. I et faktorielt design: velg den partielle varianten, ω<sub>p</sub>².</li>
+              <li><b>Assumption Checks:</b> <em>Homogeneity tests</em> gir Levene, og <em>Q-Q plot of residuals</em> viser normaliteten. Slår Levene ut, velg Welch under <em>Homogeneity corrections</em> og Games–Howell som post hoc. Det gjelder enveis ANOVA — med to eller flere faktorer har JASP ingen ferdig Welch.</li>
+              <li><b>Post Hoc Tests:</b> flytt faktoren over og velg Tukey, som er standard — eller Games–Howell hvis variansene er ulike. Bare hvis F ble signifikant.</li>
+              <li><b>Vanligste feil:</b> å legge gruppevariabelen i <em>Covariates</em> i stedet for <em>Fixed Factors</em>. Da behandles 1, 2, 3 som tall, ikke som grupper.</li>
             </ul>
             <p>Navnene kan variere litt mellom JASP-versjoner, men rekkefølgen er den samme: beskriv, sjekk, test, følg opp.</p>
           </div>
@@ -1815,7 +1817,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         <p>Denne familien handler om studiens design snarere enn om resultatene, men den avgjør hvor mye resultatene er verdt.</p>
         <div class="scroller"><table class="dict tight" data-fam="Styrke">
           <tbody>
-            <tr><td class="up">H₀ / H₁</td><td>Null- og alternativhypotese</td><td>H₀ er alltid «ingen forskjell / ingen sammenheng». Man forkaster den eller lar være — man beviser den aldri.</td></tr>
+            <tr><td class="up">H₀ / H₁</td><td>Null- og alternativhypotese</td><td>H₀ er som regel «ingen forskjell / ingen sammenheng». Man forkaster den eller lar være — man beviser den aldri.</td></tr>
             <tr><td>α</td><td>Signifikansnivå</td><td>Grensa man setter på forhånd, nesten alltid .05. Samtidig risikoen for type I-feil.</td></tr>
             <tr><td class="up">Type I</td><td>Falsk positiv</td><td>Å påstå at det er en effekt når det ikke er noen. Sannsynligheten er α.</td></tr>
             <tr><td class="up">Type II</td><td>Falsk negativ</td><td>Å overse en effekt som faktisk finnes. Sannsynligheten kalles β.</td></tr>
@@ -1924,7 +1926,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <h3>η² mot η<sub>p</sub>²</h3>
           <div class="ffgrid">
             <div><b>η²</b><span>Andel av <em>all</em> variasjon som skyldes denne faktoren.</span></div>
-            <div><b>η<sub>p</sub>² (partiell)</b><span>Andel av variasjonen som er igjen når de andre faktorene er trukket ut. Alltid større.</span></div>
+            <div><b>η<sub>p</sub>² (partiell)</b><span>Andel av variasjonen som er igjen når de andre faktorene er trukket ut. Lik η² med én faktor, større når det er flere.</span></div>
           </div>
           <p class="ffhint">De rapporteres ofte uten at det sies hvilken det er, og de kan ikke sammenlignes på tvers av studier med ulikt design. Vær forsiktig med å veie dem mot hverandre.</p>
         </div>
@@ -1952,16 +1954,16 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <div><b>95 % KI</b><span>Om metoden: gjentok du studien uendelig mange ganger, ville 95 % av slike intervaller inneholde den sanne verdien. Strengt tatt <em>ikke</em> «95 % sjanse for at verdien er her».</span></div>
             <div><b>95 % CrI</b><span>Bayesiansk. Betyr faktisk det folk tror KI betyr: 95 % sannsynlighet for at verdien ligger i intervallet.</span></div>
           </div>
-          <p class="ffhint">Praktisk talt tolker nesten alle KI som om det var et CrI. Det er teknisk feil, men sjelden skjebnesvangert — bare vit at det er to ulike ting.</p>
+          <p class="ffhint">Mange leser KI som om det var et CrI. På eksamen er «95 % sannsynlighet for at den sanne verdien ligger i dette intervallet» likevel feil svar: «95 %» er en egenskap ved metoden over mange studier, ikke ved det ene intervallet.</p>
         </div>
 
         <div class="ff">
           <h3>Signifikant mot viktig</h3>
           <div class="ffgrid">
-            <div><b>Statistisk signifikant</b><span>Sannsynligvis ikke null. Sier ingenting om størrelse.</span></div>
+            <div><b>Statistisk signifikant</b><span>Lite forenlig med nullhypotesen (p &lt; α). Sier ingenting om størrelse.</span></div>
             <div><b>Praktisk betydningsfull</b><span>Stor nok til å ha konsekvenser. Sier ingenting om sikkerhet.</span></div>
           </div>
-          <p class="ffhint">Din egen r = .16 er signifikant og samtidig nesten uten praktisk betydning. Det er derfor effektstørrelse alltid skal stå ved siden av p.</p>
+          <p class="ffhint">En korrelasjon på .16 blir signifikant bare utvalget er stort nok — rundt 150 deltagere holder — og er like fullt nesten uten praktisk betydning: r² = .026. Det er derfor effektstørrelse alltid skal stå ved siden av p.</p>
         </div>
       </div>
     </section>
@@ -2068,7 +2070,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <summary>Enkelt forklart: hva en interaksjon er</summary>
           <div class="more-body">
             <p>En interaksjon betyr «det kommer an på». Kaffe gjør deg mer våken — men mye mer når du er trøtt enn når du er uthvilt. Effekten av kaffe <em>avhenger av</em> hvor trøtt du er. Det er en interaksjon mellom kaffe og trøtthet.</p>
-            <p>I et plott med to linjer er det lett å se: <b>parallelle linjer</b> betyr ingen interaksjon — effekten er lik for alle. <b>Linjer med ulik helning</b> betyr at det finnes en.</p>
+            <p>I et plott med to linjer er det lett å se: <b>parallelle linjer</b> betyr ingen interaksjon — effekten er lik for alle. <b>Linjer med ulik helning</b> betyr at det finnes en i utvalget ditt. Om den er signifikant, ser du ikke av figuren — det står i interaksjonsraden i tabellen.</p>
           </div>
         </details>
         <p>En interaksjon er ikke et vanskeligere tall enn de andre — den er bare et tall om et tall. Hovedeffekten spør «er det forskjell?». Interaksjonen spør «er forskjellen den samme overalt?».</p>
@@ -2076,10 +2078,10 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         <div class="scroller"><table class="dict terms tight" data-fam="Interaksjon">
           <tbody>
             <tr><td>Interaksjon</td><td>Interaction</td><td>At effekten av én faktor avhenger av nivået på en annen. Formelt: forskjellen mellom forskjellene er ikke null.</td></tr>
-            <tr><td>Hovedeffekt</td><td>Main effect</td><td>Effekten av én faktor gjennomsnittet over nivåene på den andre. Kan være misvisende å tolke alene når interaksjonen er sterk.</td></tr>
-            <tr><td>Interaksjonsplott</td><td>Interaction plot</td><td>Cellegjennomsnittene tegnet som to linjer. Parallelle linjer betyr ingen interaksjon; ulik helning betyr at det finnes en.</td></tr>
-            <tr><td>Vifteinteraksjon</td><td>Fan / ordinal</td><td>Begge linjene peker samme vei, men den ene er brattere. Effekten finnes overalt, bare i ulik grad. Vanligst i sårbarhetsstudier.</td></tr>
-            <tr><td>Kryssende interaksjon</td><td>Crossover / disordinal</td><td>Linjene krysser: effekten snur retning. Her blir hovedeffekten nesten alltid meningsløs å tolke alene.</td></tr>
+            <tr><td>Hovedeffekt</td><td>Main effect</td><td>Effekten av én faktor gjennomsnittet over nivåene på den andre. Skal ikke tolkes rett fram når interaksjonen er signifikant — les interaksjonsraden først.</td></tr>
+            <tr><td>Interaksjonsplott</td><td>Interaction plot</td><td>Cellegjennomsnittene tegnet som to linjer. Parallelle linjer betyr ingen interaksjon i utvalget; ulik helning betyr en viss interaksjon — men om den er signifikant, ser du ikke av figuren.</td></tr>
+            <tr><td>Ordinal interaksjon</td><td>Ordinal · vifte</td><td>Begge linjene peker samme vei, men den ene er brattere. Effekten finnes overalt, bare i ulik grad. Vanligst i sårbarhetsstudier.</td></tr>
+            <tr><td>Disordinal interaksjon</td><td>Disordinal · kryssende</td><td>Linjene krysser: effekten snur retning. Her villeder hovedeffektene lett. Merk at om en interaksjon ser ordinal eller disordinal ut, kan avhenge av hvilken faktor som står på x-aksen.</td></tr>
             <tr><td>Enkle effekter</td><td>Simple effects</td><td>Effekten av den ene faktoren innenfor ett enkelt nivå av den andre. Det du kjører <em>etter</em> en signifikant interaksjon for å si hva den består i.</td></tr>
             <tr><td>Marginalt gjennomsnitt</td><td>Marginal mean</td><td>Snittet for én rad eller kolonne i celletabellen. Hovedeffektene leses av disse, interaksjonen av cellene selv.</td></tr>
             <tr><td>Ordensfeil</td><td>—</td><td>Å konkludere med interaksjon fordi den ene gruppen ble signifikant og den andre ikke. Å sammenligne to p-verdier er ikke en test på at de er forskjellige.</td></tr>
@@ -2111,7 +2113,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           </tbody>
         </table></div>
         <div class="aside"><b>Mediansplitten er et kompromiss, ikke en forbedring.</b> Den gjør en toveis-ANOVA mulig og et interaksjonsplott lettlest, og den er derfor vanlig i undervisning. Prisen er reell: du mister styrke, grensa er tilfeldig satt av akkurat dette utvalget, og to deltagere på hver sin side av medianen behandles som forskjellige selv om de skårer nesten likt. Den ryddige varianten er å beholde variabelen kontinuerlig og teste interaksjonen i en regresjon. Bruker du splitten, si at du gjorde det og hvorfor.</div>
-        <div class="aside tryit"><b>Sjekk at du forstår ekvivalensen.</b> Kjør en toveis-ANOVA på endringsskåren, og en blandet ANOVA med tid som innen-faktor på de samme dataene. Interaksjonen skal gi samme F og samme p. Ser du at det er to fremstillinger av én analyse, er du ferdig med å lure på hvilken av dem som er «riktig».</div>
+        <div class="aside tryit"><b>Sjekk at du forstår ekvivalensen.</b> Med én gruppefaktor: kjør en enveis-ANOVA (eller t-test) på endringsskåren, og en blandet ANOVA med tid som innen-faktor på de samme dataene. Gruppeeffekten på endringen og interaksjonen Tid × Gruppe gir samme F og samme p. (Med to gruppefaktorer gjelder det samme ett nivå opp: A × B på endringsskåren tilsvarer Tid × A × B.) Ser du at det er to fremstillinger av én analyse, er du ferdig med å lure på hvilken av dem som er «riktig».</div>
       </div>
     </section>
 
@@ -2193,7 +2195,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <tr><td>Falsk oppdagelsesrate</td><td>FDR</td><td>Alternativ strategi: kontroller andelen falske blant de signifikante i stedet for sjansen for én. Vanlig når testene er mange, som i hjerneavbildning.</td></tr>
           </tbody>
         </table></div>
-        <div class="aside"><b>Post hoc bare der omnibus var signifikant.</b> Rekkefølgen er hele poenget: omnibustesten er porten som holder den familievise feilraten nede. Kjører du parvise tester uansett, har du gått rundt porten, og korreksjonen i post hoc-testen er ikke lenger dekkende for alt du har sett på.</div>
+        <div class="aside"><b>Post hoc bare der omnibus var signifikant.</b> Det er regelen i emnet. Testene som Tukey korrigerer riktignok selv for antall par, men leter du blant parene etter at hovedsvaret ble nei, leter du etter noe å rapportere — og det er p-jakt i praksis. Omnibus svarer på om noen skiller seg; post hoc bare på hvem.</div>
         <details class="more">
           <summary>Bonferroni og Holm, steg for steg</summary>
           <div class="more-body">
@@ -2235,7 +2237,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <h3>r = β</h3>
           <div class="ffgrid">
             <div><b>I en enkel regresjon</b><span>Den standardiserte koeffisienten er nøyaktig Pearsons r, og R² er nøyaktig r². Med én prediktor er regresjon og korrelasjon samme regnestykke, skrevet på to måter.</span></div>
-            <div><b>Med flere prediktorer</b><span>Likheten brekker: β for én prediktor er nå korrelasjonen <em>kontrollert for</em> de andre, og kan bli mindre, større eller skifte fortegn.</span></div>
+            <div><b>Med flere prediktorer</b><span>Likheten brekker: β for én prediktor er nå vekten den får <em>når de andre holdes konstant</em> (en standardisert partiell koeffisient), og kan bli mindre, større eller skifte fortegn.</span></div>
           </div>
           <p class="ffhint">Det er derfor et avvik mellom r og β i en multippel modell ikke er en feil, men informasjon: det forteller deg at prediktorene overlapper. Se <a href="#vif">Overlappet</a>.</p>
         </div>
@@ -2306,7 +2308,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <div><b>Skriv</b><span>p &lt; .001 når programmet viser 0,000 · begge frihetsgradene i F(4, 386) · to desimaler på teststatistikk · ledende null utelatt på p, r og β.</span></div>
             <div><b>Ikke skriv</b><span>p = .000 — en sannsynlighet er aldri null · F(386) · «p = 0.05» der grensa og den eksakte verdien blandes sammen.</span></div>
           </div>
-          <p class="ffhint">Tallene som ikke kan overstige 1 — p, r, β, η² — skrives uten null foran punktumet. De som kan, som M, SD og t, beholder den.</p>
+          <p class="ffhint">Tallene som ikke kan overstige 1 — p, r, β, η² — skrives uten null foran punktumet. De som kan, som M, SD og t, beholder den. Forelesningene skriver ofte norsk desimalkomma: <em>p</em> = ,05 og <em>r</em> = ,48 er det samme som .05 og .48.</p>
         </div>
         <div class="ff">
           <h3>Resultat mot diskusjon</h3>
@@ -2325,7 +2327,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
             <p><b>Enveis-ANOVA</b><span class="tpl">Gruppene skilte seg signifikant, F(2, 72) = 5.31, p = .007, η² = .13. Tukeys post hoc-test viste at …</span></p>
             <p><b>Korrelasjon</b><span class="tpl">Timer studert hang sammen med poeng, r(73) = .43, p &lt; .001, 95 % KI [.23, .60].</span></p>
             <p><b>Enkel regresjon</b><span class="tpl">Timer studert predikerte poeng, b = 2.51, 95 % KI [1.29, 3.73], β = .43, t(73) = 4.10, p &lt; .001. Modellen forklarte 19 % av variasjonen, R² = .19, F(1, 73) = 16.81, p &lt; .001.</span></p>
-            <p><b>Kjikvadrat</b><span class="tpl">Medisinbruk var ulikt fordelt mellom gruppene, χ²(1, N = 120) = 6.45, p = .011, φ = .23.</span></p>
+            <p><b>Kjikvadrat</b><span class="tpl">Medisinbruk var ulikt fordelt mellom gruppene, χ²(1, N = 75) = 6.45, p = .011, φ = .29.</span></p>
             <p><b>Nullfunn</b><span class="tpl">Det var ingen signifikant forskjell mellom gruppene, t(38) = 1.12, p = .27, d = 0.35.</span></p>
           </div>
         </details>
@@ -2456,7 +2458,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
         <tr><td>r</td><td>Pearsons korrelasjon</td><td>Styrke og retning, fra −1 til +1.</td></tr>
         <tr><td>r<sub>s</sub></td><td>Spearmans rangkorrelasjon</td><td>Det samme, men basert på rekkefølge i stedet for tallverdi.</td></tr>
         <tr><td>r²</td><td>Delt variasjon</td><td>r ganget med seg selv. Andelen variasjon to variabler deler.</td></tr>
-        <tr><td>p</td><td>Signifikansnivå</td><td>Hvor ofte ren flaks ville gitt et minst like tydelig resultat.</td></tr>
+        <tr><td>p</td><td>p-verdi</td><td>Hvor uvanlig resultatet (eller noe enda mer ekstremt) ville vært hvis H₀ var sann. Sammenlignes med α, som er signifikansnivået.</td></tr>
         <tr><td class="up">95 % KI</td><td>Konfidensintervall</td><td>Spennet der den sanne verdien rimeligvis ligger. Inneholder det 0, er funnet ikke signifikant.</td></tr>
         <tr><td>b₀</td><td>Konstantledd</td><td>Der linja krysser aksen. Rapporteres, tolkes sjelden.</td></tr>
         <tr><td>b₁</td><td>Stigningstall</td><td>Endring i predikert utfall per enhet prediktor.</td></tr>
@@ -3386,10 +3388,10 @@ const cR = setup('cvR', o=>{
 });
 function rWords(r){
   const a=Math.abs(r);
-  if(a<.06) return 'Ingen sammenheng å snakke om — skyen er formløs.';
-  if(a<.18) return 'Svak. Du aner en helning, men punktene spriker voldsomt.';
-  if(a<.35) return 'Middels. Retningen er tydelig, men enkeltpersoner er umulige å gjette.';
-  if(a<.60) return 'Sterk for psykologiske data.';
+  if(a<.10) return 'Ingen sammenheng å snakke om — skyen er formløs.';
+  if(a<.30) return 'Liten. Du aner en helning, men punktene spriker voldsomt.';
+  if(a<.50) return 'Middels (moderat). Retningen er tydelig, men enkeltpersoner er umulige å gjette.';
+  if(a<.70) return 'Stor — og sterk for psykologiske data.';
   if(a<.90) return 'Meget sterk. Skyen begynner å bli en strek.';
   return 'Nesten perfekt — i psykologi betyr det som regel at du måler det samme to ganger.';
 }
@@ -4074,9 +4076,9 @@ const TOK = {
   n:['n — antall i undergruppen','Liten n er en gruppe, stor N er hele utvalget. 214 + 177 = 391, så ingen har falt fra.'],
   t:['t(389) = 4.62 — t-testen','Forskjellen mellom de to gjennomsnittene, målt i standardfeil. 389 er frihetsgradene (391 minus 2). Alt over ca. 2 er langt fra null.'],
   p:['p — flakssjansen','Hvor ofte ren tilfeldighet ville gitt et minst like tydelig resultat. Under .05 kalles signifikant.'],
-  d:['d = 0.47 — Cohens d','Effektstørrelsen: gruppene skiller seg med 0.47 standardavvik. Det er midt mellom «liten» (0.20) og «middels» (0.50).'],
-  F:['F(2, 388) = 12.44 — ANOVA','Forklart variasjon delt på uforklart. Første df er antall grupper minus 1, andre er resten av utvalget.'],
-  etap:['η²ₚ = .06 — partiell eta-kvadrat','Andelen variasjon faktoren forklarer. .06 regnes som en middels effekt. Merk at dette er den partielle varianten, som alltid er større enn vanlig η².'],
+  d:['d = 0.47 — Cohens d','Effektstørrelsen: gruppene skiller seg med 0.47 standardavvik. Det er rett under «middels» (0.50).'],
+  F:['F(2, 385) — ANOVA','Forklart variasjon delt på uforklart. Første df tilhører effekten: nivåer minus 1 for en hovedeffekt — her 3 − 1 = 2 — og (a − 1)(b − 1) for en interaksjon, her (3 − 1)(2 − 1) = 2. Andre df er N minus antall celler: 391 − 6 = 385.'],
+  etap:['η²ₚ = .06 — partiell eta-kvadrat','Andelen variasjon faktoren forklarer. .06 regnes som en middels effekt. Merk at dette er den partielle varianten, som er minst like stor som vanlig η² — og større når det er flere faktorer.'],
   inter:['× — interaksjon','Leses «ganger», men betyr «virker forskjellig avhengig av». Her: slår tilstanden ulikt ut for kvinner og menn? Svaret var nei.'],
   ns:['p = .324 — ikke signifikant','Over .05. Da skriver man «var ikke signifikant» — aldri «viste en tendens».'],
   alpha:['α = .89 — Cronbachs alfa','Indre konsistens, ikke signifikansnivå. Over .80 er godt. Dette er reliabilitet, altså om skalaen måler noe stabilt i det hele tatt.'],
@@ -4104,7 +4106,7 @@ const SENTENCES = [
   {name:'Gruppeforskjell', html:
     'Kvinner (<t k="M">M = 3.42</t>, <t k="SD">SD = 0.81</t>, <t k="n">n = 214</t>) rapporterte høyere selvtillit enn menn (<t k="M">M = 3.05</t>, <t k="SD">SD = 0.77</t>, <t k="n">n = 177</t>), <t k="t">t(389) = 4.62</t>, <t k="p">p &lt; .001</t>, <t k="d">d = 0.47</t>.'},
   {name:'ANOVA', html:
-    'Hovedeffekten av tilstand var signifikant, <t k="F">F(2, 388) = 12.44</t>, <t k="p">p &lt; .001</t>, <t k="etap">η²ₚ = .06</t>, mens interaksjonen tilstand <t k="inter">×</t> kjønn ikke var det, <t k="F">F(2, 388) = 1.13</t>, <t k="ns">p = .324</t>.'},
+    'Hovedeffekten av tilstand var signifikant, <t k="F">F(2, 385) = 12.44</t>, <t k="p">p &lt; .001</t>, <t k="etap">η²ₚ = .06</t>, mens interaksjonen tilstand <t k="inter">×</t> kjønn ikke var det, <t k="F">F(2, 385) = 1.13</t>, <t k="ns">p = .324</t>.'},
   {name:'Måleinstrument', html:
     'Skalaen hadde god indre konsistens (<t k="alpha">α = .89</t>, <t k="omega">ω = .91</t>), og de to vurdererne var enige om kodingen (<t k="kappa">κ = .78</t>).'},
   {name:'Modelltilpasning', html:
@@ -4751,11 +4753,11 @@ const SENTENCES = [
     'Nei. <b>p</b> sier hvor uvanlig resultatet er hvis nullhypotesen er sann. En bitteliten effekt får liten p bare N er stor nok.',
     'Nei. <b>73</b> er frihetsgrader, som her røper at studien hadde 75 deltagere fordelt på to grupper.']},
 
-{t:'Les tallet', n:2, q:'<code>F(2, 388) = 12.44, p &lt; .001</code>. Hva forteller <em>toeren</em> deg om studien?',
- o:['Den ble sammenlignet tre grupper','Den hadde to grupper','Den hadde to prediktorer i tillegg til utfallet','Den brukte to måletidspunkter'], c:0,
+{t:'Les tallet', n:2, q:'En enveis-ANOVA rapporteres som <code>F(2, 388) = 12.44, p &lt; .001</code>. Hva forteller <em>toeren</em> deg om studien?',
+ o:['Det ble sammenlignet tre grupper','Den hadde to grupper','Den hadde to prediktorer i tillegg til utfallet','Den brukte to måletidspunkter'], c:0,
  f:['Riktig. Første frihetsgrad i en enveis-ANOVA er antall grupper minus 1. <b>2</b> betyr altså <b>tre</b> grupper — og det er derfor man trengte ANOVA i stedet for en t-test.',
     'Nei — da hadde første frihetsgrad vært 1, og du kunne brukt en t-test. Frihetsgraden er antall grupper <em>minus 1</em>.',
-    'Nei. Det ville vært en regresjon. I <code>F(2, 388)</code> fra en enveis-ANOVA handler toeren om grupper.',
+    'Nei. I en regresjon ville første df vært antall prediktorer — men her står det at det er en enveis-ANOVA, og da handler toeren om grupper.',
     'Nei. Gjentatte målinger gir en annen oppstilling. Her er toeren antall grupper minus 1.']},
 
 {t:'Les tallet', n:3, q:'En studie med 80 deltagere rapporterer <code>r = .34, p = .002</code>. Hvor stor andel av variasjonen deler de to variablene?',
@@ -4821,7 +4823,7 @@ const SENTENCES = [
     'Nei, det er helt normalt. Store utvalg oppdager små effekter; det er styrken deres, og fallgruva.',
     'Nei. p og r måler ulike ting. r er anslaget på styrken, og det er .03 uansett hvor liten p er.']},
 /* ---- C: velg analysen ---- */
-{t:'Velg analysen', n:12, q:'Du sammenligner depresjonsskåre (0–63) mellom en behandlingsgruppe og en venteliste. Fordelingene er noenlunde normale. Hvilken test?',
+{t:'Velg analysen', n:12, q:'Du sammenligner depresjonsskåre mellom en behandlingsgruppe og en venteliste. Fordelingene er noenlunde normale. Hvilken test?',
  o:['Uavhengig t-test','Kjikvadrat','Enveis-ANOVA','Paret t-test'], c:0,
  f:['Riktig. To uavhengige grupper, ett kontinuerlig utfall, rimelig normalfordeling — det er t-testens kjerneoppgave. Welchs variant er trygg hvis spredningen er ulik.',
     'Nei. Kjikvadrat er for <em>kategoriske</em> data der du teller personer i bokser. Her har du en skala.',
@@ -4877,7 +4879,7 @@ const SENTENCES = [
     'Halvveis: diskret stemmer, men stegene er like store og nullpunktet ekte, så den når helt opp til forholdstall.',
     'Nei — den er ikke kontinuerlig. Dette er nettopp poenget med å holde de to spørsmålene fra hverandre.']},
 
-{t:'Målenivå', n:20, q:'En <em>depresjonsskåre</em> fra 0 til 63 behandles som kontinuerlig i analysene. Hvilket målenivå har den strengt tatt?',
+{t:'Målenivå', n:20, q:'En <em>depresjonsskåre</em> (skalaen i terapistudien går til 35) behandles som kontinuerlig i analysene. Hvilket målenivå har den strengt tatt?',
  o:['Intervall — 30 er ikke «dobbelt så deprimert» som 15','Forholdstall, siden skalaen starter på null','Ordinal, siden det er en spørreskjemaskala','Nominal'], c:0,
  f:['Riktig. Skalaens null betyr ikke fravær av depresjon i noen ekte forstand, og forholdstall som «dobbelt så deprimert» gir ikke mening. At den behandles som kontinuerlig er en pragmatisk konvensjon, ikke en påstand om målenivå.',
     'Fristende, men et nullpunkt på skalaen er ikke det samme som et <em>ekte</em> nullpunkt. Sammenlign med celsius: 0 °C er ikke fravær av temperatur.',
@@ -4975,19 +4977,19 @@ const SENTENCES = [
  o:['Gjennomsnittet','Medianen','Modus','Alle tre like mye'], c:0,
  f:['Riktig. Gjennomsnittet er tyngdepunktet og lar seg dra av ekstremverdier. Medianen er bare midtverdien i rekka, så den rikker seg knapt. Det er hele grunnen til at medianen rapporteres ved skjeve fordelinger.',
     'Medianen er nettopp den som <em>ikke</em> lar seg rive med — én feiltastet verdi flytter midtpunktet med maks én plass.',
-    'Modus er den vanligste verdien og påvirkes ikke i det hele tatt av at én observasjon flyttes.',
+    'Modus er den vanligste verdien. Én feiltastet observasjon flytter den sjelden — bare hvis den tilfeldigvis tar bort en av de vanligste verdiene.',
     'Nei — de skiller lag kraftig, og det er nettopp derfor det er verdt å rapportere mer enn ett av dem.']},
 
 {t:'Fordelingen', n:34, q:'Prøveskårene fra en lett og en vanskelig betingelse slås sammen og danner en fordeling med to topper. Hvilket sentralmål beskriver «en typisk student» best?',
  o:['Ingen av dem — gruppene bør beskrives hver for seg','Gjennomsnittet','Medianen','Modus'], c:0,
- f:['Riktig. Ved to topper lander både gjennomsnittet og medianen i dalen mellom dem, der nesten ingen faktisk ligger. To topper betyr som regel to grupper blandet sammen, og løsningen er å skille dem — ikke å lete etter et bedre sentralmål.',
+ f:['Riktig. Ved to topper lander gjennomsnittet i dalen mellom dem, der nesten ingen faktisk ligger — og medianen gjør det ofte også. To topper betyr som regel to grupper blandet sammen, og løsningen er å skille dem — ikke å lete etter et bedre sentralmål.',
     'Gjennomsnittet lander midt i dalen og beskriver en student som ikke finnes.',
-    'Medianen har samme problem: den peker på midten, og midten er nettopp der det er tynnest.',
+    'Medianen har ofte samme problem: den peker på midten, og ved to like store topper er midten nettopp der det er tynnest.',
     'Modus peker på den ene toppen og overser den andre helt.']},
 
 {t:'Fordelingen', n:35, q:'En variabel har skjevhet <code>−1,4</code>. Hva betyr det?',
  o:['Halen peker mot venstre — de fleste ligger høyt, noen få lavt','Halen peker mot høyre','Fordelingen er symmetrisk','Fordelingen har to topper'], c:0,
- f:['Riktig. Negativ skjevhet betyr venstreskjev. Typisk årsak er en <em>takeffekt</em>: skalaen stopper, og folk hoper seg opp mot toppen. Over omtrent ±2 begynner det å bli et problem for tester som antar normalfordeling.',
+ f:['Riktig. Negativ skjevhet betyr venstreskjev. Typisk årsak er en <em>takeffekt</em>: skalaen stopper, og folk hoper seg opp mot toppen. −1,4 er tydelig skjev; over omtrent ±2 begynner det å bli et problem for tester som antar normalfordeling.',
     'Det ville vært <em>positiv</em> skjevhet. Fortegnet peker mot halen, ikke mot toppen.',
     'Nei — symmetrisk er skjevhet rundt 0.',
     'Skjevhetstallet sier ingenting om antall topper. Det må du se på histogrammet for å oppdage.']},
@@ -4997,7 +4999,7 @@ const SENTENCES = [
  f:['Riktig. Boksplottet er et sammendrag — kvartiler og median. To fordelinger med helt ulik form kan gi nesten identiske bokser. Derfor er histogram eller raincloud verdt å se i tillegg.',
     'Tvert imot: medianen er streken inni boksen, og den er det tydeligste elementet i figuren.',
     'Det håndterer uteliggere svært godt — de tegnes som egne punkter utenfor værhårene.',
-    'Nei, boksplottet krever nettopp en kontinuerlig variabel.']},
+    'Nei. Boksplottet krever bare at verdiene kan rangeres — median og kvartiler er lov fra ordinalnivå.']},
 /* ---- G: design og årsak ---- */
 {t:'Design og årsak', n:37, q:'Deltagerne ble tilfeldig fordelt til lett eller vanskelig prøve. Kjønn ble bare registrert. Hvilken av de to faktorene tåler en årsakspåstand?',
  o:['Bare vanskelighetsgrad, fordi den ble randomisert','Begge, siden begge står i samme analyse','Bare kjønn, fordi det ligger fast fra før','Ingen av dem — årsak kan aldri vises statistisk'], c:0,
@@ -5036,10 +5038,10 @@ const SENTENCES = [
     'Korreksjon handler om falske positive ved mange tester. Problemet her er et annet: du har ikke stilt spørsmålet i det hele tatt.']},
 
 {t:'Interaksjon', n:42, q:'I et interaksjonsplott er de to linjene tydelig ikke-parallelle, men krysser ikke hverandre. Hva kalles det?',
- o:['En vifteinteraksjon — effekten finnes begge steder, men er sterkere det ene','En kryssende interaksjon','Ingen interaksjon, siden linjene ikke krysser','En hovedeffekt uten interaksjon'], c:0,
- f:['Riktig. Ved en <b>vifteinteraksjon</b> peker begge linjene samme vei, men med ulik helning. Det er den vanligste formen i sårbarhetsstudier: alle rammes, noen bare mer.',
-    'Kryssende interaksjon er når linjene faktisk krysser, altså at effekten snur retning. Da blir hovedeffektene ofte meningsløse å tolke alene.',
-    'Nei. Det er helningen som teller, ikke om linjene møtes. Ikke-parallelle linjer betyr interaksjon.',
+ o:['En ordinal interaksjon (vifteform) — effekten går samme vei begge steder, men er sterkere det ene','En disordinal (kryssende) interaksjon','Ingen interaksjon, siden linjene ikke krysser','En hovedeffekt uten interaksjon'], c:0,
+ f:['Riktig. Ved en <b>ordinal interaksjon</b> peker begge linjene samme vei, men med ulik helning. Det er den vanligste formen i sårbarhetsstudier: alle rammes, noen bare mer.',
+    'En disordinal interaksjon er når linjene faktisk krysser, altså at effekten snur retning. Da villeder hovedeffektene lett.',
+    'Nei. Det er helningen som teller, ikke om linjene møtes. Ikke-parallelle linjer viser en interaksjon i utvalget — om den er signifikant, må du lese av interaksjonsraden i tabellen.',
     'En hovedeffekt uten interaksjon ville gitt to <em>parallelle</em> linjer på ulik høyde.']},
 
 /* ---- I: før og etter ---- */
@@ -5050,7 +5052,7 @@ const SENTENCES = [
     'Ikke uansett. Endringsskåren arver måleusikkerhet fra to målinger i stedet for én, og kan gi lavere styrke når før- og etter-målingen korrelerer svakt.',
     'Det finnes ingen slik regel. Valget er faglig, og skal begrunnes i metodedelen.']},
 
-{t:'Før og etter', n:44, q:'Med to måletidspunkter: hva er forholdet mellom en toveis-ANOVA på endringsskåren og interaksjonen Tid × Gruppe i en blandet ANOVA?',
+{t:'Før og etter', n:44, q:'Med to måletidspunkter og én gruppefaktor: hva er forholdet mellom en enveis-ANOVA på endringsskåren (etter minus før) og interaksjonen Tid × Gruppe i en blandet ANOVA?',
  o:['Det er samme test — samme F og samme p','Den blandede ANOVA-en er alltid kraftigere','Endringsskåren gir alltid mindre p','De svarer på to helt ulike spørsmål'], c:0,
  f:['Riktig. Med bare to tidspunkter er interaksjonen Tid × Gruppe definisjonsmessig en test på om <em>endringen</em> er ulik i gruppene. De to oppstillingene er to måter å skrive den samme analysen på.',
     'Nei. Med to tidspunkter er de identiske. Med tre eller flere er det derimot den blandede ANOVA-en som er verktøyet.',
@@ -5095,9 +5097,9 @@ const SENTENCES = [
     'For lavt — det ville vært omtrent riktig med to tester, ikke ti.']},
 
 {t:'Mange tester', n:50, q:'Omnibus-ANOVA-en er ikke signifikant (<code>p = .12</code>). Bør du kjøre post hoc-testene likevel for å se etter?',
- o:['Nei — omnibustesten er porten som holder den familievise feilraten nede','Ja, post hoc korrigerer jo uansett for antall tester','Ja, hvis effektstørrelsen er over .01','Nei, fordi post hoc krever minst fire grupper'], c:0,
- f:['Riktig. Rekkefølgen er hele mekanismen: er porten stengt, stopper du. Leter du videre uansett, har du gått rundt beskyttelsen, og det du finner er p-jakt.',
-    'Korreksjonen i post hoc dekker parene den sammenligner — den dekker ikke at du valgte å lete etter at omnibus sa nei.',
+ o:['Nei — regelen er at post hoc bare kjøres når omnibus er signifikant','Ja, post hoc korrigerer jo uansett for antall tester','Ja, hvis effektstørrelsen er over .01','Nei, fordi post hoc krever minst fire grupper'], c:0,
+ f:['Riktig. Omnibus svarer på om noen skiller seg; post hoc bare på hvem. Ble svaret nei, er det ingenting å følge opp — å lete blant parene likevel er å lete etter noe å rapportere.',
+    'Tukey og lignende korrigerer riktignok for antall par. Men å lete videre etter at hovedsvaret ble nei, er p-jakt i praksis — og regelen i emnet er tydelig: ingen post hoc uten signifikant omnibus.',
     'Effektstørrelsen endrer ikke beslutningsregelen. Den er relevant når du skal <em>tolke</em> et resultat, ikke når du skal avgjøre om du får lete.',
     'Det finnes ingen slik regel. Post hoc er aktuelt fra tre grupper og opp.']},
 

@@ -10,6 +10,36 @@ Alt ligger i `public/index.html` — ingen byggesteg, ingen avhengigheter i
 sida selv, ingen serverkode. Sandkassen genererer sitt eget datasett i
 nettleseren.
 
+## Emnet siden skal dekke
+
+PSY300 Statistisk analyse, Kristiania, høst 2026 (10 sp, 5. semester).
+Emnebeskrivelsen er godkjent 09.12.2025 (LU/SHS-sak 118/25).
+
+**Læringsutbytte.** Studenten …
+
+- *Kunnskap:* kjenner til sentrale begreper innen statistisk analyse · har
+  bred kunnskap om ulike statistiske analysemetoder, som t-tester,
+  korrelasjonsanalyser, regresjonsanalyser og variansanalyse · har kunnskap
+  om den praktiske betydningen av statistisk signifikans, og av variasjon i
+  effektstørrelser
+- *Ferdigheter:* kan vurdere hvilke statistiske analyser som egner seg for å
+  besvare et gitt forskningsspørsmål · kan benytte relevante statistiske
+  verktøy for å gjennomføre grunnleggende statistiske analyser av psykologisk
+  datamateriale, deriblant t-tester, korrelasjonsanalyser og
+  regresjonsanalyse · kan vurdere og tolke resultater fra en statistisk
+  analyse · kan beherske utregningsmetoder for deskriptiv statistikk · kan
+  anvende statistikk til å utforske psykologiske sammenhenger og forskjeller
+- *Generell kompetanse:* kan gjennomføre statistiske analyser, samt lese og
+  forstå kvantitativ forskningslitteratur · kan formidle resultatene fra
+  statistiske analyser både skriftlig og muntlig
+
+**Eksamen:** flervalg, individuell, under tilsyn, 2 timer, A–F, 100 % av
+karakteren, **ingen hjelpemidler** — altså ingen kalkulator og ikke
+formelark. Arbeidskrav (godkjent/ikke godkjent) gir adgang til eksamen.
+
+Det betyr for siden: oppgavene skal være i flervalgsformat, utregninger skal
+gå an uten kalkulator, og formler og tolkningsregler må kunne pugges.
+
 ## Filer
 
 | Fil | Hva den gjør |

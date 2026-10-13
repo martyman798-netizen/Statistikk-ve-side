@@ -2,13 +2,18 @@
 <html lang="nb">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Grunnbegreper, en interaktiv statistikksandkasse og en leseordbok for vitenskapelige artikler.">
 <title>Statistikkens alfabet</title>
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#EDF0F3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#11171D" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Statistikk">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nb_NO">
 <meta property="og:site_name" content="Statistikkens alfabet">
@@ -17,9 +22,10 @@
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap"></noscript>
 <style>
-html{color-scheme:light dark}
+html{color-scheme:light dark;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",sans-serif}
 img{max-width:100%}
 [hidden]{display:none!important}
@@ -33,7 +39,7 @@ img{max-width:100%}
   --surface-2:#F5F7F9;
   --ink:#141C24;
   --ink-2:#54636F;
-  --ink-3:#7C8994;
+  --ink-3:#616D79;
   --rule:#C6D0D9;
   --rule-soft:#DDE4EA;
   --accent:#1B4B8F;
@@ -49,7 +55,7 @@ img{max-width:100%}
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --paper:#11171D; --surface:#19212A; --surface-2:#1F2831;
-    --ink:#E6EBF0; --ink-2:#A3B0BC; --ink-3:#7A8794;
+    --ink:#E6EBF0; --ink-2:#A3B0BC; --ink-3:#808D9A;
     --rule:#33404C; --rule-soft:#28323C;
     --accent:#7FA8E0; --accent-soft:#22344B;
     --mark:#E08163; --mark-soft:#3A2620; --good:#6FB894;
@@ -59,7 +65,7 @@ img{max-width:100%}
 }
 :root[data-theme="dark"]{
   --paper:#11171D; --surface:#19212A; --surface-2:#1F2831;
-  --ink:#E6EBF0; --ink-2:#A3B0BC; --ink-3:#7A8794;
+  --ink:#E6EBF0; --ink-2:#A3B0BC; --ink-3:#808D9A;
   --rule:#33404C; --rule-soft:#28323C;
   --accent:#7FA8E0; --accent-soft:#22344B;
   --mark:#E08163; --mark-soft:#3A2620; --good:#6FB894;
@@ -79,6 +85,8 @@ h1 em{font-style:italic;color:var(--accent)}
 .standfirst{margin:18px 0 0;max-width:62ch;font-size:19px;color:var(--ink-2)}
 .dataplate{font-family:var(--mono);font-size:11.5px;line-height:1.9;color:var(--ink-2);border-left:2px solid var(--accent);padding-left:14px}
 .dataplate b{color:var(--ink);font-weight:600}
+.dataplate a{color:inherit;text-decoration:none}
+.dataplate a:hover b{color:var(--accent);text-decoration:underline}
 
 /* ---------- datasettbaren ---------- */
 .databar{
@@ -238,6 +246,8 @@ button:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
 .dict.terms td:nth-child(2){width:auto}
 .dict td b{font-family:var(--mono);font-size:.85em;font-weight:600;color:var(--ink);white-space:nowrap}
 .scroller{overflow-x:auto}
+.scroller.can-scroll:not(.at-end){-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 40px),transparent);
+  mask-image:linear-gradient(to right,#000 calc(100% - 40px),transparent)}
 .kortbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
 .kortlab{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 .kortbar select{font-family:var(--mono);font-size:12.5px;padding:6px 8px;border:1px solid var(--rule);border-radius:3px;background:var(--surface);color:var(--ink);max-width:100%}
@@ -277,6 +287,14 @@ button:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
 .opt[data-state="wrong"]{border-color:var(--mark);background:var(--mark-soft)}
 .opt[data-state="wrong"] .ltr{color:var(--mark)}
 .opt:disabled{cursor:default}
+.opt[data-state="picked"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[data-state="picked"] .ltr{color:var(--accent)}
+#kortAgain{border-color:var(--mark);color:var(--mark)}
+#kortGot{background:var(--good);border-color:var(--good);color:var(--on-accent)}
+.panel[id]{scroll-margin-top:92px}
+.drill{display:inline-flex;align-items:center;gap:7px;min-height:36px;margin-top:6px;font-family:var(--mono);font-size:12px;
+  color:var(--accent);text-decoration:none;letter-spacing:.02em}
+.drill:hover{text-decoration:underline}
 .fb{margin-top:15px;padding:13px 16px;border-left:3px solid var(--rule);background:var(--surface-2);border-radius:0 3px 3px 0;font-size:15px;line-height:1.6;color:var(--ink-2)}
 .fb.ok{border-left-color:var(--good)}
 .fb.no{border-left-color:var(--mark)}
@@ -338,7 +356,6 @@ button.pcard{font:inherit;letter-spacing:normal;text-align:left;width:100%}
   margin-left:auto;font-family:var(--mono);font-size:10px;line-height:1.4;
   border:1px solid var(--rule);border-radius:3px;padding:1px 5px;color:var(--ink-3);background:var(--surface)
 }
-.palette-fab{display:none}
 
 .palette{position:fixed;inset:0;z-index:80;background:rgba(9,13,18,.46);
   display:flex;align-items:flex-start;justify-content:center;padding:9vh 16px 16px}
@@ -376,14 +393,16 @@ button.pcard{font:inherit;letter-spacing:normal;text-align:left;width:100%}
   border:1px solid var(--rule);background:transparent;color:var(--ink-2);cursor:pointer;margin:0 4px 5px 0}
 .palette-empty .exq:hover{border-color:var(--accent);color:var(--ink);opacity:1}
 
+.found:not(tr){box-shadow:-9px 0 0 -6px var(--mark)}
+tr.found{background:color-mix(in srgb, var(--mark-soft) 40%, transparent)}
+tr.found > td:first-child{box-shadow:inset 3px 0 0 var(--mark);padding-left:8px}
+.dictmore{margin-top:14px}
 @keyframes flashfind{0%,100%{background-color:transparent}12%,66%{background-color:var(--mark-soft)}}
 tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
 .flashfind:not(tr){animation:flashfind 2.6s ease-in-out 1}
 
 @media (max-width:900px){
   .cols{grid-template-columns:minmax(0,1fr);gap:28px}
-  nav.index{position:static;max-height:none;overflow:visible;padding-right:0;-webkit-mask-image:none;mask-image:none}
-  nav.index ol{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:2px}
   .masthead{grid-template-columns:minmax(0,1fr)}
   .entry{grid-template-columns:minmax(0,1fr);gap:14px}
   .dict{min-width:560px}
@@ -394,39 +413,191 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
   .sentence{font-size:17px}
   .more-body{padding:2px 14px 14px}
   .more-body .calc{white-space:normal}
-  .databar{position:static;margin:0 -24px}
   .palette{padding:5vh 10px 10px}
   .palette-box{max-height:84vh}
-  .pres{grid-template-columns:minmax(0,76px) minmax(0,1fr);gap:10px}
-  .palette-fab{
-    display:flex;align-items:center;justify-content:center;position:fixed;right:16px;bottom:16px;z-index:60;
-    width:48px;height:48px;border-radius:50%;padding:0;font-size:21px;
-    background:var(--accent);color:var(--on-accent);border:none;
-    box-shadow:0 8px 22px -8px rgba(0,0,0,.55);cursor:pointer
-  }
+  .pres{grid-template-columns:minmax(0,58px) minmax(0,1fr);gap:10px}
+  .pres .ps{font-size:18px}
+  .pres .ps.up{font-size:10.5px;overflow-wrap:anywhere}
+}
+/* ---------- mobil ----------
+   Under 900px: bunnmeny med søk, innhold og øving; innholdsfortegnelsen
+   blir en skuff som glir opp; datasettbaren flyttes ned til Del I. */
+.tabbar, .navhead, .scrim, .sf-short, .pph, .backpill, .minibar{display:none}
+svg.lupe{width:1em;height:1em;display:block}
+.pglyph svg.lupe{width:20px;height:20px;margin-top:3px}
+.resume{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:14px 0 0;font-family:var(--mono);font-size:12px;
+  color:var(--ink-2);text-decoration:none;letter-spacing:.02em}
+.resume b{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--accent);letter-spacing:normal}
+.resume:hover b{text-decoration:underline}
+@media (max-width:900px){
+  .wrap{padding:0 16px calc(96px + env(safe-area-inset-bottom))}
+  .masthead{padding:26px 0 0;border-bottom:none;gap:0}
+  .dataplate{display:none}
+  .standfirst{font-size:17px;margin-top:12px}
+  .sf-long{display:none}
+  .sf-short{display:inline}
+  .entry, .ff, .partbreak, details.more{scroll-margin-top:14px}
+  .panel[id]{scroll-margin-top:10px}
+
+  /* bunnmenyen */
+  .tabbar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:60;
+    background:var(--surface);border-top:1px solid var(--rule);box-shadow:0 -10px 26px -22px rgba(0,0,0,.55);
+    padding:0 max(4px,env(safe-area-inset-right)) env(safe-area-inset-bottom) max(4px,env(safe-area-inset-left))}
+  .tabbar > a, .tabbar > button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    min-height:58px;padding:7px 2px 6px;margin:0;background:transparent;border:none;border-radius:0;color:var(--ink-2);
+    text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;line-height:1.1;cursor:pointer;
+    -webkit-tap-highlight-color:transparent}
+  .tabbar > :hover{opacity:1;color:var(--ink)}
+  .tabbar > :focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+  .tabbar .ti{font-family:var(--serif);font-style:italic;font-size:20px;line-height:1;color:var(--accent);height:21px}
+  .tabbar .ti.up{font-style:normal;font-family:var(--mono);font-size:16px;font-weight:600;padding-top:2px}
+  .tabbar .ti svg.lupe{width:19px;height:19px}
+  .tabbar .on{color:var(--ink);font-weight:600}
+  .tabbar .on .ti{color:var(--mark)}
+  body.typing .tabbar, body.typing .backpill{display:none}
+  .backpill{display:flex;align-items:center;gap:7px;position:fixed;left:50%;transform:translateX(-50%);z-index:61;
+    top:calc(10px + env(safe-area-inset-top));min-height:40px;padding:0 18px;border-radius:20px;
+    background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;
+    box-shadow:0 10px 24px -10px rgba(0,0,0,.6)}
+  nav.index .navgroup{font-size:11.5px;color:var(--ink-2)}
+
+  /* minibaren øverst mens Del I er på skjermen */
+  body.in-sandbox .minibar{display:flex}
+  .minibar{position:fixed;top:0;left:0;right:0;z-index:55;align-items:center;gap:5px;
+    padding:calc(6px + env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) 6px max(12px,env(safe-area-inset-left));
+    background:var(--surface);border-bottom:1px solid var(--rule);box-shadow:0 8px 20px -18px rgba(0,0,0,.6)}
+  .minibar .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ink-3);margin-right:2px}
+  .minibar .nbtn{min-height:36px;padding:0 9px;font-size:12px}
+  .minibar .mnew{white-space:nowrap}
+  .minibar .mlive{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .minibar .mlive b{color:var(--ink);font-weight:600}
+  body.in-sandbox .backpill{top:calc(58px + env(safe-area-inset-top))}
+  #del1 ~ .entry, #del1 ~ .entry details.more, #del1 ~ .entry .ff{scroll-margin-top:62px}
+  #grupper ~ .entry, #grupper ~ .entry details.more, #grupper ~ .entry .ff{scroll-margin-top:14px}
+
+  /* innholdsfortegnelsen som skuff */
+  nav.index{position:fixed;left:0;right:0;top:auto;bottom:0;z-index:75;max-height:84vh;max-height:84dvh;
+    overflow-y:auto;overscroll-behavior:contain;padding:0 16px calc(18px + env(safe-area-inset-bottom));
+    background:var(--surface);border-top:1px solid var(--rule);border-radius:14px 14px 0 0;
+    box-shadow:0 -18px 48px -18px rgba(0,0,0,.55);-webkit-mask-image:none;mask-image:none;
+    transform:translateY(102%);visibility:hidden;transition:transform .24s ease, visibility 0s linear .24s}
+  body.toc-open nav.index{transform:none;visibility:visible;transition:transform .24s ease}
+  .navhead{display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:1;background:var(--surface);
+    margin:0 -16px 10px;padding:10px 12px 10px 16px;border-bottom:1px solid var(--rule-soft)}
+  .navhead b{flex:1;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  nav.index .navhead a, .navhead button{min-height:40px;white-space:nowrap;display:inline-flex;align-items:center;padding:0 12px;font-family:var(--mono);font-size:12px;
+    color:var(--ink-2);text-decoration:none;border:1px solid var(--rule);border-radius:3px;background:transparent}
+  nav.index ol{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:2px}
+  nav.index a{min-height:44px;align-items:center;font-size:15px;padding:6px 8px}
+  nav.index .navgroup{margin-top:14px}
+  .scrim{display:block;position:fixed;inset:0;z-index:72;background:rgba(9,13,18,.46);opacity:0;visibility:hidden;
+    transition:opacity .24s, visibility 0s linear .24s}
+  body.toc-open .scrim{opacity:1;visibility:visible;transition:opacity .24s}
+
+  /* datasettbaren, når den står i Del I */
+  .databar{position:static;margin:24px 0 4px;padding:14px;border:1px solid var(--rule-soft);border-radius:4px;box-shadow:var(--shadow)}
+  .databar .palette-trigger{display:none}
+  .databar-inner{gap:12px 14px}
+
+  /* søkeruta fyller skjermen */
+  .palette{padding:0;align-items:stretch}
+  .palette-box{max-width:none;max-height:none;height:var(--vvh,100%);margin-top:var(--vvt,0);border:none;border-radius:0}
+  .palette-top{padding:8px 10px 8px 14px}
+  #palClose{min-height:40px}
+  .pal-keys{display:none}
+  .pres{padding:10px 8px}
+  #palClose{min-width:56px;font-size:12.5px}
+  #ordbok .searchrow{position:sticky;top:0;z-index:5;background:var(--paper);margin:12px 0 0;padding:10px 0 8px}
+  #ordbok .searchrow input{min-width:0}
+  .dictmore{min-height:44px;width:100%}
+  .palette-empty .exq{padding:8px 11px;font-size:12.5px;margin:0 6px 8px 0}
+
+  /* felt under 16px får iPhone til å zoome inn */
+  input[type=search], .palette-top input[type=search], .customn input, .kortbar select{font-size:16px}
+  .customn input{width:96px}
+
+  /* større trykkflater */
+  .chip, .nbtn, .kortbar select, .controls button, .databar button, .chips button{min-height:44px}
+  .chip{padding:8px 12px;font-size:12px}
+  .controls{gap:10px 12px}
+  .panel-head{flex-direction:column;align-items:flex-start;gap:3px}
+  .kortbar .chip{flex:1 1 140px}
+  .kortbar select{flex:1 1 100%}
+  #oppgNext, #kortFlip{flex:1 1 100%;min-height:50px;font-size:14px}
+  #oppgPrev{flex:0 0 auto}
+  #oppgPrev:not([hidden]) + #oppgNext{flex:1 1 0}
+  #kortAgain, #kortGot{flex:1 1 40%;min-height:52px;font-size:14px}
+  #kortCard{min-height:300px}
+  details.more > summary{padding:12px 14px;min-height:44px}
+}
+@media (max-width:640px){
+  .practice{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:18px 0 0}
+  .pcard{flex-direction:column;align-items:flex-start;gap:6px;padding:12px;box-shadow:none}
+  .pcard .pd, .pcard .pn{display:none}
+  .pcard b{font-size:15.5px;margin:0;line-height:1.2}
+  .pglyph{font-size:17px}
+  .pcard.psearch{grid-column:1 / -1;order:-1;flex-direction:row;align-items:center;gap:10px;padding:0 14px;min-height:52px;
+    border-color:var(--accent);box-shadow:var(--shadow)}
+  .pcard.psearch b{display:none}
+  .pcard.psearch .pph{display:block;font-family:var(--mono);font-size:13px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pcard.psearch > span:last-child{min-width:0}
+
+  /* ordbokstabellene stables: tegn og navn på én linje, forklaringen under */
+  .dict{min-width:0}
+  .dict thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .dict, .dict tbody{display:block;width:100%}
+  .dict tr{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;padding:12px 0;border-bottom:1px solid var(--rule-soft)}
+  .dict td, .dict.tight td, .dict.terms td{display:block;padding:0;border:none;width:auto !important;white-space:normal}
+  .dict td:nth-child(2){flex:1 1 auto;min-width:0;font-weight:500}
+  .dict td{overflow-wrap:break-word}
+  .dict td:nth-child(n+3){flex:0 0 100%;margin-top:4px}
+  #bigDict td:nth-child(4){margin-top:6px}
+  .dict tr.flashfind{animation:flashfind 2.6s ease-in-out 1}
+  .dict tr.flashfind > td{animation:none}
+  .entry{padding-top:28px}
+  .glyphcol{display:flex;align-items:baseline;gap:14px}
+  .glyphcol .step{margin:0}
+  .glyph{font-size:32px}
+  .glyph.sm{font-size:26px}
+  .dict td b{white-space:normal}
+  .dict tr.found{box-shadow:inset 3px 0 0 var(--mark);padding-left:10px}
+  .dict tr.found > td:first-child{box-shadow:none;padding-left:0}
+}
+@media (hover:none) and (pointer:coarse){
+  .kbd-only, .palette-trigger kbd{display:none}
+}
+@media (pointer:coarse){
+  /* en tommel trenger et større håndtak enn musepekeren */
+  input[type=range]{-webkit-appearance:none;appearance:none;height:44px;background:transparent;margin:0}
+  input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:var(--rule)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-11px;border-radius:50%;
+    background:var(--accent);border:3px solid var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.35)}
+  input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:var(--rule)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--accent);border:3px solid var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.35)}
+  input[type=range]:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
 }
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
 </style>
 
 <div class="wrap">
 
-<header class="masthead">
+<header class="masthead" id="top">
   <div>
     <p class="eyebrow">PSY300 · statistikk og metode</p>
     <h1>Statistikkens <em>alfabet</em></h1>
-    <p class="standfirst">Fire deler: først grunnbegrepene og hva variablene dine egentlig heter, så hvert statistisk tegn forklart med demoer du kan dra i, så en leseordbok for artikler, og til slutt resonnementet som binder det sammen til en studie — hvilken analyse som svarer på hvilken hypotese, og hvordan svaret skrives ned. Alt i Del I kjører på et oppdiktet datasett du selv bestemmer størrelsen på. Nederst ligger øvingskortene og oppgavene — de to lenkene under tar deg rett dit.</p>
+    <p class="standfirst"><span class="sf-short">Statistikken i PSY300, forklart enkelt: tegnene med demoer du kan dra i, en ordbok for artikler, et formelark og oppgaver i eksamensformat. Søk på det du lurer på, eller bruk menyen nederst.</span><span class="sf-long">Fire deler: først grunnbegrepene og hva variablene dine egentlig heter, så hvert statistisk tegn forklart med demoer du kan dra i, så en leseordbok for artikler, og til slutt resonnementet som binder det sammen til en studie — hvilken analyse som svarer på hvilken hypotese, og hvordan svaret skrives ned. Alt i Del I kjører på et oppdiktet datasett du selv bestemmer størrelsen på. Nederst ligger formelarket, øvingskortene og oppgavene — kortene under tar deg rett dit.</span></p>
   </div>
-  <div class="dataplate">
-    <b>Del 0</b> — grunnbegrepene<br>
-    <b>Del I</b> — tegnene og gruppene, med demoer<br>
-    <b>Del II</b> — leseordbok for artikler<br>
-    <b>Del III</b> — fra emne til artikkel<br>
-    <b>Øving</b> — kort og oppgaver
-  </div>
+  <nav class="dataplate" aria-label="Delene">
+    <a href="#del0"><b>Del 0</b> — grunnbegrepene</a><br>
+    <a href="#del1"><b>Del I</b> — tegnene og gruppene, med demoer</a><br>
+    <a href="#del2"><b>Del II</b> — leseordbok for artikler</a><br>
+    <a href="#del3"><b>Del III</b> — fra emne til artikkel</a><br>
+    <a href="#formler"><b>Øving</b> — formler, kort og oppgaver</a>
+  </nav>
 </header>
 
 <div class="practice">
-  <a class="pcard" href="#kort">
+  <a class="pcard" href="#kortPanel">
     <span class="pglyph">⇄</span>
     <span>
       <b>Øvingskort</b>
@@ -442,7 +613,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <span class="pn">uten kalkulator · til å pugge</span>
     </span>
   </a>
-  <a class="pcard" href="#oppgaver">
+  <a class="pcard" href="#oppgPanel">
     <span class="pglyph">?!</span>
     <span>
       <b>Oppgaver</b>
@@ -450,17 +621,19 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <span class="pn" id="oppgCount">62 flervalgsoppgaver · eksamensformat</span>
     </span>
   </a>
-  <button class="pcard" data-pal-open type="button">
-    <span class="pglyph">⌕</span>
+  <button class="pcard psearch" data-pal-open type="button">
+    <span class="pglyph"><svg class="lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.4 15.4 20.5 20.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></span>
     <span>
+      <span class="pph">Søk: et tegn, et ord, et spørsmål …</span>
       <b>Søk</b>
       <span class="pd">Skriv et tegn, et ord eller et helt spørsmål — <em class="v">n2</em> finner η², og «forskjellen på SD og SE» finner rett boks. Tåler skrivefeil, bøyde ord og engelske navn.</span>
       <span class="pn">oppslag, seksjoner og all tekst · tast /</span>
     </span>
   </button>
 </div>
+<a class="resume" id="resume" href="#" hidden></a>
 
-<div class="databar">
+<div class="databar" id="databar">
   <div class="databar-inner">
     <span class="lab">Datasett</span>
     <div class="nbtns" id="nBtns">
@@ -488,7 +661,8 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
 </div>
 
 <div class="cols">
-  <nav class="index" aria-label="Innhold">
+  <nav class="index" id="toc" aria-label="Innhold">
+    <div class="navhead"><b>Innhold</b><a class="navtop" href="#top">↑ Til toppen</a><button type="button" data-toc-close>Lukk</button></div>
     <p class="navgroup">Øving</p>
     <ol>
       <li><a href="#formler"><span class="g">Σ=</span> Formelarket</a></li>
@@ -564,9 +738,6 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
       <li><a href="#samme"><span class="g">GLM</span> Samme modell</a></li>
       <li><a href="#rapportering"><span class="g">APA</span> Skrive resultater</a></li>
       <li><a href="#loypa"><span class="g">⇉</span> Analyseløypa</a></li>
-      <li><a href="#formler"><span class="g">Σ=</span> Formelarket</a></li>
-      <li><a href="#kort"><span class="g">⇄</span> Øvingskort</a></li>
-      <li><a href="#oppgaver"><span class="g">?!</span> Oppgaver</a></li>
     </ol>
   </nav>
 
@@ -592,7 +763,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
           <div><h4>Poeng på prøven</h4><p>Avhengig variabel. Utfallet vi vil forklare.<span class="ex">0–100 poeng</span></p></div>
         </div>
         <div class="aside"><b>Fordi datasettet er oppdiktet, vet vi fasiten.</b> Jeg har bygget det slik at hver ekstra time studert i sannhet gir <b>2,5 poeng</b>, hver ekstra time søvn gir <b>1,5 poeng</b>, og den sanne korrelasjonen mellom timer studert og poeng er <b>ρ = .67</b>. Ute i virkeligheten får du aldri vite slike tall — du har bare utvalget ditt. Her kan du hele tiden sammenligne det du <em>fant</em> med det som faktisk er <em>sant</em>. Det er den beste måten å forstå hva statistikk egentlig driver med.</div>
-        <div class="aside tryit"><b>Prøv med én gang:</b> sett N = 20 i baren øverst, og trykk «Trekk nytt utvalg» fem–seks ganger. Se hvordan r spretter rundt. Sett så N = 100 og gjør det samme. Alt du trenger å vite om utvalgsstørrelse ligger i den forskjellen.</div>
+        <div class="aside tryit"><b>Prøv med én gang:</b> sett N = 20 i <a href="#databar">datasettbaren</a>, og trykk «Trekk nytt utvalg» fem–seks ganger. Se hvordan r spretter rundt. Sett så N = 100 og gjør det samme. Alt du trenger å vite om utvalgsstørrelse ligger i den forskjellen.</div>
       </div>
     </section>
 
@@ -826,7 +997,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
     <section class="partbreak" id="del1">
       <p class="eyebrow">Del I</p>
       <h2 class="parttitle">Tegnene, i en sandkasse</h2>
-      <p class="partlede">Alle tallene her nede kommer fra datasettet du har valgt i baren øverst. Endrer du N eller trekker et nytt utvalg, endrer hele siden seg — også tallene midt inne i setningene. Det er meningen: poenget er å se hva som er stabilt og hva som spretter.</p>
+      <p class="partlede">Alle tallene her nede kommer fra datasettet du velger i datasettbaren. Endrer du N eller trekker et nytt utvalg, endrer hele siden seg — også tallene midt inne i setningene. Det er meningen: poenget er å se hva som er stabilt og hva som spretter.</p>
     </section>
 
     <!-- ---------- M ---------- -->
@@ -1445,7 +1616,7 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
     <section class="partbreak" id="grupper">
       <p class="eyebrow">Del I · forts.</p>
       <h2 class="parttitle">Grupper mot grupper</h2>
-      <p class="partlede">Forelesning 4, 5 og 6: t-testen, enveis ANOVA og faktoriell ANOVA. Spørsmålet er det samme hver gang — er forskjellen mellom gruppene større enn det tilfeldighetene alene lager? Demoene her har egne glidere og bryr seg ikke om datasettet i baren øverst. Startverdiene er satt slik at tallene ligner dem fra forelesningene.</p>
+      <p class="partlede">Forelesning 4, 5 og 6: t-testen, enveis ANOVA og faktoriell ANOVA. Spørsmålet er det samme hver gang — er forskjellen mellom gruppene større enn det tilfeldighetene alene lager? Demoene her har egne glidere og bryr seg ikke om datasettet i datasettbaren. Startverdiene er satt slik at tallene ligner dem fra forelesningene.</p>
     </section>
 
     <!-- ---------- t-testen ---------- -->
@@ -2689,7 +2860,7 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
         <p class="asks">Søk mens du leser</p>
         <p>Alt fra alle delene, samlet. Skriv inn et tegn eller et ord, så filtreres lista. Greske bokstaver kan skrives med vanlige: <em class="v">n2</em> og <em class="v">eta2</em> finner begge η², og <em class="v">kji</em> finner χ². Engelske navn og små skrivefeil går også: <em class="v">outlier</em> finner uteligger.</p>
         <div class="searchrow">
-          <input type="search" id="dictSearch" placeholder="Søk: n2, eta, kji, RMSEA, standardfeil, BF …" aria-label="Søk i ordboka">
+          <input type="search" id="dictSearch" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="search" placeholder="Søk: n2, eta, kji, RMSEA, standardfeil, BF …" aria-label="Søk i ordboka">
           <span class="hits" id="dictHits"></span>
         </div>
         <div class="scroller"><table class="dict" id="bigDict">
@@ -2824,7 +2995,7 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
         <p class="asks">Kan du dem uten å slå opp?</p>
         <p>Å lese en forklaring til den føles opplagt er ikke det samme som å kunne den. Kortene under henter oppslagene rett fra ordboka over — hver eneste term på denne sida, uten unntak — og snur spørsmålet: du får tegnet, og må si hva det betyr <em>før</em> du snur.</p>
         <p>Det er hele poenget. Å hente noe fram fra hukommelsen fester det langt bedre enn å lese det om igjen, og det er den eneste måten å oppdage forskjellen på «dette kjenner jeg igjen» og «dette kan jeg».</p>
-        <div class="panel">
+        <div class="panel" id="kortPanel">
           <div class="panel-head"><span>Øvingskort</span><span id="kortScope">—</span></div>
           <div class="kortbar">
             <label class="kortlab" for="kortFam">Område</label>
@@ -2842,7 +3013,7 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
           </div>
           <div class="readout" id="kortRead" aria-live="polite"></div>
         </div>
-        <div class="aside"><b>Tastatur:</b> klikk på kortet én gang, så kan du kjøre resten med tastene. <em class="v">Mellomrom</em> snur kortet, <em class="v">1</em> er «måtte tenke», <em class="v">2</em> er «kunne den». Da går det fort nok til at du rekker en runde mens kaffen trekker.</div>
+        <div class="aside kbd-only"><b>Tastatur:</b> klikk på kortet én gang, så kan du kjøre resten med tastene. <em class="v">Mellomrom</em> snur kortet, <em class="v">1</em> er «måtte tenke», <em class="v">2</em> er «kunne den». Da går det fort nok til at du rekker en runde mens kaffen trekker.</div>
         <div class="aside"><b>Hvordan framgangen regnes.</b> Hvert kort har fem trinn. «Kunne den» flytter det ett trinn opp, «måtte tenke» sender det helt tilbake til start — for det er den ærlige responsen: kunne du det ikke nå, kan du det ikke. Stripa under kortet viser hvor hele bunken står, fra grått (ikke øvd ennå) til grønt (sitter). Målet er en grønn stripe, ikke et høyt tall.</div>
         <div class="aside tryit"><b>Slik ville jeg brukt dem:</b> velg ett område om gangen i stedet for alle 290 på én gang — «Effektstørrelse» før en innlevering, «Greske bokstaver» når du sliter med å lese formler. Når et område begynner å sitte, slå på «bare de jeg sliter med», så blir bunken bare de kortene som fortsatt ikke har festet seg.</div>
         <div class="aside"><b>Framgangen lagres i denne nettleseren</b>, ikke på en server. Bytter du til mobilen eller en annen maskin, starter du på nytt der. Ingenting sendes noe sted, og ingen andre ser hvordan du ligger an.</div>
@@ -2857,7 +3028,7 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
         <p class="asks">Kan du bruke det, ikke bare gjenkjenne det?</p>
         <p>Kortene tester om du kan ordene. Disse tester om du kan <em>tenke</em> med dem: lese et tall ut av en resultatsetning eller en JASP-tabell, velge riktig analyse for et design, regne enkle ting uten kalkulator, og si hva et resultat betyr — og hva det <strong>ikke</strong> betyr. Eksamen er to timer flervalg uten hjelpemidler, så det er akkurat dette formatet du skal øve på.</p>
         <p>Hvert feilalternativ her er en bestemt misforståelse, ikke et tilfeldig galt svar. Svarer du feil, får du vite nøyaktig hvilken felle du gikk i — det er som regel mer nyttig enn å få vite hva som var riktig.</p>
-        <div class="panel">
+        <div class="panel" id="oppgPanel">
           <div class="panel-head"><span id="oppgHead">Oppgave</span><span id="oppgScore">—</span></div>
           <div class="kortbar">
             <label class="kortlab" for="oppgTema">Tema</label>
@@ -2867,6 +3038,7 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
           </div>
           <div id="oppgBody" aria-live="polite"></div>
           <div class="controls">
+            <button class="ghost" id="oppgPrev" hidden>← Forrige</button>
             <button id="oppgNext" hidden>Neste oppgave</button>
             <button class="ghost" id="oppgShuffle">Stokk om</button>
             <button class="ghost" id="oppgForget">Nullstill framgang</button>
@@ -2911,13 +3083,29 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
   </main>
 </div>
 
-<button class="palette-fab" data-pal-open type="button" aria-label="Søk på siden"><span aria-hidden="true">⌕</span></button>
+<div class="minibar" id="minibar" aria-label="Datasettet">
+  <span class="lab">N</span>
+  <button class="nbtn" type="button" data-mini-n="20">20</button>
+  <button class="nbtn" type="button" data-mini-n="75">75</button>
+  <button class="nbtn" type="button" data-mini-n="100">100</button>
+  <button class="nbtn mnew" type="button" id="miniResample"><span aria-hidden="true">↻</span> Nytt utvalg</button>
+  <span class="mlive">r = <b data-s="r"></b></span>
+</div>
+<div class="scrim" data-toc-close></div>
+<button class="backpill" id="backPill" type="button" hidden><span aria-hidden="true">↩</span> Tilbake</button>
+<nav class="tabbar" aria-label="Snarveier">
+  <button type="button" data-pal-open><span class="ti up" aria-hidden="true"><svg class="lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.4 15.4 20.5 20.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></span>Søk</button>
+  <button type="button" id="tocOpen" aria-controls="toc" aria-expanded="false"><span class="ti up" aria-hidden="true">☰</span>Innhold</button>
+  <a href="#oppgPanel" data-sec="oppgaver"><span class="ti up" aria-hidden="true">?!</span>Oppgaver</a>
+  <a href="#kortPanel" data-sec="kort"><span class="ti up" aria-hidden="true">⇄</span>Kort</a>
+  <a href="#formler" data-sec="formler"><span class="ti up" aria-hidden="true">Σ=</span>Formler</a>
+</nav>
 
 <div class="palette" id="palette" hidden>
   <div class="palette-box" role="dialog" aria-modal="true" aria-label="Søk på siden">
     <div class="palette-top">
       <span class="pt-ico" aria-hidden="true">⌕</span>
-      <input type="search" id="palQ" autocomplete="off" spellcheck="false"
+      <input type="search" id="palQ" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="search"
              placeholder="Søk: n2, kji, effect size, hvilken test for to grupper …"
              aria-label="Søk på siden" role="combobox" aria-expanded="true"
              aria-controls="palRes" aria-autocomplete="list">
@@ -2925,7 +3113,7 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
     </div>
     <div class="palette-res" id="palRes" role="listbox" aria-label="Treff"></div>
     <div class="palette-foot">
-      <span><b>↑ ↓</b> bla</span><span><b>Enter</b> gå dit</span><span><b>Esc</b> lukk</span>
+      <span class="pal-keys"><b>↑ ↓</b> bla</span><span class="pal-keys"><b>Enter</b> gå dit</span><span class="pal-keys"><b>Esc</b> lukk</span>
       <span class="spacer"></span><span id="palCount"></span>
     </div>
   </div>
@@ -3536,16 +3724,37 @@ function fillStats(){
    Tegneramme
    ========================================================= */
 const charts = [];
+/* En figur tegnes bare når den er på eller nær skjermen. Ellers merkes den
+   som utdatert og tegnes idet den kommer inn. Det sparer mye ved oppstart,
+   når ingen av figurene er synlige, og hver gang N eller utvalget endres. */
+const nearby = new Set();
+const lazy = 'IntersectionObserver' in window ? new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    const o = en.target._chart;
+    if(en.isIntersecting){ nearby.add(o); if(o.stale) paint(o); }
+    else nearby.delete(o);
+  });
+}, {rootMargin:'800px 0px'}) : null;
+function paint(o){
+  o.stale = false;
+  if(!o.W) size(o);
+  o.render(o);
+}
 function setup(id, draw){
   const cv=document.getElementById(id);
   if(!cv) return null;
-  const o={cv, ctx:cv.getContext('2d'), draw};
+  /* høyden fra HTML-en må leses én gang: size() skriver over attributtet */
+  const o={cv, ctx:cv.getContext('2d'), render:draw, h0:parseInt(cv.getAttribute('height'),10)||300, W:0, stale:true};
+  o.draw = () => { if(!lazy || nearby.has(o)) paint(o); else o.stale = true; };
+  cv._chart = o;
+  cv.style.height = o.h0 + 'px';
   charts.push(o);
+  if(lazy) lazy.observe(cv);
   return o;
 }
 function size(o){
   const dpr=window.devicePixelRatio||1;
-  const w=o.cv.clientWidth||600, h=parseInt(o.cv.getAttribute('height'),10);
+  const w=o.cv.clientWidth||600, h=o.h0;
   o.cv.width=Math.round(w*dpr); o.cv.height=Math.round(h*dpr);
   o.cv.style.height=h+'px';
   o.ctx.setTransform(dpr,0,0,dpr,0,0);
@@ -3561,7 +3770,14 @@ function label(ctx,text,x,y,color,align='left',sz=11,weight='400'){
   ctx.fillStyle=color; ctx.font=weight+' '+sz+'px "IBM Plex Mono", monospace';
   ctx.textAlign=align; ctx.textBaseline='middle'; ctx.fillText(text,x,y);
 }
-function redrawAll(){ charts.forEach(o=>{ size(o); o.draw(o); }); }
+function labelBg(ctx,text,x,y,color,align,sz,weight,bg){
+  ctx.font=(weight||'400')+' '+sz+'px "IBM Plex Mono", monospace';
+  const w=ctx.measureText(text).width, x0=align==='center'?x-w/2:align==='right'?x-w:x;
+  ctx.fillStyle=bg; ctx.fillRect(x0-3,y-sz*0.7,w+6,sz*1.4);
+  label(ctx,text,x,y,color,align,sz,weight);
+}
+const textW = (ctx,text,sz,weight) => { ctx.font=(weight||'400')+' '+sz+'px "IBM Plex Mono", monospace'; return ctx.measureText(text).width; };
+function redrawAll(){ charts.forEach(o=>{ o.W = 0; o.draw(o); }); }
 
 /* =========================================================
    Diagrammer
@@ -3873,13 +4089,15 @@ setup('cvR2', o=>{
     {lab:'Timer søvn – poeng', r:S.rzy},
     {lab:'Timer studert – søvn', r:S.rxz}
   ];
-  const labW=Math.min(200, W*0.42), barX=labW+10, barW=W-barX-62, hRow=H/3;
+  const narrow = W < 460;
+  const labW=narrow ? 0 : Math.min(200, W*0.42), barX=narrow ? 0 : labW+10, barW=W-barX-62, hRow=H/3;
   rows.forEach((row,i)=>{
-    const y=i*hRow+hRow/2;
-    label(ctx, row.lab, 0, y, t.ink2,'left',11.5);
-    ctx.fillStyle=t.ruleSoft; ctx.fillRect(barX,y-8,barW,16);
+    const y=i*hRow+hRow/2 + (narrow ? 7 : 0);
+    if(narrow) label(ctx, row.lab, 0, y-15, t.ink2,'left',11);
+    else label(ctx, row.lab, 0, y, t.ink2,'left',11.5);
+    ctx.fillStyle=t.ruleSoft; ctx.fillRect(barX,y-(narrow?6:8),barW,narrow?12:16);
     ctx.fillStyle=row.hi?t.mark:t.accent;
-    ctx.fillRect(barX,y-8, Math.max(2,barW*row.r*row.r), 16);
+    ctx.fillRect(barX,y-(narrow?6:8), Math.max(2,barW*row.r*row.r), narrow?12:16);
     label(ctx, (row.r*row.r*100).toFixed(1).replace('.',',')+' %', W-4, y, t.ink,'right',11.5,'600');
   });
 });
@@ -3910,10 +4128,15 @@ const cNull = setup('cvNull', o=>{
   counts.forEach((c,i)=>{ if(!c) return; const h=(c/maxC)*(base-top);
     ctx.fillRect(padL+i*bw, base-h, Math.max(1,bw-1), h); });
   ctx.globalAlpha=1;
-  [{v:S.r,l:'din r'},{v:S.rzy,l:'søvn–poeng'}].forEach((m,i)=>{
+  const tags=[{v:S.r,l:'din r'},{v:S.rzy,l:'søvn–poeng'}].map(m=>{
+    const txt=m.l+' '+fr(m.v), right=m.v>0.4, x=X(m.v)+(right?-6:6), w=textW(ctx,txt,10.5,'600');
+    return {...m, txt, right, x, x0:right?x-w:x, x1:right?x:x+w};
+  });
+  const clash = tags[0].x0 < tags[1].x1 + 6 && tags[1].x0 < tags[0].x1 + 6;
+  tags.forEach((m,i)=>{
     ctx.strokeStyle=t.mark; ctx.lineWidth=2;
     ctx.beginPath(); ctx.moveTo(X(m.v), top-10); ctx.lineTo(X(m.v), base); ctx.stroke();
-    label(ctx, m.l+' '+fr(m.v), X(m.v)+(m.v>0.4?-6:6), top-3, t.mark, m.v>0.4?'right':'left', 10.5,'600');
+    labelBg(ctx, m.txt, m.x, top-3+(clash&&i===1?14:0), t.mark, m.right?'right':'left', 10.5,'600', t.surface);
   });
 });
 function nullText(){
@@ -3964,7 +4187,7 @@ const cPhack = setup('cvPhack', o=>{
     ctx.beginPath(); ctx.moveTo(padL, Y(v)+.5); ctx.lineTo(W-padR, Y(v)+.5); ctx.stroke();
     label(ctx, v.toFixed(2).replace(/^0/,''), padL-7, Y(v), t.ink3, 'right', 10);
   });
-  label(ctx, 'p-verdi', padL, top-13, t.ink3, 'left', 9.5);
+  label(ctx, 'p-verdi', padL, Math.max(7, top-13), t.ink3, 'left', 9.5);
 
   /* signifikansgrensa */
   ctx.strokeStyle=t.mark; ctx.lineWidth=1.2; ctx.setLineDash([4,3]);
@@ -4115,17 +4338,21 @@ setup('cvCI', o=>{
     {lab:'Timer søvn – poeng', r:S.rzy, ci:fisherCI(S.rzy,S.n), p:S.pzy, tr:POP.rzy},
     {lab:'Timer studert – søvn', r:S.rxz, ci:fisherCI(S.rxz,S.n), p:S.pxz, tr:0}
   ];
-  const labW=Math.min(190,W*0.36), padR=78, barX=labW+10, barW=W-barX-padR;
+  const narrow = W < 480;
+  const labW=narrow ? 0 : Math.min(190,W*0.36), padR=narrow ? 10 : 78, barX=narrow ? 10 : labW+10, barW=W-barX-padR;
   const lo=-0.6, hi=1.0;
   const X=v=>barX+(clamp(v,lo,hi)-lo)/(hi-lo)*barW;
   const hRow=(H-24)/3;
   ctx.strokeStyle=t.rule; ctx.lineWidth=1; ctx.setLineDash([3,3]);
   ctx.beginPath(); ctx.moveTo(X(0),4); ctx.lineTo(X(0),H-20); ctx.stroke();
   ctx.setLineDash([]);
-  [-0.6,-0.2,0,0.2,0.6,1.0].forEach(v=>label(ctx, v===0?'0':fr(v,1), X(v), H-8, t.ink3,'center',10));
+  (narrow ? [-0.4,0,0.4,0.8] : [-0.6,-0.2,0,0.2,0.6,1.0]).forEach(v=>label(ctx, v===0?'0':fr(v,1), X(v), H-8, t.ink3,'center',10));
   rows.forEach((row,i)=>{
-    const y=8+i*hRow+hRow/2;
-    label(ctx,row.lab,0,y,t.ink2,'left',11.5);
+    const y=8+i*hRow+hRow/2 + (narrow ? 8 : 0);
+    if(narrow){
+      label(ctx,row.lab,0,y-17,t.ink2,'left',11);
+      label(ctx, row.p<0.05?'signifikant':'ikke signif.', W-2, y-17, row.p<0.05?t.ink2:t.ink3,'right',10, row.p<0.05?'500':'400');
+    } else label(ctx,row.lab,0,y,t.ink2,'left',11.5);
     const sig=row.p<0.05;
     ctx.strokeStyle=sig?t.accent:t.ink3; ctx.lineWidth=2.5;
     ctx.beginPath(); ctx.moveTo(X(row.ci[0]),y); ctx.lineTo(X(row.ci[1]),y); ctx.stroke();
@@ -4137,7 +4364,7 @@ setup('cvCI', o=>{
     ctx.beginPath(); ctx.arc(X(row.r),y,4.5,0,6.284); ctx.fill();
     ctx.strokeStyle=t.surface; ctx.lineWidth=2;
     ctx.beginPath(); ctx.arc(X(row.r),y,4.5,0,6.284); ctx.stroke();
-    label(ctx, sig?'signifikant':'ikke signif.', W-4, y, sig?t.ink2:t.ink3,'right',10.5, sig?'500':'400');
+    if(!narrow) label(ctx, sig?'signifikant':'ikke signif.', W-4, y, sig?t.ink2:t.ink3,'right',10.5, sig?'500':'400');
   });
 });
 
@@ -4249,13 +4476,14 @@ setup('cvBeta', o=>{
       {lab:'Timer studert', v:Math.abs(S.betax), txt:fr(S.betax)},
       {lab:'Timer søvn', v:Math.abs(S.betaz), txt:fr(S.betaz)}], sc:Math.max(.8,Math.abs(S.betax),Math.abs(S.betaz))}
   ];
-  const colW=W/2;
+  const colW=W/2, narrow = textW(ctx, groups[0].note, 10) > colW - 14;
   groups.forEach((g,gi)=>{
     const x0=gi*colW+2;
-    label(ctx,g.title,x0,12, gi===1?t.mark:t.ink2,'left',11.5,'600');
-    label(ctx,g.note,x0,28,t.ink3,'left',10);
+    label(ctx,g.title,x0,12, gi===1?t.mark:t.ink2,'left',narrow?10.5:11.5,'600');
+    if(narrow) g.note.split('. ').forEach((part,k,all)=> label(ctx, part + (k < all.length-1 ? '.' : ''), x0, 28+k*13, t.ink3,'left',10));
+    else label(ctx,g.note,x0,28,t.ink3,'left',10);
     g.vals.forEach((v,vi)=>{
-      const y=56+vi*54, bw=colW-30;
+      const y=(narrow?68:56)+vi*54, bw=colW-30;
       label(ctx,v.lab,x0,y,t.ink2,'left',11);
       ctx.fillStyle=t.ruleSoft; ctx.fillRect(x0,y+10,bw,12);
       ctx.fillStyle=gi===1?t.mark:t.accent;
@@ -4278,11 +4506,14 @@ setup('cvDR2', o=>{
   const t=theme(), ctx=o.ctx, W=o.W, H=o.H;
   ctx.clearRect(0,0,W,H);
   const base=S.simple.R2, extra=Math.max(0,S.dR2);
-  const labW=Math.min(200,W*0.38), barX=labW+10, barW=W-barX-56;
+  const narrow = W < 480;
+  const labW=narrow ? 0 : Math.min(200,W*0.38), barX=narrow ? 0 : labW+10, barW=W-barX-56;
   const rows=[{lab:'Modell 1 — bare studietimer', b:base, e:0},{lab:'Modell 2 — begge', b:base, e:extra}];
+  const dy = narrow ? 8 : 0;
   rows.forEach((row,i)=>{
-    const y=26+i*56;
-    label(ctx,row.lab,0,y+11,t.ink2,'left',11.5);
+    const y=26+i*56+dy;
+    if(narrow) label(ctx,row.lab,0,y-9,t.ink2,'left',11);
+    else label(ctx,row.lab,0,y+11,t.ink2,'left',11.5);
     ctx.fillStyle=t.ruleSoft; ctx.fillRect(barX,y,barW,22);
     ctx.fillStyle=t.accent; ctx.fillRect(barX,y,barW*row.b,22);
     if(row.e>0){
@@ -4291,7 +4522,7 @@ setup('cvDR2', o=>{
     }
     label(ctx, fr(row.b+row.e,3), W-4, y+11, t.ink,'right',11.5,'600');
   });
-  const y2=26+56, ax=barX+barW*base+barW*extra/2;
+  const y2=26+56+dy, ax=barX+barW*base+barW*extra/2;
   ctx.strokeStyle=t.mark; ctx.lineWidth=1;
   ctx.beginPath(); ctx.moveTo(ax,y2+24); ctx.lineTo(ax,y2+34); ctx.lineTo(ax+16,y2+34); ctx.stroke();
   label(ctx,'ΔR² = '+fr(S.dR2,3), ax+20, y2+34, t.mark,'left',11,'600');
@@ -4316,7 +4547,8 @@ const cColl = setup('cvColl', o=>{
   const lo=-6, hi=10;
   const X=v=>barX+(clamp(v,lo,hi)-lo)/(hi-lo)*barW;
   label(ctx,'VIF = '+vif.toFixed(2), 0, 12, vif>5?t.mark:t.ink2,'left',12.5,'600');
-  label(ctx,'røde streker = de sanne verdiene, 2.50 og 1.50', barX, 12, t.ink3,'left',10);
+  if(W < 520) label(ctx,'rødt = de sanne verdiene, 2.50 og 1.50', 0, 30, t.ink3,'left',10);
+  else label(ctx,'røde streker = de sanne verdiene, 2.50 og 1.50', barX, 12, t.ink3,'left',10);
   if(!m){ label(ctx,'modellen lar seg ikke løse — prediktorene er praktisk talt identiske', W/2, H/2, t.mark,'center',12,'600'); return; }
   ctx.strokeStyle=t.rule; ctx.lineWidth=1; ctx.setLineDash([3,3]);
   ctx.beginPath(); ctx.moveTo(X(0),30); ctx.lineTo(X(0),H-44); ctx.stroke(); ctx.setLineDash([]);
@@ -4343,7 +4575,8 @@ const cColl = setup('cvColl', o=>{
   ctx.strokeStyle=t.rule; ctx.lineWidth=1;
   ctx.beginPath(); ctx.moveTo(barX,H-44); ctx.lineTo(barX+barW,H-44); ctx.stroke();
   [-6,-3,0,3,6,9].forEach(v=>label(ctx,String(v),X(v),H-30,t.ink3,'center',10));
-  label(ctx,'koeffisient i poeng per time, med 95 % konfidensintervall', barX+barW/2, H-12, t.ink3,'center',10.5);
+  if(W < 520) label(ctx,'poeng per time, med 95 % KI', barX+barW/2, H-12, t.ink3,'center',10.5);
+  else label(ctx,'koeffisient i poeng per time, med 95 % konfidensintervall', barX+barW/2, H-12, t.ink3,'center',10.5);
 });
 function collText(){
   const vif=1/Math.max(1e-9,1-collR*collR);
@@ -4494,8 +4727,16 @@ document.getElementById('collSlide').addEventListener('input', e=>{
 rebuild(false);
 setR(0);
 
-let rt;
-window.addEventListener('resize', ()=>{ clearTimeout(rt); rt=setTimeout(redrawAll,120); });
+let rt, lastW = window.innerWidth;
+/* bare når bredden endres: adresselinja på mobil endrer høyden hele tiden mens du blar */
+window.addEventListener('resize', ()=>{
+  if(window.innerWidth === lastW) return;
+  lastW = window.innerWidth;
+  clearTimeout(rt); rt=setTimeout(redrawAll,120);
+});
+/* skriftene lastes etter at siden vises; tegn figurene på nytt med de riktige */
+if(document.fonts && document.fonts.addEventListener)
+  document.fonts.addEventListener('loadingdone', ()=>{ clearTimeout(rt); rt=setTimeout(redrawAll,120); });
 const mq=window.matchMedia('(prefers-color-scheme: dark)');
 (mq.addEventListener ? mq.addEventListener('change', redrawAll) : mq.addListener(redrawAll));
 new MutationObserver(redrawAll).observe(document.documentElement,{attributes:true, attributeFilter:['data-theme']});
@@ -4580,15 +4821,26 @@ new MutationObserver(redrawAll).observe(document.documentElement,{attributes:tru
       ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.stroke();
       ctx.strokeStyle = col; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
       ctx.beginPath(); ctx.moveTo(X(m), base); ctx.lineTo(X(m), top - 2); ctx.stroke(); ctx.setLineDash([]);
-      label(ctx, lab, X(m), 10, col, 'center', 11, '600');
     });
+    {
+      const w1 = textW(ctx,'terapi',11,'600'), w2 = textW(ctx,'venteliste',11,'600');
+      const a = X(m1), b = X(m2);
+      if(b - a >= (w1 + w2)/2 + 10){
+        label(ctx, 'terapi', a, 10, th.accent, 'center', 11, '600');
+        label(ctx, 'venteliste', b, 10, th.mark, 'center', 11, '600');
+      } else {
+        const mid = Math.min(Math.max((a + b)/2, padL + w1 + 6), W - padR - w2 - 6);
+        label(ctx, 'terapi', mid - 5, 10, th.accent, 'right', 11, '600');
+        label(ctx, 'venteliste', mid + 5, 10, th.mark, 'left', 11, '600');
+      }
+    }
     ctx.strokeStyle = th.rule; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(padL, base); ctx.lineTo(W - padR, base); ctx.stroke();
     if(T.diff > 0.05){
       const ya = top + 10;
       ctx.strokeStyle = th.ink; ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.moveTo(X(m1), ya); ctx.lineTo(X(m2), ya); ctx.stroke();
-      label(ctx, 'forskjell ' + comma(T.diff,1), (X(m1)+X(m2))/2, ya - 9, th.ink, 'center', 10.5, '600');
+      labelBg(ctx, 'forskjell ' + comma(T.diff,1), (X(m1)+X(m2))/2, ya - 9, th.ink, 'center', 10.5, '600', th.surface);
     }
     label(ctx, 'depresjonsskår', W - padR, base + 13, th.ink3, 'right', 10);
 
@@ -4663,7 +4915,6 @@ new MutationObserver(redrawAll).observe(document.documentElement,{attributes:tru
     const colX = i => 30 + (i + 0.5)*(plotW - 30)/3;
     ctx.strokeStyle = th.ink3; ctx.lineWidth = 1; ctx.setLineDash([5,4]);
     ctx.beginPath(); ctx.moveTo(24, Y(st.gm)); ctx.lineTo(plotW, Y(st.gm)); ctx.stroke(); ctx.setLineDash([]);
-    label(ctx, 'totalsnitt ' + comma(st.gm,1), 26, Y(st.gm) - 9, th.ink3, 'left', 10);
     const cols = [th.accent, th.mark, th.ink2];
     A.m.forEach((m, i)=>{
       const cx = colX(i), w = (plotW - 30)/3*0.5;
@@ -4677,10 +4928,12 @@ new MutationObserver(redrawAll).observe(document.documentElement,{attributes:tru
       ctx.beginPath(); ctx.moveTo(cx - w/2 - 6, Y(m)); ctx.lineTo(cx + w/2 + 6, Y(m)); ctx.stroke();
       ctx.strokeStyle = th.ink; ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.moveTo(cx + w/2 + 10, Y(st.gm)); ctx.lineTo(cx + w/2 + 10, Y(m)); ctx.stroke();
-      label(ctx, 'gruppe ' + (i+1), cx, H - 18, th.ink2, 'center', 10.5, '600');
+      label(ctx, (plotW < 300 ? 'gr. ' : 'gruppe ') + (i+1), cx, H - 18, th.ink2, 'center', 10.5, '600');
       label(ctx, comma(m,1), cx, H - 5, th.ink3, 'center', 10);
     });
     /* SS og MS ved siden av hverandre: mellom (signal) mot innen (støy) */
+    /* etter prikkene, så den ligger oppå dem */
+    labelBg(ctx, 'totalsnitt ' + comma(st.gm,1), 26, Y(st.gm) - 9, th.ink2, 'left', 10, '400', th.surface);
     const bars = [
       {lab:'SS', a:st.ssm, b:st.ssi},
       {lab:'MS = SS/df', a:st.msm, b:st.msi}
@@ -4688,7 +4941,7 @@ new MutationObserver(redrawAll).observe(document.documentElement,{attributes:tru
     label(ctx, 'mellom', barX, top, th.accent, 'left', 10.5, '600');
     label(ctx, 'innen', barX + 58, top, th.mark, 'left', 10.5, '600');
     bars.forEach((r, i)=>{
-      const y0 = top + 22 + i*((bot - top - 22)/2), h = (bot - top - 22)/2 - 30;
+      const y0 = top + 22 + i*((bot - top - 22)/2), h = (bot - top - 22)/2 - 42;
       const mx = Math.max(r.a, r.b, 1e-9), bw = Math.max(14, barW/2 - 10);
       label(ctx, r.lab, barX, y0 + 4, th.ink3, 'left', 10);
       [[r.a, th.accent, 0], [r.b, th.mark, 1]].forEach(([v, col, j])=>{
@@ -5016,6 +5269,7 @@ const SENTENCES = [
       row.append(c0,c1,c2,c3);
       /* alle skrivemåter av tegnet, så «n2» finner η² */
       row.dataset.k = SEARCHTEXT.variants(tds[0].textContent.trim()).concat(SEARCHTEXT.flat(tds[1].textContent)).join(' ');
+      row.dataset.x = SEARCHTEXT.flat(tds[0].textContent) + ' ' + SEARCHTEXT.flat(tds[1].textContent);
       docs.push({head: tds[0].textContent + ' ' + tds[1].textContent, body: tds[2].textContent + ' ' + fam});
       rows.push(row);
       tbody.appendChild(row);
@@ -5027,25 +5281,143 @@ const SENTENCES = [
   const input = document.getElementById('dictSearch');
   const hits = document.getElementById('dictHits');
   const none = document.getElementById('dictNone');
+  /* uten filter vises bare starten; hele ordboka er nesten 60 skjermer på en telefon */
+  const FIRST = 30;
+  let all = false;
+  const more = document.createElement('button');
+  more.type = 'button'; more.className = 'ghost dictmore';
+  more.addEventListener('click', ()=>{ all = true; update(); });
+  table.parentNode.after(more);
   function update(){
     const p = SEARCHTEXT.parse(input.value), raw = p.raw, q = p.q;
     /* et filter skal ikke gi halve treff: alle ordene må finnes i raden */
-    const byWord = new Set(index.query(p).filter(h=>h.cov === 1).map(h=>h.doc));
-    let n = 0;
+    const byWord = new Map(index.query(p).filter(h=>h.cov === 1).map(h=>[h.doc, h.rel]));
+    const on = [];
     rows.forEach((r, i)=>{
-      const on = !raw
-        || (q && r.dataset.k.split(' ').some(v=>v.includes(q)))
-        || byWord.has(i);
-      r.hidden = !on;
-      if(on) n++;
+      let score = -1;
+      if(!raw) score = 0;
+      else {
+        const vs = q ? r.dataset.k.split(' ') : [];
+        if(q && r.dataset.x.split(' ').includes(q)) score = 4;
+        else if(vs.includes(q)) score = 3;
+        else if(vs.some(v=>v.startsWith(q))) score = 2;
+        else if(vs.some(v=>v.includes(q))) score = 1;
+        if(byWord.has(i)) score = Math.max(score, byWord.get(i));
+      }
+      if(score >= 0) on.push({r, i, score});
     });
-    hits.textContent = q ? n + ' av ' + rows.length + ' oppslag' : rows.length + ' oppslag';
-    none.hidden = n > 0;
+    /* beste treff først: eksakt tegn eller navn, så begynnelsen av et ord, så resten */
+    if(raw) on.sort((a, b)=> b.score - a.score || a.i - b.i);
+    const show = new Set(on.map(o=>o.r));
+    const cap = !raw && !all;
+    rows.forEach(r=>{ r.hidden = !show.has(r); });
+    if(cap) rows.forEach((r, i)=>{ if(i >= FIRST) r.hidden = true; });
+    tbody.append(...on.map(o=>o.r), ...rows.filter(r=>!show.has(r)));
+    more.hidden = !cap;
+    more.textContent = 'Vis alle ' + rows.length + ' oppslag';
+    hits.textContent = raw ? on.length + ' av ' + rows.length + ' oppslag' : rows.length + ' oppslag';
+    none.hidden = on.length > 0;
   }
   input.addEventListener('input', update);
   update();
 })();
 
+
+/* ================= VIEW: hold det du trenger innenfor skjermen =================
+   Toppkanten er under den klistrede datasettbaren (bare på stor skjerm),
+   bunnkanten er over bunnmenyen (bare på mobil). */
+const VIEW = (function(){
+  const calm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function topEdge(){
+    const bar = document.querySelector('.databar');
+    return bar && getComputedStyle(bar).position === 'sticky' ? Math.max(0, bar.getBoundingClientRect().bottom) : 0;
+  }
+  function lowEdge(){
+    const tab = document.querySelector('.tabbar');
+    return innerHeight - (tab ? tab.offsetHeight : 0);
+  }
+  /* rull ned til bunnen av «bottom» er synlig, men aldri så langt at toppen av «top» forsvinner */
+  function reveal(top, bottom){
+    if(!top || !bottom) return;
+    const a = top.getBoundingClientRect(), b = bottom.getBoundingClientRect();
+    const over = b.bottom - (lowEdge() - 12);
+    if(over <= 0) return;
+    const dy = Math.min(over, a.top - topEdge() - 12);
+    if(dy > 0) window.scrollBy({top: dy, behavior: calm ? 'auto' : 'smooth'});
+  }
+  /* har toppen av elementet glidd opp over skjermkanten, hent den ned igjen */
+  function toTop(el){
+    if(!el) return;
+    const r = el.getBoundingClientRect(), edge = topEdge() + 10;
+    if(r.top < edge) window.scrollBy({top: r.top - edge, behavior: 'auto'});
+  }
+  return {reveal, toTop, topEdge, lowEdge};
+})();
+
+/* ================= JUMP: hopp på sida som «Tilbake» kan angre =================
+   Hvert hopp (innholdsfortegnelsen, bunnmenyen, et søketreff) blir en egen
+   oppføring i historikken. Da fører tilbake-sveipet deg dit du var, i stedet
+   for ut av siden. Søkeruta og innholdsskuffen er også en oppføring hver, så
+   Tilbake lukker dem. På mobil dukker det i tillegg opp en «Tilbake»-knapp,
+   fordi en app på hjemskjermen ikke har nettleserens tilbakeknapp. */
+const JUMP = (function(){
+  const pill = document.getElementById('backPill');
+  let depth = 0, landY = null, landT = 0, layer = null;
+  /* history.back() skjer ikke med en gang. Det som kommer rett etter at et lag
+     er lukket, må vente til nettleseren er ferdig, ellers spiser tilbakehoppet det. */
+  let pending = 0, queue = [];
+  function flush(){ pending = 0; const q = queue; queue = []; q.forEach(f=>f()); }
+  function ready(fn){ if(pending) queue.push(fn); else fn(); }
+  const push = (st, url) => { try{ history.pushState(st, '', url); return true; }catch(e){ return false; } };
+  function hide(){ if(pill) pill.hidden = true; landY = null; }
+  /* et lag (søkeruta, skuffen) åpnes: Tilbake skal lukke det */
+  function open(closeUI){
+    if(push({layer: 1, jump: depth})) layer = closeUI;
+  }
+  /* laget lukkes med en knapp: fjern oppføringen det la til */
+  function shut(){
+    if(!layer) return;
+    layer = null;
+    if(history.state && history.state.layer){
+      history.back();
+      clearTimeout(pending);
+      pending = setTimeout(flush, 400);   /* reserve hvis popstate aldri kommer */
+    }
+  }
+  /* et hopp: står vi i et lag, tar hoppet over oppføringen til laget */
+  function from(id, detour){
+    const st = {jump: ++depth}, url = id ? '#' + id : undefined;
+    try{
+      if(layer && history.state && history.state.layer) history.replaceState(st, '', url);
+      else history.pushState(st, '', url);
+    }catch(e){ return; }
+    layer = null;
+    if(!pill) return;
+    /* bunnmenyen bytter bare «modus»; da trengs ingen knapp tilbake */
+    if(!detour){ hide(); return; }
+    pill.hidden = false;
+    landY = null;
+    clearTimeout(landT);
+    landT = setTimeout(()=>{ landY = window.pageYOffset; }, 900);
+  }
+  if(pill) pill.addEventListener('click', ()=>{ hide(); history.back(); });
+  window.addEventListener('popstate', e=>{
+    depth = (e.state && e.state.jump) || 0;
+    if(pending){
+      /* vårt eget tilbakehopp fra shut(): kjør det som ventet, etter at rullingen er gjenopprettet */
+      clearTimeout(pending);
+      pending = setTimeout(flush, 0);
+      return;
+    }
+    if(layer){ const f = layer; layer = null; f(); }
+    if(!depth) hide();
+  });
+  /* har du lest deg videre fra der du landet, trenger du ikke knappen lenger */
+  window.addEventListener('scroll', ()=>{
+    if(landY !== null && Math.abs(window.pageYOffset - landY) > innerHeight * 1.5) hide();
+  }, {passive:true});
+  return {from, open, shut, ready};
+})();
 
 /* ================= Søk på hele sida ================= */
 (function sitesearch(){
@@ -5073,6 +5445,12 @@ const SENTENCES = [
      Ord i hodet veier mer enn ord i kroppen. */
   const items = [], seen = new Set();
 
+  /* Del I-tabellen er skjult; begrepene i den har hver sin seksjon */
+  const DEL1 = {'M':'m', 'SD':'sd', 'N':'n', 'r':'r', 'rs':'r', 'r²':'r2', 'p':'p', '95 % KI':'ki',
+                'b₀':'b', 'b₁':'b', 'ŷ':'b', 'SE':'se', 't':'t', 'df':'df', 'e':'res', 'β':'beta',
+                'R²':'R2', 'Justert R²':'R2', 'F':'F', 'ΔR²':'dR2', 'VIF':'vif'};
+  const home = sign => document.getElementById(DEL1[sign.replace(/\s+/g, ' ')] || '');
+
   /* 1 · oppslagene i ordbokstabellene */
   document.querySelectorAll('table.dict[data-fam]').forEach(src=>{
     const fam = src.getAttribute('data-fam');
@@ -5090,14 +5468,15 @@ const SENTENCES = [
       if(seen.has(key)) return;
       seen.add(key);
       const desc = clean(td[2].textContent);
-      const sec = secOf(tr);
+      const sec = buried ? home(sign) : secOf(tr);
       items.push({kind:'term', sign, name, fam,
                   title: worded ? sign : name,
                   lead:  worded ? secGlyph(sec) : sign,
                   leadUp: worded ? true : td[0].classList.contains('up'),
                   sub:   worded && name !== '—' ? name + ' · ' + desc : desc,
                   row: buried ? null : tr,
-                  target: buried ? null : (sec || tr),
+                  target: buried ? sec : (sec || tr),
+                  mark: buried && sec ? sec.querySelector('h2') : null,
                   sv: variants(sign), sw: whole(sign), svlen: sign.length, nf: flat(name),
                   head: sign + ' ' + name, body: desc + ' ' + fam});
     });
@@ -5337,6 +5716,16 @@ const SENTENCES = [
     flashing = el;
     setTimeout(()=>{ el.classList.remove('flashfind'); if(flashing === el) flashing = null; }, 2800);
   }
+  let found = null;
+  function land(el){
+    if(found) found.classList.remove('found');
+    el.classList.add('found');
+    found = el;
+    let done = false;
+    const run = ()=>{ if(!done){ done = true; flash(el); } };
+    if('onscrollend' in window) window.addEventListener('scrollend', run, {once:true});
+    setTimeout(run, calm ? 0 : 900);
+  }
   /* et treff inne i en lukket forklaringsboks må foldes ut før det kan vises */
   function unfold(el){
     for(let d = el.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true;
@@ -5345,17 +5734,20 @@ const SENTENCES = [
   function go(it){
     remember(input.value);
     close();
+    const at = it.row || it.target || document.getElementById('ordbok'), sec = at && secOf(at);
+    JUMP.from(sec ? sec.id : null, true);
     if(it.row){
       unfold(it.row);
       scroll(it.row, 'center');
-      flash(it.row);
+      land(it.row);
       return;
     }
     if(it.target){
       if(it.kind === 'more') it.target.open = true;
       unfold(it.target);
       scroll(it.target, it.kind === 'text' ? 'center' : 'start');
-      if(it.kind !== 'sec') flash(it.target);
+      if(it.mark) land(it.mark);
+      else if(it.kind !== 'sec') land(it.target);
       return;
     }
     /* oppslag som bare finnes i den samlede ordboka */
@@ -5370,19 +5762,32 @@ const SENTENCES = [
       const shown = [...document.querySelectorAll('#bigDict tbody tr')].filter(r=>!r.hidden);
       const row = shown.find(r=> r.cells[0].textContent.trim() === it.sign
                               && r.cells[1].textContent.trim() === it.name) || shown[0];
-      if(row) flash(row);
+      if(row){ scroll(row, 'center'); land(row); }
     }, calm ? 0 : 500);
   }
 
-  /* ---- åpne og lukke ---- */
+  /* ---- åpne og lukke ----
+     På mobil fyller ruta skjermen. Når tastaturet kommer opp, krymper den til
+     det som faktisk er synlig, så trefflista ikke gjemmer seg bak tastene. */
+  const vv = window.visualViewport;
+  function fit(){
+    if(!vv || pal.hidden) return;
+    pal.style.setProperty('--vvh', vv.height + 'px');
+    pal.style.setProperty('--vvt', vv.offsetTop + 'px');
+  }
+  if(vv){ vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); }
   let restore = null;
   function open(){
+    if(!pal.hidden) return;
     restore = document.activeElement;
     pal.hidden = false;
+    fit();
     document.body.style.overflow = 'hidden';
-    input.value = '';
+    /* forrige søk står igjen, markert: skriv for å erstatte det, eller prøv et annet treff */
     render();
     input.focus();
+    input.select();
+    JUMP.open(close);
   }
   function close(){
     if(pal.hidden) return;
@@ -5394,22 +5799,26 @@ const SENTENCES = [
     if(document.activeElement === input) input.blur();
   }
 
-  openers.forEach(b=> b.addEventListener('click', open));
-  closeBtn.addEventListener('click', close);
-  pal.addEventListener('mousedown', e=>{ if(e.target === pal) close(); });
+  /* lukket med en knapp: fjern også oppføringen i historikken */
+  const dismiss = () => { close(); JUMP.shut(); };
+  openers.forEach(b=> b.addEventListener('click', ()=>JUMP.ready(open)));
+  closeBtn.addEventListener('click', dismiss);
+  pal.addEventListener('mousedown', e=>{ if(e.target === pal) dismiss(); });
+  /* begynner du å bla i treffene, skal tastaturet ned */
+  list.addEventListener('touchmove', ()=>{ if(document.activeElement === input) input.blur(); }, {passive:true});
   input.addEventListener('input', render);
   input.addEventListener('keydown', e=>{
     if(e.key === 'ArrowDown'){ e.preventDefault(); move(1); }
     else if(e.key === 'ArrowUp'){ e.preventDefault(); move(-1); }
     else if(e.key === 'Enter'){ e.preventDefault(); if(hits[sel]) go(hits[sel].it); }
-    else if(e.key === 'Escape'){ e.preventDefault(); close(); }
+    else if(e.key === 'Escape'){ e.preventDefault(); dismiss(); }
   });
   document.addEventListener('keydown', e=>{
-    if(!pal.hidden){ if(e.key === 'Escape') close(); return; }
+    if(!pal.hidden){ if(e.key === 'Escape') dismiss(); return; }
     const t = e.target, tag = t && t.tagName;
     if(tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (t && t.isContentEditable)) return;
-    if(e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey){ e.preventDefault(); open(); }
-    else if((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')){ e.preventDefault(); open(); }
+    if(e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey){ e.preventDefault(); JUMP.ready(open); }
+    else if((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')){ e.preventDefault(); JUMP.ready(open); }
   });
 })();
 
@@ -5525,7 +5934,7 @@ const SENTENCES = [
       + ' · <b>' + solid + '</b> av <b>' + pool.length + '</b> sitter i dette området.';
   }
 
-  const flip  = () => { if(deck.length && idx < deck.length){ flipped = true; render(); } };
+  const flip  = () => { if(deck.length && idx < deck.length){ flipped = true; render(); VIEW.reveal(card, gotBtn); } };
   function grade(ok){
     if(!flipped || idx >= deck.length) return;
     const k = deck[idx].key;
@@ -5533,6 +5942,25 @@ const SENTENCES = [
     save();
     if(!ok) deck.push(deck[idx]);          /* kom tilbake senere i samme runde */
     idx++; flipped = false; render();
+    VIEW.toTop(card);
+  }
+
+  /* ---- formelarket: hver tabell får en snarvei til de samme linjene som kort ---- */
+  document.querySelectorAll('#formler table.dict[data-fam]').forEach(t=>{
+    const fam = t.getAttribute('data-fam');
+    if(!fams.includes(fam)) return;
+    const a = document.createElement('a');
+    a.className = 'drill'; a.href = '#kortPanel';
+    a.innerHTML = '<span aria-hidden="true">⇄</span> Øv på disse som kort';
+    a.addEventListener('click', e=>{ e.preventDefault(); JUMP.ready(()=>drill(fam)); });
+    (t.closest('.scroller') || t).after(a);
+  });
+  function drill(fam){
+    famSel.value = fam;
+    hardOnly = false; hardBtn.setAttribute('aria-pressed', 'false');
+    build();
+    JUMP.from('kortPanel', true);
+    document.getElementById('kortPanel').scrollIntoView({block:'start'});
   }
 
   card.addEventListener('click', e=>{ if(e.target.closest('a')) return; if(!flipped) flip(); });
@@ -5550,6 +5978,7 @@ const SENTENCES = [
     build();
   });
   forgetBtn.addEventListener('click', ()=>{
+    if(!confirm('Nullstille framgangen for alle øvingskortene?')) return;
     progress = {}; save(); build();
     readEl.textContent = 'Framgangen er nullstilt.';
   });
@@ -6349,6 +6778,8 @@ const SENTENCES = [
 
   /* ---- prøveeksamen: 30 oppgaver spredt over alle temaene, ingen fasit før du er ferdig ---- */
   const examBtn = document.getElementById('oppgExam'), EXAM_N = 30;
+  const prevBtn = document.getElementById('oppgPrev');
+  const panel = document.getElementById('oppgPanel') || body;
   let exam = null;
   const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
   const mmss = s => Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
@@ -6364,9 +6795,12 @@ const SENTENCES = [
   }
   function startExam(){
     if(exam && exam.timer) clearInterval(exam.timer);
-    exam = {deck: examDeck(), picks: [], start: Date.now()};
+    /* picks og orders er per spørsmål, så du kan gå tilbake og endre et svar */
+    exam = {deck: examDeck(), picks: [], orders: [], start: Date.now()};
     exam.timer = setInterval(tick, 1000);
     examBtn.setAttribute('aria-pressed', 'true');
+    examBtn.textContent = 'Avslutt prøveeksamen';
+    shufBtn.hidden = forgetBtn.hidden = true;
     idx = 0; answered = false;
     renderExam();
   }
@@ -6374,7 +6808,13 @@ const SENTENCES = [
     if(!exam) return;
     clearInterval(exam.timer); exam = null;
     examBtn.setAttribute('aria-pressed', 'false');
+    examBtn.textContent = 'Prøveeksamen: 30 oppgaver';
+    shufBtn.hidden = forgetBtn.hidden = false;
+    prevBtn.hidden = true;
   }
+  /* en påbegynt prøveeksamen skal ikke forsvinne ved et feiltrykk */
+  const leaveExam = () => !exam || !exam.picks.some(Boolean)
+    || confirm('Avslutte prøveeksamen? Du får ikke resultatet for svarene så langt.');
   function tick(){
     if(!exam || idx >= exam.deck.length) return;
     const secs = Math.floor((Date.now() - exam.start)/1000);
@@ -6383,17 +6823,19 @@ const SENTENCES = [
   }
   function renderExam(){
     nextBtn.hidden = true;
+    prevBtn.hidden = idx === 0 || idx >= exam.deck.length;
     if(idx >= exam.deck.length){ finishExam(); return; }
     const q = exam.deck[idx];
     answered = false;
     headEl.textContent = 'Prøveeksamen · ' + q.t;
-    scoreEl.textContent = idx + ' av ' + exam.deck.length + ' besvart';
-    const opts = shuffle(q.o.map((text,i)=>({text, fb: q.f[i], ok: i === q.c})));
+    scoreEl.textContent = exam.picks.filter(Boolean).length + ' av ' + exam.deck.length + ' besvart';
+    const opts = exam.orders[idx] || (exam.orders[idx] = shuffle(q.o.map((text,i)=>({text, fb: q.f[i], ok: i === q.c}))));
     body.innerHTML = '<p class="qtext">' + q.q + '</p><div class="opts" id="oppgOpts"></div>';
-    const wrap = document.getElementById('oppgOpts');
+    const wrap = document.getElementById('oppgOpts'), had = exam.picks[idx];
     opts.forEach((o,i)=>{
       const b = document.createElement('button');
       b.className = 'opt'; b.type = 'button';
+      if(had && had.pick === i) b.dataset.state = 'picked';
       b.innerHTML = '<span class="ltr">' + 'ABCD'[i] + '</span><span>' + o.text + '</span>';
       b.addEventListener('click', ()=>answer(q, opts, i));
       wrap.appendChild(b);
@@ -6404,14 +6846,20 @@ const SENTENCES = [
     if(answered) return;
     answered = true;
     const chosen = opts[pick], right = opts.find(o=>o.ok);
-    exam.picks.push({q, ok: chosen.ok, chosen: chosen.text, right: right.text, fb: right.fb});
-    hist[q.n] = {ok: chosen.ok, n: ((hist[q.n] && hist[q.n].n) || 0) + 1};
-    save();
-    idx++;
-    renderExam();
+    exam.picks[idx] = {q, pick, ok: chosen.ok, chosen: chosen.text, right: right.text, fb: right.fb};
+    /* vis valget et øyeblikk, så du ser hva du trykket før neste spørsmål kommer */
+    document.querySelectorAll('#oppgOpts .opt').forEach((b,i)=>{
+      b.disabled = true;
+      if(i === pick) b.dataset.state = 'picked'; else delete b.dataset.state;
+    });
+    const at = exam;
+    setTimeout(()=>{ if(exam !== at) return; idx++; renderExam(); VIEW.toTop(panel); }, 260);
   }
   function finishExam(){
-    const picks = exam.picks, ok = picks.filter(p=>p.ok).length, secs = Math.floor((Date.now() - exam.start)/1000);
+    const picks = exam.picks.filter(Boolean), ok = picks.filter(p=>p.ok).length, secs = Math.floor((Date.now() - exam.start)/1000);
+    /* først nå teller svarene: du kunne ha endret dem underveis */
+    picks.forEach(p=>{ hist[p.q.n] = {ok: p.ok, n: ((hist[p.q.n] && hist[p.q.n].n) || 0) + 1}; });
+    save();
     const themes = {};
     picks.forEach(p=>{ const t = themes[p.q.t] = themes[p.q.t] || {n:0, ok:0}; t.n++; if(p.ok) t.ok++; });
     const rows = Object.keys(themes).sort((a,b)=> themes[a].ok/themes[a].n - themes[b].ok/themes[b].n)
@@ -6419,13 +6867,21 @@ const SENTENCES = [
     const wrong = picks.filter(p=>!p.ok);
     headEl.textContent = 'Prøveeksamen ferdig';
     scoreEl.textContent = ok + ' av ' + picks.length + ' riktig';
-    body.innerHTML = '<p class="qtext">Du fikk <b>' + ok + ' av ' + picks.length + '</b> riktig (' + Math.round(ok/picks.length*100) + ' %) på <b>' + mmss(secs) + '</b>.</p>'
+    const again = '<div class="controls"><button type="button" data-exam="again">Ny prøveeksamen</button>'
+      + (wrong.length ? '<button type="button" class="ghost" data-exam="wrong">Øv på dem du har bommet på</button>' : '') + '</div>';
+    body.innerHTML = again + '<p class="qtext">Du fikk <b>' + ok + ' av ' + picks.length + '</b> riktig (' + Math.round(ok/picks.length*100) + ' %) på <b>' + mmss(secs) + '</b>.</p>'
       + '<p class="qtext" style="font-size:15px;color:var(--ink-2)">Svakeste temaer øverst. Det er der neste økt bør gå.</p>'
       + '<div class="scroller"><table class="mini" style="max-width:420px"><thead><tr><th>Tema</th><th>Riktig</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
       + (wrong.length ? '<p class="qtext" style="margin-top:22px"><b>Dette bommet du på:</b></p>' + wrong.map(p=>
           '<div class="fb no"><span class="verdict">' + p.q.t + '</span>' + p.q.q
           + '<br><br><b>Du svarte:</b> ' + p.chosen + '<br><b>Riktig:</b> ' + p.right + '<br><br>' + p.fb + '</div>').join('')
-        : '<div class="fb ok"><span class="verdict">Alt riktig</span>Ingen bom i dette settet. Ta et nytt — oppgavene trekkes på nytt hver gang.</div>');
+        : '<div class="fb ok"><span class="verdict">Alt riktig</span>Ingen bom i dette settet. Ta et nytt — oppgavene trekkes på nytt hver gang.</div>')
+      + (wrong.length > 2 ? again : '');
+    body.querySelectorAll('[data-exam]').forEach(b=> b.addEventListener('click', ()=>{
+      if(b.dataset.exam === 'again') startExam();
+      else { wrongOnly = true; wrongBtn.setAttribute('aria-pressed', 'true'); temaSel.value = '*'; lastTema = '*'; build(); }
+      VIEW.toTop(panel);
+    }));
     readEl.textContent = 'Svarene er lagret: «Bare de jeg har bommet på» tar deg rett til dem. Trykk «Prøveeksamen» for et nytt sett.';
     stopExam();
   }
@@ -6512,21 +6968,30 @@ const SENTENCES = [
     save();
     roundDone++; if(chosen.ok) roundRight++;
     nextBtn.hidden = false;
-    nextBtn.focus();
+    nextBtn.focus({preventScroll:true});
+    VIEW.reveal(document.getElementById('oppgFb'), nextBtn);
     const st = stats();
     scoreEl.textContent = st.ok + ' av ' + st.seen + ' riktig';
   }
 
-  nextBtn.addEventListener('click', ()=>{ idx++; render(); });
-  examBtn.addEventListener('click', ()=>{ if(exam) build(); else startExam(); });
+  nextBtn.addEventListener('click', ()=>{ idx++; render(); VIEW.toTop(panel); });
+  prevBtn.addEventListener('click', ()=>{ if(exam && idx > 0){ idx--; renderExam(); VIEW.toTop(panel); } });
+  examBtn.addEventListener('click', ()=>{ if(!exam) startExam(); else if(leaveExam()) build(); });
   shufBtn.addEventListener('click', build);
-  temaSel.addEventListener('change', build);
+  let lastTema = temaSel.value;
+  temaSel.addEventListener('change', ()=>{
+    if(!leaveExam()){ temaSel.value = lastTema; return; }
+    lastTema = temaSel.value;
+    build();
+  });
   wrongBtn.addEventListener('click', ()=>{
+    if(!leaveExam()) return;
     wrongOnly = !wrongOnly;
     wrongBtn.setAttribute('aria-pressed', String(wrongOnly));
     build();
   });
   forgetBtn.addEventListener('click', ()=>{
+    if(!confirm('Nullstille framgangen for alle oppgavene?')) return;
     hist = {}; save(); build();
     readEl.textContent = 'Framgangen er nullstilt.';
   });
@@ -6547,10 +7012,55 @@ const SENTENCES = [
   build();
 })();
 
-/* ================= navigasjon: rull uten å stole på lenkehopp ================= */
+/* ================= glidebrytere: et loddrett sveip er scrolling, ikke et valg =================
+   På Android flytter et trykk på sporet håndtaket med en gang. Viser det seg
+   at fingeren egentlig skulle scrolle forbi, settes verdien tilbake. */
+(function rangeGuard(){
+  document.querySelectorAll('.panel input[type=range]').forEach(r=>{
+    let start = null, v0 = null, decided = false;
+    r.addEventListener('touchstart', e=>{
+      const t = e.touches[0];
+      start = {x:t.clientX, y:t.clientY}; v0 = r.value; decided = false;
+    }, {passive:true});
+    r.addEventListener('touchmove', e=>{
+      if(!start || decided) return;
+      const t = e.touches[0], dx = Math.abs(t.clientX - start.x), dy = Math.abs(t.clientY - start.y);
+      if(dx < 6 && dy < 6) return;
+      decided = true;
+      if(dy > dx && r.value !== v0){
+        r.value = v0;
+        r.dispatchEvent(new Event('input', {bubbles:true}));
+      }
+    }, {passive:true});
+    r.addEventListener('touchend', ()=>{ start = null; }, {passive:true});
+  });
+})();
+
+/* ================= tabeller som er bredere enn skjermen: tonet kant så du ser at de kan sveipes ================= */
+(function scrollHints(){
+  const els = [...document.querySelectorAll('.scroller')];
+  const check = el => {
+    const over = el.scrollWidth > el.clientWidth + 1;
+    el.classList.toggle('can-scroll', over);
+    el.classList.toggle('at-end', !over || el.scrollLeft + el.clientWidth >= el.scrollWidth - 2);
+  };
+  const all = () => els.forEach(check);
+  els.forEach(el=> el.addEventListener('scroll', ()=>check(el), {passive:true}));
+  window.addEventListener('resize', all);
+  document.addEventListener('toggle', all, true);   /* en forklaringsboks som foldes ut */
+  all();
+})();
+
+/* ================= navigasjon: innholdsfortegnelsen, bunnmenyen og «fortsett der du slapp» ================= */
 (function navScroll(){
-  const links = Array.from(document.querySelectorAll('nav.index a[href^="#"]'));
-  if(!links.length) return;
+  const nav = document.getElementById('toc');
+  const links = Array.from(document.querySelectorAll('nav.index ol a[href^="#"]'));
+  if(!nav || !links.length) return;
+  const mobile = window.matchMedia('(max-width:900px)');
+  const onChange = f => mobile.addEventListener ? mobile.addEventListener('change', f) : mobile.addListener(f);
+  const tabs = Array.from(document.querySelectorAll('.tabbar a[data-sec]'));
+  const tocBtn = document.getElementById('tocOpen');
+  const POS = 'sa-pos-v1';
 
   function scrollParentOf(el){
     let p = el.parentElement;
@@ -6570,7 +7080,10 @@ const SENTENCES = [
     const el = document.getElementById(id);
     if(!el) return;
     const sp = scrollParentOf(el);
-    const off = barOffset();
+    const mb = document.getElementById('minibar'), d1 = document.getElementById('del1'), g = document.getElementById('grupper');
+    const inDel1 = mobile.matches && d1 && g && el.matches('section.entry')
+      && (d1.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING) && (el.compareDocumentPosition(g) & Node.DOCUMENT_POSITION_FOLLOWING);
+    const off = barOffset() + (inDel1 && mb ? 48 : 0);
     const isRoot = (sp === document.scrollingElement || sp === document.documentElement || sp === document.body);
     const cur  = isRoot ? (window.pageYOffset || sp.scrollTop || 0) : sp.scrollTop;
     const base = isRoot ? 0 : sp.getBoundingClientRect().top;
@@ -6578,25 +7091,68 @@ const SENTENCES = [
     if(sp.scrollTo) sp.scrollTo({top:y, behavior:'auto'}); else sp.scrollTop = y;
     // hjalp det ikke, prøv nettleserens egen metode (f.eks. i en ramme med annen rullemekanikk)
     requestAnimationFrame(()=>{
-      if(Math.abs(el.getBoundingClientRect().top - off) > 60){
+      if(y > 0 && Math.abs(el.getBoundingClientRect().top - off) > 60){
         try{ el.scrollIntoView({block:'start'}); }catch(e){ el.scrollIntoView(); }
       }
     });
   }
 
-  let lock = 0;
-  links.forEach(a=>{
-    a.addEventListener('click', e=>{
-      e.preventDefault();
-      goTo(a.getAttribute('href').slice(1));
-      links.forEach(l=>l.classList.remove('active'));
-      a.classList.add('active');
-      lock = Date.now() + 400;
-      a.blur();
-    });
-  });
+  /* ---- skuffen: innholdsfortegnelsen glir opp fra bunnen på mobil ---- */
+  let back = null;
+  const isOpen = () => document.body.classList.contains('toc-open');
+  function openToc(){
+    back = document.activeElement;
+    document.body.classList.add('toc-open');
+    document.body.style.overflow = 'hidden';
+    if(tocBtn) tocBtn.setAttribute('aria-expanded', 'true');
+    const cur = nav.querySelector('ol a.active');
+    nav.scrollTop = cur ? Math.max(0, cur.offsetTop - nav.clientHeight / 2) : 0;
+    (cur || nav.querySelector('[data-toc-close]')).focus({preventScroll:true});
+    JUMP.open(()=>closeToc(true));
+  }
+  function closeToc(refocus){
+    if(!isOpen()) return;
+    document.body.classList.remove('toc-open');
+    document.body.style.overflow = '';
+    if(tocBtn) tocBtn.setAttribute('aria-expanded', 'false');
+    if(refocus && back && back !== document.body && back.focus) back.focus({preventScroll:true});
+  }
+  /* lukket med en knapp: fjern også oppføringen i historikken */
+  const dismissToc = refocus => { if(!isOpen()) return; closeToc(refocus); JUMP.shut(); };
+  if(tocBtn) tocBtn.addEventListener('click', ()=> isOpen() ? dismissToc(true) : JUMP.ready(openToc));
+  document.querySelectorAll('[data-toc-close]').forEach(b=> b.addEventListener('click', ()=>dismissToc(true)));
+  document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && isOpen()) dismissToc(true); });
+  onChange(()=>{ if(!mobile.matches) dismissToc(false); });
 
-  // marker hvor du er mens du blar
+  /* ---- hvor du er: markér det i fortegnelsen og bunnmenyen, og husk det til neste gang ---- */
+  let saveT = 0;
+  function mark(id){
+    links.forEach(l=> l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    tabs.forEach(t=> t.classList.toggle('on', t.dataset.sec === id));
+    clearTimeout(saveT);
+    saveT = setTimeout(()=>{ try{ localStorage.setItem(POS, JSON.stringify({id, t: Date.now()})); }catch(e){} }, 1500);
+  }
+
+  /* ---- lenkene: rull selv i stedet for å stole på lenkehopp ---- */
+  let lock = 0;
+  function follow(a, e){
+    e.preventDefault();
+    JUMP.ready(()=>jump(a));
+  }
+  function jump(a){
+    const id = a.getAttribute('href').slice(1);
+    closeToc(false);
+    JUMP.from(id === 'top' ? null : id, !!a.closest('nav.index ol'));
+    if(id === 'top') window.scrollTo({top:0, behavior:'auto'});
+    else goTo(id);
+    const el = document.getElementById(id), sec = el && el.closest('section[id]');
+    if(sec && links.some(l=> l.getAttribute('href') === '#' + sec.id)) mark(sec.id);
+    lock = Date.now() + 400;
+    a.blur();
+  }
+  links.forEach(a=> a.addEventListener('click', e=> follow(a, e)));
+  document.querySelectorAll('.navtop, .tabbar a[href^="#"], .resume').forEach(a=> a.addEventListener('click', e=> follow(a, e)));
+
   const targets = links.map(a=>document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
   if('IntersectionObserver' in window){
     const vis = new Map();
@@ -6605,11 +7161,83 @@ const SENTENCES = [
       if(Date.now() < lock) return;
       let bestId=null, bestTop=Infinity;
       vis.forEach((top,id)=>{ if(top!==Infinity && top<bestTop){ bestTop=top; bestId=id; } });
-      if(bestId) links.forEach(l=> l.classList.toggle('active', l.getAttribute('href')==='#'+bestId));
+      if(bestId) mark(bestId);
+      else if(Math.min(...targets.map(t=>t.getBoundingClientRect().top)) > 70){
+        /* over første seksjon, altså helt øverst: ingenting er «her» */
+        links.forEach(l=> l.classList.remove('active'));
+        tabs.forEach(t=> t.classList.remove('on'));
+      }
     }, {rootMargin:'-70px 0px -65% 0px', threshold:0});
     targets.forEach(t=>io.observe(t));
   }
+
+  /* ---- «fortsett der du slapp»: bare en lenke øverst, ingen automatisk hopping ---- */
+  const resume = document.getElementById('resume');
+  if(resume){
+    let pos = null;
+    try{ pos = JSON.parse(localStorage.getItem(POS) || 'null'); }catch(e){ pos = null; }
+    const link = pos && links.find(l=> l.getAttribute('href') === '#' + pos.id);
+    if(link && Date.now() - pos.t < 1000*60*60*24*90){
+      const g = link.querySelector('.g');
+      const name = [...link.childNodes].filter(n=> n !== g).map(n=> n.textContent).join('').trim();
+      resume.href = '#' + pos.id;
+      resume.textContent = 'Fortsett der du slapp ';
+      const b = document.createElement('b');
+      b.textContent = (g ? g.textContent.trim() + ' · ' : '') + name + ' →';
+      resume.appendChild(b);
+      resume.hidden = false;
+    }
+  }
+
+  /* ---- datasettbaren hører til demoene i Del I; på mobil står den der ---- */
+  const bar = document.getElementById('databar'), del1 = document.getElementById('del1');
+  if(bar && del1){
+    const home = document.createComment('datasettbaren');
+    bar.parentNode.insertBefore(home, bar);
+    const place = ()=>{
+      if(mobile.matches){ if(bar.previousSibling !== del1) del1.after(bar); }
+      else if(home.nextSibling !== bar) home.after(bar);
+    };
+    place();
+    onChange(place);
+  }
+
+  /* ---- minibaren: synlig på mobil mens en seksjon i Del I · tegnene er på skjermen,
+          men ikke når den ekte datasettbaren allerede synes ---- */
+  const mini = document.getElementById('minibar'), grp = document.getElementById('grupper');
+  const sandbox = new Set();
+  for(let el = del1 && del1.nextElementSibling; el && el !== grp; el = el.nextElementSibling)
+    if(el.matches('section.entry')) sandbox.add(el);
+  if(mini && bar && sandbox.size && 'IntersectionObserver' in window){
+    const orig = n => document.querySelector('#nBtns .nbtn[data-n="' + n + '"]');
+    const minis = [...mini.querySelectorAll('[data-mini-n]')];
+    const sync = () => minis.forEach(b=> b.setAttribute('aria-pressed', orig(b.dataset.miniN)?.getAttribute('aria-pressed') || 'false'));
+    minis.forEach(b=> b.addEventListener('click', ()=>{ const o = orig(b.dataset.miniN); if(o) o.click(); }));
+    document.getElementById('miniResample').addEventListener('click', ()=> document.getElementById('resample').click());
+    new MutationObserver(sync).observe(document.getElementById('nBtns'), {attributes:true, subtree:true, attributeFilter:['aria-pressed']});
+    sync();
+    const seen = new Set();
+    let barSeen = false;
+    const toggle = () => document.body.classList.toggle('in-sandbox', mobile.matches && seen.size > 0 && !barSeen);
+    const io = new IntersectionObserver(es=>{
+      es.forEach(en=>{ if(en.isIntersecting) seen.add(en.target); else seen.delete(en.target); });
+      toggle();
+    });
+    sandbox.forEach(sec=> io.observe(sec));
+    new IntersectionObserver(es=>{ barSeen = es[es.length - 1].isIntersecting; toggle(); }).observe(bar);
+    onChange(toggle);
+  }
+
+  /* ---- når tastaturet er oppe, skal ikke bunnmenyen legge seg oppå det ---- */
+  const typing = t => t && t.matches && t.matches('input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=button]), textarea, select');
+  document.addEventListener('focusin', e=>{ if(typing(e.target)) document.body.classList.add('typing'); });
+  document.addEventListener('focusout', e=>{ if(typing(e.target)) document.body.classList.remove('typing'); });
 })();
+
+/* ================= frakoblet: legg siden i hurtigbufferen, så den virker uten nett ================= */
+if('serviceWorker' in navigator && window.isSecureContext && location.protocol !== 'file:'){
+  window.addEventListener('load', ()=>{ navigator.serviceWorker.register('/sw.js').catch(()=>{}); });
+}
 </script>
 
 </body>

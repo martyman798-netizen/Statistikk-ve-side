@@ -49,6 +49,9 @@ gå an uten kalkulator, og formler og tolkningsregler må kunne pugges.
 | `public/_headers` | Sikkerhets- og cache-headere |
 | `public/_redirects` | Videresender den gamle filadressen til `/` |
 | `public/favicon.svg` | Ikon |
+| `public/apple-touch-icon.png`, `public/icon-*.png` | Ikonene når siden legges på hjemskjermen |
+| `public/manifest.webmanifest` | Gjør at siden kan legges til på hjemskjermen som en app |
+| `public/sw.js` | Service worker: siden virker uten nett etter første besøk |
 | `public/robots.txt` | Åpner siden for søkemotorer |
 | `wrangler.jsonc` | Cloudflare-oppsettet: hvilken mappe som skal serveres |
 | `package.json` | Låser hvilken wrangler-versjon som brukes |
@@ -120,12 +123,40 @@ npm run deploy
   hjelpemidler. Tabellene har `data-fam="Formler: …"`, så hver linje også
   blir et øvingskort.
 - Oppgavepanelet har en prøveeksamen: 30 oppgaver trukket på tvers av alle
-  temaene, uten fasit underveis, med resultat per tema til slutt. Svarene
-  lagres som vanlig, så «bare de jeg har bommet på» fanger dem opp.
+  temaene, uten fasit underveis, med resultat per tema til slutt. Du kan
+  gå tilbake og endre et svar, og en påbegynt eksamen avbrytes ikke uten
+  at du bekrefter det. Svarene lagres når du er ferdig, så «bare de jeg
+  har bommet på» fanger dem opp.
+- **Mobil (under 900px):** en fast bunnmeny har Søk, Innhold, Oppgaver,
+  Kort og Formler. «Innhold» er innholdsfortegnelsen som en skuff som glir
+  opp. Snarveiene til oppgavene og kortene lander rett på øvingspanelet.
+  Datasettbaren flyttes ned til starten av Del I, og mens du leser Del I
+  står en minibar med N og «Nytt utvalg» øverst. Under 640px vises
+  ordbokstabellene som stablede kort i stedet for å rulle sidelengs.
+  Tabeller som fortsatt er bredere enn skjermen, får en tonet kant.
+- Figurene (`setup(id, draw)`) tegnes først når de er innen ca. én skjerm
+  fra synsfeltet. Ellers merkes de som utdaterte og tegnes idet de kommer
+  inn. Høyden leses fra `height`-attributtet én gang. På smale skjermer
+  legger figurene etikettene over stolpene i stedet for ved siden av.
+- Hvert hopp (innholdsfortegnelsen, bunnmenyen, et søketreff) blir en
+  oppføring i nettleserhistorikken, og søkeruta og skuffen er det også.
+  Tilbake-sveipet fører deg derfor dit du var, i stedet for ut av siden.
+  Det styres av `JUMP` i skriptet. På mobil dukker det i tillegg opp en
+  «Tilbake»-knapp etter et søk, fordi en app på hjemskjermen ikke har
+  nettleserens tilbakeknapp.
+- Siden husker hvilken seksjon du var i (`sa-pos-v1` i localStorage) og
+  viser «Fortsett der du slapp» øverst neste gang. Den hopper aldri dit
+  av seg selv.
+- `sw.js` henter alltid fra nettet først og legger en kopi i bufferen. Uten
+  nett serveres kopien. Den trenger `connect-src 'self'` i CSP-en, fordi
+  en service worker får CSP fra sin egen respons. Endrer du hvilke filer
+  som skal forhåndslagres, bytt navnet på `CACHE` i `sw.js`.
 - Antall øvingskort og oppgaver på kortene øverst regnes ut av skriptet;
   tallene i HTML-en er bare reserve uten JavaScript.
-- Skriftene lastes fra Google Fonts. Uten nett faller siden tilbake på
-  Georgia og en systemmono, og alt fungerer fortsatt.
+- Skriftene lastes fra Google Fonts uten å blokkere første visning
+  (`media="print"` som byttes til `all` når stilarket er lastet). Uten nett
+  faller siden tilbake på Georgia og en systemmono, og alt fungerer
+  fortsatt.
 - Lys og mørk drakt følger `prefers-color-scheme` automatisk.
 - `Content-Security-Policy` i `public/_headers` tillater `'unsafe-inline'`
   for stil og skript, fordi alt ligger inline i `index.html`. Flyttes CSS og

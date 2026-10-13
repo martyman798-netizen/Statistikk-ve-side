@@ -425,6 +425,11 @@ tr.flashfind > td{animation:flashfind 2.6s ease-in-out 1}
   .pres .ps{font-size:18px}
   .pres .ps.up{font-size:10.5px;overflow-wrap:anywhere}
 }
+/* ---------- KI-dansen (inferens) ---------- */
+.kid-chips{align-items:center}
+.kid-chips + .kid-chips{margin-top:8px}
+.kid-lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);min-width:4.6em;margin-right:4px}
+table.mini.kid-mini{max-width:520px;margin-bottom:16px}
 /* ---------- mobil ----------
    Under 900px: bunnmeny med søk, innhold og øving; innholdsfortegnelsen
    blir en skuff som glir opp; datasettbaren flyttes ned til Del I. */
@@ -685,6 +690,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <li><a href="#design"><span class="g">⌗</span> Design</a></li>
       <li><a href="#kausalitet"><span class="g">→</span> Årsak</a></li>
       <li><a href="#kvalitet"><span class="g">⊙</span> Reliabilitet, validitet</a></li>
+      <li><a href="#sannsynlighet"><span class="g">P(A)</span> Sannsynlighet</a></li>
       <li><a href="#spine"><span class="g">SP</span> Ryggraden</a></li>
     </ol>
     <p class="navgroup">Del I · tegnene</p>
@@ -968,6 +974,74 @@ svg.lupe{width:1em;height:1em;display:block}
       </div>
     </section>
 
+    <!-- ---------- sannsynlighet ---------- -->
+    <section class="entry" id="sannsynlighet">
+      <div class="glyphcol"><span class="step">NN</span><span class="glyph sm">P(A)</span></div>
+      <div>
+        <h2>Sannsynlighet</h2>
+        <p class="asks">Språket som p, α og «95 %» er skrevet på</p>
+        <details class="more easy">
+          <summary>Enkelt forklart: hva en sannsynlighet er</summary>
+          <div class="more-body">
+            <p>En sannsynlighet er et tall mellom 0 og 1 som sier hvor ofte noe skjer <b>i det lange løp</b>. Kaster du en vanlig mynt tusenvis av ganger, havner andelen kron nær .5. Det betyr ikke at ti kast gir nøyaktig fem kron. Det betyr at andelen nærmer seg .5 jo flere kast du gjør.</p>
+            <p>To småord gjør det meste av jobben. <b>«Og»</b> betyr at begge må skje. Da ganger du, og sjansen blir mindre. <b>«Eller»</b> betyr at én av flere veier holder. Da legger du sammen, og sjansen blir større.</p>
+            <p>Hvorfor dette står her: p-verdien, α, styrken og «95 %» i et konfidensintervall er alle sannsynligheter. Misforstår du hva en sannsynlighet er en andel <em>av</em>, misforstår du dem også.</p>
+          </div>
+        </details>
+        <p>Du trenger ikke mye sannsynlighetsregning i dette emnet. Men du trenger de få reglene under, og de må sitte så godt at du kan bruke dem i hodet. Den viktigste vanen er å spørre: <strong>en andel av hva?</strong></p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Sannsynlighet">
+          <tbody>
+            <tr><td>Sannsynlighet</td><td>P(A), fra 0 til 1</td><td>Hvor stor andel av gangene A skjer, hvis det samme forsøket gjentas svært mange ganger. Kalles også <em>langtidsandel</em> eller relativ frekvens. 0 betyr aldri, 1 betyr alltid. Den kan aldri bli negativ eller større enn 1. .25 og 25 % er det samme tallet.</td></tr>
+            <tr><td>Komplementregelen</td><td>P(ikke A)</td><td>Sannsynligheten for at A <em>ikke</em> skjer, er 1 − P(A). Er det .30 sjanse for regn, er det .70 sjanse for opphold. Ofte er det raskest å regne ut det motsatte og trekke fra 1.</td></tr>
+            <tr><td>Gjensidig utelukkende</td><td>Disjunkte hendelser</td><td>Hendelser som ikke kan skje samtidig: P(A og B) = 0. Ett terningkast kan ikke gi både 2 og 5.</td></tr>
+            <tr><td>Addisjonsregelen</td><td>«eller»: legg sammen</td><td>For gjensidig utelukkende hendelser er P(A eller B) = P(A) + P(B). Ett terningkast gir 2 eller 5 med sannsynlighet 1/6 + 1/6 = 1/3. Kan A og B skje samtidig, blir overlappen talt to ganger. Da må den trekkes fra: P(A) + P(B) − P(A og B).</td></tr>
+            <tr><td>Uavhengige hendelser</td><td>Den ene sier ingenting om den andre</td><td>Å vite at A skjedde, endrer ikke sjansen for B: P(B | A) = P(B). To kast med samme mynt er uavhengige.</td></tr>
+            <tr><td>Multiplikasjonsregelen</td><td>«og»: gang</td><td>For uavhengige hendelser er P(A og B) = P(A) · P(B). Kron i to kast: .5 · .5 = .25. Svaret er alltid mindre enn hver av faktorene, for begge må klaffe.</td></tr>
+            <tr><td>Uten tilbakelegging</td><td>Neste trekning endres</td><td>Trekker du uten å legge tilbake, er trekningene ikke uavhengige, og den andre faktoren må justeres. Fire av ti lodd vinner. To vinnere på rad: 4/10 · 3/9 = 12/90 ≈ .13. Med tilbakelegging ville det vært 4/10 · 4/10 = .16.</td></tr>
+            <tr><td>Minst én</td><td>1 − P(ingen)</td><td>«Minst én» er det motsatte av «ingen». Med k uavhengige forsøk der hendelsen har sannsynlighet p hver gang, er P(ingen) = (1 − p)<sup>k</sup>, og P(minst én) = 1 − (1 − p)<sup>k</sup>. Med p = α er dette nøyaktig den <a href="#mange">familievise feilraten</a>.</td></tr>
+            <tr><td>Uavhengig ≠ gjensidig utelukkende</td><td>To ulike ting</td><td>De blandes ofte, men de er nesten motsatte. Gjensidig utelukkende hendelser er sterkt <em>avhengige</em>: vet du at terningen viste 2, vet du at den ikke viste 5. To hendelser som begge kan skje, kan ikke være uavhengige og gjensidig utelukkende på en gang.</td></tr>
+            <tr><td>Spillerens feilslutning</td><td>Gambler's fallacy</td><td>Troen på at et utfall er «på tur» etter en rekke av det motsatte. Etter fem kron på rad er sjansen for mynt i neste kast fortsatt .5. Mynten husker ingenting. Andelen nærmer seg .5 i det lange løp fordi de mange nye kastene tynner ut den skjeve starten, ikke fordi noe retter seg opp.</td></tr>
+            <tr><td>Betinget sannsynlighet</td><td>P(A | B)</td><td>Sannsynligheten for A <em>gitt</em> at B har skjedd. Streken leses «gitt». Du ser bare på tilfellene der B skjedde, og spør hvor stor andel av dem som også har A.</td></tr>
+            <tr><td>Den inverse feilen</td><td>P(A | B) ≠ P(B | A)</td><td>Retningen teller. Nesten alle med influensa har feber, men langt fra alle med feber har influensa. p-verdien er P(data minst så ekstreme | H₀ er sann). Den er ikke P(H₀ er sann | data). Å bytte om de to kalles den inverse sannsynlighetsfeilen. Se <a href="#p">p-verdien</a>.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Bro 1: «minst én» er familievis feilrate.</b> Hver test med α = .05 er et forsøk med .05 sjanse for et falskt funn når H₀ er sann. Kjører du k uavhengige tester, er sjansen for minst ett falskt funn 1 − .95<sup>k</sup>. Det er regelen fra tabellen, brukt på tester. Det er derfor man korrigerer når man tester mye, se <a href="#mange">Mange tester, ett datasett</a>.</div>
+        <div class="aside"><b>Bro 2: p er en betinget sannsynlighet.</b> <em class="v">p</em> = P(data minst så ekstreme | H₀ er sann). Den er regnet ut <em>gitt</em> at H₀ er sann. Da kan den ikke samtidig si hvor sannsynlig H₀ er. Den snudde sannsynligheten, P(H₀ er sann | data), er et annet tall, og det kan du ikke finne uten å vite hvor ofte H₀ er sann i utgangspunktet. Det tredje regnestykket under viser hvor stor forskjellen kan bli.</div>
+        <details class="more">
+          <summary>Tre regnestykker du kan gjøre i hodet</summary>
+          <div class="more-body">
+            <p><b>1 · Minst én sekser på to terningkast.</b></p>
+            <div class="calc">Via komplementet: P(ingen sekser) = 5/6 · 5/6 = 25/36<br>
+            P(minst én sekser) = 1 − 25/36 = 11/36 ≈ .31<br>
+            Via «eller»: 1/6 + 1/6 = 12/36, men «to seksere» (1/36) er da talt to ganger<br>
+            12/36 − 1/36 = 11/36. Samme svar.</div>
+            <p>Fellen er å legge sammen uten å trekke fra overlappen. Da gir seks kast 6/6 = 1, altså en garantert sekser, og det stemmer ikke. Det riktige er 1 − (5/6)<sup>6</sup> ≈ .67.</p>
+            <p><b>2 · Tre tester der H₀ er sann i alle.</b></p>
+            <div class="calc">P(ingen falske funn) = .95 · .95 · .95 ≈ .86<br>
+            P(minst ett falskt funn) = 1 − .86 ≈ .14<br>
+            Hoderegning: k · α = 3 · .05 = .15, nesten det samme</div>
+            <p>Anslaget k · α fungerer bare for noen få tester. Med 20 tester gir det 20 · .05 = 1.00, som ville betydd et garantert falskt funn. Det riktige er 1 − .95<sup>20</sup> ≈ .64.</p>
+            <p><b>3 · Hvor mange av de signifikante funnene er falske?</b> Tenk deg 1000 studier. I 800 av dem finnes ingen effekt, og i 200 finnes en ekte effekt. Alle bruker α = .05, og styrken er .50.</p>
+            <div class="calc">Uten effekt: 800 · .05 = 40 signifikante (falske funn)<br>
+            Med effekt: 200 · .50 = 100 signifikante (ekte funn)<br>
+            Signifikante til sammen: 40 + 100 = 140<br>
+            P(signifikant | H₀ sann) = 40 / 800 = .05<br>
+            P(H₀ sann | signifikant) = 40 / 140 ≈ .29</div>
+            <p>Samme to hendelser, motsatt retning, helt ulike tall. α er sjansen for et falskt funn <em>blant studiene der H₀ er sann</em>. Den er ikke andelen falske funn blant de signifikante. Den andelen avhenger av hvor mange av hypotesene som var sanne, og av styrken.</p>
+          </div>
+        </details>
+        <p>Til slutt tre fordelinger med nesten like navn. De er lette å blande, så spør hva hver av dem er en fordeling <em>av</em>: personer, mulige verdier eller estimater.</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Sannsynlighet">
+          <tbody>
+            <tr><td>Frekvensfordeling</td><td>Det du målte</td><td>Hvor mange i utvalget som fikk hver verdi. Histogrammet i <a href="#fordeling">Fordelingen</a> er en frekvensfordeling. Med andeler i stedet for antall heter den relativ frekvensfordeling.</td></tr>
+            <tr><td>Sannsynlighetsfordeling</td><td>Det som kan skje</td><td>Hvor sannsynlig hver mulig verdi er, i en populasjon eller i en modell som normalfordelingen. Til sammen blir det alltid 1. For en kontinuerlig variabel er sannsynlighet et areal under kurven: P(z &gt; 1.96) ≈ .025.</td></tr>
+            <tr><td>Utvalgsfordeling</td><td>Det estimatet ville gjort</td><td>Fordelingen av et estimat (M, r, b) over mange tenkte gjentakelser av hele studien med samme n. Standardavviket dens er standardfeilen. Du ser den bygges i <a href="#se">Standardfeilen</a>.</td></tr>
+            <tr><td>Nullfordeling</td><td>Utvalgsfordelingen når H₀ er sann</td><td>Fordelingen av teststatistikken (t, F, r) i en verden uten effekt. p-verdien er andelen av den som ligger minst like langt ute som resultatet ditt.</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </section>
+
     <!-- ---------- SPINE ---------- -->
     <section class="entry" id="spine">
       <div class="glyphcol"><span class="step">00</span><span class="glyph up">SPINE</span></div>
@@ -1205,6 +1279,33 @@ svg.lupe{width:1em;height:1em;display:block}
           </tbody>
         </table></div>
         <div class="aside tryit"><b>Prøv å kjenne type II-feilen på kroppen:</b> sett N = 20 og trekk nytt utvalg noen ganger. Den sanne korrelasjonen er ρ = .67 — den er der hele tiden, i hvert eneste utvalg. Likevel vil p av og til lande over .05. Hver gang det skjer, har du nettopp gjort en type II-feil på data der du <em>vet</em> fasiten.</div>
+        <details class="more" id="ensidig">
+          <summary>Ensidig eller tosidig test?</summary>
+          <div class="more-body">
+            <p>Det er hypotesen som avgjør. En <b>retningsløs</b> H₁ («gruppene skiller seg») gir en <b>tosidig</b> test. En <b>retningsbestemt</b> H₁ («de som sov åtte timer, skårer <em>høyere</em> enn de som sov fem») kan testes <b>ensidig</b>. Men bare hvis retningen var bestemt før dataene ble samlet inn.</p>
+            <p>Forskjellen ligger i hvor α plasseres i nullfordelingen:</p>
+            <table class="mini">
+              <thead><tr><th></th><th>Halene</th><th>Kritisk z</th></tr></thead>
+              <tbody>
+                <tr><td>Tosidig</td><td>α = .05 delt i to: .025 i hver hale</td><td>±1.96</td></tr>
+                <tr><td>Ensidig</td><td>hele α = .05 i den spådde halen</td><td>1.645</td></tr>
+              </tbody>
+            </table>
+            <div class="calc">z = 1.80, i den retningen som var spådd<br>
+            Tosidig: 1.80 &lt; 1.96 → ikke signifikant (p ≈ .07)<br>
+            Ensidig: 1.80 &gt; 1.645 → signifikant (p ≈ .036, det halve)<br>
+            z = −2.50, altså motsatt vei av det som var spådd<br>
+            Tosidig: signifikant (p ≈ .012)<br>
+            Ensidig: ikke signifikant (p ≈ .99)</div>
+            <ul>
+              <li><b>Mer styrke i én retning.</b> Grensa er lavere (1,645 mot 1,96), så en effekt i spådd retning blir lettere signifikant.</li>
+              <li><b>Blind i den andre retningen.</b> Går effekten motsatt vei, kan den ikke bli signifikant, uansett hvor stor den er. Da har hypotesen ikke fått støtte, og en effekt i motsatt retning må testes på nytt med en ny plan.</li>
+              <li><b>Gratis signifikans hvis den velges etterpå.</b> Ser du først hvilken vei dataene peker og velger ensidig test i den retningen, har du i praksis .05 i begge halene. Den reelle risikoen for type I-feil blir da omtrent 10 %, ikke 5 %.</li>
+              <li><b>Tosidig er standard.</b> Den er mer konservativ, og den bommer aldri på en effekt bare fordi den gikk motsatt vei. JASP tester tosidig med mindre du endrer <code>Alt. Hypothesis</code>. Velger du en retning, får tabellen en fotnote som sier hvilken.</li>
+            </ul>
+            <p>Huskeregel: ensidig p = tosidig p / 2, men bare når effekten går den veien du spådde.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1272,6 +1373,15 @@ svg.lupe{width:1em;height:1em;display:block}
           <div class="readout" id="sampRead"></div>
         </div>
         <p>Standardavviket til denne haugen — <em>utvalgsfordelingen</em> — <em>er</em> standardfeilen. Stigningstallet ditt har <em class="v">SE</em> = <span class="stat" data-s="seb1"></span>, som er lite når N er stor og stort når N er liten — nøyaktig som haugen.</p>
+        <p>Haugen har et eget navn: <strong>utvalgsfordelingen</strong>. Den viser hvordan et estimat ville fordelt seg hvis du gjentok hele studien mange ganger med samme N. Her er det utvalgsfordelingen til r. For gjennomsnittet heter den <em>utvalgsfordelingen til gjennomsnittet</em>, og det er den formelen SE = SD / √N beskriver. Fire begreper hører til:</p>
+        <div class="scroller"><table class="dict terms tight" data-fam="Utvalgsfordelingen">
+          <tbody>
+            <tr><td>Standardfeil</td><td>SD til utvalgsfordelingen</td><td>Standardfeilen er standardavviket til utvalgsfordelingen, ikke til dataene. Den sier hvor langt et estimat typisk havner fra den sanne verdien. For gjennomsnittet er den SD / √n.</td></tr>
+            <tr><td>Forventningsrett</td><td>Unbiased</td><td>Utvalgsfordelingen har sentrum på den sanne verdien. Hver studie bommer litt, men i snitt bommer de verken opp eller ned. M er forventningsrett for μ, og variansen s² er det fordi vi deler på n − 1. r er nesten forventningsrett: i små utvalg ligger den i snitt et lite hakk nærmere null enn ρ.</td></tr>
+            <tr><td>Utvalgsfeil</td><td>Sampling error</td><td>Avstanden mellom estimatet i ett utvalg og den sanne verdien. Den er tilfeldig, ikke en tabbe, og den krymper når n øker. <a href="#utvalg">Utvalgsskjevhet</a> er noe annet: den er systematisk, og flere deltagere fjerner den ikke.</td></tr>
+            <tr><td>Sentralgrenseteoremet</td><td>Central limit theorem</td><td>Utvalgsfordelingen til gjennomsnittet blir tilnærmet normal når n er stor nok, også når populasjonen er skjev. Sentrum er μ, og standardavviket er σ / √n. Jo skjevere populasjonen er, jo større n trengs før det skjer.</td></tr>
+          </tbody>
+        </table></div>
         <details class="more">
           <summary>Formelen for standardfeilen, med dine tall</summary>
           <div class="more-body">
@@ -1279,6 +1389,15 @@ svg.lupe{width:1em;height:1em;display:block}
             <div class="calc">SE = SD / √N</div>
             <p>Poengene i ditt utvalg: SD = <span class="stat" data-s="sdy2"></span>, N = <span class="stat" data-s="n"></span>. Da er SE = <span class="stat" data-s="sdy2"></span> / √<span class="stat" data-s="n"></span> = <span class="stat" data-s="sem"></span> poeng. Snittet ditt på <span class="stat" data-s="my"></span> poeng ville altså typisk bommet med rundt <span class="stat" data-s="sem"></span> poeng om du gjentok studien.</p>
             <p>Formelen viser to ting. Mer spredning blant folk gir større SE. Flere deltagere gir mindre SE — men bare med kvadratroten, så du må firedoble N for å halvere SE.</p>
+          </div>
+        </details>
+        <details class="more">
+          <summary>Regn baklengs: hvor mange deltagere?</summary>
+          <div class="more-body">
+            <p>Formelen kan snus. Har du SD og SE, finner du n:</p>
+            <div class="calc">SE = SD / √n → √n = SD / SE → n = (SD / SE)²</div>
+            <p>En artikkel oppgir M = 31.0, SD = 8.0 og SE = 1.0. Da er √n = 8 / 1 = 8, og n = 64. Står det SE = 2.0 i stedet, er √n = 4 og n = 16.</p>
+            <p>Regnestykket viser også prisen for presisjon: for å gå fra SE = 2 til SE = 1 med samme SD må n fra 16 til 64, altså firedobles. Og det avslører feilfelt i figurer: er feltene mye kortere enn SD-en i tabellen, viser de SE eller et konfidensintervall, ikke SD.</p>
           </div>
         </details>
         <div class="aside tryit"><b>Prøv:</b> kjør demoen med N = 20, nullstill, sett N = 100 og kjør igjen. Den sanne verdien (den loddrette streken) står stille. Det som endrer seg er hvor mye enkeltstudier bommer på den. <strong>Én studie med N = 20 kan lande hvor som helst i den brede haugen — og forskeren vet ikke hvor.</strong></div>
@@ -1317,6 +1436,64 @@ svg.lupe{width:1em;height:1em;display:block}
             z′ ± 1.96 × 1/√(N − 3) = <span data-s="fz"></span> ± 1.96 × <span data-s="fzse"></span><br>
             → [<span data-s="fzlo"></span>, <span data-s="fzhi"></span>] på z′-skalaen<br>
             → <span data-s="ci"></span> tilbake på r-skalaen</div>
+          </div>
+        </details>
+        <p>Hva betyr så «95 %»? Ikke at det er 95 % sjanse for at den sanne verdien ligger i akkurat ditt intervall. Når intervallet først er regnet ut, ligger den sanne verdien enten inni eller utenfor. Du vet bare ikke hvilket. «95 %» er en egenskap ved <strong>metoden</strong>: gjentar du studien mange ganger og lager et intervall hver gang, vil omtrent 95 av 100 intervaller fange den sanne verdien. Demoen under gjør nettopp det, med poengsummene fra populasjonen der vi kjenner fasiten: μ = 55.5 poeng.</p>
+        <div class="panel">
+          <div class="panel-head"><span>KI-dansen: ett intervall per utvalg, poeng på prøven</span><span id="kiDansHint">n = 25 · 95 % KI</span></div>
+          <canvas id="cvKIdans" height="300"></canvas>
+          <div class="controls">
+            <button type="button" id="kiDans20">Trekk 20</button>
+            <button type="button" class="ghost" id="kiDans100">Trekk 100</button>
+            <button type="button" class="ghost" id="kiDansReset">Nullstill</button>
+          </div>
+          <div class="chips kid-chips" role="group" aria-label="Konfidensnivå">
+            <span class="kid-lab">Nivå</span>
+            <button class="chip" type="button" data-kid-lvl="90" aria-pressed="false">90 %</button>
+            <button class="chip" type="button" data-kid-lvl="95" aria-pressed="true">95 %</button>
+            <button class="chip" type="button" data-kid-lvl="99" aria-pressed="false">99 %</button>
+          </div>
+          <div class="chips kid-chips" role="group" aria-label="Antall i hvert utvalg">
+            <span class="kid-lab">Utvalg</span>
+            <button class="chip" type="button" data-kid-n="10" aria-pressed="false">n = 10</button>
+            <button class="chip" type="button" data-kid-n="25" aria-pressed="true">n = 25</button>
+            <button class="chip" type="button" data-kid-n="100" aria-pressed="false">n = 100</button>
+          </div>
+          <div class="readout" id="kiDansRead"></div>
+        </div>
+        <div class="aside tryit"><b>Prøv:</b> trykk «Trekk 100» noen ganger. Antallet røde svinger rundt 5: noen ganger 2, noen ganger 8. Bytt så til 99 %. De samme utvalgene får bredere intervaller, og de fleste røde blir blå. Bytt til 90 %, så krymper intervallene, og rundt 10 bommer. Velg til slutt n = 100. Intervallene blir omtrent halvparten så brede som med n = 25, men andelen som bommer, er den samme. <strong>Bredden avhenger av nivået og av n. Treffraten avhenger bare av nivået.</strong></div>
+        <p><strong>Høyere konfidensnivå gir bredere intervall.</strong> Vil du være sikrere på å fange den sanne verdien, må nettet være større. Det er den kritiske verdien som avgjør hvor mange standardfeil armen er. I store utvalg er den en z-verdi:</p>
+        <table class="mini kid-mini">
+          <thead><tr><th>Nivå</th><th>Kritisk z</th><th>M = 40, SE = 2</th></tr></thead>
+          <tbody>
+            <tr><td>90 %</td><td>1.645</td><td>40 ± 3.3 → [36.7, 43.3]</td></tr>
+            <tr><td>95 %</td><td>1.96</td><td>40 ± 3.9 → [36.1, 43.9]</td></tr>
+            <tr><td>99 %</td><td>2.58</td><td>40 ± 5.2 → [34.8, 45.2]</td></tr>
+          </tbody>
+        </table>
+        <p>I små utvalg brukes en litt større t-verdi i stedet, slik demoen gjør. Prisen for høyere sikkerhet er presisjon: et 99&nbsp;%-intervall er omtrent 30&nbsp;% bredere enn et 95&nbsp;%-intervall fra de samme dataene. Vil du ha både høy sikkerhet og et smalt intervall, finnes bare én vei: flere deltagere.</p>
+        <div class="aside"><b>Et KI for et gjennomsnitt er symmetrisk.</b> Det er M pluss og minus den samme armen, så M ligger alltid midt i intervallet. Det kan du bruke baklengs: står det 95 % KI [36, 44], er M = 40, armen er 4, og SE = 4 / 1,96 ≈ 2. Et KI for <em class="v">r</em> er derimot ikke symmetrisk, fordi r ikke kan passere ±1 (se boksen om r over). Det samme gjelder mål med tak eller gulv, som oddsforhold.</div>
+        <details class="more" id="feilfelt">
+          <summary>Feilfelt i figurer: SD, SE eller 95 % KI, og hva overlapp betyr</summary>
+          <div class="more-body">
+            <p>Et punkt- eller søylediagram med gjennomsnitt har nesten alltid en strek opp og ned fra hvert punkt: et <b>feilfelt</b>. Streken kan vise tre helt ulike ting, og bare figurteksten sier hvilken. Eksempelet under har M = 50, SD = 10 og n = 25.</p>
+            <table class="mini">
+              <thead><tr><th>Feltet viser</th><th>Armen</th><th>Eksempelet</th></tr></thead>
+              <tbody>
+                <tr><td>SD</td><td>± 1 SD</td><td>40 til 60</td></tr>
+                <tr><td>SE</td><td>± SD / √n</td><td>48 til 52</td></tr>
+                <tr><td>95 % KI</td><td>± ca. 2 SE</td><td>ca. 46 til 54</td></tr>
+              </tbody>
+            </table>
+            <p><b>SD</b> beskriver hvor spredt personene er. <b>SE</b> og <b>KI</b> beskriver hvor presist gjennomsnittet er anslått, og bare de kan brukes til å si noe om μ. Med de samme dataene er SD-feltet √n ganger så langt som SE-feltet (her 5 ganger), og KI-feltet er omtrent dobbelt så langt som SE-feltet. Firedobler du n, halveres SE- og KI-feltene, mens punktene står stille. SD-feltet krymper ikke: folk blir ikke likere av at du måler flere av dem.</p>
+            <p><b>Overlapp mellom to 95 % KI.</b> Tommelfingerreglene gjelder to uavhengige grupper med omtrent like brede intervaller og ikke altfor små grupper:</p>
+            <ul>
+              <li><b>Ingen overlapp:</b> forskjellen er signifikant, p&nbsp;&lt;&nbsp;.01. Når armene så vidt berører hverandre, er p&nbsp;≈&nbsp;.006.</li>
+              <li><b>Overlapp på omtrent en halv arm:</b> p&nbsp;≈&nbsp;.05. Mindre overlapp gir p&nbsp;&lt;&nbsp;.05. <strong>To intervaller kan altså overlappe, og forskjellen kan likevel være signifikant.</strong></li>
+              <li><b>Mer overlapp enn en halv arm:</b> forskjellen er normalt ikke signifikant.</li>
+              <li><b>SE-felt er noe annet:</b> to SE-felt som så vidt berører hverandre, gir bare p&nbsp;≈&nbsp;.16. Først et mellomrom på omtrent én SE-arm gir p&nbsp;≈&nbsp;.05.</li>
+            </ul>
+            <p><b>To forbehold.</b> Regelen gjelder <em>ikke</em> parede målinger, altså de samme personene to ganger. Intervallet rundt hver måling inneholder forskjellene mellom personene, og dem trekker den parede testen ut. Da kan to intervaller overlappe nesten helt, mens endringen likevel er klart signifikant. Og regelen er bare et anslag. Det er testen, eller et KI for selve <em>differansen</em>, som avgjør. Ligger 0 utenfor 95 % KI for differansen, er p&nbsp;&lt;&nbsp;.05 (tosidig).</p>
           </div>
         </details>
       </div>
@@ -2314,7 +2491,7 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
             <tr><td class="up">Type I</td><td>Falsk positiv</td><td>Å påstå at det er en effekt når det ikke er noen. Sannsynligheten er α.</td></tr>
             <tr><td class="up">Type II</td><td>Falsk negativ</td><td>Å overse en effekt som faktisk finnes. Sannsynligheten kalles β.</td></tr>
             <tr><td>1 − β</td><td>Statistisk styrke</td><td>Sjansen for å oppdage en effekt som er der. <b>≥ .80</b> er konvensjonen. Underpowered studier er psykologiens største metodeproblem.</td></tr>
-            <tr><td class="up">Ensidig / tosidig</td><td>One- / two-tailed</td><td>Tosidig er standard. Ensidig krever at retningen var bestemt på forhånd, og gir «gratis» signifikans hvis den velges etterpå.</td></tr>
+            <tr><td class="up">Ensidig / tosidig</td><td>One- / two-tailed</td><td>Tosidig er standard. Ensidig krever at retningen var bestemt på forhånd, og gir «gratis» signifikans hvis den velges etterpå. Se <a href="#ensidig">ensidig eller tosidig</a> under p-verdien.</td></tr>
             <tr><td class="up">Kritisk verdi</td><td>Critical value</td><td>Grensa teststatistikken må over for å bli signifikant. For z og store utvalg er den 1.96 (tosidig, α = .05). For t er den litt høyere når df er lav.</td></tr>
             <tr><td class="up">FWER</td><td>Familiewise error rate</td><td>Risikoen for minst én falsk positiv når man tester mange ting. Bonferroni og Holm holder den nede.</td></tr>
             <tr><td class="up">FDR</td><td>False discovery rate</td><td>Mildere alternativ (Benjamini–Hochberg): kontrollerer andelen falske funn i stedet for risikoen for én.</td></tr>
@@ -2411,7 +2588,7 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
             <div><b>SD</b><span>Hvor ulike <em>deltagerne</em> er. Endrer seg ikke systematisk når du samler flere data.</span></div>
             <div><b>SE</b><span>Hvor upresist <em>anslaget ditt</em> er. Krymper når N vokser.</span></div>
           </div>
-          <p class="ffhint">Feilstolper i figurer kan vise enten den ene eller den andre — eller et konfidensintervall. SE-stolper ser alltid mest imponerende ut, fordi de er minst. Figurteksten <em>må</em> si hvilken det er.</p>
+          <p class="ffhint">Feilstolper i figurer kan vise enten den ene eller den andre — eller et konfidensintervall. SE-stolper ser alltid mest imponerende ut, fordi de er minst. Figurteksten <em>må</em> si hvilken det er. Se <a href="#feilfelt">feilfelt og overlapp</a> under Konfidensintervallet.</p>
         </div>
 
         <div class="ff">
@@ -2919,6 +3096,7 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
             <tr><td>1,96</td><td>95 % i midten</td><td>Den nøyaktige grensen for 95 %. «Omtrent to» er avrundet fra 1,96.</td></tr>
             <tr><td>z = 1</td><td>ca. 84. persentil</td><td>50 % under snittet pluss 34 % mellom snittet og ett SD over.</td></tr>
             <tr><td>z = 2</td><td>ca. 97,7. persentil</td><td>Bare drøyt 2 % skårer høyere. Utenfor ±1,96 ligger 5 %, med 2,5 % i hver hale.</td></tr>
+          <tr><td>1,645</td><td>90 % i midten</td><td>5 % i hver hale. Kritisk z for et 90 % KI, og for en ensidig test med α = .05.</td></tr><tr><td>2,58</td><td>99 % i midten</td><td>0,5 % i hver hale. Kritisk z for et 99 % KI, og for en tosidig test med α = .01.</td></tr>
           </tbody>
         </table></div>
 
@@ -2932,6 +3110,7 @@ Interaksjon = forskjellen mellom forskjellene: (24.30 − 12.60) − (22.50 − 
             <tr><td>Styrke</td><td>1 − β</td><td>Sjansen for å oppdage en effekt som finnes. Konvensjonen er minst .80. Type I-feilraten er α, type II-feilraten er β.</td></tr>
             <tr><td>Familievis feilrate</td><td>1 − (1 − α)ᵏ</td><td>Med 3 tester ca. 14 %, med 10 ca. 40 %, med 20 ca. 64 %.</td></tr>
             <tr><td>Bonferroni</td><td>α / k</td><td>Del grensa på antall tester. Med fire tester: .05 / 4 = .0125.</td></tr>
+          <tr><td>Komplementregelen</td><td>P(ikke A) = 1 − P(A)</td><td>Det motsatte av A. P(regn) = .30 gir P(opphold) = .70.</td></tr><tr><td>Addisjonsregelen («eller»)</td><td>P(A eller B) = P(A) + P(B)</td><td>Bare når A og B ikke kan skje samtidig. Kan de det, trekk fra P(A og B).</td></tr><tr><td>Multiplikasjonsregelen («og»)</td><td>P(A og B) = P(A) · P(B)</td><td>Bare når A og B er uavhengige. Kron i to kast: .5 · .5 = .25.</td></tr><tr><td>Minst én av k forsøk</td><td>1 − (1 − p)ᵏ</td><td>Uavhengige forsøk. Minst én sekser på to kast: 1 − (5/6)² = 11/36 ≈ .31. Med p = α er det den familievise feilraten.</td></tr><tr><td>n fra standardfeilen</td><td>n = (SD / SE)²</td><td>SE = SD / √n snudd. SD = 12 og SE = 2 gir √n = 6 og n = 36.</td></tr><tr><td>KI på tre nivåer</td><td>M ± 1,645 / 1,96 / 2,58 · SE</td><td>90 %, 95 % og 99 %. Høyere nivå gir bredere intervall: 99 % er omtrent 30 % bredere enn 95 %. I små utvalg brukes en litt større t-verdi.</td></tr><tr><td>Ensidig p</td><td>tosidig p / 2</td><td>Bare når effekten går i retningen som var spådd på forhånd. Tosidig p = .08 gir ensidig p = .04. Kritisk z ensidig: 1,645.</td></tr>
           </tbody>
         </table></div>
 
@@ -6080,195 +6259,177 @@ const JUMP = (function(){
   /* q = spørsmål, o = alternativer, c = indeks til riktig svar, f = begrunnelse per alternativ */
   const BANK = [
 /* ---- A: les tallet ---- */
-{t:'Les tallet', n:1, q:'En artikkel rapporterer: <code>t(73) = 2.41, p = .019, d = 0.56</code>. Hvilket tall forteller deg hvor <em>stor</em> forskjellen er?',
+{t:'Les tallet', n:1, k:["B7", "D4"], ch:3, q:'En artikkel rapporterer: <code>t(73) = 2.41, p = .019, d = 0.56</code>. Hvilket tall forteller deg hvor <em>stor</em> forskjellen er?',
  o:['d = 0.56','t = 2.41','p = .019','73'], c:0,
  f:['Riktig. <b>d</b> er effektstørrelsen: forskjellen målt i standardavvik. 0.56 er en middels stor forskjell, og den står der nettopp fordi p ikke sier noe om størrelse.',
     'Nei. <b>t</b> er testtallet — forskjellen delt på standardfeilen. Den vokser med utvalgsstørrelsen, så en stor t kan like gjerne bety mange deltagere som en stor effekt.',
     'Nei. <b>p</b> sier hvor uvanlig resultatet er hvis nullhypotesen er sann. En bitteliten effekt får liten p bare N er stor nok.',
     'Nei. <b>73</b> er frihetsgrader, som her røper at studien hadde 75 deltagere fordelt på to grupper.']},
 
-{t:'Les tallet', n:2, q:'En enveis-ANOVA rapporteres som <code>F(2, 388) = 12.44, p &lt; .001</code>. Hva forteller <em>toeren</em> deg om studien?',
+{t:'Les tallet', n:2, k:["C8", "C12"], ch:11, q:'En enveis-ANOVA rapporteres som <code>F(2, 388) = 12.44, p &lt; .001</code>. Hva forteller <em>toeren</em> deg om studien?',
  o:['Det ble sammenlignet tre grupper','Den hadde to grupper','Den hadde to prediktorer i tillegg til utfallet','Den brukte to måletidspunkter'], c:0,
  f:['Riktig. Første frihetsgrad i en enveis-ANOVA er antall grupper minus 1. <b>2</b> betyr altså <b>tre</b> grupper — og det er derfor man trengte ANOVA i stedet for en t-test.',
     'Nei — da hadde første frihetsgrad vært 1, og du kunne brukt en t-test. Frihetsgraden er antall grupper <em>minus 1</em>.',
     'Nei. I en regresjon ville første df vært antall prediktorer — men her står det at det er en enveis-ANOVA, og da handler toeren om grupper.',
     'Nei. To måletidspunkter ville gitt 1 som første df, for også ved gjentatte målinger er første df k − 1. Det som regnes annerledes der, er feilleddets df: (n − 1)(k − 1). Her er toeren antall grupper minus 1.']},
 
-{t:'Les tallet', n:3, q:'En studie med 80 deltagere rapporterer <code>r = .34, p = .002</code>. Hvor stor andel av variasjonen deler de to variablene?',
+{t:'Les tallet', n:3, k:["C4"], ch:7, q:'En studie med 80 deltagere rapporterer <code>r = .34, p = .002</code>. Hvor stor andel av variasjonen deler de to variablene?',
  o:['Omtrent 12 %','Omtrent 34 %','Omtrent 58 %','Det kan man ikke vite fra r'], c:0,
  f:['Riktig. Delt variasjon er <b>r²</b> = .34² ≈ .12, altså omtrent 12 %. De resterende 88 % forklares av noe annet.',
     'Nei — det er r selv, ikke andelen variasjon. r og r² er to forskjellige skalaer, og forskjellen er stor: .34 høres nesten ut som en tredel, men er i praksis en åttedel.',
     'Nei. .58 ville vært kvadratroten av .34 — altså feil vei. Du skal kvadrere, ikke rotutdra.',
     'Nei, det er nettopp det r² gjør: kvadrer korrelasjonen, så har du andelen delt variasjon.']},
 
-{t:'Les tallet', n:4, q:'<code>χ²(2, N = 391) = 8.4, p = .015, V = .15</code>. Hva er <b>V</b> her?',
+{t:'Les tallet', n:4, k:["C11", "B7"], ch:16, q:'<code>χ²(2, N = 391) = 8.4, p = .015, V = .15</code>. Hva er <b>V</b> her?',
  o:['Effektstørrelsen — hvor sterk sammenhengen er','En ny testverdi som bekrefter χ²','Andelen av utvalget som havnet i riktig kategori','Variansen i den ene variabelen'], c:0,
  f:['Riktig. <b>Cramérs V</b> er effektstørrelsen for kjikvadrat. χ² sier bare <em>om</em> det finnes en sammenheng; V sier hvor sterk den er. .15 er svak.',
     'Nei. V er ikke en test og har ingen egen p-verdi — den er et mål på styrke, på linje med r² ved siden av r.',
     'Nei, det er ikke det V måler. V går fra 0 til 1 og beskriver styrken i sammenhengen mellom de to kategoriske variablene.',
     'Nei. Varians hører til kontinuerlige variabler. Her telles personer i kategorier.']},
 
-{t:'Les tallet', n:5, q:'En regresjon gir <code>b = 2.51, SE = 0.62, 95 % KI [1.29, 3.73]</code>. Er koeffisienten signifikant på 5 %-nivå?',
+{t:'Les tallet', n:5, k:["B3", "C5"], ch:8, q:'En regresjon gir <code>b = 2.51, SE = 0.62, 95 % KI [1.29, 3.73]</code>. Er koeffisienten signifikant på 5 %-nivå?',
  o:['Ja — intervallet inneholder ikke null','Nei — vi trenger p-verdien for å kunne si det','Ja — fordi b er større enn SE','Nei — intervallet er for bredt'], c:0,
  f:['Riktig. Et 95 % konfidensintervall som ikke dekker null, svarer til p &lt; .05. Intervallet gjør altså dobbelt arbeid: det viser både signifikans og hvilke verdier som er plausible.',
     'Ikke nødvendig. Intervallet inneholder informasjonen allerede — og forteller deg i tillegg <em>hvor mye</em> effekten kan tenkes å være, noe p aldri gjør.',
     'Nei, det er ikke regelen. Sammenligningen som gjelder er om <em>intervallet</em> dekker null, ikke hvordan b står seg mot SE.',
     'Nei. Bredden sier noe om presisjonen, ikke om signifikansen. Et bredt intervall som likevel utelukker null er fortsatt signifikant — bare upresist.']},
 
-{t:'Les tallet', n:6, q:'En regresjon har to prediktorer. Den ene har <code>B = 2.51</code>, den andre <code>B = 0.04</code>. Kan du konkludere med at den første er viktigst?',
+{t:'Les tallet', n:6, k:["C6", "C5"], ch:8, q:'En regresjon har to prediktorer. Den ene har <code>B = 2.51</code>, den andre <code>B = 0.04</code>. Kan du konkludere med at den første er viktigst?',
  o:['Nei — B står i variablenes egne enheter, så de kan ikke sammenlignes direkte','Ja — større B betyr større betydning','Ja, men bare hvis begge er signifikante','Nei — B sier ingenting om styrke i det hele tatt'], c:0,
  f:['Riktig. <b>B</b> er ustandardisert: «poeng per time» og «poeng per krone» er ikke samme skala. Vil du rangere prediktorene, trenger du <b>β</b>, som er i standardavvik og dermed sammenlignbar.',
     'Nei — dette er en av de vanligste lesefeilene. En prediktor målt i kroner får liten B rett og slett fordi én krone er lite, ikke fordi den betyr lite.',
     'Signifikans hjelper ikke her. To signifikante B-er i ulike enheter er fortsatt usammenlignbare.',
     'For strengt. B er fullt tolkbar — «2,51 poeng per ekstra time» er meningsfullt. Den er bare ikke sammenlignbar <em>på tvers av</em> prediktorer.']},
 /* ---- B: hva betyr det ---- */
-{t:'Hva betyr det', n:7, q:'En studie rapporterer <code>p = .03</code>. Hva betyr det?',
+{t:'Hva betyr det', n:7, k:["B4"], ch:2, q:'En studie rapporterer <code>p = .03</code>. Hva betyr det?',
  o:['Hvis det ikke fantes noen effekt, ville 3 % av studiene gitt et resultat minst så tydelig','Det er 3 % sjanse for at nullhypotesen er sann','Det er 97 % sjanse for at funnet er ekte','Effekten er liten — bare 3 %'], c:0,
  f:['Riktig. p regnes ut <em>under forutsetning av</em> at H₀ er sann, og beskriver hvor uvanlig dataene er i den verdenen. Ikke noe annet.',
     'Nei — dette er den klassiske feillesningen. p forteller deg sannsynligheten for <em>dataene gitt H₀</em>, ikke sannsynligheten for <em>H₀ gitt dataene</em>. De to er ikke det samme, og å bytte om på dem er den vanligste feilen i faget.',
     'Nei, av samme grunn. p sier ingenting om hvor sannsynlig funnet ditt er — bare hvor uvanlig det ville vært hvis ingenting var på gang.',
     'Nei. p sier ingenting om størrelse. Det er effektstørrelsens jobb.']},
 
-{t:'Hva betyr det', n:8, q:'En studie med 24 deltagere finner <code>p = .42</code> og konkluderer: «behandlingen har ingen effekt». Er det forsvarlig?',
+{t:'Hva betyr det', n:8, k:["B4", "B6"], ch:2, q:'En studie med 24 deltagere finner <code>p = .42</code> og konkluderer: «behandlingen har ingen effekt». Er det forsvarlig?',
  o:['Nei — mangel på bevis er ikke bevis for fravær','Ja — p er langt over .05','Ja, hvis studien var godt gjennomført','Nei — de burde ha brukt ensidig test'], c:0,
  f:['Riktig. Med 24 deltagere er styrken lav, så en reell effekt kunne lett vært oversett. Det er en <b>type II-feil</b>. Riktig formulering er «fant ikke en signifikant forskjell», ikke «det er ingen forskjell» — akkurat som en frifinnelse ikke er bevist uskyld.',
     'At p er stor betyr bare at dataene er forenlige med H₀ — de er som regel forenlige med en haug andre verdier også. Se på konfidensintervallet: det vil trolig være vidt.',
     'God gjennomføring hjelper ikke mot lav styrke. Med så få deltagere er studien rett og slett ikke i stand til å skille «ingen effekt» fra «effekt vi ikke fanget».',
     'Ensidig test ville bare flyttet grensa, ikke løst problemet — og å bytte til ensidig etter å ha sett dataene er en form for p-hacking.']},
 
-{t:'Hva betyr det', n:9, q:'Forskjellen mellom to behandlinger er <code>2.1 poeng, 95 % KI [−0.4, 4.6]</code>. Hva er den ryddigste konklusjonen?',
+{t:'Hva betyr det', n:9, k:["B3"], ch:9, q:'Forskjellen mellom to behandlinger er <code>2.1 poeng, 95 % KI [−0.4, 4.6]</code>. Hva er den ryddigste konklusjonen?',
  o:['Resultatet er forenlig med alt fra en liten negativ til en ganske stor positiv effekt','Behandlingene er like effektive','Behandlingen virker, med 2,1 poeng bedring','Studien er mislykket og bør forkastes'], c:0,
  f:['Riktig. Intervallet dekker null, så funnet er ikke signifikant — men det utelukker heller ikke en effekt på 4,6 poeng. Studien er <em>uavklart</em>, og det er en ærligere beskrivelse enn både «virker» og «virker ikke».',
     'Nei. At intervallet dekker null betyr ikke at effekten <em>er</em> null — bare at null er blant de plausible verdiene, sammen med mange andre.',
     'Nei. 2,1 er beste anslag, men intervallet viser at anslaget er for upresist til å bære den konklusjonen.',
     'For hardt. Et uavklart resultat er fortsatt informasjon, og det teller med i en senere metaanalyse — hvis det blir publisert.']},
 
-{t:'Hva betyr det', n:10, q:'Hva betyr «95 %» i et 95 % konfidensintervall?',
+{t:'Hva betyr det', n:10, k:["B3"], ch:2, q:'Hva betyr «95 %» i et 95 % konfidensintervall?',
  o:['Over mange gjentatte studier vil ca. 95 % av slike intervaller inneholde den sanne verdien','Det er 95 % sjanse for at den sanne verdien ligger i nettopp dette intervallet','95 % av deltagerne ligger innenfor intervallet','Vi er 95 % sikre på at studien er riktig gjennomført'], c:0,
  f:['Riktig. «95 %» er en egenskap ved <em>prosedyren</em>, ikke ved det ene intervallet du sitter med. Ditt intervall inneholder sannheten, eller så gjør det ikke det — og bredden røper ikke hvilket.',
     'Dette er den vanligste misforståelsen, og den er lett å gjøre fordi formuleringen føles naturlig. Men det enkelte intervallet enten treffer eller bommer; sannsynligheten ligger i metoden.',
     'Nei — det forveksler konfidensintervall med spredningen blant personer. Det siste er standardavviket sin jobb.',
     'Nei. Konfidensintervallet sier ingenting om studiens kvalitet, bare om presisjonen i anslaget gitt at alt annet er gjort riktig.']},
 
-{t:'Hva betyr det', n:11, q:'En studie med 40 000 deltagere finner <code>r = .03, p &lt; .001</code>. Hvordan bør det leses?',
+{t:'Hva betyr det', n:11, k:["B7", "B4"], ch:3, q:'En studie med 40 000 deltagere finner <code>r = .03, p &lt; .001</code>. Hvordan bør det leses?',
  o:['Sammenhengen er nesten sikkert reell, men så svak at den knapt betyr noe praktisk','Sammenhengen er sterk, siden p er så liten','Resultatet er en statistisk feil','p &lt; .001 betyr at r egentlig er større enn .03'], c:0,
  f:['Riktig. Med 40 000 deltagere blir standardfeilen bitteliten, så selv en forsvinnende sammenheng blir signifikant. <b>r² ≈ .0009</b> — under en tidel av en prosent delt variasjon. Dette er nettopp derfor effektstørrelser skal rapporteres.',
     'Nei — p og styrke er to forskjellige ting. Stor N gjør p liten uten å gjøre effekten større.',
     'Nei, det er helt normalt. Store utvalg oppdager små effekter; det er styrken deres, og fallgruva.',
     'Nei. p og r måler ulike ting. r er anslaget på styrken, og det er .03 uansett hvor liten p er.']},
 /* ---- C: velg analysen ---- */
-{t:'Velg analysen', n:12, q:'Du sammenligner depresjonsskåre mellom en behandlingsgruppe og en venteliste. Fordelingene er noenlunde normale. Hvilken test?',
- o:['Uavhengig t-test','Kjikvadrat','Enveis-ANOVA','Paret t-test'], c:0,
- f:['Riktig. To uavhengige grupper, ett kontinuerlig utfall, rimelig normalfordeling — det er t-testens kjerneoppgave. Welchs variant er trygg hvis spredningen er ulik.',
-    'Nei. Kjikvadrat er for <em>kategoriske</em> data der du teller personer i bokser. Her har du en skala.',
-    'Den ville faktisk gitt samme svar med to grupper (F = t²), men ANOVA er verktøyet når du har <em>tre eller flere</em>. Med to er t-testen det direkte valget.',
-    'Nei. Paret t-test er for de <em>samme</em> personene målt to ganger. Her er det to forskjellige grupper.']},
+{t:"Velg analysen", n:12, k:["D1", "C7"], ch:9, q:"Søvnlengde (minutter per natt, målt med aktivitetsmåler) sammenlignes mellom 40 studenter som jobber nattskift ved siden av studiet, og 45 som ikke gjør det. Fordelingene er omtrent symmetriske. Hvilken analyse passer?",
+ o:["Paret t-test, fordi alle er studenter fra samme kull", "Mann–Whitney U, fordi gruppene er ulike store", "t-test for to uavhengige grupper, med Levene og Welch", "Kjikvadrattest, fordi nattskift er en nominal variabel"], c:2,
+ f:["Nei. En paret test krever at hver måling i den ene gruppen hører sammen med én bestemt måling i den andre, for eksempel samme person målt to ganger. Her er det ulike personer i hver gruppe.", "Nei. Ulike gruppestørrelser krever ingen rangbasert test. Mann–Whitney er et alternativ når utfallet er tydelig skjevt eller ordinalt, og her er fordelingene omtrent symmetriske.", "Riktig. To grupper med ulike personer og et utfall på en skala. Kryss av for Levene og Welch, slik emnet anbefaler. Ulike gruppestørrelser er ikke noe problem for t-testen.", "Nei. At gruppevariabelen er nominal, er helt vanlig. Det er <em>utfallet</em> som avgjør analysen, og søvnlengde i minutter er en skala. Kjikvadrat brukes når også utfallet er kategorier."]},
 
-{t:'Velg analysen', n:13, q:'Du måler de samme 60 pasientene før behandling, rett etter, og ved tre måneders oppfølging. Hva passer?',
+{t:'Velg analysen', n:13, k:["D1", "C10"], ch:14, q:'Du måler de samme 60 pasientene før behandling, rett etter, og ved tre måneders oppfølging. Hva passer?',
  o:['ANOVA for gjentatte målinger','Tre separate t-tester','Uavhengig t-test','Kjikvadrat'], c:0,
  f:['Riktig. Samme personer på flere tidspunkter gir avhengige observasjoner, og ANOVA for gjentatte målinger håndterer nettopp det.',
     'Fristende, men galt: tre tester på samme data blåser opp risikoen for falske positive. Det er p-hacking i miniatyr — én analyse som tar alle tre tidspunktene samtidig er riktig.',
     'Nei. Uavhengig t-test forutsetter at gruppene består av forskjellige personer.',
     'Nei, utfallet er en skala, ikke kategorier.']},
 
-{t:'Velg analysen', n:14, q:'Du vil vite om medisinbruk (ja/nei) fordeler seg likt mellom to behandlingsgrupper. Hvilken test?',
+{t:'Velg analysen', n:14, k:["D1", "C11"], ch:16, q:'Du vil vite om medisinbruk (ja/nei) fordeler seg likt mellom to behandlingsgrupper. Hvilken test?',
  o:['Kjikvadrat for uavhengighet','Kjikvadrat for tilpasning','t-test','Korrelasjon'], c:0,
  f:['Riktig. To kategoriske variabler, og spørsmålet er om de henger sammen. De forventede antallene regnes ut fra rad- og kolonnesummene.',
     'Nesten. Tilpasningstesten brukes når du har <em>én</em> variabel og en forventet fordeling utenfra — «er kjønnsfordelingen 50/50?». Her har du to variabler.',
     'Nei. t-testen sammenligner gjennomsnitt, og «ja/nei» har ikke noe gjennomsnitt.',
     'Nei. Pearsons r forutsetter to kontinuerlige variabler og en rett linje.']},
 
-{t:'Velg analysen', n:15, q:'Utfallet er tydelig skjevt, og du har to uavhengige grupper med 18 deltagere i hver. Hva er tryggest?',
+{t:'Velg analysen', n:15, k:["D1", "C14"], ch:6, q:'Utfallet er tydelig skjevt, og du har to uavhengige grupper med 18 deltagere i hver. Hva er tryggest?',
  o:['Mann–Whitney U','Pearsons r','Uavhengig t-test uten videre','Kjikvadrat'], c:0,
  f:['Riktig. Mann–Whitney sammenligner rangeringer i stedet for gjennomsnitt, og tåler derfor skjevhet og uteliggere langt bedre. (Læreboka nevner også t-test på trimmede gjennomsnitt eller bootstrap som robuste alternativer.) Med bare 18 per gruppe kan du ikke lene deg på sentralgrenseteoremet.',
     'Nei. r måler samvariasjon mellom to variabler, ikke forskjell mellom grupper.',
     'Med store utvalg hadde t-testen tålt skjevheten fint, men 18 per gruppe er for lite til at fordelingen av gjennomsnitt rekker å bli normal.',
     'Nei, utfallet er en skala.']},
 
-{t:'Velg analysen', n:16, q:'Du har en 2×2-tabell der to av cellene har forventet antall på 3. Hva gjør du?',
+{t:'Velg analysen', n:16, k:["C11", "C13"], ch:16, q:'Du har en 2×2-tabell der to av cellene har forventet antall på 3. Hva gjør du?',
  o:['Bruker Fishers eksakte test','Kjører kjikvadrat som vanlig','Slår sammen kategoriene til én','Rapporterer at det ikke går an å teste'], c:0,
  f:['Riktig. Kjikvadrat bruker χ²-fordelingen som <em>tilnærming</em>, og den blir upålitelig når forventede antall er under 5. Fisher regner ut den eksakte sannsynligheten i stedet.',
     'Nei. Da bryter du forutsetningen om forventede antall ≥ 5, og p-verdien blir upålitelig. JASP sier vanligvis fra.',
     'Det ville ødelagt spørsmålet — med bare to kategorier i hver variabel er det ingenting å slå sammen uten å miste selve sammenligningen.',
     'Jo, det går fint — Fishers eksakte test er laget for akkurat denne situasjonen.']},
 /* ---- D: målenivå ---- */
-{t:'Målenivå', n:17, q:'Variabelen <em>Gruppe</em> (ISTDP mot venteliste) er målt på:',
- o:['Nominalnivå','Ordinalnivå','Intervallnivå','Forholdstallnivå'], c:0,
- f:['Riktig. To kategorier uten rangering — den ene er ikke «mer» enn den andre. Koder du dem 0 og 1, er tallene rene merkelapper.',
-    'Nei. Ordinal krever en meningsfull rekkefølge, som «lett / middels / vanskelig». ISTDP er ikke mer eller mindre enn venteliste.',
-    'Nei. Intervallnivå krever like store steg mellom verdiene, og her finnes det ingen steg i det hele tatt.',
-    'Nei. Forholdstall krever i tillegg et ekte nullpunkt.']},
+{t:"Målenivå", n:17, k:["A2"], ch:1, q:"Blodtypen til alle blodgiverne i en studie registreres med kodene 1 = A, 2 = B, 3 = AB og 4 = 0. Hvilket målenivå har variabelen?",
+ o:["Nominal", "Ordinal", "Intervall", "Forholdstall"], c:0,
+ f:["Riktig. Blodtypene er kategorier uten naturlig rekkefølge, og kodene 1–4 er bare merkelapper. Det gir mening å telle hvor mange som har hver blodtype og finne modus, men ikke å regne ut en gjennomsnittlig blodtype.", "Nei. Ordinal krever en meningsfull rangering, som «lav – middels – høy». Blodtype B er ikke «mer» enn A. Rekkefølgen i kodingen er bare valgt.", "Nei. Intervall krever like store avstander mellom verdiene. At kodene er 1, 2, 3 og 4, betyr ikke at det er like langt fra A til B som fra AB til 0.", "Nei. Blodtypen som heter 0, er bare et navn, ikke et nullpunkt. Forholdstall krever at «dobbelt så mye» gir mening, og kode 4 er ikke dobbelt så mye av noe som kode 2."]},
 
-{t:'Målenivå', n:18, q:'<em>Antall tidligere behandlingsforsøk</em>, registrert som 1, 2 eller 3+. Hvilket målenivå?',
+{t:'Målenivå', n:18, k:["A2"], ch:1, q:'<em>Antall tidligere behandlingsforsøk</em>, registrert som 1, 2 eller 3+. Hvilket målenivå?',
  o:['Ordinal','Nominal','Intervall','Forholdstall'], c:0,
  f:['Riktig. Rekkefølgen er meningsfull, men den siste kategorien «3+» er åpen, så avstanden mellom trinnene er ikke lik. Da stopper det på ordinalnivå.',
     'Nei — her finnes det en klar rangering: tre forsøk er flere enn ett.',
     'Fristende, siden tallene ser jevne ut. Men «3+» kan romme 3 eller 12, så steget fra 2 til «3+» er ikke det samme som fra 1 til 2.',
     'Nei, av samme grunn — og forholdstall krever i tillegg like intervaller.']},
 
-{t:'Målenivå', n:19, q:'Er <em>antall riktige svar på en prøve (0–5)</em> diskret eller kontinuerlig, og hvilket målenivå har den?',
+{t:'Målenivå', n:19, k:["A2"], ch:1, q:'Er <em>antall riktige svar på en prøve (0–5)</em> diskret eller kontinuerlig, og hvilket målenivå har den?',
  o:['Diskret og forholdstall','Kontinuerlig og intervall','Diskret og ordinal','Kontinuerlig og forholdstall'], c:0,
  f:['Riktig. Den teller hele enheter, så den er <b>diskret</b> — «2,4 riktige» betyr ingenting. Og den har et ekte nullpunkt og like steg, så den er <b>forholdstall</b>. De to spørsmålene er uavhengige av hverandre.',
     'Nei på begge. Den kan ikke anta mellomverdier, og null riktige betyr faktisk ingen riktige — det er et ekte nullpunkt.',
     'Halvveis: diskret stemmer, men stegene er like store og nullpunktet ekte, så den når helt opp til forholdstall.',
     'Nei — den er ikke kontinuerlig. Dette er nettopp poenget med å holde de to spørsmålene fra hverandre.']},
 
-{t:'Målenivå', n:20, q:'En <em>depresjonsskåre</em> er summen av mange spørreskjemaledd (skalaen i terapistudien går til 35), og den behandles som kontinuerlig i analysene. Hva er den mest presise beskrivelsen av målenivået?',
+{t:'Målenivå', n:20, k:["A2"], ch:1, q:'En <em>depresjonsskåre</em> er summen av mange spørreskjemaledd (skalaen i terapistudien går til 35), og den behandles som kontinuerlig i analysene. Hva er den mest presise beskrivelsen av målenivået?',
  o:['Ordinale ledd, men summen behandles som intervall — ikke som forholdstall','Forholdstall, siden skalaen har et nullpunkt og skåren er en mengde','Ordinal, og derfor er gjennomsnitt og t-test på skåren uaktuelt','Nominal, siden hver skåre bare er en egen kategori'], c:0,
  f:['Riktig. Hvert ledd er ordinalt (avstanden mellom «litt» og «mye» er ukjent), men en sum av mange ledd behandles konvensjonelt som intervall. Den er likevel ikke forholdstall: 30 er ikke «dobbelt så deprimert» som 15.',
     'Fristende, men et nullpunkt på skalaen er ikke det samme som et <em>ekte</em> nullpunkt. Sammenlign med celsius: 0 °C er ikke fravær av temperatur.',
     'Halvveis. Leddene er ordinale, men i praksis regnes gjennomsnitt, SD og t-tester på sumskårer hele tiden. Det er nettopp konvensjonen om å behandle summen som intervall.',
     'Nei — skåren har en klar rekkefølge, og avstandene brukes i regningen. Den er ikke bare merkelapper.']},
-{t:'SPINE', n:21, q:'Du regner ut gjennomsnittlig depresjonsskåre for de 75 deltagerne i studien. Tallet du får er:',
- o:['Et estimat','En parameter','En standardfeil','En operasjonalisering'], c:0,
- f:['Riktig. Alt du regner ut fra et <em>utvalg</em> er et estimat, skrevet med latinske bokstaver (M, SD, r). Det er et anslag på parameteren du egentlig vil vite noe om.',
-    'Nei — en parameter er den sanne verdien ute i <em>populasjonen</em>, skrevet med greske bokstaver (μ, σ, ρ). Den får du aldri se.',
-    'Nei. Standardfeilen beskriver hvor mye estimatet ville variert mellom utvalg — den er et mål på usikkerheten i tallet, ikke tallet selv.',
-    'Nei. Operasjonalisering er hvordan du bestemte deg for å <em>måle</em> depresjon, ikke resultatet av målingen.']},
+{t:"SPINE", n:21, k:["A7"], ch:2, q:"Et universitet henter fra studentregisteret alderen til alle de 2 400 som begynte på en bachelor i år, og finner at snittet er 22,7 år. Spørsmålet gjelder bare dette årskullet. Hva er 22,7?",
+ o:["Et utvalgsgjennomsnitt, fordi universitetet har flere studenter enn 2 400", "En parameter, fordi hele populasjonen er målt", "Et punktestimat, som trenger et konfidensintervall for å kunne tolkes", "Et estimat, fordi tallet er regnet ut fra data"], c:1,
+ f:["Nei. Hva som er populasjonen, avgjøres av spørsmålet, ikke av hvor mange studenter universitetet har. Spørsmålet gjelder bare dette årskullet, og der er alle med.", "Riktig. Populasjonen bestemmes av spørsmålet: alle som begynte i år. Alle 2 400 er med, så 22,7 er den faktiske verdien i populasjonen, μ. Det finnes ingen utvalgsfeil å anslå.", "Nei. Et KI beskriver usikkerheten som kommer av å måle bare et utvalg. Når hele populasjonen er målt, finnes ikke den usikkerheten.", "Nei. Et estimat er et anslag på en populasjonsverdi ut fra et utvalg. Her er hele populasjonen med, så det er ingenting å anslå."]},
 
-{t:'SPINE', n:22, q:'Hva beskriver standardfeilen til gjennomsnittet?',
- o:['Hvor mye utvalgsgjennomsnittet ville variert fra utvalg til utvalg','Hvor mye enkeltpersoner varierer rundt gjennomsnittet','Hvor stor målefeilen i spørreskjemaet er','Avstanden mellom gjennomsnittet og medianen'], c:0,
- f:['Riktig. SE handler om presisjonen i <em>anslaget ditt</em>: gjentok du hele studien med nye deltagere, hvor mye ville tallet hoppet? Det er bredden på utvalgsfordelingen.',
-    'Det er <b>standardavviket</b>. Forskjellen mellom SD og SE er den enkeltforvekslingen som koster flest poeng: SD beskriver folk, SE beskriver anslaget.',
-    'Nei. Målefeil i instrumentet hører til reliabilitet, ikke til standardfeilen.',
-    'Nei. Det er et mål på skjevhet, og har ingenting med SE å gjøre.']},
+{t:"SPINE", n:22, k:["B2"], ch:2, q:"En kartlegging av 100 sykepleiere gir et gjennomsnittlig stressnivå på 3,4 (skala 1–5), med SD = 0,8 og SE = 0,08. Hva forteller SE = 0,08?",
+ o:["Gjentas kartleggingen med 100 nye, flytter snittet seg typisk rundt 0,08", "Skjemaet måler stresset til hver sykepleier med en feil på rundt 0,08", "Gjennomsnittet ligger 0,08 over medianen, så fordelingen er litt skjev", "Omtrent 68 % av sykepleierne har et stressnivå mellom 3,32 og 3,48"], c:0,
+ f:["Riktig. SE er standardavviket i utvalgsfordelingen: den typiske avstanden fra et utvalgsgjennomsnitt til populasjonsgjennomsnittet når utvalg av samme størrelse trekkes om og om igjen. Den sier hvor presist gjennomsnittet er anslått.", "Nei. Målefeil for den enkelte hører til reliabilitet. SE handler om gjennomsnittet, og den ville vært over null selv med et perfekt skjema.", "Nei. Avstanden mellom gjennomsnitt og median sier noe om skjevhet. SE har ingenting med medianen å gjøre.", "Nei. Det er SD som beskriver personene. Er skårene omtrent normalfordelte, ligger rundt 68 % av sykepleierne innenfor M ± 1 SD, altså 2,6 til 4,2. SE er ti ganger mindre fordi √100 = 10."]},
 
-{t:'SPINE', n:23, q:'Du firedobler utvalget fra 25 til 100. Hva skjer med standardfeilen?',
- o:['Den halveres','Den blir en firedel','Den er uendret','Den dobles'], c:0,
- f:['Riktig. <code>SE = σ/√n</code>, så det er <em>kvadratroten</em> av n som teller: √4 = 2, altså halveres SE. Derfor er det så dyrt å bli dobbelt så presis — du må firedoble studien.',
-    'Dette er den vanligste gjetningen, og den overvurderer gevinsten kraftig. Nevneren er √n, ikke n.',
-    'Nei. Populasjonen er den samme, men anslaget ditt blir mer presist av flere deltagere.',
-    'Nei — større utvalg gir mindre usikkerhet, ikke mer.']},
+{t:"SPINE", n:23, k:["B2"], ch:2, q:"En pilotstudie med 30 deltagere ga en standardfeil som er dobbelt så stor som du ønsker. Spredningen blant personene antas å bli den samme i hovedstudien. Hvor mange deltagere trenger du for å halvere SE?",
+ o:["120", "60", "900", "15"], c:0,
+ f:["Riktig. SE = SD/√n, så SE avtar med kvadratroten av n. For å halvere SE må √n dobles, og det krever fire ganger så mange deltagere: 4 · 30 = 120.", "Nei. Dobbelt så mange deltagere gir bare en SE som er omtrent 0,71 av den gamle (1/√2). Det er √n som må dobles, ikke n.", "Nei. 900 er 30². Det ville gjort SE √30 ≈ 5,5 ganger mindre enn i piloten, langt mer enn nødvendig.", "Nei. Færre deltagere gir større SE, ikke mindre. Med 15 blir SE omtrent 1,4 ganger så stor som i piloten."]},
 
-{t:'SPINE', n:24, q:'Populasjonen av depresjonsskårer er tydelig skjev. Du trekker 1 000 utvalg på n = 75 og tegner fordelingen av <em>gjennomsnittene</em>. Hvordan ser den ut?',
+{t:'SPINE', n:24, k:["B2"], ch:2, q:'Populasjonen av depresjonsskårer er tydelig skjev. Du trekker 1 000 utvalg på n = 75 og tegner fordelingen av <em>gjennomsnittene</em>. Hvordan ser den ut?',
  o:['Tilnærmet normalfordelt','Like skjev som populasjonen','Flat','Med to topper'], c:0,
  f:['Riktig. Dette er <b>sentralgrenseteoremet</b>: fordelingen av gjennomsnitt blir tilnærmet normal når n vokser, nesten uansett hvordan populasjonen ser ut. Det er grunnen til at t-tester virker på virkelige, skjeve data.',
     'Nei — og det er nettopp det overraskende. Skjevheten i populasjonen arves ikke av fordelingen av gjennomsnitt.',
     'Nei. Gjennomsnittene klumper seg tydelig rundt populasjonsgjennomsnittet.',
     'Nei. To topper i utvalgsfordelingen ville krevd at du trakk fra to forskjellige populasjoner.']},
 
-{t:'SPINE', n:25, q:'Hvorfor deler vi kvadratsummen på <em>n − 1</em> i stedet for n når vi regner ut variansen i et utvalg?',
- o:['Fordi avvikene måles fra utvalgets eget gjennomsnitt og derfor blir litt for små','Fordi én deltager alltid er en uteligger','For å gjøre tallet større og dermed mer forsiktig','Det er bare en konvensjon uten begrunnelse'], c:0,
- f:['Riktig. Utvalgets snitt ligger per definisjon midt i akkurat disse tallene, så avvikene undervurderer spredningen i populasjonen. Å dele på n − 1 retter nøyaktig opp den skjevheten. Det tapte tallet er en frihetsgrad.',
-    'Nei, det har ingenting med uteliggere å gjøre.',
-    'Tallet <em>blir</em> større, men det er konsekvensen, ikke grunnen. Begrunnelsen er at anslaget ellers er systematisk for lavt.',
-    'Nei — det finnes en presis begrunnelse, og den handler om forventningsretthet.']},
+{t:"SPINE", n:25, k:["C12", "C3"], ch:2, q:"I en simulering trekkes 10 000 utvalg med n = 5 fra en populasjon med varians σ² = 20. I hvert utvalg regnes variansen ut med <em>n</em> i nevneren (SS/5). Gjennomsnittet av de 10 000 variansene blir omtrent 16. Hva er forklaringen?",
+ o:["Populasjonen må ha vært skjev, og det trekker variansen ned", "Utvalg på fem er for små til å være normalfordelte", "Avvik fra utvalgets eget snitt blir systematisk for små, så SS/n blir for lav", "Tilfeldig utvalgsfeil, som ville jevnet seg ut med flere simuleringer"], c:2,
+ f:["Nei. Formen på populasjonen endrer ikke denne forventningen. Med n i nevneren blir variansen for lav i snitt, uansett om populasjonen er skjev eller symmetrisk.", "Nei. Normalfordeling har ingenting med dette å gjøre. Underestimeringen med faktoren (n − 1)/n gjelder uansett hvordan populasjonen er fordelt.", "Riktig. Utvalgsgjennomsnittet er det tallet som gir minst mulig kvadratsum for akkurat disse fem verdiene. Avvik fra μ ville gitt en større kvadratsum. Derfor undervurderer SS/n variansen systematisk, med faktoren (n − 1)/n = 4/5. Å dele på n − 1 = 4 retter det: 16 · 5/4 = 20, og anslaget blir forventningsrett.", "Nei. Med 10 000 gjentakelser har den tilfeldige variasjonen nesten jevnet seg ut. Et avvik som står fast når antall gjentakelser øker, er systematisk."]},
 /* ---- F: feil og styrke ---- */
-{t:'Feil og styrke', n:26, q:'Du forkaster en nullhypotese som i virkeligheten er sann. Hva har du gjort?',
+{t:'Feil og styrke', n:26, k:["B5"], ch:2, q:'Du forkaster en nullhypotese som i virkeligheten er sann. Hva har du gjort?',
  o:['En type I-feil','En type II-feil','En målefeil','Ingenting galt — det er slik testing virker'], c:0,
  f:['Riktig. Falsk positiv: du roper opp om en effekt som ikke finnes. Sannsynligheten er α, så med grensa på .05 blir 5 % av testene der H₀ er sann signifikante. I rettssaken: å dømme en uskyldig.',
     'Motsatt. Type II er å <em>beholde</em> en H₀ som var falsk — å overse en ekte effekt.',
     'Nei. Målefeil handler om instrumentet, ikke om testbeslutningen.',
     'Det er riktig at feilen er innebygd og akseptert, men den har et navn, og navnet er type I.']},
 
-{t:'Feil og styrke', n:27, q:'En behandling virker i virkeligheten, men studien har bare 20 deltagere og finner p = .18. Hva er dette et eksempel på?',
+{t:'Feil og styrke', n:27, k:["B6"], ch:2, q:'En behandling virker i virkeligheten, men studien har bare 20 deltagere og finner p = .18. Hva er dette et eksempel på?',
  o:['Type II-feil — lav styrke gjorde at effekten ble oversett','Type I-feil','At behandlingen likevel ikke virker','At α var satt for lavt'], c:0,
  f:['Riktig. Effekten fantes, men studien var ikke stor nok til å oppdage den. <b>Styrke = 1 − β</b> vokser med utvalgsstørrelsen og med effektens størrelse, og 20 deltagere gir som regel altfor lav styrke.',
     'Nei — type I er å finne noe som ikke er der. Her er det motsatt.',
     'Premisset i spørsmålet er at den <em>virker</em>. Studien klarte bare ikke å vise det, og det er en helt annen sak.',
     'Å senke α ville gjort problemet verre, ikke bedre — da blir det enda vanskeligere å nå signifikans.']},
 
-{t:'Feil og styrke', n:28, q:'Hva øker den statistiske styrken i en studie?',
+{t:'Feil og styrke', n:28, k:["B6"], ch:2, q:'Hva øker den statistiske styrken i en studie?',
  o:['Flere deltagere, større ekte effekt, og mindre støy i målingene','Å senke α fra .05 til .01','Å kjøre flere analyser på de samme dataene','Å bruke ensidig test etter å ha sett resultatet'], c:0,
  f:['Riktig. Alle tre virker gjennom det samme: de gjør signalet stort i forhold til standardfeilen. Konvensjonen er styrke ≥ .80, og underpowrede studier er psykologiens største metodeproblem.',
     'Motsatt effekt. Strengere α gir færre falske positive, men flere oversette effekter — du bytter type I mot type II.',
@@ -6276,28 +6437,28 @@ const JUMP = (function(){
     'Å velge ensidig <em>etter</em> at du har sett dataene er å gi seg selv gratis signifikans. Retningen må være bestemt på forhånd.']},
 
 /* ---- G: trusler ---- */
-{t:'Trusler', n:29, q:'Du kjører 20 uavhengige analyser på data der <em>ingen</em> av effektene er ekte. Omtrent hvor stor er sjansen for minst ett signifikant funn?',
+{t:'Trusler', n:29, k:["B5"], ch:2, q:'Du kjører 20 uavhengige analyser på data der <em>ingen</em> av effektene er ekte. Omtrent hvor stor er sjansen for minst ett signifikant funn?',
  o:['Rundt 64 %','Rundt 5 %','Rundt 20 %','Rundt 95 %'], c:0,
  f:['Riktig. Sjansen for å slippe unna alle 20 er .95²⁰ ≈ 36 %, så sjansen for minst ett «funn» er omtrent <b>64 %</b>. Det krever ingen uredelighet — det er ren aritmetikk, og det er derfor forskerens frihetsgrader er farlige.',
     '5 % er sjansen for at <em>én bestemt</em> analyse blir signifikant. Med 20 forsøk akkumulerer risikoen raskt.',
     'Nei — 20 er antall analyser, ikke en sannsynlighet.',
     'For høyt. Det ville krevd langt flere enn 20 analyser.']},
 
-{t:'Trusler', n:30, q:'100 laboratorier studerer en effekt som i sannhet er null. Bare studier med p &lt; .05 blir publisert. Hvordan ser den publiserte litteraturen ut?',
+{t:'Trusler', n:30, k:["B5"], ch:3, q:'100 laboratorier studerer en effekt som i sannhet er null. Bare studier med p &lt; .05 blir publisert. Hvordan ser den publiserte litteraturen ut?',
  o:['Den viser en tydelig effekt som ikke finnes','Den viser omtrent null, siden sannheten er null','Den blir tilfeldig og uten mønster','Den viser en negativ effekt'], c:0,
  f:['Riktig. Rundt fem studier passerer filteret, og det er nødvendigvis de som ligger <em>lengst fra null</em> — det er akkurat det som skal til for å bli signifikant når det ikke er noen effekt. Gjennomsnittseffekten i litteraturen blir dermed langt for stor.',
     'Det ville vært sant om <em>alle</em> studiene ble publisert. Filteret er hele problemet: det fjerner systematisk de resultatene som lå nær sannheten.',
     'Nei, og det er det urovekkende: skjevheten er systematisk og går alltid samme vei — mot for store effekter.',
     'Retningen er tilfeldig; problemet er <em>størrelsen</em> på de publiserte effektene, ikke fortegnet.']},
 
-{t:'Trusler', n:31, q:'En forsker snublet over et uventet funn og skriver artikkelen som om det var forutsagt fra starten. Hva kalles det?',
+{t:'Trusler', n:31, k:["B5"], ch:3, q:'En forsker snublet over et uventet funn og skriver artikkelen som om det var forutsagt fra starten. Hva kalles det?',
  o:['HARKing','P-hacking','Publikasjonsskjevhet','Preregistrering'], c:0,
  f:['Riktig. <b>HARK</b> = «Hypothesizing After the Results are Known». Det gjør en eksplorativ oppdagelse om til en tilsynelatende bekreftet hypotese, og fjerner leserens mulighet til å vurdere hvor mye leting som lå bak.',
     'Nært beslektet, men p-hacking er å prøve seg fram i <em>analysene</em> til noe blir signifikant. HARKing er å omskrive <em>hypotesen</em> i etterkant.',
     'Nei — det handler om hva tidsskriftene slipper gjennom, ikke om hva den enkelte forskeren skriver.',
     'Det er motgiften, ikke problemet: analyseplanen låses før dataene samles inn.']},
 
-{t:'Trusler', n:32, q:'Hva er det preregistrering først og fremst løser?',
+{t:'Trusler', n:32, k:["B5"], ch:3, q:'Hva er det preregistrering først og fremst løser?',
  o:['Den skiller planlagte analyser fra dem man kom på underveis','Den gjør utvalget mer representativt','Den øker den statistiske styrken','Den fjerner behovet for effektstørrelser'], c:0,
  f:['Riktig. Ved å låse analyseplanen før dataene finnes, blir p-verdien igjen det den skal være. Eksplorative funn er fortsatt lov — de må bare merkes som eksplorative.',
     'Nei. Hvem du rekrutterer er et helt annet spørsmål, og preregistrering hjelper ikke mot et skjevt utvalg.',
@@ -6305,49 +6466,49 @@ const JUMP = (function(){
     'Tvert imot — effektstørrelser skal alltid rapporteres, preregistrert eller ei.']},
 
 /* ---- H: fordelingen ---- */
-{t:'Fordelingen', n:33, q:'I et datasett med 21 depresjonsskårer rundt 30 blir én verdi feiltastet til 80. Hvilket sentralmål flytter seg mest?',
+{t:'Fordelingen', n:33, k:["C2", "D3"], ch:6, q:'I et datasett med 21 depresjonsskårer rundt 30 blir én verdi feiltastet til 80. Hvilket sentralmål flytter seg mest?',
  o:['Gjennomsnittet','Medianen','Modus','Alle tre like mye'], c:0,
  f:['Riktig. Gjennomsnittet er tyngdepunktet og lar seg dra av ekstremverdier. Medianen er bare midtverdien i rekka, så den rikker seg knapt. Det er hele grunnen til at medianen rapporteres ved skjeve fordelinger.',
     'Medianen er nettopp den som <em>ikke</em> lar seg rive med — én feiltastet verdi flytter midtpunktet med maks én plass.',
     'Modus er den vanligste verdien. Én feiltastet observasjon flytter den sjelden — bare hvis den tilfeldigvis tar bort en av de vanligste verdiene.',
     'Nei — de skiller lag kraftig, og det er nettopp derfor det er verdt å rapportere mer enn ett av dem.']},
 
-{t:'Fordelingen', n:34, q:'Prøveskårene fra en lett og en vanskelig betingelse slås sammen og danner en fordeling med to topper. Hvilket sentralmål beskriver «en typisk student» best?',
+{t:'Fordelingen', n:34, k:["C2"], ch:2, q:'Prøveskårene fra en lett og en vanskelig betingelse slås sammen og danner en fordeling med to topper. Hvilket sentralmål beskriver «en typisk student» best?',
  o:['Ingen av dem — gruppene bør beskrives hver for seg','Gjennomsnittet','Medianen','Modus'], c:0,
  f:['Riktig. Ved to topper lander gjennomsnittet i dalen mellom dem, der nesten ingen faktisk ligger — og medianen gjør det ofte også. To topper betyr som regel to grupper blandet sammen, og løsningen er å skille dem — ikke å lete etter et bedre sentralmål.',
     'Gjennomsnittet lander midt i dalen og beskriver en student som ikke finnes.',
     'Medianen har ofte samme problem: den peker på midten, og ved to like store topper er midten nettopp der det er tynnest.',
     'Modus peker på den ene toppen og overser den andre helt.']},
 
-{t:'Fordelingen', n:35, q:'En variabel har skjevhet <code>−1,4</code>. Hva betyr det?',
+{t:'Fordelingen', n:35, k:["C2"], ch:2, q:'En variabel har skjevhet <code>−1,4</code>. Hva betyr det?',
  o:['Halen peker mot venstre — de fleste ligger høyt, noen få lavt','Halen peker mot høyre','Fordelingen er symmetrisk','Fordelingen har to topper'], c:0,
  f:['Riktig. Negativ skjevhet betyr venstreskjev. Typisk årsak er en <em>takeffekt</em>: skalaen stopper, og folk hoper seg opp mot toppen. −1,4 er tydelig skjev; over omtrent ±2 begynner det å bli et problem for tester som antar normalfordeling.',
     'Det ville vært <em>positiv</em> skjevhet. Fortegnet peker mot halen, ikke mot toppen.',
     'Nei — symmetrisk er skjevhet rundt 0.',
     'Skjevhetstallet sier ingenting om antall topper. Det må du se på histogrammet for å oppdage.']},
 
-{t:'Fordelingen', n:36, q:'Hva er den viktigste svakheten ved å bare vise et boksplott?',
+{t:'Fordelingen', n:36, k:["D3"], ch:5, q:'Hva er den viktigste svakheten ved å bare vise et boksplott?',
  o:['Det skjuler at fordelingen kan ha to topper','Det viser ikke medianen','Det tåler ikke uteliggere','Det kan bare brukes på kategoriske data'], c:0,
  f:['Riktig. Boksplottet er et sammendrag — kvartiler og median. To fordelinger med helt ulik form kan gi nesten identiske bokser. Derfor er histogram eller raincloud verdt å se i tillegg.',
     'Tvert imot: medianen er streken inni boksen, og den er det tydeligste elementet i figuren.',
     'Det håndterer uteliggere svært godt — de tegnes som egne punkter utenfor værhårene.',
     'Nei. Boksplottet krever bare at verdiene kan rangeres — median og kvartiler er lov fra ordinalnivå.']},
 /* ---- G: design og årsak ---- */
-{t:'Design og årsak', n:37, q:'Deltagerne ble tilfeldig fordelt til lett eller vanskelig prøve. Kjønn ble bare registrert. Hvilken av de to faktorene tåler en årsakspåstand?',
+{t:'Design og årsak', n:37, k:["A3", "A4"], ch:1, q:'Deltagerne ble tilfeldig fordelt til lett eller vanskelig prøve. Kjønn ble bare registrert. Hvilken av de to faktorene tåler en årsakspåstand?',
  o:['Bare vanskelighetsgrad, fordi den ble randomisert','Begge, siden begge står i samme analyse','Bare kjønn, fordi det ligger fast fra før','Ingen av dem — årsak kan aldri vises statistisk'], c:0,
  f:['Riktig. Randomisering er det som gjør at gruppene i snitt er like på alt annet, også det du ikke har målt. Kjønn er en <b>målt</b>, ikke manipulert faktor, og en forskjell der kan like gjerne skyldes noe som henger sammen med kjønn.',
     'Nei. At to faktorer står i samme tabell gir dem ikke samme status. Den ene ble bestemt ved loddtrekning, den andre fulgte deltageren inn i studien.',
     'Motsatt. At noe ligger fast fra før er nettopp grunnen til at du ikke kan utelukke tredjevariabler — det finnes hundre ting som varierer sammen med kjønn.',
     'For strengt. Et randomisert eksperiment er designet nettopp for dette, og er den ene situasjonen der en årsakspåstand er forsvarlig.']},
 
-{t:'Design og årsak', n:38, q:'Hvorfor er det viktig at perfeksjonisme og selvtillit ble målt <em>før</em> deltagerne ble fordelt til betingelse?',
+{t:'Design og årsak', n:38, k:["A3"], ch:1, q:'Hvorfor er det viktig at perfeksjonisme og selvtillit ble målt <em>før</em> deltagerne ble fordelt til betingelse?',
  o:['Fordi baselinemålene da umulig kan være påvirket av manipulasjonen','Fordi rekkefølgen gjør analysen enklere å kjøre','Fordi det gir høyere reliabilitet på skalaene','Fordi randomiseringen ellers ikke ville vært tilfeldig'], c:0,
  f:['Riktig. Måles noe før loddtrekningen, kan ingen forskjell i det skyldes betingelsen. Det er derfor slike mål kan brukes som utgangspunkt og som sårbarhetsfaktor uten forbehold.',
     'Nei, rekkefølgen i prosedyren er et <em>argument</em>, ikke en praktisk forenkling. Den avgjør hva du har lov til å påstå.',
     'Reliabilitet er en egenskap ved skalaen og påvirkes ikke av når i prosedyren den fylles ut.',
     'Randomiseringen ville vært like tilfeldig, men baselinemålene ville vært mistenkeliggjort — du kunne ikke lenger vite om de var farget av betingelsen.']},
 
-{t:'Design og årsak', n:39, q:'Et design har tid (før/etter) som innen-faktor og betingelse som mellom-faktor. Hva kalles det?',
+{t:'Design og årsak', n:39, k:["A3", "C10"], ch:14, q:'Et design har tid (før/etter) som innen-faktor og betingelse som mellom-faktor. Hva kalles det?',
  o:['Et blandet design','Et faktorielt mellom-gruppe-design','Et gjentatte-målinger-design','Et kvasi-eksperiment'], c:0,
  f:['Riktig. <b>Blandet design</b> betyr at minst én faktor varierer innen person og minst én mellom personer. Analysen er en blandet ANOVA, og hypotesetesten er som regel interaksjonen.',
     'Nei — da måtte begge faktorene variere mellom personer. Her måles de samme deltagerne to ganger.',
@@ -6355,21 +6516,21 @@ const JUMP = (function(){
     'Kvasi-eksperiment betyr at gruppevariabelen ikke er randomisert. Her <em>er</em> betingelsen randomisert.']},
 
 /* ---- H: interaksjon ---- */
-{t:'Interaksjon', n:40, q:'En hypotese sier at nederlaget rammer perfeksjonistiske studenter hardere. Hvilken rad i en toveis-ANOVA er hypotesetesten?',
+{t:'Interaksjon', n:40, k:["C9"], ch:13, q:'En hypotese sier at nederlaget rammer perfeksjonistiske studenter hardere. Hvilken rad i en toveis-ANOVA er hypotesetesten?',
  o:['Interaksjonen Vanskegrad × Perfeksjonisme','Hovedeffekten av vanskegrad','Hovedeffekten av perfeksjonisme','Modellens samlede F'], c:0,
  f:['Riktig. «Rammer hardere» betyr at effekten av vanskegrad <em>avhenger av</em> perfeksjonisme — og det er nøyaktig hva interaksjonen tester. Hovedeffektene svarer på andre spørsmål.',
     'Den sier at prøven hadde en effekt i snitt, på tvers av perfeksjonismenivå. Det kan være sant uten at noen rammes hardere enn andre.',
     'Den sier at perfeksjonistiske studenter skårer annerledes generelt — også i den lette betingelsen. Det er ikke en sårbarhetspåstand.',
     'Den samlede F sier bare at modellen forklarer noe. Den peker ikke på hvilken av de tre effektene det er.']},
 
-{t:'Interaksjon', n:41, q:'Effekten var signifikant i kvinnegruppen (<code>p = .01</code>) og ikke i mannegruppen (<code>p = .21</code>). Kan du konkludere med at effekten er større for kvinner?',
+{t:'Interaksjon', n:41, k:["C9", "B4"], ch:13, q:'Effekten var signifikant i kvinnegruppen (<code>p = .01</code>) og ikke i mannegruppen (<code>p = .21</code>). Kan du konkludere med at effekten er større for kvinner?',
  o:['Nei — du må teste interaksjonen direkte','Ja, det er nettopp det de to p-verdiene viser','Ja, hvis gruppene er omtrent like store','Nei — du må kjøre en korreksjon på de to testene først'], c:0,
  f:['Riktig. To p-verdier på hver sin side av grensa er ikke en test på at effektene er forskjellige. Gruppene kan ha ulik størrelse eller ulik spredning. <b>Differansen mellom effektene</b> har sin egen test, og det er interaksjonsraden.',
     'Nei — dette er en av de mest utbredte feilslutningene i litteraturen. Forskjellen mellom «signifikant» og «ikke signifikant» er i seg selv ikke signifikant.',
     'Like store grupper hjelper, men løser det ikke. Du har fortsatt ikke testet om de to effektene skiller seg fra hverandre.',
     'Korreksjon handler om falske positive ved mange tester. Problemet her er et annet: du har ikke stilt spørsmålet i det hele tatt.']},
 
-{t:'Interaksjon', n:42, q:'I et interaksjonsplott er de to linjene tydelig ikke-parallelle, men krysser ikke hverandre. Hva kalles det?',
+{t:'Interaksjon', n:42, k:["C9"], ch:13, q:'I et interaksjonsplott er de to linjene tydelig ikke-parallelle, men krysser ikke hverandre. Hva kalles det?',
  o:['En ordinal interaksjon (vifteform) — effekten går samme vei begge steder, men er sterkere det ene','En disordinal (kryssende) interaksjon','Ingen interaksjon, siden linjene ikke krysser','En hovedeffekt uten interaksjon'], c:0,
  f:['Riktig. Ved en <b>ordinal interaksjon</b> peker begge linjene samme vei, men med ulik helning. Det er den vanligste formen i sårbarhetsstudier: alle rammes, noen bare mer.',
     'En disordinal interaksjon er når linjene faktisk krysser, altså at effekten snur retning. Da villeder hovedeffektene lett.',
@@ -6377,21 +6538,21 @@ const JUMP = (function(){
     'En hovedeffekt uten interaksjon ville gitt to <em>parallelle</em> linjer på ulik høyde.']},
 
 /* ---- I: før og etter ---- */
-{t:'Før og etter', n:43, q:'Hvorfor analysere endringsskåren (etter minus før) i stedet for selvtilliten etter prøven?',
+{t:'Før og etter', n:43, k:["C10", "A3"], ch:14, q:'Hvorfor analysere endringsskåren (etter minus før) i stedet for selvtilliten etter prøven?',
  o:['Fordi den fjerner forskjeller i utgangspunkt, som er store når faktoren ikke er randomisert','Fordi endringsskårer alltid er mer normalfordelte','Fordi det gir høyere statistisk styrke uansett design','Fordi APA krever endringsskårer i pre–post-design'], c:0,
  f:['Riktig. Kjønn og perfeksjonisme er <b>målte</b> faktorer, og gruppene starter derfor sjelden likt. Endringsskåren gjør at ulikt startnivå ikke får telle med i svaret.',
     'Nei — en differanse mellom to variabler arver formen på begge, og blir ikke automatisk penere.',
     'Ikke uansett. Endringsskåren arver måleusikkerhet fra to målinger i stedet for én, og kan gi lavere styrke når før- og etter-målingen korrelerer svakt.',
     'Det finnes ingen slik regel. Valget er faglig, og skal begrunnes i metodedelen.']},
 
-{t:'Før og etter', n:44, q:'Med to måletidspunkter og én gruppefaktor: hva er forholdet mellom en enveis-ANOVA på endringsskåren (etter minus før) og interaksjonen Tid × Gruppe i en blandet ANOVA?',
+{t:'Før og etter', n:44, k:["C10", "C9"], ch:14, q:'Med to måletidspunkter og én gruppefaktor: hva er forholdet mellom en enveis-ANOVA på endringsskåren (etter minus før) og interaksjonen Tid × Gruppe i en blandet ANOVA?',
  o:['Det er samme test — samme F og samme p','Den blandede ANOVA-en er alltid kraftigere','Endringsskåren gir alltid mindre p','De svarer på to helt ulike spørsmål'], c:0,
  f:['Riktig. Med bare to tidspunkter er interaksjonen Tid × Gruppe definisjonsmessig en test på om <em>endringen</em> er ulik i gruppene. De to oppstillingene er to måter å skrive den samme analysen på.',
     'Nei. Med to tidspunkter er de identiske. Med tre eller flere er det derimot den blandede ANOVA-en som er verktøyet.',
     'Nei — resultatene er de samme, tall for tall.',
     'De svarer på nøyaktig samme spørsmål. Forskjellen er bare hvordan utskriften ser ut.']},
 
-{t:'Før og etter', n:45, q:'Hva er hovedinnvendingen mot å dele en kontinuerlig sårbarhetsvariabel i «høy» og «lav» ved medianen?',
+{t:'Før og etter', n:45, k:["C4", "B6"], ch:8, q:'Hva er hovedinnvendingen mot å dele en kontinuerlig sårbarhetsvariabel i «høy» og «lav» ved medianen?',
  o:['Informasjon kastes bort, styrken faller, og grensa er bestemt av akkurat dette utvalget','Mediansplitt er bare gyldig ved normalfordelte variabler','Det gjør at variabelen ikke lenger kan brukes i en ANOVA','Det er ingen reell innvending — mediansplitt er standard'], c:0,
  f:['Riktig. To deltagere som skårer nesten likt havner i hver sin gruppe, alt over medianen behandles som ett nivå, og medianen flytter seg i neste utvalg. Den ryddige varianten er å beholde variabelen kontinuerlig og teste interaksjonen i en regresjon.',
     'Normalfordeling er ikke poenget. Problemet er at informasjon forsvinner uansett form.',
@@ -6399,21 +6560,21 @@ const JUMP = (function(){
     'Den er vanlig, særlig i undervisning, men det er et kompromiss med en kjent kostnad — ikke en anbefalt metode.']},
 
 /* ---- J: forutsetninger ---- */
-{t:'Forutsetninger', n:46, q:'Levenes test gir <code>p = .003</code>. Hva betyr det, og hva gjør du?',
+{t:'Forutsetninger', n:46, k:["C13", "C8"], ch:11, q:'Levenes test gir <code>p = .003</code>. Hva betyr det, og hva gjør du?',
  o:['Variansene er ulike — bruk Welch og Games-Howell i stedet','Variansene er like — kjør vanlig ANOVA','Dataene er ikke normalfordelte — bruk en ikke-parametrisk test','Resultatet er signifikant, så hypotesen er støttet'], c:0,
  f:['Riktig. Her er et <b>lavt</b> p-tall det dårlige tegnet: nullhypotesen i Levene er at variansene er like. Welchs F og Games-Howell post hoc er de robuste alternativene.',
     'Motsatt. En signifikant Levene betyr at forutsetningen er brutt, ikke oppfylt.',
     'Levene tester varianshomogenitet, ikke normalitet. Normalitet ser du på i Q–Q-plottet.',
     'Levene sier ingenting om hypotesen din. Den er en sjekk på om analysen holder, ikke et resultat.']},
 
-{t:'Forutsetninger', n:47, q:'Du bytter fra vanlig ANOVA til Welch, og frihetsgradene faller fra 386 til 92. Hva forteller det deg?',
+{t:'Forutsetninger', n:47, k:["C13", "C12"], ch:11, q:'Du bytter fra vanlig ANOVA til Welch, og frihetsgradene faller fra 386 til 92. Hva forteller det deg?',
  o:['At variansene og gruppestørrelsene er svært ulike — det er prisen for robusthet','At noen deltagere ble utelatt fra analysen','At Welch er en dårligere test','At datasettet inneholder manglende verdier'], c:0,
  f:['Riktig. Welch justerer df ned for å slippe antakelsen om like varianser, og justeringen er større jo mer ulike variansene er. Fallet er derfor selv et mål på hvor alvorlig bruddet var.',
     'Nei, ingen deltagere forsvinner. Det er utregningen av df som endres, ikke N.',
     'Welch er mer robust, ikke dårligere. Den betaler bare for robustheten i styrke.',
     'Manglende verdier reduserer N og dermed også df, men ikke på denne måten — og ikke når bare valget av test er endret.']},
 
-{t:'Forutsetninger', n:48, q:'Normalitetsantakelsen i en regresjon gjelder egentlig hva?',
+{t:'Forutsetninger', n:48, k:["C13"], ch:6, q:'Normalitetsantakelsen i en regresjon gjelder egentlig hva?',
  o:['Residualene','Den uavhengige variabelen','Den avhengige variabelen før analysen','Alle variablene i datasettet'], c:0,
  f:['Riktig. Det er <b>bommene</b> — residualene — som skal være omtrent normalfordelte. Derfor er Q–Q-plottet av standardiserte residualer den relevante figuren, ikke et histogram av råvariabelen.',
     'Prediktoren har ingen normalitetsantakelse i det hele tatt. Den kan være binær, og da er analysen en t-test i forkledning.',
@@ -6421,42 +6582,42 @@ const JUMP = (function(){
     'For bredt. Antakelsen gjelder én ting, og det er modellens residualer.']},
 
 /* ---- K: mange tester og rapportering ---- */
-{t:'Mange tester', n:49, q:'Du gjør ti parvise sammenligninger på α = .05, og ingen av gruppene skiller seg i sannhet. Hvor stor er sjansen for minst én falsk positiv?',
+{t:'Mange tester', n:49, k:["B5"], ch:11, q:'Du gjør ti parvise sammenligninger på α = .05, og ingen av gruppene skiller seg i sannhet. Hvor stor er sjansen for minst én falsk positiv?',
  o:['Omtrent 40 %','5 %, som alltid','50 %','Omtrent 10 %'], c:0,
  f:['Riktig. <b>1 − .95¹⁰ ≈ .40.</b> Feilraten på fem prosent gjelder per test, ikke for hele settet. Det er hele begrunnelsen for at post hoc-tester korrigerer.',
     'Fem prosent er sjansen per enkelttest. Med ti tester har du ti muligheter til å bomme, og de legger seg sammen.',
     'Høyere enn det faktiske svaret. Regn heller etter: .95 opphøyd i 10 er omtrent .60, og resten er svaret.',
     'For lavt — det ville vært omtrent riktig med to tester, ikke ti.']},
 
-{t:'Mange tester', n:50, q:'Omnibus-ANOVA-en er ikke signifikant (<code>p = .12</code>). Bør du kjøre post hoc-testene likevel for å se etter?',
+{t:'Mange tester', n:50, k:["C8", "B5"], ch:11, q:'Omnibus-ANOVA-en er ikke signifikant (<code>p = .12</code>). Bør du kjøre post hoc-testene likevel for å se etter?',
  o:['Nei — regelen er at post hoc bare kjøres når omnibus er signifikant','Ja, post hoc korrigerer jo uansett for antall tester','Ja, hvis effektstørrelsen er over .01','Nei, fordi post hoc krever minst fire grupper'], c:0,
  f:['Riktig. Omnibus svarer på om noen skiller seg; post hoc bare på hvem. Ble svaret nei, er det ingenting å følge opp — å lete blant parene likevel er å lete etter noe å rapportere.',
     'Tukey og lignende korrigerer riktignok for antall par. Men å lete videre etter at hovedsvaret ble nei, er p-jakt i praksis — og regelen i emnet er tydelig: ingen post hoc uten signifikant omnibus.',
     'Effektstørrelsen endrer ikke beslutningsregelen. Den er relevant når du skal <em>tolke</em> et resultat, ikke når du skal avgjøre om du får lete.',
     'Det finnes ingen slik regel. Post hoc er aktuelt fra tre grupper og opp.']},
 
-{t:'Rapportering', n:51, q:'JASP viser <code>p = 0.000</code>. Hva skriver du i artikkelen?',
+{t:'Rapportering', n:51, k:["D4", "D2"], ch:3, q:'JASP viser <code>p = 0.000</code>. Hva skriver du i artikkelen?',
  o:['p &lt; .001','p = .000','p = 0','p ≈ .0001'], c:0,
  f:['Riktig. En sannsynlighet er aldri nøyaktig null — programmet har bare rundet av. <b>p &lt; .001</b> er konvensjonen, og den er ærlig om hva du faktisk vet.',
     'Nei. Det påstår at resultatet er umulig under nullhypotesen, og det er aldri sant.',
     'Samme problem, bare mer direkte formulert.',
     'Ikke gjett på desimaler du ikke har. Har du flere siffer tilgjengelig kan du oppgi dem, ellers er &lt; .001 riktig.']},
 
-{t:'Rapportering', n:52, q:'En ANOVA over fem fagfelt ga <code>p = .10</code>. Hvilken formulering er riktig?',
+{t:'Rapportering', n:52, k:["D4", "B4"], ch:11, q:'En ANOVA over fem fagfelt ga <code>p = .10</code>. Hvilken formulering er riktig?',
  o:['«Vi fant ingen signifikant forskjell mellom fagfeltene»','«Det var ingen forskjell mellom fagfeltene»','«Fagfeltene var like»','«Det var en tendens til forskjell mellom fagfeltene»'], c:0,
  f:['Riktig. Setningen sier hva testen faktisk viste: du fant den ikke. Den påstår ikke at forskjellen er null — noe testen ikke kan vise.',
     'For sterkt. Manglende bevis er ikke bevis for fravær; en reell forskjell kan ha unnsluppet en test med begrenset styrke.',
     'Samme feil, formulert enda mer bastant. Du har ikke vist likhet, bare latt være å vise ulikhet.',
     '«Tendens» er halv signifikans, og det finnes ikke. Grensa var satt på forhånd, og .10 er på den ene siden av den.']},
 
-{t:'Rapportering', n:53, q:'To ANOVA-er gir <code>η² = .040</code> og <code>η² = .020</code>. Den første er signifikant, den andre ikke. Hva er forskjellen?',
+{t:'Rapportering', n:53, k:["B7", "C8"], ch:11, q:'To ANOVA-er gir <code>η² = .040</code> og <code>η² = .020</code>. Den første er signifikant, den andre ikke. Hva er forskjellen?',
  o:['Effekten er dobbelt så stor i den første — og signifikans avhenger av både effektstørrelse og N','Den andre effekten er null','Den første analysen brukte flere deltagere','Den andre analysen brøt en forutsetning'], c:0,
  f:['Riktig. Begge er små effekter, men .040 er dobbelt så mye forklart variasjon som .020. Med samme N og samme df er det nettopp størrelsen som avgjør hvilken av dem som havner under grensa.',
     'Nei. η² = .020 er et anslag på to prosent forklart variasjon — ikke null, bare for lite til å bli signifikant med dette utvalget.',
     'Samme datasett gir som regel samme N i begge analysene. Det er effektstørrelsen som skiller dem her.',
     'Et brudd på forutsetningene kan påvirke p, men det forklarer ikke forskjellen mellom to effektstørrelser.']},
 
-{t:'Rapportering', n:54, q:'Hvilken av disse hører hjemme i <em>diskusjonen</em>, ikke i resultatdelen?',
+{t:'Rapportering', n:54, k:["D4"], ch:3, q:'Hvilken av disse hører hjemme i <em>diskusjonen</em>, ikke i resultatdelen?',
  o:['«Funnet er forenlig med sårbarhet–stress-modellen»','«F(1, 387) = 8.12, p = .005, η²p = .021»','«Levenes test var signifikant, og Welch ble derfor brukt»','«Gjennomsnittlig endring var −0,42 poeng (SD = 0,88)»'], c:0,
  f:['Riktig. Å koble funnet til en teori er <b>tolkning</b>. Resultatdelen rapporterer hva som skjedde; diskusjonen sier hva det betyr.',
     'Dette er en ren resultatsetning: test, frihetsgrader, eksakt p og effektstørrelse.',
@@ -6464,197 +6625,194 @@ const JUMP = (function(){
     'Deskriptive tall er kjernen i en resultatdel.']},
 
 /* ---- de nyere målene: rangtester, delkorrelasjon, normalitet, ekvivalens, α ---- */
-{t:'Velg analysen', n:55, q:'De samme 30 personene måles tre ganger, og utfallet er tydelig skjevt. Hvilken test passer?',
+{t:'Velg analysen', n:55, k:["D1", "C14"], ch:6, q:'De samme 30 personene måles tre ganger, og utfallet er tydelig skjevt. Hvilken test passer?',
  o:['Friedmans test','Kruskal–Wallis','Wilcoxon signed-rank','Tre uavhengige t-tester'], c:0,
  f:['Riktig. <b>Friedman</b> er den ikke-parametriske versjonen av ANOVA for gjentatte målinger: de samme personene, tre eller flere målinger, og den tåler skjeve data.',
     'Nei. Kruskal–Wallis er for tre eller flere <em>ulike</em> grupper. Her er det de samme personene hver gang, så målingene henger sammen.',
     'Nesten. Wilcoxon er riktig for de samme personene — men bare for <em>to</em> målinger. Med tre trenger du Friedman.',
     'Nei. Tre separate tester øker sjansen for et falskt funn, og uavhengige tester passer ikke når det er de samme personene.']},
 
-{t:'Velg analysen', n:56, q:'80 pasienter svarer ja eller nei på «Har du søvnproblemer?» både før og etter behandling. Hvilken test passer?',
+{t:'Velg analysen', n:56, k:["D1", "C11"], ch:16, q:'80 pasienter svarer ja eller nei på «Har du søvnproblemer?» både før og etter behandling. Hvilken test passer?',
  o:['McNemars test','Vanlig kjikvadrattest for uavhengighet','Paret t-test','Fishers eksakte test'], c:0,
  f:['Riktig. <b>McNemar</b> er laget for en ja/nei-variabel målt to ganger på de samme personene. Den ser bare på dem som byttet svar.',
     'Nei. Den vanlige kjikvadrattesten krever at hver person telles én gang. Her telles alle to ganger, før og etter.',
     'Nei. Utfallet er ja/nei, ikke et tall på en skala, så et gjennomsnitt er ikke det testen trenger.',
     'Nei. Fisher er for små krysstabeller der hver person telles én gang — samme problem som den vanlige kjikvadrattesten.']},
 
-{t:'Forutsetninger', n:57, q:'JASP viser <code>Shapiro–Wilk W = 0.98, p = .003</code> for residualene i en studie med 400 deltagere. Hva gjør du?',
+{t:'Forutsetninger', n:57, k:["C13"], ch:6, q:'JASP viser <code>Shapiro–Wilk W = 0.98, p = .003</code> for residualene i en studie med 400 deltagere. Hva gjør du?',
  o:['Ser på Q–Q-plottet før du bestemmer noe — med 400 deltagere slår testen ut på bittesmå avvik','Konkluderer med at residualene er normalfordelte, siden W er nær 1','Bytter straks til en ikke-parametrisk test','Fjerner deltagerne med størst residual til testen ikke slår ut lenger'], c:0,
  f:['Riktig. Liten p betyr at testen fant et avvik fra normalfordelingen. Men i store utvalg finner den også avvik som ikke betyr noe. Q–Q-plottet viser om avviket er stort nok til å bry seg om.',
     'Nei. Det er p som avgjør her, og p = .003 betyr at testen <em>fant</em> et avvik. At W er nær 1 sier bare at avviket er lite — som er grunnen til å se på plottet.',
     'For raskt. Med 400 deltagere tåler t-tester og regresjon ganske mye, og testen slår ut på avvik uten praktisk betydning. Se på plottet først.',
     'Nei. Å fjerne data til testen blir fornøyd er en form for p-jakt. Uteliggere skal undersøkes, ikke fjernes for å få et bestemt resultat.']},
 
-{t:'Les tallet', n:58, q:'En regresjon med to prediktorer har <code>R² = .30</code>. De kvadrerte delkorrelasjonene er <code>sr² = .12</code> og <code>sr² = .08</code>. Hva er de resterende .10?',
+{t:'Les tallet', n:58, k:["C6"], ch:8, q:'En regresjon med to prediktorer har <code>R² = .30</code>. De kvadrerte delkorrelasjonene er <code>sr² = .12</code> og <code>sr² = .08</code>. Hva er de resterende .10?',
  o:['Det de to prediktorene forklarer sammen — overlappet ingen av dem eier alene','Variasjon modellen ikke forklarer','Konstantleddets bidrag','En regnefeil — sr² skal alltid summere til R²'], c:0,
  f:['Riktig. sr² er det hver prediktor forklarer <em>alene</em>. Når prediktorene henger sammen, forklarer de også en del i fellesskap, og den delen tilhører ingen av dem.',
     'Nei. Den uforklarte variasjonen er 1 − R² = .70. Spørsmålet gjelder hvordan de forklarte .30 er fordelt.',
     'Nei. Konstantleddet forklarer ingen variasjon — det bare plasserer linja i riktig høyde.',
     'Nei. sr² summerer bare til R² når prediktorene ikke henger sammen i det hele tatt. Med overlapp blir summen mindre.']},
 
-{t:'Hva betyr det', n:59, q:'På de samme dataene gir Spearman <code>rₛ = .56</code> og Kendall <code>τ = .41</code>. Hvordan forklarer du forskjellen?',
+{t:'Hva betyr det', n:59, k:["C4"], ch:7, q:'På de samme dataene gir Spearman <code>rₛ = .56</code> og Kendall <code>τ = .41</code>. Hvordan forklarer du forskjellen?',
  o:['τ er på en annen skala og blir nesten alltid lavere — begge viser den samme sammenhengen','Den ene må være feil utregnet','Kendall viser at sammenhengen egentlig er svakere','Spearman overvurderer fordi den bruker rangeringer'], c:0,
  f:['Riktig. Kendall og Spearman måler det samme på ulike måter, og τ blir typisk rundt to tredjedeler av rₛ. Tallene kan ikke sammenlignes direkte, men de forteller den samme historien.',
     'Nei. Forskjellen er helt normal. De to målene regnes ut på ulike måter og havner på ulike nivåer.',
     'Nei. τ er ikke strengere eller mer sann. Den er bare på en annen skala, så .41 betyr ikke svakere enn .56 i Spearmans mål.',
     'Nei. Begge bruker rangeringer. Forskjellen ligger i hvordan rangeringene sammenlignes, ikke i at den ene overdriver.']},
 
-{t:'Feil og styrke', n:60, q:'En studie finner <code>p = .30</code> og rapporterer «observert styrke = .18». Forfatterne skriver at studien derfor var for liten. Hva er problemet?',
+{t:'Feil og styrke', n:60, k:["B6"], ch:2, q:'En studie finner <code>p = .30</code> og rapporterer «observert styrke = .18». Forfatterne skriver at studien derfor var for liten. Hva er problemet?',
  o:['Observert styrke er bare p-verdien regnet om — den sier ingenting nytt','.18 er faktisk høy styrke','Styrke kan ikke regnes ut for t-tester','De burde brukt α = .10 i stedet'], c:0,
  f:['Riktig. Styrke regnet ut fra effekten man <em>fant</em> henger helt fast i p-verdien: høy p gir alltid lav «observert styrke». Styrke må regnes ut på forhånd, fra en effekt man bryr seg om.',
     'Nei. Konvensjonen er minst .80, så .18 ville vært svært lav — men problemet er at tallet uansett ikke sier noe nytt.',
     'Nei. Styrke kan regnes ut for nesten alle tester, også t-tester. Problemet er <em>når</em> og <em>hvordan</em> den regnes ut.',
     'Nei. Å endre grensa i etterkant er å flytte målstreken. Det løser ingenting.']},
 
-{t:'Hva betyr det', n:61, q:'En ekvivalenstest (TOST) med grensene ±0.30 gir <code>p = .01</code>. Hva kan du konkludere?',
+{t:'Hva betyr det', n:61, k:["B4", "B7"], ch:3, q:'En ekvivalenstest (TOST) med grensene ±0.30 gir <code>p = .01</code>. Hva kan du konkludere?',
  o:['At effekten ligger mellom −0.30 og 0.30 — for liten til å bety noe etter grensene du satte','At det finnes en signifikant effekt','At effekten er nøyaktig null','Ingenting — man kan aldri konkludere med at noe mangler'], c:0,
  f:['Riktig. En ekvivalenstest snur spørsmålet: den tester om effekten er <em>mindre enn</em> en grense du har bestemt på forhånd. Signifikant betyr her at effekten er for liten til å være interessant.',
     'Nei. Her er det motsatt av en vanlig test: signifikant betyr at effekten er <em>innenfor</em> grensene, altså liten.',
     'Nei. Ingen test kan vise at noe er nøyaktig null. TOST viser bare at effekten er mindre enn grensene.',
     'Nei. Det gjelder en vanlig p-verdi. En ekvivalenstest er laget nettopp for å kunne si at en effekt er for liten til å bety noe.']},
 
-{t:'Måling', n:62, q:'En skala med 30 ledd har <code>α = .91</code>, men den gjennomsnittlige korrelasjonen mellom leddene er bare <code>.25</code>. Hva viser det?',
+{t:'Måling', n:62, k:["A5"], ch:1, q:'En skala med 30 ledd har <code>α = .91</code>, men den gjennomsnittlige korrelasjonen mellom leddene er bare <code>.25</code>. Hva viser det?',
  o:['At α vokser med antall ledd — høy α betyr ikke at leddene henger tett sammen','At skalaen måler én enkelt ting svært presist','At det må være en regnefeil, for svake korrelasjoner kan ikke gi høy α','At noen ledd må fjernes for å få α over .95'], c:0,
  f:['Riktig. Med 30 ledd blir α = .91 selv om hvert par av ledd bare korrelerer .25. Mange svake ledd gir en stabil sum — men det sier ikke at de måler det samme.',
     'Nei. Høy α betyr ikke at skalaen måler én ting. Den kan måle flere ting og likevel få høy α, bare den er lang nok.',
     'Nei. Regnestykket stemmer: 30 × .25 / (1 + 29 × .25) ≈ .91.',
     'Nei. Over .95 er tvert imot mistenkelig — da er leddene nesten like. Og å fjerne ledd vil som regel <em>senke</em> α.']},
 /* ---- regn uten kalkulator: eksamen har ingen hjelpemidler ---- */
-{t:'Regn uten kalkulator', n:63, q:'Tallene er <code>2, 3, 3, 4, 13</code>. Hva er gjennomsnitt, median og modus?',
+{t:'Regn uten kalkulator', n:63, k:["C2"], ch:2, q:'Tallene er <code>2, 3, 3, 4, 13</code>. Hva er gjennomsnitt, median og modus?',
  o:['M = 5, Mdn = 3, Mo = 3','M = 5, Mdn = 7,5, Mo = 3','M = 3, Mdn = 3, Mo = 3','M = 6,25, Mdn = 3, Mo = 3'], c:0,
  f:['Riktig. Summen er 25, delt på 5 gir <b>M = 5</b>. Midterste tall i den sorterte rekka er <b>3</b>, og 3 er også det vanligste. Legg merke til at 13-tallet drar gjennomsnittet opp over medianen — slik ser en høyreskjev fordeling ut.',
     'Nei. 7,5 er midtpunktet mellom minste og største verdi, (2 + 13) / 2. Medianen er det midterste tallet når rekka er sortert.',
     'Nei. Gjennomsnittet lar seg dra av 13-tallet: 25 / 5 = 5. Det er medianen som står stille.',
     'Nei. 25 / 4 = 6,25 er å dele på n − 1. Det gjør du for variansen, ikke for gjennomsnittet.']},
 
-{t:'Regn uten kalkulator', n:64, q:'Hva er medianen i <code>9, 2, 6, 3</code>?',
+{t:'Regn uten kalkulator', n:64, k:["C2"], ch:2, q:'Hva er medianen i <code>9, 2, 6, 3</code>?',
  o:['4,5','4','5','6'], c:0,
  f:['Riktig. Sorter først: 2, 3, 6, 9. Med et partall verdier er medianen snittet av de to midterste: (3 + 6) / 2 = <b>4,5</b>.',
     'Nei. (2 + 6) / 2 = 4 er snittet av de to midterste i den <em>usorterte</em> lista. Sorter alltid først.',
     'Nei. 5 er gjennomsnittet, 20 / 4.',
     'Nei. Med fire tall ligger medianen på plass (4 + 1) / 2 = 2,5 — midt mellom tall nummer to og tre, ikke på tall nummer tre.']},
 
-{t:'Regn uten kalkulator', n:65, q:'Et utvalg består av tallene <code>1, 5, 9</code>. Hva er standardavviket?',
+{t:'Regn uten kalkulator', n:65, k:["C3"], ch:2, q:'Et utvalg består av tallene <code>1, 5, 9</code>. Hva er standardavviket?',
  o:['4','16','Omtrent 3,3','32'], c:0,
  f:['Riktig. M = 5. Avvikene er −4, 0 og 4, kvadratene 16, 0 og 16, så SS = 32. Varians = 32 / (3 − 1) = 16, og SD = √16 = <b>4</b>.',
     'Nei. 16 er variansen. Du må ta kvadratroten for å komme tilbake til variabelens egen enhet.',
     'Nei. √(32 / 3) ≈ 3,3 er å dele på n. For et utvalg deler du på n − 1.',
     'Nei. 32 er kvadratsummen (SS) — summen av de kvadrerte avvikene, før du deler.']},
 
-{t:'Regn uten kalkulator', n:66, q:'IQ har M = 100 og SD = 15. Ola skårer 130. Hva er z-skåren hans, og omtrent hvor stor andel skårer høyere?',
+{t:'Regn uten kalkulator', n:66, k:["C1"], ch:2, q:'IQ har M = 100 og SD = 15. Ola skårer 130. Hva er z-skåren hans, og omtrent hvor stor andel skårer høyere?',
  o:['z = 2, omtrent 2–3 %','z = 2, omtrent 5 %','z = 30, nesten ingen','z = 2, omtrent 95 %'], c:0,
  f:['Riktig. z = (130 − 100) / 15 = <b>2</b>. Omtrent 95 % ligger innenfor ±2 SD, så omtrent 5 % ligger utenfor — fordelt på to haler. Over z = 2 ligger altså bare rundt 2–3 %.',
     'Nei. 5 % er de som ligger utenfor ±2 SD på <em>begge</em> sider til sammen. Over z = 2 er bare halvparten av det.',
     'Nei. 30 er avstanden i IQ-poeng. z-skåren er avstanden delt på standardavviket.',
     'Nei. Omtrent 95 % ligger <em>innenfor</em> ±2 SD — det er ikke andelen som skårer høyere enn Ola.']},
 
-{t:'Regn uten kalkulator', n:67, q:'Alder er tilnærmet normalfordelt med M = 36 og SD = 10. Omtrent hvor stor andel er mellom 26 og 46 år?',
+{t:'Regn uten kalkulator', n:67, k:["C1"], ch:2, q:'Alder er tilnærmet normalfordelt med M = 36 og SD = 10. Omtrent hvor stor andel er mellom 26 og 46 år?',
  o:['68 %','95 %','50 %','99,7 %'], c:0,
  f:['Riktig. 26 og 46 er ett standardavvik under og over snittet, og omtrent <b>68 %</b> ligger innenfor ±1 SD.',
     'Nei. 95 % gjelder ±2 SD, her 16 til 56 år.',
     'Nei. 50 % ligger under snittet. Mellom −1 og +1 SD ligger mer enn det.',
     'Nei. 99,7 % gjelder ±3 SD, her 6 til 66 år.']},
 
-{t:'Regn uten kalkulator', n:68, q:'Et utvalg på 64 deltagere har M = 30 og SD = 4. Hva er standardfeilen til gjennomsnittet?',
+{t:'Regn uten kalkulator', n:68, k:["B2"], ch:2, q:'Et utvalg på 64 deltagere har M = 30 og SD = 4. Hva er standardfeilen til gjennomsnittet?',
  o:['0,5','4','0,0625','8'], c:0,
  f:['Riktig. SE = SD / √n = 4 / √64 = 4 / 8 = <b>0,5</b>.',
     'Nei. 4 er standardavviket — hvor ulike personene er. Standardfeilen er hvor mye gjennomsnittet ville flyttet seg fra utvalg til utvalg.',
     'Nei. 4 / 64 er å dele på n. Du skal dele på kvadratroten av n.',
     'Nei. 8 er √64. Det er nevneren, ikke svaret.']},
 
-{t:'Regn uten kalkulator', n:69, q:'Samme utvalg: M = 30 og SE = 0,5. Omtrent hvilket 95 % konfidensintervall gir det for μ?',
+{t:'Regn uten kalkulator', n:69, k:["B3"], ch:2, q:'Samme utvalg: M = 30 og SE = 0,5. Omtrent hvilket 95 % konfidensintervall gir det for μ?',
  o:['[29, 31]','[26, 34]','[22, 38]','[29,5; 30,5]'], c:0,
  f:['Riktig. 95 % KI = M ± 1,96·SE = 30 ± 0,98, altså [29.02, 30.98] — omtrent <b>[29, 31]</b>. (± 2·SE er grei hoderegning; står begge blant alternativene, velg 1,96.)',
     'Nei. 30 ± 4 er ± 1 SD. Det beskriver spredningen blant personene, ikke usikkerheten i gjennomsnittet.',
     'Nei. 30 ± 8 er ± 2 SD — det rommer omtrent 95 % av <em>personene</em>, ikke usikkerheten i anslaget.',
     'Nei. ± 1 SE gir et intervall som bare fanger den sanne verdien omtrent 68 % av gangene.']},
 
-{t:'Regn uten kalkulator', n:70, q:'I terapistudien er SE ≈ 0,43 med n = 75. Omtrent hvilken SE ville du fått fra den samme populasjonen med n = 300?',
+{t:'Regn uten kalkulator', n:70, k:["B2"], ch:2, q:'I terapistudien er SE ≈ 0,43 med n = 75. Omtrent hvilken SE ville du fått fra den samme populasjonen med n = 300?',
  o:['≈ 0,21','≈ 0,11','≈ 0,43','≈ 0,86'], c:0,
  f:['Riktig. n er firedoblet, og SE krymper med √n. √4 = 2, så SE halveres til omtrent <b>0,21</b>.',
     'Nei. Det er å dele på 4. SE krymper med kvadratroten av n, ikke med n.',
     'Nei. Det er standardavviket som står omtrent stille når n øker. Standardfeilen krymper.',
     'Nei. Flere deltagere gir <em>mindre</em> usikkerhet, ikke mer.']},
 
-{t:'Regn uten kalkulator', n:71, q:'En prøve har M = 20 og SD = 4. Alle studentene får 5 ekstrapoeng. Hva blir M og SD nå?',
+{t:'Regn uten kalkulator', n:71, k:["C2", "C3"], ch:2, q:'En prøve har M = 20 og SD = 4. Alle studentene får 5 ekstrapoeng. Hva blir M og SD nå?',
  o:['M = 25, SD = 4','M = 25, SD = 9','M = 20, SD = 4','M = 25, SD = 5'], c:0,
  f:['Riktig. Alle flytter seg like mye, så snittet øker med 5. Avstandene mellom folk er de samme, så <b>SD er uendret</b>.',
     'Nei. Å legge til en konstant endrer ikke spredningen — alle flytter seg like langt.',
     'Nei. Snittet flytter seg med de 5 poengene alle fikk.',
     'Nei. SD endres ikke av en konstant. Den ville bare endret seg om alle ble <em>ganget</em> med noe.']},
 
-{t:'Regn uten kalkulator', n:72, q:'En variabel har Q1 = 10 og Q3 = 18. Er verdien 32 en uteligger etter 1,5·IQR-regelen?',
+{t:'Regn uten kalkulator', n:72, k:["D3", "C3"], ch:5, q:'En variabel har Q1 = 10 og Q3 = 18. Er verdien 32 en uteligger etter 1,5·IQR-regelen?',
  o:['Ja — øvre gjerde er 18 + 1,5 · 8 = 30','Nei — øvre gjerde er 18 + 1,5 · 18 = 45','Nei — en uteligger må ligge mer enn 3 SD unna','Det kan ikke avgjøres uten gjennomsnittet'], c:0,
  f:['Riktig. IQR = 18 − 10 = 8, og 1,5 · 8 = 12. Øvre gjerde er 18 + 12 = <b>30</b>, og 32 ligger over.',
     'Nei. Du skal gange IQR med 1,5, ikke Q3.',
     'Nei. Det er en annen tommelfingerregel. Boksplottet bruker 1,5·IQR fra kvartilene.',
     'Nei. Regelen bruker bare kvartilene. Det er nettopp derfor den tåler skjeve fordelinger.']},
 
-{t:'Regn uten kalkulator', n:73, q:'I en krysstabell med N = 120 har en rad summen 40 og en kolonne summen 30. Hva er forventet antall i cellen der de møtes?',
+{t:'Regn uten kalkulator', n:73, k:["C11"], ch:16, q:'I en krysstabell med N = 120 har en rad summen 40 og en kolonne summen 30. Hva er forventet antall i cellen der de møtes?',
  o:['10','30','1 200','13,3'], c:0,
  f:['Riktig. E = radsum · kolonnesum / N = 40 · 30 / 120 = <b>10</b>. Det er antallet du ville ventet hvis de to variablene ikke hang sammen.',
     'Nei. 30 er bare kolonnesummen.',
     'Nei. 40 · 30 = 1 200 er bare telleren — du må dele på N.',
     'Nei. 40 / 3 er ikke en del av formelen. E = radsum · kolonnesum / N.']},
 
-{t:'Fordelingen', n:74, q:'Depresjonsskårene ved oppstart i terapistudien har skjevhet ≈ −1,06, fordi mange ligger nær toppen av skalaen. Hva er mest sannsynlig?',
- o:['Gjennomsnittet ligger lavere enn medianen','Gjennomsnittet ligger høyere enn medianen','Gjennomsnitt og median er like','Skjevheten sier ingenting om dette'], c:0,
- f:['Riktig. Negativ skjevhet betyr en hale mot venstre, og gjennomsnittet dras mot halen. I forelesningen var M ≈ 30,4 og Mdn ≈ 31.',
-    'Nei. Det er positiv skjevhet, med hale mot høyre, som drar gjennomsnittet opp over medianen.',
-    'Nei. Det er symmetriske fordelinger som har gjennomsnitt og median nær hverandre.',
-    'Nei. Retningen på skjevheten sier hvilken vei gjennomsnittet dras.']},
+{t:"Fordelingen", n:74, k:["C2"], ch:2, q:"Pasienter registrerer på hvor mange av 30 dager de tok medisinen sin. De fleste ligger på 27–30 dager, men noen få tok den under ti dager. Skjevheten er −1,5. Hvilket par passer best?",
+ o:["M = 27, Mdn = 27", "M = 25, Mdn = 28", "M = 28, Mdn = 25", "Det kan ikke avgjøres uten rådataene"], c:1,
+ f:["Nei. Like M og Mdn passer med en omtrent symmetrisk fordeling. En skjevhet på −1,5 er tydelig.", "Riktig. Negativ skjevhet betyr en lang hale mot venstre, her de få som sjelden tok medisinen. Gjennomsnittet dras mot halen, mens medianen blir der de fleste ligger. Derfor er M lavere enn Mdn. Opphopningen mot taket på 30 dager er en typisk takeffekt.", "Nei. Her er rekkefølgen snudd. M over Mdn passer med positiv skjevhet, der halen peker mot høye verdier.", "Nei. Fortegnet på skjevheten sier hvilken vei halen peker, og dermed hvilken vei gjennomsnittet dras. I en fordeling med én tydelig hale, som her, er det nok til å velge."]},
 
 /* ---- t-testen (forelesning 4) ---- */
-{t:'t-test', n:75, q:'En studie dobler utvalget, men alt annet er likt. Hva skjer med t og Cohens d?',
+{t:'t-test', n:75, k:["C7", "B7"], ch:9, q:'En studie dobler utvalget, men alt annet er likt. Hva skjer med t og Cohens d?',
  o:['t vokser, d står omtrent stille','Begge vokser','t står stille, d vokser','Begge halveres'], c:0,
  f:['Riktig. Flere deltagere gir mindre SE, så t vokser (med √2 ≈ 1,4). d er forskjellen delt på SD, og verken forskjellen eller SD endrer seg. <b>Det er presisjonen som vokser, ikke effekten.</b>',
     'Nei. d avhenger ikke av n. Det er nettopp derfor d og p trengs begge.',
     'Nei. Det er motsatt: t avhenger av n, d gjør det ikke.',
     'Nei. Mer data gjør ikke effekten mindre, og t blir større.']},
 
-{t:'t-test', n:76, q:'Forskjellen mellom to grupper holdes fast, men spredningen innen gruppene dobles. Hva skjer?',
+{t:'t-test', n:76, k:["C7", "B7"], ch:9, q:'Forskjellen mellom to grupper holdes fast, men spredningen innen gruppene dobles. Hva skjer?',
  o:['Både t og d halveres, og p blir større','t dobles, d halveres','Bare d endrer seg','Ingenting — forskjellen er den samme'], c:0,
  f:['Riktig. SD står i nevneren til d, og SE (som t deler på) dobles når SD dobles. Mer støy gir både mindre effekt i standardavvik og svakere bevis.',
     'Nei. t deler på standardfeilen, som vokser når SD vokser. t blir mindre, ikke større.',
     'Nei. t endrer seg også: SE er SD · √(2/n), så dobbel SD gir dobbel SE.',
     'Nei. En forskjell betyr bare noe sammenlignet med støyen rundt den.']},
 
-{t:'t-test', n:77, q:'Forskjellen mellom gruppene er 6 poeng og SE = 2, med df = 38 (kritisk verdi 2,02). Hva er t, og er den signifikant?',
+{t:'t-test', n:77, k:["C7"], ch:9, q:'Forskjellen mellom gruppene er 6 poeng og SE = 2, med df = 38 (kritisk verdi 2,02). Hva er t, og er den signifikant?',
  o:['t = 3, signifikant','t = 12, signifikant','t = 0,33, ikke signifikant','t = 3, ikke signifikant'], c:0,
  f:['Riktig. t = forskjell / SE = 6 / 2 = <b>3</b>. Det er større enn 2,02, så p &lt; .05.',
     'Nei. t er forskjellen <em>delt</em> på standardfeilen, ikke ganget.',
     'Nei. Det er SE / forskjell — brøken snudd feil vei.',
     'Nei. 3 er lenger ut enn den kritiske verdien 2,02, og da er resultatet signifikant.']},
 
-{t:'t-test', n:78, q:'Terapigruppen har 36 pasienter og ventelisten 39. Hvilke frihetsgrader har den uavhengige t-testen?',
+{t:'t-test', n:78, k:["C7", "C12"], ch:9, q:'Terapigruppen har 36 pasienter og ventelisten 39. Hvilke frihetsgrader har den uavhengige t-testen?',
  o:['73','75','74','35 og 38'], c:0,
  f:['Riktig. df = n₁ + n₂ − 2 = 36 + 39 − 2 = <b>73</b>. Rapporteres t(73).',
     'Nei. 75 er N. Du mister én frihetsgrad for hvert gruppesnitt du regner ut.',
     'Nei. N − 1 gjelder én gruppe. Med to gruppesnitt mister du to.',
     'Nei. En t-test har bare én df. Det er F som har to.']},
 
-{t:'t-test', n:79, q:'JASP viser <code>t(63.0) = −7.18</code>. Hva forteller desimalene i frihetsgradene?',
+{t:'t-test', n:79, k:["C7", "D2"], ch:9, q:'JASP viser <code>t(63.0) = −7.18</code>. Hva forteller desimalene i frihetsgradene?',
  o:['At Welchs korreksjon for ulike varianser er brukt','At det er en paret t-test','At JASP har avrundet feil','At det er en ettutvalgs t-test'], c:0,
  f:['Riktig. Welch justerer df etter hvor ulike variansene er, og da blir df et desimaltall. I en t-test er det Welch-signaturen — og det spørres om på eksamen. (Ved gjentatte målinger gir Greenhouse–Geisser også desimaler.)',
     'Nei. En paret test har df = antall par − 1, som er et heltall.',
     'Nei. Desimalene er med vilje, og skal ikke rundes av.',
     'Nei. Ettutvalgs t har df = n − 1, et heltall.']},
 
-{t:'t-test', n:80, q:'Hver pasient vurderes av to <em>uavhengige</em> terapeuter, og du vil sammenligne vurderingene deres. Hvilken t-test passer?',
+{t:'t-test', n:80, k:["C7", "D1"], ch:9, q:'Hver pasient vurderes av to <em>uavhengige</em> terapeuter, og du vil sammenligne vurderingene deres. Hvilken t-test passer?',
  o:['Paret t-test','Uavhengig t-test','Ettutvalgs t-test','Welchs t-test'], c:0,
  f:['Riktig. Det er de samme pasientene på begge sider, så målingene hører sammen to og to. <b>Samme personer på begge sider → paret.</b> Ordet «uavhengige» om terapeutene avgjør ingenting.',
     'Nei. Dette er fellen fra forelesningen: ordet «uavhengige» lurer deg. Det som teller, er om det er de samme personene på begge sider.',
     'Nei. Du sammenligner ikke ett snitt med en fast verdi, men to vurderinger av de samme pasientene.',
     'Nei. Welch er for to uavhengige grupper med ulike varianser. Her er målingene parvise.']},
 
-{t:'t-test', n:81, q:'Levenes test gir <code>p = .22</code>. Student gir <code>t(73) = −7.27</code>, Welch gir <code>t(63.0) = −7.18</code>. Hva rapporterer du, etter regelen i emnet?',
+{t:'t-test', n:81, k:["C7", "C13"], ch:9, q:'Levenes test gir <code>p = .22</code>. Student gir <code>t(73) = −7.27</code>, Welch gir <code>t(63.0) = −7.18</code>. Hva rapporterer du, etter regelen i emnet?',
  o:['Levene, og Student-testen — ulike varianser er ikke påvist, og de to testene er nesten like','Welch, fordi Levene er signifikant','Ingen av dem — forutsetningen er brutt','Den av dem som har lavest p'], c:0,
  f:['Riktig. Regelen er: kryss av for Levene og Welch hver gang, rapporter Levene, og bruk Welch når Levene er signifikant. Med p = .22 har testen ikke funnet ulike varianser, og de to testene gir nesten samme svar. (Welch hadde også vært helt i orden.)',
     'Nei. p = .22 er ikke signifikant. Her er en <em>stor</em> p det gode tegnet.',
     'Nei. Ingenting er brutt: Levene er ikke signifikant. Men legg merke til ordlyden — det betyr at et brudd ikke er påvist, ikke at variansene er bevist like. Med få deltagere har Levene lav styrke.',
     'Nei. Å velge testen etter hvilken som gir lavest p er p-jakt.']},
 
-{t:'t-test', n:82, q:'En studie rapporterer <code>d = 0.50</code>. Hva betyr det?',
+{t:'t-test', n:82, k:["B7"], ch:9, q:'En studie rapporterer <code>d = 0.50</code>. Hva betyr det?',
  o:['Gruppesnittene ligger et halvt standardavvik fra hverandre','Halvparten av deltagerne ble påvirket','Sannsynligheten for at effekten er ekte er 50 %','Forskjellen er 0,5 poeng på skalaen'], c:0,
  f:['Riktig. d er forskjellen målt i standardavvik. 0,50 regnes som middels — og gruppene overlapper fortsatt mye.',
     'Nei. d sier noe om hvor langt fra hverandre gjennomsnittene ligger, ikke om hvor mange som ble påvirket.',
@@ -6662,56 +6820,56 @@ const JUMP = (function(){
     'Nei. 0,5 poeng ville vært den ustandardiserte forskjellen. d er delt på standardavviket.']},
 
 /* ---- enveis ANOVA (forelesning 5) ---- */
-{t:'ANOVA', n:83, q:'En enveis ANOVA har fem grupper og N = 75. Hvordan skrives F?',
+{t:'ANOVA', n:83, k:["C8", "C12"], ch:11, q:'En enveis ANOVA har fem grupper og N = 75. Hvordan skrives F?',
  o:['F(4, 70)','F(5, 75)','F(4, 74)','F(5, 70)'], c:0,
  f:['Riktig. df mellom = k − 1 = 4, og df innen = N − k = 75 − 5 = 70.',
     'Nei. Det er antall grupper og N. Begge frihetsgradene er «minus noe».',
     'Nei. 74 er N − 1, som er df for totalen. df innen er N − k.',
     'Nei. df mellom er antall grupper <em>minus 1</em>.']},
 
-{t:'ANOVA', n:84, q:'I en ANOVA-tabell er <code>SS mellom = 40</code> med df = 2, og <code>SS innen = 120</code> med df = 60. Hva er F?',
+{t:'ANOVA', n:84, k:["C8"], ch:11, q:'I en ANOVA-tabell er <code>SS mellom = 40</code> med df = 2, og <code>SS innen = 120</code> med df = 60. Hva er F?',
  o:['10','0,33','20','3'], c:0,
  f:['Riktig. MS mellom = 40 / 2 = 20, MS innen = 120 / 60 = 2, og F = 20 / 2 = <b>10</b>.',
     'Nei. 40 / 120 er å dele kvadratsummene. F sammenligner gjennomsnittskvadratene, MS = SS / df.',
     'Nei. 20 er MS mellom. Du må dele på MS innen.',
     'Nei. 120 / 40 er brøken snudd og uten df.']},
 
-{t:'ANOVA', n:85, q:'En enveis ANOVA har <code>SS mellom = 30</code> og <code>SS innen = 70</code>. Hva er η²?',
+{t:'ANOVA', n:85, k:["B7", "C8"], ch:11, q:'En enveis ANOVA har <code>SS mellom = 30</code> og <code>SS innen = 70</code>. Hva er η²?',
  o:['.30','.43','.70','30'], c:0,
  f:['Riktig. SS total = 30 + 70 = 100, og η² = SS mellom / SS total = 30 / 100 = <b>.30</b>. Det er det tallet eksamen spør om, og du kan regne det ut selv.',
     'Nei. 30 / 70 deler på SS innen. η² deler på totalen.',
     'Nei. .70 er andelen som <em>ikke</em> forklares av gruppene.',
     'Nei. η² er en andel mellom 0 og 1.']},
 
-{t:'ANOVA', n:86, q:'Hvis gruppene i virkeligheten er helt like i populasjonen, omtrent hvilken verdi vil F ha?',
+{t:'ANOVA', n:86, k:["C8"], ch:11, q:'Hvis gruppene i virkeligheten er helt like i populasjonen, omtrent hvilken verdi vil F ha?',
  o:['Rundt 1','Rundt 0','Rundt .05','Negativ'], c:0,
  f:['Riktig. Når H₀ er sann, er signal og støy like store, og F havner rundt 1. <b>F ≈ 1 er nullhypotesens signatur.</b>',
     'Nei. Tilfeldige forskjeller mellom gruppene finnes alltid, så MS mellom blir ikke null.',
     'Nei. .05 er α. Det er en grense for p, ikke for F.',
     'Nei. F er et forhold mellom to kvadrerte størrelser og kan aldri bli negativ.']},
 
-{t:'ANOVA', n:87, q:'En enveis ANOVA med tre grupper er signifikant. Hva kan du konkludere?',
+{t:'ANOVA', n:87, k:["C8"], ch:11, q:'En enveis ANOVA med tre grupper er signifikant. Hva kan du konkludere?',
  o:['At minst én gruppe skiller seg fra minst én annen','At alle tre gruppene skiller seg fra hverandre','At gruppen med høyest snitt skiller seg fra de andre','At effekten er stor'], c:0,
  f:['Riktig. H₁ i ANOVA er ikke at alle er ulike, bare at noen er det. Omnibus sier «noen». Post hoc sier hvem.',
     'Nei. Det er en vanlig feiltolkning. En signifikant F er forenlig med mange mønstre.',
     'Nei. Hvilke par som skiller seg, avgjør post hoc-testene — ikke F.',
     'Nei. Signifikans sier ingenting om størrelse. Det er η² som sier om det betyr noe.']},
 
-{t:'ANOVA', n:88, q:'Hvorfor kjører vi ikke bare tre t-tester når vi har tre grupper?',
+{t:'ANOVA', n:88, k:["B5", "C8"], ch:11, q:'Hvorfor kjører vi ikke bare tre t-tester når vi har tre grupper?',
  o:['Sjansen for minst ett falskt funn blir omtrent 14 % i stedet for 5 %','t-tester krever like store grupper','t-tester tåler ikke mer enn 30 i hver gruppe','ANOVA gir alltid mindre p-verdier'], c:0,
  f:['Riktig. Hver test har 5 % sjanse for et falskt funn. Med tre tester blir sjansen for minst ett 1 − .95³ ≈ <b>14 %</b>. Med seks grupper og 15 par er den over 50 %.',
     'Nei. t-testen tåler ulike gruppestørrelser — særlig med Welch.',
     'Nei. Det finnes ingen slik grense.',
     'Nei. Poenget er ikke lavere p, men å holde den samlede feilraten på 5 %.']},
 
-{t:'ANOVA', n:89, q:'Med to grupper gir t-testen <code>t = 3</code>. Hva gir en enveis ANOVA på de samme dataene?',
+{t:'ANOVA', n:89, k:["C8", "C7"], ch:11, q:'Med to grupper gir t-testen <code>t = 3</code>. Hva gir en enveis ANOVA på de samme dataene?',
  o:['F = 9','F = 3','F = 1,5','F = √3'], c:0,
  f:['Riktig. Med to grupper er F = t², og 3² = <b>9</b>. Testene gir nøyaktig samme p. ANOVA er t-testen som tåler flere grupper.',
     'Nei. F er t <em>i annen</em>.',
     'Nei. F er t i annen, ikke t delt på to.',
     'Nei. Det er snudd: t = √F, ikke F = √t.']},
 
-{t:'ANOVA', n:90, q:'Levenes test gir <code>F(2, 72) = 16.01, p &lt; .001</code>. Hva er riktig videre?',
+{t:'ANOVA', n:90, k:["C13", "C8"], ch:11, q:'Levenes test gir <code>F(2, 72) = 16.01, p &lt; .001</code>. Hva er riktig videre?',
  o:['Rapporter Levene, bruk Welchs F og Games–Howell til post hoc','Stopp analysen — forutsetningen er brutt','Fjern gruppen med minst spredning og kjør på nytt','Rapporter vanlig F, med en kommentar om Levene'], c:0,
  f:['Riktig. Ulike varianser er et brudd med en enkel løsning: Welchs justerte F, her F(2, 47.9) = 34.91, og Games–Howell som post hoc. Ikke rund av de brukne frihetsgradene.',
     'Nei. Et brudd betyr ikke at analysen er verdiløs. Det finnes en korreksjon.',
@@ -6719,42 +6877,42 @@ const JUMP = (function(){
     'Nei. Forelesningen sier det tydelig: ikke rapporter vanlig F med en kommentar når det finnes en korreksjon.']},
 
 /* ---- faktoriell ANOVA (forelesning 6) ---- */
-{t:'Faktoriell ANOVA', n:91, q:'Cellesnitt: <em>Lese om igjen</em> 24.30 (5 min) og 12.60 (1 uke). <em>Teste seg selv</em> 22.50 (5 min) og 16.80 (1 uke). Hva er interaksjonen — forskjellen mellom forskjellene?',
+{t:'Faktoriell ANOVA', n:91, k:["C9"], ch:13, q:'Cellesnitt: <em>Lese om igjen</em> 24.30 (5 min) og 12.60 (1 uke). <em>Teste seg selv</em> 22.50 (5 min) og 16.80 (1 uke). Hva er interaksjonen — forskjellen mellom forskjellene?',
  o:['6.00','1.20','8.70','2.40'], c:0,
  f:['Riktig. Fallet for omlesing er 24.30 − 12.60 = 11.70, for testing 22.50 − 16.80 = 5.70. Forskjellen mellom forskjellene er 11.70 − 5.70 = <b>6.00</b>.',
     'Nei. 1.20 er forskjellen mellom radsnittene (18.45 og 19.65) — hovedeffekten av metode.',
     'Nei. 8.70 er forskjellen mellom kolonnesnittene (23.40 og 14.70) — hovedeffekten av tid.',
     'Nei. 4.20 − 1.80 = 2.40 overser fortegnet: de enkle effektene er −1.80 og +4.20, og forskjellen mellom dem er 6.00.']},
 
-{t:'Faktoriell ANOVA', n:92, q:'Et design beskrives som 2 × 3. Hvor mange faktorer og celler har det?',
+{t:'Faktoriell ANOVA', n:92, k:["C9"], ch:13, q:'Et design beskrives som 2 × 3. Hvor mange faktorer og celler har det?',
  o:['2 faktorer, 6 celler','5 faktorer, 6 celler','6 faktorer, 2 celler','2 faktorer, 5 celler'], c:0,
  f:['Riktig. Antallet tall er antallet faktorer, og tallene er nivåene. 2 · 3 = 6 celler.',
     'Nei. Tallene er nivåer, ikke faktorer. Det er to tall, altså to faktorer.',
     'Nei. Det er snudd.',
     'Nei. Cellene får du ved å gange nivåene, ikke legge dem sammen.']},
 
-{t:'Faktoriell ANOVA', n:93, q:'Et 3 × 4-design med bare mellom-faktorer har N = 120. Hvordan skrives F for interaksjonen?',
+{t:'Faktoriell ANOVA', n:93, k:["C9", "C12"], ch:13, q:'Et 3 × 4-design med bare mellom-faktorer har N = 120. Hvordan skrives F for interaksjonen?',
  o:['F(6, 108)','F(12, 108)','F(7, 113)','F(6, 119)'], c:0,
  f:['Riktig. Interaksjonen har (3 − 1)(4 − 1) = 6 frihetsgrader, og residualen har N − antall celler = 120 − 12 = <b>108</b>.',
     'Nei. 12 er antall celler. Interaksjonens df er (a − 1)(b − 1).',
     'Nei. 3 + 4 = 7 legger sammen nivåene, og 120 − 7 trekker fra feil tall. Interaksjonen har (a − 1)(b − 1), og residualen N minus antall celler.',
     'Nei. 119 er N − 1. Residualen er N minus antall celler.']},
 
-{t:'Faktoriell ANOVA', n:94, q:'Hovedeffekten av terapi er signifikant i en toveis ANOVA. Kan du tolke den rett fram?',
+{t:'Faktoriell ANOVA', n:94, k:["C9"], ch:13, q:'Hovedeffekten av terapi er signifikant i en toveis ANOVA. Kan du tolke den rett fram?',
  o:['Det kommer an på om interaksjonen er signifikant','Ja — signifikant er signifikant','Ja, men bare hvis interaksjonen også er signifikant','Nei, aldri'], c:0,
  f:['Riktig. Les interaksjonsraden først. Er den signifikant, oppsummerer hovedeffekten over et mønster som varierer — da bryter du interaksjonen ned i enkle effekter. Er den ikke signifikant, kan hovedeffekten leses rett fram.',
     'Nei. Dette er den vanligste feilen, og den dyreste: å tolke en hovedeffekt uten å se på interaksjonen.',
     'Nei. Det er snudd. Det er når interaksjonen <em>ikke</em> er signifikant at hovedeffekten kan leses rett fram.',
     'Nei. Uten interaksjon er hovedeffekten en meningsfull oppsummering.']},
 
-{t:'Faktoriell ANOVA', n:95, q:'Begge hovedeffektene i et 2 × 2-design er nøyaktig null. Betyr det at faktorene ikke spiller noen rolle?',
+{t:'Faktoriell ANOVA', n:95, k:["C9"], ch:13, q:'Begge hovedeffektene i et 2 × 2-design er nøyaktig null. Betyr det at faktorene ikke spiller noen rolle?',
  o:['Nei — interaksjonen kan likevel være så stor som den kan bli','Ja, uten hovedeffekter finnes ingen effekt','Ja, hvis utvalget er stort nok','Nei, fordi hovedeffekter alltid er signifikante med store utvalg'], c:0,
  f:['Riktig. Tenk 20/80 for ungdom og 80/20 for voksne: begge radsnittene og begge kolonnesnittene er 50, men effekten snur helt. <b>Hovedeffekter kan lyve</b> — spør «virker den, og for hvem?».',
     'Nei. Hovedeffektene er gjennomsnitt over den andre faktoren, og to motsatte effekter kan nulle hverandre ut.',
     'Nei. Utvalgsstørrelsen endrer ikke at gjennomsnittene er like.',
     'Nei. Det er ikke det som er poenget. Svaret ligger i interaksjonen.']},
 
-{t:'Faktoriell ANOVA', n:96, q:'En artikkel rapporterer η²<sub>p</sub> for tre effekter i et 2 × 2-design, og de summerer til 1.12. Er det en feil?',
+{t:'Faktoriell ANOVA', n:96, k:["B7", "C9"], ch:13, q:'En artikkel rapporterer η²<sub>p</sub> for tre effekter i et 2 × 2-design, og de summerer til 1.12. Er det en feil?',
  o:['Nei — partielle mål har ulike nevnere og kan summere til mer enn 1','Ja — andeler kan aldri summere til mer enn 1','Ja — det må være η² som er rapportert','Nei — η²<sub>p</sub> er alltid litt over 1'], c:0,
  f:['Riktig. Hver η²<sub>p</sub> deler på sin egen effekt pluss residualen, så de er ikke andeler av samme helhet. Derfor står η²<sub>p</sub> for hver effekt for seg — og du skal alltid si hvilket mål du bruker.',
     'Nei. Det gjelder η², som deler alle effektene på den samme totalen. De partielle målene har hver sin nevner.',
@@ -6762,42 +6920,42 @@ const JUMP = (function(){
     'Nei. Hver enkelt η²<sub>p</sub> ligger mellom 0 og 1. Det er summen som kan bli større enn 1.']},
 
 /* ---- korrelasjon og regresjon (forelesning 3) ---- */
-{t:'Korrelasjon og regresjon', n:97, q:'Regresjonslinja er <code>ŷ = 20 + 2·x</code>. En student studerte 10 timer og fikk 45 poeng. Hva er residualen?',
+{t:'Korrelasjon og regresjon', n:97, k:["C5"], ch:8, q:'Regresjonslinja er <code>ŷ = 20 + 2·x</code>. En student studerte 10 timer og fikk 45 poeng. Hva er residualen?',
  o:['+5','−5','40','25'], c:0,
  f:['Riktig. Predikert verdi er ŷ = 20 + 2 · 10 = 40, og residualen er målt minus predikert: 45 − 40 = <b>+5</b>.',
     'Nei. Det er predikert minus målt. Residualen er y − ŷ.',
     'Nei. 40 er den predikerte verdien, ŷ.',
     'Nei. 25 er 45 − 20, som bare trekker fra konstantleddet.']},
 
-{t:'Korrelasjon og regresjon', n:98, q:'En tverrsnittsstudie finner <code>r = .48</code> mellom søvn og humør. Hvilken setning har du dekning for?',
+{t:'Korrelasjon og regresjon', n:98, k:["A4", "C4"], ch:7, q:'En tverrsnittsstudie finner <code>r = .48</code> mellom søvn og humør. Hvilken setning har du dekning for?',
  o:['«Søvn og humør hang sammen (r = .48)»','«Mer søvn førte til bedre humør»','«Søvn forklarer 48 % av humøret»','«Dårlig humør skyldes lite søvn»'], c:0,
  f:['Riktig. Et tverrsnittsdesign viser samvariasjon, ikke årsak. «Hang sammen med» er den formuleringen du har dekning for.',
     'Nei. «Førte til» er en årsakspåstand. Det kan like gjerne gå andre veien, eller skyldes en tredje variabel.',
     'Nei. Delt variasjon er r², altså omtrent 23 %, ikke 48 %. Og «forklarer» i betydningen årsak har du ikke dekning for.',
     'Nei. «Skyldes» er en årsakspåstand, og dataene vet ikke hvilken vei pila går.']},
 
-{t:'Korrelasjon og regresjon', n:99, q:'Sammenhengen mellom to variabler går hele tiden samme vei, men er tydelig krum. Den ene variabelen er en rangering. Hva passer best?',
+{t:'Korrelasjon og regresjon', n:99, k:["C4", "D1"], ch:7, q:'Sammenhengen mellom to variabler går hele tiden samme vei, men er tydelig krum. Den ene variabelen er en rangering. Hva passer best?',
  o:['Spearmans korrelasjon','Pearsons korrelasjon','En t-test','En kjikvadrattest'], c:0,
  f:['Riktig. Spearman bruker rangeringer og fanger en <em>monoton</em> sammenheng — en som går samme vei hele tiden, men ikke som en rett strek.',
     'Nei. Pearson forutsetter en rett linje og tallverdier på intervallnivå.',
     'Nei. En t-test sammenligner to gruppesnitt. Her er det sammenhengen mellom to variabler som skal måles.',
     'Nei. Kjikvadrat er for to kategoriske variabler.']},
 
-{t:'Korrelasjon og regresjon', n:100, q:'En enkel regresjon med én prediktor har <code>r = .40</code>. Hva er den standardiserte koeffisienten β?',
+{t:'Korrelasjon og regresjon', n:100, k:["C5", "C4"], ch:8, q:'En enkel regresjon med én prediktor har <code>r = .40</code>. Hva er den standardiserte koeffisienten β?',
  o:['.40','.16','Det kan ikke vites uten standardavvikene','.60'], c:0,
  f:['Riktig. Med bare én prediktor er β nøyaktig lik r. Med flere prediktorer gjelder det ikke lenger.',
     'Nei. .16 er r², andelen delt variasjon.',
     'Nei. Det er b som trenger standardavvikene. β er allerede i standardavvik, og med én prediktor er β = r.',
     'Nei. 1 − .40 har ingen mening her.']},
 
-{t:'Korrelasjon og regresjon', n:101, q:'En regresjonskoeffisient har <code>b = 0.21</code> og <code>SE = 0.07</code>, i et stort utvalg. Er den signifikant?',
+{t:'Korrelasjon og regresjon', n:101, k:["C5"], ch:8, q:'En regresjonskoeffisient har <code>b = 0.21</code> og <code>SE = 0.07</code>, i et stort utvalg. Er den signifikant?',
  o:['Ja — t = 3, som er større enn omtrent 2','Nei — t = 0.33','Nei — b er mindre enn 1','Det kan ikke avgjøres uten R²'], c:0,
  f:['Riktig. t = b / SE = 0.21 / 0.07 = <b>3</b>. Alt over omtrent 2 i tallverdi gir p &lt; .05 i store utvalg.',
     'Nei. Det er SE delt på b — brøken snudd feil vei.',
     'Nei. Størrelsen på b avhenger av hvilken skala variablene er målt på. Det er b sammenlignet med SE som avgjør.',
     'Nei. R² sier hvor mye hele modellen forklarer. Testen av én koeffisient er t = b / SE.']},
 
-{t:'Korrelasjon og regresjon', n:102, q:'Elevene som skåret lavest på første prøve, forbedret seg mest på neste — uten at noe tiltak ble satt inn. Hva er den mest sannsynlige forklaringen?',
+{t:'Korrelasjon og regresjon', n:102, k:["A6"], ch:7, q:'Elevene som skåret lavest på første prøve, forbedret seg mest på neste — uten at noe tiltak ble satt inn. Hva er den mest sannsynlige forklaringen?',
  o:['Regresjon mot gjennomsnittet','At de lærte mest av den første prøven','En takeffekt','Simpsons paradoks'], c:0,
  f:['Riktig. Ekstreme skårer skyldes delvis flaks, og flaksen gjentar seg sjelden. Ved neste måling trekker de derfor mot gjennomsnittet av seg selv. Det er grunnen til at tiltak rettet mot de dårligste ofte <em>ser ut</em> til å virke.',
     'Det kan være en del av det, men uten en sammenligningsgruppe kan du ikke skille det fra regresjon mot gjennomsnittet — som skjer uansett.',
@@ -6805,26 +6963,211 @@ const JUMP = (function(){
     'Nei. Simpsons paradoks er at en sammenheng snur når man deler opp i grupper.']},
 
 /* ---- les tallet: JASP-utskrifter ---- */
-{t:'Les tallet', n:103, q:'JASP viser <code>Mean difference = −7.528</code> og <code>SE difference = 1.035</code> for en uavhengig t-test. Omtrent hva er t?',
+{t:'Les tallet', n:103, k:["D2", "C7"], ch:9, q:'JASP viser <code>Mean difference = −7.528</code> og <code>SE difference = 1.035</code> for en uavhengig t-test. Omtrent hva er t?',
  o:['−7.27','−7.53','7.27','−0.14'], c:0,
  f:['Riktig. t = forskjell / SE = −7.528 / 1.035 ≈ <b>−7.27</b>. Fortegnet sier bare hvilken gruppe som er trukket fra hvilken.',
     'Nei. −7.528 er selve forskjellen. Du må dele på standardfeilen.',
     'Nei. Riktig tallverdi, men fortegnet følger forskjellen, som er negativ.',
     'Nei. Det er SE delt på forskjellen — snudd feil vei.']},
 
-{t:'Les tallet', n:104, q:'JASP-tabellen for en enveis ANOVA har <code>Tidligere_behandling: SS = 399.5, df = 2</code> og <code>Residuals: SS = 942.1, df = 72</code>. Omtrent hva er η²?',
+{t:'Les tallet', n:104, k:["D2", "B7"], ch:11, q:'JASP-tabellen for en enveis ANOVA har <code>Tidligere_behandling: SS = 399.5, df = 2</code> og <code>Residuals: SS = 942.1, df = 72</code>. Omtrent hva er η²?',
  o:['.30','.42','.70','15.27'], c:0,
  f:['Riktig. SS total = 399.5 + 942.1 ≈ 1342, og η² = 399.5 / 1342 ≈ <b>.30</b>. JASP viser ikke totalen — den legger du sammen selv.',
     'Nei. 399.5 / 942.1 deler på residualen, ikke på totalen.',
     'Nei. .70 er andelen som ligger i residualen.',
     'Nei. 15.27 er F. η² er en andel mellom 0 og 1.']},
 
-{t:'Hva betyr det', n:105, q:'En kjønnsfordeling på 44/31 (N = 75) testes mot 50/50 og gir <code>χ²(1, N = 75) = 2.25, p = .13</code>. Hva er riktig konklusjon?',
+{t:'Hva betyr det', n:105, k:["C11", "B4"], ch:16, q:'En kjønnsfordeling på 44/31 (N = 75) testes mot 50/50 og gir <code>χ²(1, N = 75) = 2.25, p = .13</code>. Hva er riktig konklusjon?',
  o:['Fordelingen avviker ikke signifikant fra 50/50','Kjønnsfordelingen er 50/50','Det er signifikant flere av det ene kjønnet','p er for høy, så χ² er regnet feil'], c:0,
  f:['Riktig. p = .13 er over .05, så vi kan ikke forkaste H₀. Skjevheten er ikke større enn det tilfeldig trekning ofte gir med 75 personer.',
     'Nei. Et ikke-signifikant resultat beviser ikke H₀. Fordelingen er 44/31 — vi kan bare ikke skille det fra tilfeldigheter.',
     'Nei. Forskjellen er ikke signifikant.',
-    'Nei. Regnestykket stemmer: (44 − 37,5)² / 37,5 + (31 − 37,5)² / 37,5 ≈ 2.25.']}
+    'Nei. Regnestykket stemmer: (44 − 37,5)² / 37,5 + (31 − 37,5)² / 37,5 ≈ 2.25.']},
+
+/* ---- nye oppgaver: originale, merket med begrep (k) og kapittel i Field (ch) ---- */
+{t:"Design og årsak", n:106, k:["A1"], ch:1, q:"En sykepleier ser at pasienter som får mye besøk, ser ut til å komme seg fortere etter en operasjon. Hun finner en teori om at sosial støtte demper kroppens stressrespons, og skriver: «Pasienter som får besøk minst tre dager i uka, vil ha kortere liggetid enn pasienter som får sjeldnere besøk.» Hva er den siste setningen?",
+ o:["En hypotese: en testbar prediksjon utledet fra teorien", "Den innledende observasjonen som setter i gang forskningsprosessen", "En teori: en generell forklaring på hvorfor sosial støtte virker", "En konklusjon om at besøk forkorter liggetiden"], c:0,
+ f:["Riktig. Setningen sier hva hun venter å finne i data, og den kan slå feil: liggetiden kan bli den samme i begge gruppene. En slik avgrenset og testbar forventning er en hypotese. Hun har utledet den fra teorien om støtte og stress.", "Nei. Observasjonen var det hun la merke til på avdelingen, før hun fant teorien. Prosessen går fra observasjon via teori til hypotese, og setningen kommer etter teorien.", "Nei. Teorien er den bredere forklaringen hun leste om: at sosial støtte demper stressresponsen. Setningen er en konkret forventning som følger av teorien. Her er teori og hypotese byttet om.", "Nei. Hun har ikke samlet inn data ennå. Setningen er skrevet som en forventning («vil ha»), ikke som et resultat. Først etter analysen kan hun si om forventningen fikk støtte."]},
+
+{t:"Design og årsak", n:107, k:["A1"], ch:1, q:"Ifølge Popper må en vitenskapelig påstand kunne motbevises av data. Hvilken påstand bryter med dette kravet?",
+ o:["«Folk med høy selvfølelse opptrer selvsikkert, og når de virker usikre, er det fordi de skjuler den høye selvfølelsen sin.»", "«Barn som har sett en voldelig tegnefilm, slår oftere i lek rett etterpå enn barn som har sett en rolig film.»", "«Kaffe bedrer korttidshukommelsen. Ingen studie har vist dette ennå.»", "«Studenter som sover minst sju timer natten før eksamen, får i snitt bedre karakter enn studenter som sover mindre.»"], c:0,
+ f:["Riktig. Påstanden forklarer både selvsikker og usikker oppførsel med høy selvfølelse. Da finnes det ingen observasjon som kan tale mot den. En påstand som passer med alle mulige utfall, kan ikke falsifiseres.", "Nei. Slag i lek kan observeres og telles, og påstanden faller hvis barna som så den voldelige filmen, ikke slår oftere. Den er testbar.", "Nei. At noe ikke er undersøkt ennå, gjør det ikke umulig å teste. Påstanden sier hva som skal skje, og en studie kan vise at det ikke skjer. «Ikke bevist» er noe annet enn «ikke falsifiserbar».", "Nei. Her finnes et utfall som ville motbevist påstanden: at de som sov mindre, fikk like gode eller bedre karakterer. Påstanden er falsifiserbar."]},
+
+{t:"Design og årsak", n:108, k:["A1"], ch:1, q:"Studenter trekkes tilfeldig til å lese en fagtekst på papir eller på skjerm. Etterpå svarer alle på 20 spørsmål om innholdet, og forskeren teller antall riktige. Romtemperaturen var 21 °C for alle. Hva er den avhengige variabelen?",
+ o:["Antall riktige svar på de 20 spørsmålene", "Studentenes alder, som kan moderere effekten", "Romtemperaturen", "Om teksten ble lest på papir eller på skjerm"], c:0,
+ f:["Riktig. Den avhengige variabelen er utfallet forskeren måler for å se om manipulasjonen gjorde en forskjell. Her er det antall riktige svar.", "Nei. Alder er en bakgrunnsvariabel som ikke inngår i hypotesen. En moderator ville endret hvor sterk effekten av papir mot skjerm er, men den er uansett ikke utfallet.", "Nei. Temperaturen ble holdt lik for alle, så den er kontrollert, ikke målt som utfall. At noe er registrert, gjør det ikke til den avhengige variabelen.", "Nei. Papir eller skjerm er det forskeren styrer med loddtrekningen. Det er den uavhengige variabelen. Rollene er byttet om."]},
+
+{t:"Måling", n:109, k:["A1"], ch:1, q:"En forsker vil studere ensomhet blant eldre. Hun bestemmer at ensomhet skal måles som antall dager i løpet av to uker der personen ikke har snakket med noen, verken ansikt til ansikt eller på telefon. Hva har hun gjort?",
+ o:["Kontrollert for en konfunderende variabel i designet", "Bestemt målenivået til variabelen ensomhet", "Operasjonalisert ensomhet, altså gjort begrepet målbart", "Sikret at utvalget av eldre blir representativt"], c:2,
+ f:["Nei. En konfunder er en tredjevariabel som henger sammen med både årsak og utfall. Her er ingen andre variabler nevnt. Hun har bare bestemt hvordan ett begrep skal måles.", "Nei. Målenivået følger av måten variabelen blir målt på. Antall dager er en telling. Men det hun har gjort, er å bestemme <em>hva</em> som skal telles, og det er operasjonalisering.", "Riktig. Ensomhet kan ikke observeres direkte. Hun har valgt en konkret prosedyre som gir et tall, og det er operasjonalisering. Om dager uten samtale faktisk fanger ensomhet, er et spørsmål om validitet.", "Nei. Utvalget handler om <em>hvem</em> som blir målt. Beskrivelsen handler om <em>hvordan</em> ensomhet blir målt."]},
+
+{t:"Målenivå", n:110, k:["A2"], ch:1, q:"En søvnskala har 8 ledd. Hvert ledd besvares fra 0 («aldri») til 4 («nesten hver natt»), og leddene summeres til en skår fra 0 til 32. Hva er mest presist om målenivået?",
+ o:["Forholdstall, fordi skalaen har et nullpunkt på 0", "Nominal, fordi hvert svar er en egen kategori", "Leddene er ordinale, men summen behandles vanligvis som tilnærmet intervall", "Ordinal, så summen kan verken beskrives med gjennomsnitt eller brukes i en t-test"], c:2,
+ f:["Nei. Nullpunktet er satt av den som lagde skalaen, og avstandene mellom trinnene er ikke kjent. Da gir det ingen mening å si at 16 er «dobbelt så mye» søvnplager som 8, og det er det forholdstall krever.", "Nei. Svarene har en klar rekkefølge, fra «aldri» til «nesten hver natt». Nominal betyr kategorier uten rekkefølge.", "Riktig. Vi vet at «ofte» er mer enn «sjelden», men ikke at trinnene er like store. Derfor er hvert ledd strengt tatt ordinalt. Når mange ledd summeres, behandles skåren som tilnærmet intervall. Det er en konvensjon, ikke en matematisk garanti, og summen blir likevel ikke forholdstall.", "Nei. Det er for strengt. Summen av mange ledd analyseres nesten alltid med gjennomsnitt, t-test og ANOVA. Mange sjekker i tillegg at en rangbasert metode gir samme svar."]},
+
+{t:"Målenivå", n:111, k:["A2"], ch:1, q:"Fødselsåret er registrert for alle deltagerne i et datasett, for eksempel 1987, 1999 og 2003. Hvilket målenivå har variabelen?",
+ o:["Ordinal", "Nominal", "Intervall", "Forholdstall"], c:2,
+ f:["Nei. Ordinal betyr at bare rekkefølgen er kjent. Her er også avstandene kjent og like store: ett år er ett år, uansett hvor på skalaen.", "Nei. Årstallene har både rekkefølge og like avstander. Nominal ville betydd at tallene bare var merkelapper, som draktnumre.", "Riktig. Avstandene er like: fra 1987 til 1988 er like langt som fra 2002 til 2003. Men år 0 er et valgt startpunkt i kalenderen, ikke et punkt uten tid. Derfor gir det ingen mening å si at år 2000 er «dobbelt så mye» som år 1000.", "Nei. Alder er forholdstall, fordi 0 år betyr null levd tid, og 40 år er dobbelt så lenge som 20. Fødselsår ser ut som en mengde, men nullpunktet i kalenderen er bare en avtale."]},
+
+{t:"Design og årsak", n:112, k:["A3"], ch:1, q:"30 deltagere skriver av en tekst i fem minutter, først på et vanlig tastatur og deretter på et nytt, delt tastatur (to ulike tekster av samme vanskegrad). Alle gjør det i denne rekkefølgen, og de skriver raskere på det nye tastaturet. Hvilken endring av designet fjerner den mest nærliggende alternative forklaringen?",
+ o:["Senke α fra .05 til .01 for å unngå et falskt funn", "Øke til 150 deltagere, slik at tilfeldige forskjeller jevner seg ut", "Motbalansere: halvparten starter med det nye tastaturet", "Bruke en ensidig test, siden retningen var ventet"], c:2,
+ f:["Nei. Lavere α beskytter mot tilfeldige falske funn. En øvingseffekt er ikke tilfeldig. Den ville gitt den samme forskjellen hver gang studien ble gjentatt.", "Nei. Flere deltagere gir et mer presist anslag, men øvingseffekten følger med i hver eneste deltager. En systematisk skjevhet blir ikke mindre av at n øker.", "Riktig. Når alle tar det nye tastaturet sist, kan de være raskere bare fordi de har varmet opp og blitt vant til oppgaven. Det er en øvingseffekt. Med motbalansering rammer rekkefølgen begge tastaturene likt, og den kan ikke lenger forklare forskjellen.", "Nei. En ensidig test flytter bare grensa for signifikans. Problemet er at forskjellen kan skyldes rekkefølgen, og det løser ingen test."]},
+
+{t:"Gjentatte målinger", n:113, k:["A3"], ch:14, q:"Lesehastighet måles under to typer lys, gult og hvitt, hos de samme 24 deltagerne. Halvparten leser først i gult lys, den andre halvparten først i hvitt. Hva oppnår forskeren med dette?",
+ o:["Øving og tretthet forsvinner, fordi de nuller hverandre ut", "Dataene kan analyseres med en uavhengig t-test, siden gruppene er like store", "Forutsetningen om sfærisitet for ANOVA blir oppfylt", "Rekkefølgeeffektene rammer begge lystypene likt, men de finnes fortsatt"], c:3,
+ f:["Nei. Deltagerne blir fortsatt øvet og slitne underveis. Effektene nuller ikke hverandre ut, de havner bare like mye i begge betingelsene.", "Nei. Det er de samme personene i begge betingelsene, så målingene henger sammen. Rekkefølgen er et designgrep, og den endrer ikke at dataene er parede.", "Nei. Sfærisitet er en forutsetning for ANOVA med gjentatte målinger, og den har bare betydning med tre eller flere betingelser. Motbalansering er et designgrep mot rekkefølgeeffekter, ikke en løsning på et forutsetningsbrudd.", "Riktig. Motbalansering fjerner ikke øving og tretthet. Den fordeler dem jevnt, slik at de ikke lenger følger én bestemt betingelse og ikke kan forklare forskjellen. Analysen er fortsatt paret, fordi hver deltager leser i begge lystypene."]},
+
+{t:"Design og årsak", n:114, k:["A3"], ch:1, q:"Finmotorikken til 40 førsteklassinger testes i september. Gjennom skoleåret får de et ukentlig tegneopplegg, og i juni er skårene klart bedre. Det finnes ingen kontrollgruppe. Hvilken alternativ forklaring er sterkest?",
+ o:["Modning: barna får bedre finmotorikk i løpet av et år uansett", "Lav økologisk validitet: testen ligner lite på hverdagen", "Historie: en enkeltstående hendelse mellom de to målingene", "Kravkarakteristikk: barna gjettet hva forskeren ville se"], c:0,
+ f:["Riktig. Barn i denne alderen utvikler finmotorikken raskt, med eller uten tegneopplegg. Uten en kontrollgruppe som modnes like mye, kan ikke fremgangen skilles fra vanlig utvikling.", "Nei. Økologisk validitet handler om hvor godt testsituasjonen ligner hverdagen. Det angår hvor langt funnet kan generaliseres, ikke om tegneopplegget ga fremgangen.", "Nei. Historie er en ytre hendelse som rammer alle mellom målingene, for eksempel en ny læreplan. Ingen slik hendelse er nevnt, og vanlig utvikling gjennom et helt år er en sterkere forklaring.", "Nei. Kravkarakteristikk betyr at deltagerne endrer atferd fordi de skjønner hva studien er ute etter. Det er lite trolig at seksåringer gjetter hypotesen og derfor tegner mer presist."]},
+
+{t:"Design og årsak", n:115, k:["A3"], ch:1, q:"Deltagere som får vite at de har drukket en «fokusdrikk», løser flere oppgaver enn deltagere som har fått vann. Forsøkslederen vet hvem som fikk hva, og hun gir instruksjonene muntlig. Hvilket tiltak styrker studien mest?",
+ o:["En pilotstudie for å fastsette α", "En lik placebodrikk, og dobbeltblinding av deltagere og forsøksleder", "Dobbelt så mange deltagere i hver gruppe", "La hver deltager prøve begge drikkene, alltid i samme rekkefølge"], c:1,
+ f:["Nei. En pilotstudie brukes til å prøve ut prosedyren, for eksempel instruksjoner og tidsbruk. α settes på forhånd etter konvensjon og har ingenting med forventningseffekter å gjøre.", "Riktig. Her kan forventninger forklare resultatet. Deltagerne vet at de har fått noe som skal virke, og forsøkslederen kan ubevisst oppmuntre dem. Med en lik placebodrikk og dobbeltblinding forsvinner begge kildene, så bare innholdet i drikken skiller gruppene.", "Nei. Flere deltagere gir mer presise tall, men forventningseffekten er systematisk og følger med i hver eneste deltager. Den blir ikke borte av at n øker.", "Nei. Uten motbalansering blir øving og tretthet koblet til den drikken som kommer sist. Og den som har smakt begge, gjennomskuer lett hva studien handler om."]},
+
+{t:"Les utskriften", n:116, k:["A3"], ch:9, x:"<div class=\"scroller\"><table class=\"jasp\"><caption>Independent Samples T-Test</caption><thead><tr><th></th><th>t</th><th>df</th><th>p</th><th>Cohen's d</th></tr></thead><tbody><tr><td>Alder</td><td>2.20</td><td>118</td><td>.030</td><td>0.40</td></tr><tr><td>Søvn_før</td><td>0.41</td><td>118</td><td>.683</td><td>0.07</td></tr><tr><td>Stress_før</td><td>−1.12</td><td>118</td><td>.265</td><td>−0.20</td></tr><tr><td>Utdanning_år</td><td>0.88</td><td>118</td><td>.381</td><td>0.16</td></tr><tr><td>Koffein</td><td>−0.25</td><td>118</td><td>.803</td><td>−0.05</td></tr></tbody><tfoot><tr><td colspan=\"5\">Note. Student's t-test. Gruppe: søvnapp (n = 60) mot venteliste (n = 60), målt før oppstart.</td></tr></tfoot></table></div>", q:"I et randomisert forsøk får 60 deltagere en søvnapp, og 60 står på venteliste. Før oppstart sammenlignes gruppene på fem bakgrunnsvariabler (tabellen). Hva er den beste tolkningen av raden for alder?",
+ o:["Hovedanalysen må forkastes, fordi gruppene ikke var like ved start", "Tilfeldig ubalanse, som ventes av og til. Alder kan tas med som kovariat", "Randomiseringen mislyktes, så studien er nå et kvasieksperiment", "Med 120 deltagere skal randomisering gi like grupper, så prosedyren må ha feilet"], c:1,
+ f:["Nei. En ubalanse på én variabel gjør ikke forsøket ubrukelig. Den kan håndteres ved å ta alder med som kovariat.", "Riktig. Loddtrekningen var ikke feil. Når den er gjort riktig, er alle forskjeller ved start tilfeldige. Hver test gir da et signifikant utslag i omtrent 5 % av tilfellene, og med fem tester er ett slikt utslag ikke oppsiktsvekkende. Forskjellen finnes likevel i dette utvalget (d = 0.40), så det er fornuftig å justere for alder, helst planlagt på forhånd.", "Nei. Det som gjør et forsøk til et ekte eksperiment, er prosedyren: loddtrekningen. Den er den samme uansett hvordan gruppene tilfeldigvis ble. Et kvasieksperiment mangler loddtrekning.", "Nei. Randomisering gir like grupper <em>i gjennomsnitt</em> over mange tenkte loddtrekninger, ikke perfekt balanse hver gang. Med stor N blir ubalansen mindre, men den forsvinner aldri helt."]},
+
+{t:"t-test", n:117, k:["A3", "C7"], ch:9, q:"20 personer måler hvilepulsen sin etter to ulike pusteøvelser, i motbalansert rekkefølge. En paret t-test gir p = .01. Hadde 20 andre personer i hver gruppe gitt nøyaktig samme gjennomsnittsforskjell og samme SD per betingelse, ville en uavhengig t-test gitt p = .30. Hvorfor er den parede testen så mye sterkere?",
+ o:["Den parede testen har 40 observasjoner, mens hver uavhengig gruppe bare har 20", "Stabile forskjeller mellom personene trekkes ut av feilleddet, så SE blir mindre", "Den parede testen bruker en mildere α, fordi målingene er avhengige", "Differanseskårer er alltid normalfordelte, og det gjør testen mer presis"], c:1,
+ f:["Nei. Den parede testen har 20 differanser og df = 19. Den uavhengige ville hatt 40 personer og df = 38, altså flere frihetsgrader. Gevinsten kommer fra mindre støy, ikke fra flere observasjoner.", "Riktig. Hvilepuls varierer mye mellom personer (noen har lav puls, andre høy), men lite hos samme person. I den parede testen sammenlignes hver person med seg selv, så variasjonen mellom personer forsvinner fra støyen. Det forutsetter at de to målingene korrelerer, og det gjør de nesten alltid når de samme personene måles.", "Nei. α er .05 i begge testene. Det er SE i nevneren som blir mindre, ikke grensa som flyttes.", "Nei. Differanser er ikke alltid normalfordelte, og normalitet gjør uansett ikke en test mer presis. Det som teller, er at variasjonen mellom personer er trukket ut."]},
+
+{t:"Gjentatte målinger", n:118, k:["A3"], ch:14, q:"En forsker vil sammenligne to måter å lære elever å regne med brøk på, metode A og metode B. Hun vurderer å la de samme elevene lære med begge metodene, i motbalansert rekkefølge. Passer et innen-design her?",
+ o:["Ja, så lenge det går minst en uke mellom de to periodene", "Nei. Det de lærer med første metode, kan de ikke glemme før den andre", "Nei. Et innen-design med bare to betingelser gir for lite styrke", "Ja. Motbalansering fjerner all overføring mellom betingelsene"], c:1,
+ f:["Nei. En pause kan dempe tretthet, men den sletter ikke det elevene har lært. Ferdigheten er der fortsatt etter en uke.", "Riktig. Læring er en varig endring. Elevene som lærte metode A først, møter metode B med kunnskapen de allerede har. Når overføringen ikke kan reverseres, hjelper ikke motbalansering, og to uavhengige grupper er bedre.", "Nei. To betingelser er nok: en paret t-test sammenligner nettopp to betingelser hos de samme personene. Et innen-design gir dessuten vanligvis mer styrke, ikke mindre.", "Nei. Motbalansering fordeler rekkefølgeeffekter jevnt når de er like store begge veier. Når den første betingelsen endrer personen for godt, blir overføringen skjev og blandes inn i sammenligningen."]},
+
+{t:"Design og årsak", n:119, k:["A3"], ch:1, q:"To parallelle klasser på en videregående skole skal sammenlignes. Rektor bestemmer at klassen med den mest erfarne læreren skal prøve et nytt digitalt læreverk, mens den andre klassen fortsetter som før. Begge klassene tar samme prøve før og etter. Hva slags design er dette?",
+ o:["Et ekte eksperiment, fordi det finnes en kontrollgruppe og en førmåling", "Et rent innen-design, fordi elevene måles både før og etter", "Et korrelasjonsdesign, fordi ingen variabel ble manipulert", "Et kvasieksperiment, fordi klassene ikke ble trukket tilfeldig til betingelsene"], c:3,
+ f:["Nei. Kontrollgruppe og førmåling er nyttig, men det som skiller et ekte eksperiment fra et kvasieksperiment, er tilfeldig fordeling til betingelsene. Den mangler her.", "Nei. Tid er en innen-faktor, men sammenligningen som betyr noe, går mellom klassene. Hvordan klassene fikk hver sin betingelse, avgjør hva designet tåler av årsaksslutninger.", "Nei. Læreverket <em>ble</em> innført i den ene klassen og ikke i den andre, så noe ble manipulert. Det som mangler, er loddtrekningen.", "Riktig. Læreverket ble gitt til en ferdig gruppe etter rektors valg, ikke ved loddtrekning. Da kan klassene skille seg på mye annet, her også på lærerens erfaring. Førmålingen hjelper, men den gjør ikke designet til et ekte eksperiment."]},
+
+{t:"Design og årsak", n:120, k:["A4"], ch:1, q:"Alle pasientene på fysioterapiklinikk A får et nytt hjemmeøvingsprogram, mens klinikk B fortsetter som før. Pasientene på A er i snitt 15 år yngre enn på B. Etter åtte uker har pasientene på A klart bedre bevegelighet. Hvordan beskrives alderen best i denne studien?",
+ o:["Som en mediator", "Som den avhengige variabelen", "Som en kontrollvariabel", "Som en konfunderende variabel"], c:3,
+ f:["Nei. En mediator ligger mellom årsak og utfall: programmet påvirker mediatoren, som påvirker bevegeligheten. Programmet kan ikke endre hvor gamle pasientene er.", "Nei. Den avhengige variabelen er bevegeligheten etter åtte uker, altså det som måles som utfall.", "Nei. En kontrollvariabel er noe forskeren holder konstant eller justerer for. Her er alder verken holdt lik eller justert for. Den varierer systematisk sammen med programmet.", "Riktig. Alder følger klinikken og dermed programmet, og yngre pasienter kommer seg ofte raskere. Alder er altså en alternativ forklaring på forskjellen. Det er det som gjør den til en konfunder."]},
+
+{t:"Korrelasjon og regresjon", n:121, k:["A4"], ch:7, q:"Blant pasienter med ryggsmerter er antall smertestillende tabletter per uke positivt korrelert med hvor sterk smerte de rapporterer (r = .55). Hvilken forklaring er mest nærliggende?",
+ o:["Sammenhengen er spuriøs, siden dataene bare er korrelasjoner", "Omvendt retning: de som har mest smerte, tar flest tabletter", "r = .55 er en for svak sammenheng til å bety noe", "Tablettene forårsaker smerten"], c:1,
+ f:["Nei. «Spuriøs» betyr at sammenhengen bare skyldes en tredjevariabel. Det er like bastant som å si at tablettene gir smerte. Korrelasjonsdata kan ikke slå fast noen av delene.", "Riktig. En korrelasjon sier ikke hvilken vei en eventuell årsak går. Her er det langt mer rimelig at smerten styrer tablettbruken enn omvendt. Derfor kan korrelasjonsdata aldri alene vise retning.", "Nei. r = .55 er en sterk korrelasjon etter Cohens grenser (.50 og oppover). Problemet er ikke styrken, men at korrelasjonen ikke sier noe om retning.", "Nei. Det er å lese korrelasjonen som årsak i én bestemt retning. Dataene passer like godt med at smerten styrer tablettbruken, og det er en mye mer nærliggende forklaring."]},
+
+{t:"Måling", n:122, k:["A5"], ch:1, q:"Et skrittellerarmbånd viser nesten samme antall skritt når du går den samme ruten to dager på rad. Sammenlignet med en videotelling viser armbåndet likevel hver gang rundt 15 % for lite. Hvordan beskrives armbåndet best?",
+ o:["Valid, men ikke reliabelt", "Reliabelt, men ikke valid", "Både reliabelt og valid", "Verken reliabelt eller valid"], c:1,
+ f:["Nei. Retningen er snudd. Armbåndet gir det samme tallet hver gang (reliabelt), men det er feil tall (ikke valid). En måling som ikke er reliabel, kan heller ikke være valid.", "Riktig. Målingene er stabile fra gang til gang, og det er reliabilitet. Men de bommer systematisk på det sanne antallet, så armbåndet måler ikke det det skal. En måling kan være feil hver gang, på samme måte.", "Nei. Et fast avvik på 15 % fra videotellingen viser at armbåndet ikke treffer det sanne antallet skritt.", "Nei. At tallet nesten ikke endrer seg mellom to like turer, viser at målingen er stabil. Det er nettopp reliabilitet."]},
+
+{t:"Måling", n:123, k:["A5"], ch:1, q:"Søkerne til en lærerutdanning tar en ny skriftlig opptaksprøve. Tre år senere korrelerer prøveskårene r = .40 med praksisveiledernes vurdering av de samme studentene. Hva slags evidens er dette?",
+ o:["Ytre validitet", "Prediktiv kriterievaliditet", "Indre konsistens", "Test–retest-reliabilitet"], c:1,
+ f:["Nei. Ytre validitet er en egenskap ved en studie: om funnet gjelder for andre personer og situasjoner. Spørsmålet her er om prøven måler det den skal.", "Riktig. Prøven sammenlignes med et kriterium den skal forutsi, og kriteriet er målt senere. Det er prediktiv validitet. Var kriteriet målt samtidig, ville det vært samtidig validitet.", "Nei. Indre konsistens handler om hvor godt leddene i <em>samme</em> prøve henger sammen, for eksempel målt med Cronbachs α. Her korreleres prøven med et helt annet mål.", "Nei. Test–retest betyr at den <em>samme</em> prøven gis to ganger. Her er det to ulike mål: prøven og veiledernes vurdering."]},
+
+{t:"Måling", n:124, k:["A5"], ch:1, q:"En ny skala for eksamensangst har seks ledd og α = .86. I samme økt korrelerer skalaen r = .68 med et etablert mål på eksamensangst. Hva viser de to tallene?",
+ o:["Begge tallene viser at studien har høy indre validitet", "Korrelasjonen på .68 viser test–retest-reliabilitet", "α = .86 viser at skalaen faktisk måler eksamensangst", "α viser indre konsistens, r viser samtidig kriterievaliditet"], c:3,
+ f:["Nei. Indre validitet gjelder årsaksslutninger i et design. Her er spørsmålet om et instrument er reliabelt og valid.", "Nei. Test–retest krever at den samme skalaen gis to ganger. Her er det to ulike skalaer, målt i samme økt.", "Nei. Seks ledd om noe helt annet, for eksempel søvn, kunne gitt like høy α. Indre konsistens viser at leddene samvarierer, ikke at de treffer riktig begrep.", "Riktig. α sier at de seks leddene henger godt sammen, men ikke <em>hva</em> de måler. At skalaen følger et etablert mål på det samme begrepet, målt samtidig, er evidens for at den faktisk fanger eksamensangst."]},
+
+{t:"Korrelasjon og regresjon", n:125, k:["A6"], ch:7, q:"Et firma ansetter bare søkere som skårer over 70 på en logikktest. Blant de ansatte er korrelasjonen mellom testskår og arbeidsprestasjon r = .12. Hva er mest sannsynlig?",
+ o:["Sammenhengen blant alle søkerne er sterkere, fordi spennet i testskårene er kuttet", "Sammenhengen er sterkere blant de ansatte enn blant søkerne, fordi de ansatte er mer like", "r påvirkes ikke av hvem som er med i utvalget", "Testen er verdiløs og bør erstattes"], c:0,
+ f:["Riktig. Når alle under 70 er sortert bort, varierer testskåren lite blant de ansatte. Med lite variasjon i prediktoren presses r mot null. Det kalles områdebegrensning. Blant alle søkerne ville korrelasjonen trolig vært tydelig høyere.", "Nei. Det er omvendt. Når folk er like på prediktoren, er det lite variasjon som kan henge sammen med noe. Homogene grupper gir svakere r.", "Nei. r avhenger av hvor mye variasjon det er i utvalget. Den samme sammenhengen kan gi høy r i et bredt utvalg og lav r i et smalt.", "Nei. r = .12 er målt i en gruppe der testen allerede har gjort jobben sin. Det sier lite om hvor godt testen skiller blant alle som søker."]},
+
+{t:"Korrelasjon og regresjon", n:126, k:["A6", "A5"], ch:7, q:"To korte skalaer, én for perfeksjonisme og én for utbrenthet, har begge reliabilitet rundt .50. De korrelerer r = .25. Hva gjelder trolig for sammenhengen mellom selve begrepene?",
+ o:["Den er svakere enn .25, fordi målefeil skaper tilfeldige sammenhenger", "Den er omtrent .13, fordi r må ganges med reliabiliteten", "Den er sterkere enn .25, fordi tilfeldig målefeil demper korrelasjoner", "Den er nøyaktig .25, fordi tilfeldig målefeil jevner seg ut"], c:2,
+ f:["Nei. Tilfeldig støy i to målinger samvarierer ikke. Den kan ikke lage en systematisk sammenheng, bare skjule en.", "Nei. Å gange med reliabiliteten går feil vei, for den observerte r er allerede dempet. Korreksjonen for attenuering deler på (roten av) reliabilitetene, og da blir anslaget høyere, ikke lavere.", "Riktig. Tilfeldig målefeil er støy som ikke henger sammen med noe. Den øker variasjonen i hver skala uten å øke samvariasjonen, så den observerte r blir lavere enn sammenhengen mellom begrepene. Det kalles attenuering: lav reliabilitet setter et tak for hvor høy r kan bli.", "Nei. Tilfeldig feil jevner seg ut i <em>gjennomsnittet</em>, men ikke i en korrelasjon. Der trekker den r systematisk mot null."]},
+
+{t:"Design og årsak", n:127, k:["A6", "A3"], ch:7, q:"Elevene med de 15 % laveste skårene på en regneprøve i september får ekstra oppfølging. I januar skårer de klart bedre på en tilsvarende prøve. Hvilket tillegg til designet skiller best effekten av oppfølgingen fra regresjon mot gjennomsnittet?",
+ o:["Flere elever i oppfølgingsgruppen, slik at anslaget blir sikrere", "En sammenligning med fremgangen til hele klassen fra september til januar", "En kontrollgruppe som også var blant de 15 % laveste, men uten oppfølging", "En ensidig test, siden fremgang var den ventede retningen"], c:2,
+ f:["Nei. Regresjon mot gjennomsnittet er systematisk og rammer alle som er valgt ut på ekstreme skårer. Flere elever gir bare et mer presist anslag på den samme blandingen.", "Nei. Hele klassen er ikke valgt ut for å ha skåret lavt, så den har ikke den samme regresjonen oppover. Sammenligningen ville fortsatt blandet effekt og regresjon mot gjennomsnittet.", "Riktig. Elever som er valgt ut fordi de skåret ekstremt lavt, vil i snitt skåre nærmere gjennomsnittet neste gang, med eller uten hjelp, fordi en del av den lave skåren var dagsform. En kontrollgruppe valgt på samme kriterium, helst ved loddtrekning blant de svakeste, får den samme regresjonen. Forskjellen mellom gruppene er da effekten av oppfølgingen.", "Nei. Testen ville bare vist at fremgangen er større enn null. Det kan regresjon mot gjennomsnittet gi helt uten noen effekt."]},
+
+{t:"Trusler", n:128, k:["A7"], ch:1, q:"En treningsapp spør brukerne sine: «Har du blitt sprekere etter at du begynte med appen?» 9 000 svarer, og 86 % svarer ja. Hva er hovedproblemet med å bruke tallet som mål på hvor godt appen virker?",
+ o:["For få har svart til at tallet kan gjelde alle brukerne", "Prosent kan ikke brukes når svaret er ja eller nei", "Konfidensintervallet rundt 86 % blir for bredt til å si noe", "Selvseleksjon: de som svarer, skiller seg fra dem som lar være"], c:3,
+ f:["Nei. 9 000 svar er mange. Problemet er ikke hvor <em>mange</em> som svarte, men <em>hvem</em>.", "Nei. Andeler er nettopp den naturlige måten å beskrive en nominal variabel på. Antall og prosent er lov på alle målenivåer.", "Nei. Med 9 000 svar blir intervallet svært smalt, under ett prosentpoeng til hver side. Et smalt intervall rundt et skjevt anslag er like skjevt.", "Riktig. De som fortsatt bruker appen og gidder å svare, er trolig de mest fornøyde. De som sluttet fordi den ikke hjalp, er ikke med. Et stort N fjerner ikke en slik skjevhet: med 9 000 svar blir skjevheten bare anslått veldig presist. Flere deltagere reparerer ikke feil deltagere."]},
+
+{t:"Design og årsak", n:129, k:["A7", "A3"], ch:1, q:"En forsker trekker 400 personer tilfeldig fra folkeregisteret. Deretter trekker hun lodd om hvem som får et påminnelsesbrev med bilde, og hvem som får et uten bilde. Hva gjør hver av de to loddtrekningene?",
+ o:["Begge gjør det samme, så én av dem er overflødig", "Den første styrker generalisering, den andre gjør gruppene sammenlignbare", "Den første gjør gruppene sammenlignbare, den andre styrker generalisering", "Den andre er bare nødvendig når utvalget er så stort som 400"], c:1,
+ f:["Nei. De løser hvert sitt problem. Mange eksperimenter har tilfeldig fordeling uten tilfeldig utvalg (studenter på campus), og mange spørreundersøkelser har tilfeldig utvalg uten noen fordeling.", "Riktig. Tilfeldig <em>utvalg</em> handler om hvem som er med, og det gjør det mulig å generalisere til befolkningen (ytre validitet). Tilfeldig <em>fordeling</em> (randomisering) handler om hvem som får hva. Den fordeler alt annet likt mellom gruppene i gjennomsnitt, så forskjellen kan tolkes som en effekt av bildet (indre validitet).", "Nei. Rollene er byttet om. Et representativt utvalg sier ingenting om at gruppene blir like, og loddtrekning innad i et skjevt utvalg gjør ikke utvalget representativt.", "Nei. Uten loddtrekning kan de som får bildet, skille seg fra de andre på andre måter. Det gjelder i store og små utvalg, ikke bare når n er 400."]},
+
+{t:"Sannsynlighet", n:130, k:["B1"], ch:2, q:"I en kommune har 30 % av husstandene hund. Blant husstandene med hund går 60 % tur med hunden hver dag. Hvor stor andel av <em>alle</em> husstandene har hund og går tur hver dag?",
+ o:["18 %", "60 %", "30 %", "90 %"], c:0,
+ f:["Riktig. Du tar 60 % av de 30 %: 0,30 · 0,60 = 0,18. En betinget andel må ganges med andelen den gjelder for.", "Nei. 60 % gjelder bare husstandene med hund. Det er en betinget andel, og den kan ikke leses som en andel av alle husstandene.", "Nei. 30 % er andelen med hund. Bare 60 % av dem går tur hver dag, så andelen med begge deler må være mindre.", "Nei. Her er andelene lagt sammen. «Både hund og tur» kan aldri være mer enn andelen med hund, så svaret må være under 30 %."]},
+
+{t:"Sannsynlighet", n:131, k:["B1", "B5"], ch:2, q:"Du ringer tre tilfeldig valgte personer for å rekruttere deltagere. Sjansen for at en gitt person takker ja, er 0,3, og svarene påvirker ikke hverandre. Hvor sannsynlig er det at minst én av de tre takker ja?",
+ o:["3 · 0,3 = 0,90", "0,7³ ≈ 0,34", "0,3³ ≈ 0,03", "1 − 0,7³ ≈ 0,66"], c:3,
+ f:["Nei. Å gange sannsynligheten med antall forsøk teller utfallene der flere sier ja, mer enn én gang. Med fire samtaler ville metoden gitt 1,2, og en sannsynlighet kan ikke være over 1.", "Nei. 0,7³ er sannsynligheten for at <em>ingen</em> sier ja. Svaret er det motsatte: 1 − 0,343.", "Nei. 0,3³ er sannsynligheten for at <em>alle tre</em> sier ja. Det er noe annet enn «minst én».", "Riktig. Regn via det motsatte: at <em>ingen</em> sier ja, skjer med 0,7 · 0,7 · 0,7 = 0,343. «Minst én» er alt annet: 1 − 0,343 ≈ 0,66. Det er samme regel som gir familievis feilrate: med k uavhengige tester er P(minst ett falskt funn) = 1 − 0,95<sup>k</sup>."]},
+
+{t:"Sannsynlighet", n:132, k:["B1"], ch:2, q:"En fokusgruppe har 12 deltagere, og 4 av dem røyker. Du trekker tilfeldig to av dem til et oppfølgingsintervju, og samme person kan ikke trekkes to ganger. Hvor sannsynlig er det at begge de trukne røyker?",
+ o:["4/12 + 3/11 ≈ 0,61", "4/12 ≈ 0,33", "4/12 · 3/11 = 1/11 ≈ 0,09", "(4/12)² = 1/9 ≈ 0,11"], c:2,
+ f:["Nei. «Begge» betyr at begge hendelsene skal skje, og da ganges sannsynlighetene. Summen blir større enn sjansen for at bare den første røyker, og det kan ikke stemme.", "Nei. 0,33 er sannsynligheten for at den <em>første</em> røyker. Kravet om at også den andre skal røyke, gjør sannsynligheten mindre.", "Riktig. Den første trekningen gir 4 røykere av 12. Er det trukket en røyker, er det 3 røykere igjen blant 11. Trekk uten tilbakelegging gjør trekningene avhengige, så den andre brøken må justeres: 12/132 = 1/11.", "Nei. Å kvadrere 4/12 forutsetter at den første legges tilbake før neste trekning, slik at samme person kunne blitt trukket to ganger. Da ville trekningene vært uavhengige, men det er de ikke her."]},
+
+{t:"Sannsynlighet", n:133, k:["B1"], ch:2, q:"Blant studentene på et studiested har 50 % deltidsjobb, og 20 % bor i kollektiv. Anta at de to tingene er uavhengige. Hvor sannsynlig er det at en tilfeldig valgt student har deltidsjobb <em>eller</em> bor i kollektiv (eller begge deler)?",
+ o:["0,60", "0,10", "0,70", "0,40"], c:0,
+ f:["Riktig. Addisjonsregelen: P(A eller B) = P(A) + P(B) − P(A og B). Siden hendelsene er uavhengige, er P(A og B) = 0,5 · 0,2 = 0,10. Svaret blir 0,5 + 0,2 − 0,1 = 0,60.", "Nei. 0,10 er sannsynligheten for <em>begge</em> deler. «Eller» er minst like stor som hver av hendelsene alene.", "Nei. Når 0,5 og 0,2 legges rett sammen, telles studentene som har begge deler, to ganger. Bare disjunkte hendelser, som ikke kan skje samtidig, kan legges rett sammen.", "Nei. 0,40 er jobb <em>uten</em> kollektiv (0,5 · 0,8). Da mangler kollektiv uten jobb (0,5 · 0,2 = 0,10) og begge deler (0,10)."]},
+
+{t:"Sannsynlighet", n:134, k:["B1"], ch:2, q:"I et spørreskjema krysser hver student av for <em>ett</em> hovedtransportmiddel til campus. Omtrent 30 % velger buss og 30 % sykkel. Er hendelsene «valgte buss» og «valgte sykkel» uavhengige for en tilfeldig valgt student?",
+ o:["Ja. De kan ikke skje samtidig, og det er det uavhengig betyr", "Det kan ikke avgjøres uten å kjenne andelene for de andre transportmidlene", "Ja, fordi én students valg ikke påvirker hva andre studenter velger", "Nei. Vet du at studenten valgte buss, faller P(sykkel) til 0"], c:3,
+ f:["Nei. Dette er den vanlige forvekslingen. «Kan ikke skje samtidig» betyr disjunkte (gjensidig utelukkende). Det er nærmest det motsatte av uavhengige, fordi det ene utfallet utelukker det andre.", "Nei. De andre transportmidlene spiller ingen rolle. Det holder å vite at begge hendelsene har sannsynlighet over null og ikke kan skje samtidig. Da er de avhengige.", "Nei. Spørsmålet gjelder to utfall hos <em>samme</em> student. At studentene svarer uavhengig av hverandre, er en annen sak.", "Riktig. Hendelsene er disjunkte. Uavhengighet betyr at det ene utfallet ikke endrer sannsynligheten for det andre: P(sykkel | buss) = P(sykkel). Her faller den fra 0,30 til 0. Sjekk med multiplikasjonsregelen: P(buss og sykkel) = 0, mens 0,3 · 0,3 = 0,09. Disjunkte hendelser som begge kan skje, er alltid avhengige."]},
+
+{t:"Sannsynlighet", n:135, k:["B1"], ch:2, q:"Et dataprogram fordeler hver ny deltager til eksperimentgruppen eller kontrollgruppen med et rent myntkast (50/50), uavhengig av tidligere trekninger. De seks siste deltagerne havnet alle i kontrollgruppen. Hvor sannsynlig er det at neste deltager havner i eksperimentgruppen?",
+ o:["Over 0,50, fordi trekningen må jevne seg ut", "Under 0,50, fordi programmet åpenbart heller mot kontrollgruppen", "0,50", "127/128, fordi sju på rad i kontrollgruppen bare skjer i 1 av 128 rekker"], c:2,
+ f:["Nei. Det er spillerfeilslutningen. Andelen nærmer seg 50 % over mange trekninger fordi de nye trekningene etter hvert veier mye tyngre enn rekken på seks, ikke fordi trekningen kompenserer.", "Nei. Programmet bruker et rent myntkast. Seks på rad i kontrollgruppen skjer i omtrent én av 64 slike rekker. Det er uvanlig, men ikke umulig, og det endrer ikke neste trekning.", "Riktig. Hver trekning er uavhengig, og myntkastet husker ikke hva som skjedde før. Sannsynligheten er 0,50 hver gang. Å tro noe annet er spillerfeilslutningen.", "Nei. 1/128 er sannsynligheten for <em>hele</em> rekken av sju sett fra starten. Når de seks første allerede har skjedd, gjenstår bare én trekning, og den er 50/50."]},
+
+{t:"Sannsynlighet", n:136, k:["B1", "B4"], ch:2, x:"<table class=\"mini\"><thead><tr><th></th><th>Leser sakte</th><th>Leser normalt</th><th>Sum</th></tr></thead><tbody><tr><td>Dysleksi</td><td>80</td><td>20</td><td>100</td></tr><tr><td>Ikke dysleksi</td><td>120</td><td>780</td><td>900</td></tr><tr><td>Sum</td><td>200</td><td>800</td><td>1&nbsp;000</td></tr></tbody></table>", q:"Tabellen viser resultatet av en hurtigtest i lesing for 1 000 elever. Blant elevene med dysleksi leser 80 % sakte. En elev leser sakte på testen. Hvor sannsynlig er det at eleven har dysleksi?",
+ o:["8 %", "80 %", "10 %", "40 %"], c:3,
+ f:["Nei. 80 av 1 000 er andelen av <em>alle</em> elevene som både har dysleksi og leser sakte. Men vi vet allerede at eleven leser sakte, så nevneren skal være de 200 som leser sakte.", "Nei. 80 % er P(sakte | dysleksi), altså andelen av elevene med dysleksi som leser sakte. Spørsmålet går den andre veien, og betingede sannsynligheter er ikke symmetriske.", "Nei. 10 % er andelen med dysleksi blant alle elevene, før testen. Testresultatet gir ny informasjon: blant dem som leser sakte, er andelen høyere.", "Riktig. Se bare på kolonnen «leser sakte»: 200 elever, og 80 av dem har dysleksi. 80/200 = 40 %. P(dysleksi | sakte) er noe annet enn P(sakte | dysleksi) = 80 %, fordi mange uten dysleksi også leser sakte. Den samme forvekslingen ligger bak når p = P(data | H₀) leses som P(H₀ | data)."]},
+
+{t:"Regn uten kalkulator", n:137, k:["B2"], ch:2, q:"En rapport om ventetid på en legevakt oppgir M = 52 minutter, SD = 18 og SE = 3. Hvor mange pasienter var med?",
+ o:["6", "36", "108", "54"], c:1,
+ f:["Nei. 6 er √n. Du må kvadrere for å få n.", "Riktig. SE = SD/√n, så √n = SD/SE = 18/3 = 6. Da er n = 6² = 36.", "Nei. Her er SD kvadrert, men ikke SE: 324/3 = 108. Riktig er n = SD²/SE² = 324/9 = 36.", "Nei. SD og SE skal ikke ganges. Det er forholdet mellom dem, SD/SE, som er √n."]},
+
+{t:"SPINE", n:138, k:["B2"], ch:2, q:"En lærer lar 30 studenter trekke hvert sitt tilfeldige utvalg på 10 personer fra det samme registeret og regne ut gjennomsnittsalderen i utvalget sitt. Så tegner hun et histogram av de 30 gjennomsnittene. Hva er histogrammet en grov tilnærming til?",
+ o:["Utvalgsfordelingen til gjennomsnittet for n = 10", "Aldersfordelingen blant alle personene i registeret", "Nullfordelingen for en t-test med df = 9", "Aldersfordelingen i ett typisk utvalg på 10 personer"], c:0,
+ f:["Riktig. Hvert punkt i histogrammet er et <em>gjennomsnitt</em>, ikke en person. En fordeling av statistikker fra mange utvalg av samme størrelse er en utvalgsfordeling. Standardavviket i histogrammet er et anslag på standardfeilen.", "Nei. Registeret inneholder alderen til enkeltpersoner. Histogrammet viser gjennomsnitt, og de spriker mye mindre enn enkeltpersonene.", "Nei. En nullfordeling viser hvordan en teststatistikk varierer når H₀ er sann. Her er det verken hypotese eller teststatistikk, bare gjennomsnittsalder.", "Nei. Ett utvalg gir ti aldre og ett gjennomsnitt. Histogrammet samler gjennomsnittene fra 30 ulike utvalg."]},
+
+{t:"SPINE", n:139, k:["B2"], ch:2, q:"Studie A målte stress hos 16 personer (SD = 12). Studie B målte det samme hos 100 personer (SD = 20). Hvilket gjennomsnitt er mest presist anslått?",
+ o:["De er like presise, fordi begge måler det samme", "Det kan ikke avgjøres uten populasjonsgjennomsnittet", "Studie A, fordi SD er minst", "Studie B, fordi SE er 2 mot 3"], c:3,
+ f:["Nei. At studiene måler det samme begrepet, sier ingenting om hvor sikre anslagene er. Det avgjør SD og n.", "Nei. SE kan regnes ut fra SD og n alene. Populasjonsgjennomsnittet trengs ikke, og det kjenner vi som regel ikke.", "Nei. SD beskriver hvor ulike <em>personene</em> er. Presisjonen i gjennomsnittet avhenger også av n, og A har bare 16 deltagere.", "Riktig. Presisjon måles med SE = SD/√n. A: 12/√16 = 12/4 = 3. B: 20/√100 = 20/10 = 2. B har mer spredning blant personene, men så mange flere deltagere at gjennomsnittet likevel er sikrere."]},
+
+{t:"SPINE", n:140, k:["B2"], ch:2, q:"Tiden folk bruker på å svare på en e-post, er sterkt høyreskjev: de fleste svarer raskt, noen få etter flere dager. Du trekker mange utvalg med n = 5 og mange med n = 80, og tegner fordelingen av utvalgsgjennomsnittene for hver n. Hva ser du?",
+ o:["Begge fordelingene er like skjeve som populasjonen", "n = 80 gir en smalere og nær normal fordeling, n = 5 en bredere og fortsatt skjev", "Med n = 80 er fordelingen bredere, fordi flere ekstreme verdier kommer med", "Begge blir normalfordelte, fordi gjennomsnitt alltid er normalfordelte"], c:1,
+ f:["Nei. Det er rådataene i hvert utvalg som ligner populasjonen. Gjennomsnittene jevner ut de ekstreme verdiene, og fordelingen deres blir mindre skjev jo større n er.", "Riktig. Dette er sentralgrenseteoremet. Når n øker, blir fordelingen av gjennomsnitt mer normal og smalere (SE = SD/√n). Når populasjonen er sterkt skjev, trengs det et visst antall per utvalg før skjevheten blir borte.", "Nei. Flere ekstreme verdier kommer med, men de veies opp av mange vanlige. Et gjennomsnitt av 80 varierer mye mindre fra utvalg til utvalg enn et gjennomsnitt av 5.", "Nei. Sentralgrenseteoremet gjelder når n er stor nok. Med bare fem observasjoner fra en sterkt skjev populasjon er fordelingen av gjennomsnittene fortsatt skjev."]},
+
+{t:"SPINE", n:141, k:["B2"], ch:2, q:"En populasjon har μ = 50 og er tydelig skjev. Du trekker 1 000 utvalg med n = 25 og regner ut gjennomsnittet i hvert. Hva får du når du tar gjennomsnittet av de 1 000 utvalgsgjennomsnittene?",
+ o:["Nøyaktig 50 i hvert eneste utvalg, fordi tilfeldige utvalg treffer μ", "Systematisk under 50, fordi små utvalg undervurderer gjennomsnittet", "Omtrent 50, fordi utvalgsgjennomsnittet er forventningsrett", "Over eller under 50 avhengig av hvilken vei populasjonen er skjev"], c:2,
+ f:["Nei. Forventningsrett betyr at gjennomsnittet treffer μ <em>i det lange løp</em>, ikke at hvert utvalg gjør det. De enkelte gjennomsnittene spriker rundt 50, typisk med én SE.", "Nei. Små utvalg gir mindre presise gjennomsnitt, men ikke skjeve. Det er variansen som blir for lav hvis man deler på n i stedet for n − 1, ikke gjennomsnittet.", "Riktig. Hvert utvalg bommer litt, til begge sider. Det er utvalgsfeil. Men utvalgsfordelingen er sentrert på μ, uansett hvilken form populasjonen har. Det er det «forventningsrett» betyr: ingen systematisk bom.", "Nei. Skjevheten påvirker formen på utvalgsfordelingen når n er liten, men ikke hvor den er sentrert. Sentrum er μ = 50."]},
+
+{t:"SPINE", n:142, k:["B2", "A7"], ch:2, q:"Et universitet vet fra studentregisteret at 28 % av studentene bor hjemme hos foreldrene. Blant 250 tilfeldig trukne studenter bor 31 % hjemme. Alle svarte, og ingen svarte feil. Hva er den beste beskrivelsen av avviket på 3 prosentpoeng?",
+ o:["Målefeil: spørsmålet om bosted var uklart formulert", "Utvalgsskjevhet: utvalget må være trukket feil", "En type I-feil, fordi 31 % avviker fra 28 %", "Utvalgsfeil: tilfeldige avvik fra populasjonsverdien"], c:3,
+ f:["Nei. Ingen svarte feil, så målingen er riktig for hver person. Avviket kommer av <em>hvem</em> som tilfeldigvis ble trukket.", "Nei. Skjevhet er et <em>systematisk</em> avvik, for eksempel at noen grupper sjeldnere blir trukket eller svarer. Utvalget var tilfeldig og alle svarte, så avviket er tilfeldig.", "Nei. En type I-feil er å forkaste en sann nullhypotese. Her er ingen hypotese testet.", "Riktig. Et tilfeldig utvalg treffer sjelden populasjonsverdien nøyaktig. Selv et perfekt trukket utvalg avviker litt fra populasjonen. Det er utvalgsfeil, og det er ikke en feil noen har gjort. Standardfeilen beskriver hvor store slike avvik typisk er, her rundt 3 prosentpoeng."]},
+
+{t:"Konfidensintervall", n:143, k:["B3"], ch:2, q:"En studie rapporterer at gjennomsnittlig ventetid på en legevakt var 50 minutter, 99 % KI [42, 58]. Hvilken tolkning er riktig?",
+ o:["Metoden fanger den sanne gjennomsnittsventetiden i omtrent 99 % av gjentatte utvalg", "Det er 99 % sannsynlighet for at den sanne gjennomsnittsventetiden ligger i akkurat dette intervallet", "Gjentas studien, havner det nye utvalgsgjennomsnittet mellom 42 og 58 med 99 % sikkerhet", "99 % av pasientene ventet mellom 42 og 58 minutter"], c:0,
+ f:["Riktig. «99 %» beskriver hvor ofte metoden treffer over mange tenkte gjentakelser. μ er et fast tall, og dette bestemte intervallet har enten truffet eller bommet. Vi vet bare ikke hvilket av de to.", "Nei. Dette er den vanligste feiltolkningen. I vanlig (frekventistisk) statistikk har μ ingen sannsynlighet. Det er metoden, ikke dette ene intervallet, som treffer i 99 % av tilfellene. En slik sannsynlighet for parameteren krever et bayesiansk kredibelt intervall.", "Nei. Intervallet er laget for å fange μ, ikke neste utvalgsgjennomsnitt. Et nytt gjennomsnitt varierer både rundt μ og bort fra det første, så det havner sjeldnere innenfor.", "Nei. Intervallet gjelder gjennomsnittet, ikke enkeltpasienter. Ventetidene til enkeltpasientene spriker mye mer, og det beskrives av SD."]},
+
+{t:"Konfidensintervall", n:144, k:["B3"], ch:2, q:"Hvilken endring gjør et konfidensintervall for et gjennomsnitt bredere, når alt annet er likt?",
+ o:["Å gå fra 95 % til 99 % konfidensnivå", "Å bruke et mer presist måleinstrument, slik at SD blir mindre", "Å øke utvalget fra 50 til 200", "Å gå fra 95 % til 90 % konfidensnivå"], c:0,
+ f:["Riktig. For å fange μ oftere må nettet være større. Med 99 % ganges SE med omtrent 2,58 i stedet for 1,96, og intervallet blir bredere.", "Nei. Mindre SD gir mindre SE (SE = SD/√n), og dermed et smalere intervall.", "Nei. Firedobling av n halverer SE, så intervallet blir omtrent halvparten så bredt.", "Nei. Med 90 % trenger intervallet å fange μ sjeldnere. SE ganges da med omtrent 1,64, og intervallet blir smalere."]},
+
+{t:"Konfidensintervall", n:145, k:["B3"], ch:2, q:"Et utvalg på 25 personer har M = 64 og SD = 15. Hva er 95 % konfidensintervall for μ? Bruk 1,96.",
+ o:["[58,12; 69,88]", "[61; 67]", "[62,04; 65,96]", "[34,60; 93,40]"], c:0,
+ f:["Riktig. Først SE = SD/√n = 15/5 = 3. Så feilmarginen 1,96 · 3 = 5,88. Intervallet er 64 ± 5,88. Med hoderegning (± 2 · SE) får du [58, 70], nesten det samme.", "Nei. Dette er M ± 1 SE. Det gir et intervall på omtrent 68 %, ikke 95 %.", "Nei. 1,96 skal ganges med SE. Her er 1,96 lagt til og trukket fra gjennomsnittet direkte.", "Nei. Her er SD brukt i stedet for SE: 64 ± 1,96 · 15. Det er et område der omtrent 95 % av <em>personene</em> ligger hvis skårene er normalfordelte, ikke et intervall for μ."]},
+
+{t:"Figurer og plott", n:146, k:["B3", "D3"], ch:5, x:"<svg viewBox=\"0 0 480 205\" width=\"100%\" style=\"max-width:480px\" role=\"img\" aria-label=\"Gjennomsnitt med 95 % KI for to grupper. A: 40 [36, 44]. B: 47 [43, 51].\"><g style=\"font-family:var(--mono);font-size:13px\"><rect x=\"60\" y=\"86\" width=\"400\" height=\"6\" style=\"fill:var(--accent-soft)\"/><line x1=\"60\" y1=\"20\" x2=\"60\" y2=\"170\" style=\"stroke:var(--ink-3)\"/><line x1=\"60\" y1=\"170\" x2=\"460\" y2=\"170\" style=\"stroke:var(--ink-3)\"/><line x1=\"55\" y1=\"170\" x2=\"60\" y2=\"170\" style=\"stroke:var(--ink-3)\"/><text x=\"50\" y=\"174\" text-anchor=\"end\" style=\"fill:var(--ink-3)\">30</text><line x1=\"55\" y1=\"140\" x2=\"60\" y2=\"140\" style=\"stroke:var(--ink-3)\"/><text x=\"50\" y=\"144\" text-anchor=\"end\" style=\"fill:var(--ink-3)\">35</text><line x1=\"55\" y1=\"110\" x2=\"60\" y2=\"110\" style=\"stroke:var(--ink-3)\"/><text x=\"50\" y=\"114\" text-anchor=\"end\" style=\"fill:var(--ink-3)\">40</text><line x1=\"55\" y1=\"80\" x2=\"60\" y2=\"80\" style=\"stroke:var(--ink-3)\"/><text x=\"50\" y=\"84\" text-anchor=\"end\" style=\"fill:var(--ink-3)\">45</text><line x1=\"55\" y1=\"50\" x2=\"60\" y2=\"50\" style=\"stroke:var(--ink-3)\"/><text x=\"50\" y=\"54\" text-anchor=\"end\" style=\"fill:var(--ink-3)\">50</text><line x1=\"55\" y1=\"20\" x2=\"60\" y2=\"20\" style=\"stroke:var(--ink-3)\"/><text x=\"50\" y=\"24\" text-anchor=\"end\" style=\"fill:var(--ink-3)\">55</text><text x=\"66\" y=\"14\" style=\"fill:var(--ink-3)\">skår (M og 95 % KI)</text><line x1=\"170\" y1=\"86\" x2=\"170\" y2=\"134\" style=\"stroke:var(--accent);stroke-width:2\"/><line x1=\"160\" y1=\"86\" x2=\"180\" y2=\"86\" style=\"stroke:var(--accent);stroke-width:2\"/><line x1=\"160\" y1=\"134\" x2=\"180\" y2=\"134\" style=\"stroke:var(--accent);stroke-width:2\"/><circle cx=\"170\" cy=\"110\" r=\"5\" style=\"fill:var(--accent)\"/><text x=\"186\" y=\"114\" style=\"fill:var(--ink-2)\">40</text><line x1=\"330\" y1=\"44\" x2=\"330\" y2=\"92\" style=\"stroke:var(--accent);stroke-width:2\"/><line x1=\"320\" y1=\"44\" x2=\"340\" y2=\"44\" style=\"stroke:var(--accent);stroke-width:2\"/><line x1=\"320\" y1=\"92\" x2=\"340\" y2=\"92\" style=\"stroke:var(--accent);stroke-width:2\"/><circle cx=\"330\" cy=\"68\" r=\"5\" style=\"fill:var(--accent)\"/><text x=\"346\" y=\"72\" style=\"fill:var(--ink-2)\">47</text><text x=\"170\" y=\"190\" text-anchor=\"middle\" style=\"fill:var(--ink-2)\">Gruppe A</text><text x=\"330\" y=\"190\" text-anchor=\"middle\" style=\"fill:var(--ink-2)\">Gruppe B</text></g></svg>", q:"Figuren viser gjennomsnitt med 95 % KI for to uavhengige grupper av samme størrelse: A = 40 [36, 44] og B = 47 [43, 51]. Intervallene overlapper så vidt (det skyggelagte feltet). Hva kan du si om forskjellen mellom gruppene?",
+ o:["Den kan likevel være signifikant. Overlapp avgjør ikke testen", "Den er ikke signifikant, fordi intervallene overlapper", "Den er signifikant, fordi gjennomsnittene er forskjellige", "Gruppene er like i populasjonen, fordi intervallene deler noen verdier"], c:0,
+ f:["Riktig. Du trenger testen eller et KI for differansen. Hvert intervall er omtrent M ± 2 · SE, så SE ≈ 2 i hver gruppe. Forskjellen er 7, og SE for differansen er √(2² + 2²) ≈ 2,8. Det gir z ≈ 2,4, altså p &lt; .05. Usikkerheten i en differanse er mindre enn summen av de to feilmarginene.", "Nei. Regelen «overlapp betyr ikke signifikant» er for streng. To KI kan overlappe litt mens forskjellen likevel er signifikant. Bare når de ikke overlapper i det hele tatt, kan du være ganske sikker på at p &lt; .05.", "Nei. Ulike gjennomsnitt i utvalget er ikke nok. Spørsmålet er om forskjellen er stor sammenlignet med usikkerheten, og det krever en test eller et KI for differansen.", "Nei. At intervallene deler noen verdier, betyr bare at de verdiene passer med begge gruppene. Det viser ikke at gruppene er like, og et ikke-signifikant resultat ville heller ikke vist det."]},
+
+{t:"Konfidensintervall", n:147, k:["B3", "B4"], ch:9, q:"To blodtrykksmedisiner sammenlignes. Forskjellen i systolisk blodtrykk (medisin A minus medisin B) er −3,5 mmHg, 95 % KI [−6,2; −0,8]. Hva vet du om den tosidige p-verdien for forskjellen?",
+ o:["p &lt; .05", "p = .05 nøyaktig", "Ingenting, uten å kjenne t-verdien", "p &gt; .05, fordi hele intervallet er negativt"], c:0,
+ f:["Riktig. Et 95 % KI for en differanse og en tosidig test med α = .05 bygger på den samme SE. Utelukker intervallet 0, er p &lt; .05. At tallene er negative, viser bare at A ga lavere blodtrykk enn B.", "Nei. p = .05 ville gitt et intervall med den ene grensen akkurat på 0. Her er nærmeste grense −0,8, et stykke unna.", "Nei. Intervallet er nok til å avgjøre signifikans på 5 %-nivå. t trengs for å finne den eksakte p-verdien, ikke for å vite om den er under .05.", "Nei. Fortegnet viser bare retningen: A minus B er negativt fordi A ga lavere blodtrykk. Det som avgjør, er om 0 ligger i intervallet, og det gjør det ikke."]},
+
+{t:"Hva betyr det", n:148, k:["B4"], ch:2, q:"En forsker skriver i preregistreringen: «Deltagere som har sovet under seks timer, vil bruke <em>lengre</em> tid på reaksjonstesten enn deltagere som har sovet mer.» Hva slags hypotese er dette?",
+ o:["En nullhypotese", "Retningsbestemt (ensidig)", "Ikke-retningsbestemt (tosidig), fordi to grupper sammenlignes", "Umulig å avgjøre før dataene er samlet inn"], c:1,
+ f:["Nei. Nullhypotesen ville sagt at søvnmangel ikke gir lengre reaksjonstid. Forskerens påstand er alternativhypotesen.", "Riktig. Hypotesen sier hvilken vei forskjellen skal gå: mindre søvn gir lengre reaksjonstid. Den er derfor retningsbestemt. En tosidig hypotese ville bare sagt at gruppene er forskjellige.", "Nei. Antall grupper avgjør ikke dette. Det som avgjør, er om hypotesen sier noe om retningen, og «lengre tid» er en retning.", "Nei. Hypotesen skal formuleres før dataene finnes, og det er nettopp poenget med preregistrering. Typen avgjøres av ordlyden."]},
+
+{t:"Feil og styrke", n:149, k:["B4", "B5"], ch:2, q:"En forsker planla en tosidig test og fikk p = .08. Hun bytter til en ensidig test i den retningen dataene pekte, og rapporterer p = .04. Anta at hun alltid gjør det slik når den tosidige testen ikke blir signifikant. Hvor stor er da den reelle sannsynligheten for en type I-feil når H₀ er sann?",
+ o:["Omtrent 10 %", "2,5 %", "4 %", "5 %"], c:0,
+ f:["Riktig. Hun forkaster H₀ hver gang den ensidige p er under .05 i den retningen dataene tilfeldigvis pekte. Det skjer når den tosidige p er under .10. I praksis har hun 5 % i hver hale, altså 10 % til sammen.", "Nei. 2,5 % er størrelsen på hver hale i en tosidig test med α = .05. Å velge hale etter dataene gjør feilraten større, ikke mindre.", "Nei. p-verdien i én studie er ikke feilraten for framgangsmåten. Feilraten er hvor ofte metoden gir et falskt funn når H₀ er sann.", "Nei. 5 % gjelder bare når retningen er bestemt <em>før</em> dataene er sett. Når halen velges etter resultatet, kan begge halene gi et «funn»."]},
+
+{t:"Hva betyr det", n:150, k:["B4"], ch:2, q:"En forsker preregistrerte en ensidig test: et nytt leseopplegg skal gi <em>høyere</em> skår enn det gamle. Resultatet går tydelig motsatt vei: det gamle opplegget ga høyest skår, t(58) = −2.90. Hva kan hun konkludere med den preregistrerte testen?",
+ o:["Hun bør bytte til en tosidig test og rapportere den som hovedanalyse", "Hypotesen fikk ikke støtte, og en motsatt effekt kan ikke påstås", "Resultatet viser at H₀ er sann, siden testen ikke ble signifikant", "Det nye opplegget gir signifikant lavere skår enn det gamle"], c:1,
+ f:["Nei. Å bytte test etter å ha sett dataene er å la resultatet styre analysen. Funnet kan nevnes som utforskende, men ikke som den planlagte hovedanalysen.", "Riktig. En ensidig test har hele α i én hale. Et resultat i den andre halen kan aldri gi p under .05, uansett hvor tydelig det er. Hun kan beskrive funnet og foreslå en ny studie, men ikke kalle det en signifikant effekt i motsatt retning.", "Nei. Et ikke-signifikant resultat beviser ikke H₀. Her peker dataene dessuten tydelig bort fra 0, bare i en retning testen ikke så etter.", "Nei. Testen ser bare etter en effekt i den retningen som ble bestemt på forhånd. For hypotesen «nytt gir høyere» blir den ensidige p-verdien nær 1, ikke liten."]},
+
+{t:"Hva betyr det", n:151, k:["B4"], ch:3, q:"En bayesiansk t-test i JASP gir BF₁₀ = 0.20. Hva betyr det?",
+ o:["Effekten er 0,20 standardavvik, altså en liten effekt", "Dataene er omtrent 5 ganger mer sannsynlige under H₀ enn under H₁", "Det tilsvarer p = .20, så resultatet er ikke signifikant på 5 %-nivå", "Det er 20 % sannsynlighet for at alternativhypotesen H₁ er sann"], c:1,
+ f:["Nei. Effektstørrelsen er et eget tall, for eksempel Cohens d. Bayesfaktoren sier hvor godt dataene skiller mellom hypotesene, ikke hvor stor effekten er.", "Riktig. BF₁₀ = 0.20 betyr at dataene er 0,2 ganger så sannsynlige under H₁ som under H₀. Snur du brøken, får du BF₀₁ = 1/0.20 = 5. En faktor mellom 3 og 10 regnes som moderat evidens, her for H₀. Det kan en p-verdi aldri gi.", "Nei. Bayesfaktoren og p-verdien måler ulike ting på ulike skalaer. En BF på 0.20 kan ikke leses som en p-verdi.", "Nei. En Bayesfaktor sammenligner hvor godt to hypoteser forutsier dataene. Den er ikke sannsynligheten for en hypotese. Til det trengs også hvor sannsynlige hypotesene var på forhånd."]}
   ];
 
   const STORE = 'sa-oppg-v1';
@@ -7135,6 +7478,159 @@ const JUMP = (function(){
   });
 
   build();
+})();
+
+/* ================= KI-dansen: mange utvalg, ett intervall per utvalg =================
+   Utvalgene trekkes fra poengfordelingen i den kjente populasjonen (μ = 55.5).
+   Intervallet er M ± kritisk t · SD / √n, med df = n − 1. Bytter du nivå, regnes
+   de samme utvalgene om; bytter du n, trekkes like mange nye utvalg. */
+(function kiDans(){
+  const cv = document.getElementById('cvKIdans');
+  if(!cv) return;
+  const $ = id => document.getElementById(id);
+  const MU = POP.b0 + POP.bx*POP.mx + POP.bz*POP.mz;     /* sann μ for poeng */
+  const SIGMA = POP.sdy;                                 /* sann σ for poeng */
+  const SHOW = 100, KEEP = 20000;
+  const K = {lvl:95, n:25, all:[]};
+  /* egen generator, så ett langt løp ikke gir mønstre. Startverdien gir en typisk
+     første runde (1 av 20, 5 av 100); etter det er alt vanlig tilfeldighet. */
+  let st = 10;
+  const rnd = () => { st = (st + 0x6D2B79F5) | 0; let t = Math.imul(st ^ (st >>> 15), 1 | st);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const critMemo = new Map();
+  function crit(df, lvl){
+    const key = df + '|' + lvl;
+    if(critMemo.has(key)) return critMemo.get(key);
+    const a = 1 - lvl/100; let lo = 0, hi = 80;
+    for(let i=0;i<70;i++){ const m = (lo + hi)/2; if(pFromT(m, df) > a) lo = m; else hi = m; }
+    const c = (lo + hi)/2; critMemo.set(key, c); return c;
+  }
+  function pull(k){
+    for(let j=0;j<k;j++){
+      const ys = new Array(K.n);
+      for(let i=0;i<K.n;i++) ys[i] = MU + SIGMA*normal(rnd);
+      K.all.push({m: mean(ys), s: sd(ys)});
+    }
+    if(K.all.length > KEEP) K.all.splice(0, K.all.length - KEEP);
+  }
+  const arm = smp => crit(K.n - 1, K.lvl) * smp.s / Math.sqrt(K.n);
+  const missed = smp => { const h = arm(smp); return smp.m - h > MU || smp.m + h < MU; };
+
+  const cK = setup('cvKIdans', o=>{
+    const t = theme(), ctx = o.ctx, W = o.W, H = o.H;
+    ctx.clearRect(0,0,W,H);
+    const narrow = W < 480;
+    const padL = narrow ? 6 : 12, padR = narrow ? 6 : 12, top = 38, base = H - 24;
+    const lo = MU - 30, hi = MU + 30;
+    const X = v => padL + (clamp(v, lo, hi) - lo)/(hi - lo)*(W - padL - padR);
+
+    /* aksen */
+    ctx.strokeStyle = t.rule; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(padL, base + .5); ctx.lineTo(W - padR, base + .5); ctx.stroke();
+    (narrow ? [30, 40, 50, 60, 70, 80] : [30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]).forEach(v=>{
+      ctx.strokeStyle = t.ruleSoft;
+      ctx.beginPath(); ctx.moveTo(X(v) + .5, top - 4); ctx.lineTo(X(v) + .5, base); ctx.stroke();
+      ctx.strokeStyle = t.rule;
+      ctx.beginPath(); ctx.moveTo(X(v) + .5, base); ctx.lineTo(X(v) + .5, base + 4); ctx.stroke();
+      label(ctx, String(v), X(v), base + 14, t.ink3, 'center', 10);
+    });
+
+    /* forklaring øverst */
+    label(ctx, 'nyeste øverst', padL, 9, t.ink3, 'left', 10);
+    {
+      const sw = 12, gap = 5, w1 = textW(ctx, 'fanget μ', 10, '500'), w2 = textW(ctx, 'bommet', 10, '600');
+      let x = W - padR - w2;
+      label(ctx, 'bommet', x, 9, t.mark, 'left', 10, '600');
+      x -= gap + sw;
+      ctx.strokeStyle = t.mark; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(x, 9); ctx.lineTo(x + sw, 9); ctx.stroke();
+      x -= 12 + w1;
+      label(ctx, 'fanget μ', x, 9, t.accent, 'left', 10, '500');
+      x -= gap + sw;
+      ctx.strokeStyle = t.accent; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(x, 9); ctx.lineTo(x + sw, 9); ctx.stroke();
+    }
+
+    const shown = K.all.slice(-SHOW);
+    if(shown.length){
+      const rows = Math.max(20, shown.length), rowH = (base - 6 - top)/rows;
+      const lw = Math.max(1, Math.min(3, rowH*0.55));
+      const c = crit(K.n - 1, K.lvl), rn = Math.sqrt(K.n);
+      for(let i=0;i<shown.length;i++){
+        const smp = shown[shown.length - 1 - i];
+        const y = top + (i + 0.5)*rowH;
+        const h = c*smp.s/rn, a = smp.m - h, b = smp.m + h, miss = a > MU || b < MU;
+        ctx.strokeStyle = miss ? t.mark : t.accent;
+        ctx.globalAlpha = miss ? 1 : 0.55;
+        ctx.lineWidth = miss ? lw + 0.6 : lw;
+        ctx.beginPath(); ctx.moveTo(X(a), y); ctx.lineTo(X(b), y); ctx.stroke();
+        if(rowH >= 6){
+          ctx.fillStyle = miss ? t.mark : t.accent;
+          ctx.beginPath(); ctx.arc(X(smp.m), y, Math.min(3, rowH*0.3), 0, 6.284); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    /* sannheten, tegnet sist så den ligger oppå */
+    ctx.strokeStyle = t.ink; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(Math.round(X(MU)) + .5, top - 6); ctx.lineTo(Math.round(X(MU)) + .5, base); ctx.stroke();
+    labelBg(ctx, 'μ = ' + fx(MU, 1), X(MU), top - 14, t.ink, 'center', 10.5, '600', t.surface);
+    if(!shown.length)
+      labelBg(ctx, 'Trykk «Trekk 20».', X(MU), (top + base)/2, t.ink3, 'center', 12, '400', t.surface);
+  });
+
+  function text(){
+    $('kiDansHint').textContent = 'n = ' + K.n + ' · ' + K.lvl + ' % KI';
+    const el = $('kiDansRead');
+    if(!K.all.length){
+      el.innerHTML = 'Hvert utvalg er ' + K.n + ' studenter fra populasjonen der vi vet fasiten: μ = ' + fx(MU, 1) + ' poeng. '
+        + 'Hvert utvalg gir sitt eget intervall, M ± t · SE. Trykk «Trekk 20» eller «Trekk 100».';
+      return;
+    }
+    const shown = K.all.slice(-SHOW), c = crit(K.n - 1, K.lvl);
+    const miss = shown.filter(missed).length;
+    const width = mean(shown.map(arm));
+    let out = '<b>' + miss + ' av ' + shown.length + '</b> intervaller i figuren bommet på μ. '
+      + 'Med ' + K.lvl + ' % venter vi omtrent <b>' + (100 - K.lvl) + ' av 100</b>.';
+    if(K.all.length > shown.length){
+      const all = K.all.filter(missed).length;
+      out += ' Totalt siden nullstilling: <b>' + all + ' av ' + K.all.length + '</b> ('
+        + (all/K.all.length*100).toFixed(1).replace('.', ',') + ' %).';
+    }
+    out += '<br>Kritisk verdi t(' + (K.n - 1) + ') = <b>' + fx(c, 2) + '</b> · armen er i snitt <b>±' + fx(width, 1) + '</b> poeng'
+      + '<br><span class="hit">Hvert enkelt intervall har enten fanget μ eller bommet. «' + K.lvl + ' %» er treffraten til metoden.</span>';
+    el.innerHTML = out;
+  }
+  const redraw = () => { cK.draw(cK); text(); };
+
+  $('kiDans20').addEventListener('click', ()=>{ pull(20); redraw(); });
+  $('kiDans100').addEventListener('click', ()=>{ pull(100); redraw(); });
+  $('kiDansReset').addEventListener('click', ()=>{ K.all = []; redraw(); });
+  const lvlBtns = document.querySelectorAll('[data-kid-lvl]'), nBtns = document.querySelectorAll('[data-kid-n]');
+  lvlBtns.forEach(b=>b.addEventListener('click', ()=>{
+    K.lvl = +b.dataset.kidLvl;
+    lvlBtns.forEach(o=>o.setAttribute('aria-pressed', String(o === b)));
+    redraw();
+  }));
+  nBtns.forEach(b=>b.addEventListener('click', ()=>{
+    const nn = +b.dataset.kidN;
+    nBtns.forEach(o=>o.setAttribute('aria-pressed', String(o === b)));
+    if(nn === K.n) return;
+    const keep = Math.min(SHOW, K.all.length);
+    K.n = nn; K.all = [];
+    if(keep) pull(keep);
+    redraw();
+  }));
+  text();
+})();
+
+/* lenker til en forklaringsboks folder den ut */
+(function inferensLenker(){
+  document.querySelectorAll('a[href="#feilfelt"], a[href="#ensidig"]').forEach(a=>a.addEventListener('click', ()=>{
+    const d = document.getElementById(a.getAttribute('href').slice(1));
+    if(d && d.tagName === 'DETAILS') d.open = true;
+  }));
 })();
 
 /* ================= glidebrytere: et loddrett sveip er scrolling, ikke et valg =================

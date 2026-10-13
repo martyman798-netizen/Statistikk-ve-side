@@ -6213,14 +6213,12 @@ const JUMP = (function(){
     'Halvveis: diskret stemmer, men stegene er like store og nullpunktet ekte, så den når helt opp til forholdstall.',
     'Nei — den er ikke kontinuerlig. Dette er nettopp poenget med å holde de to spørsmålene fra hverandre.']},
 
-{t:'Målenivå', n:20, q:'En <em>depresjonsskåre</em> (skalaen i terapistudien går til 35) behandles som kontinuerlig i analysene. Hvilket målenivå har den strengt tatt?',
- o:['Intervall — 30 er ikke «dobbelt så deprimert» som 15','Forholdstall, siden skalaen starter på null','Ordinal, siden det er en spørreskjemaskala','Nominal'], c:0,
- f:['Riktig. Skalaens null betyr ikke fravær av depresjon i noen ekte forstand, og forholdstall som «dobbelt så deprimert» gir ikke mening. At den behandles som kontinuerlig er en pragmatisk konvensjon, ikke en påstand om målenivå.',
+{t:'Målenivå', n:20, q:'En <em>depresjonsskåre</em> er summen av mange spørreskjemaledd (skalaen i terapistudien går til 35), og den behandles som kontinuerlig i analysene. Hva er den mest presise beskrivelsen av målenivået?',
+ o:['Ordinale ledd, men summen behandles som intervall — ikke som forholdstall','Forholdstall, siden skalaen har et nullpunkt og skåren er en mengde','Ordinal, og derfor er gjennomsnitt og t-test på skåren uaktuelt','Nominal, siden hver skåre bare er en egen kategori'], c:0,
+ f:['Riktig. Hvert ledd er ordinalt (avstanden mellom «litt» og «mye» er ukjent), men en sum av mange ledd behandles konvensjonelt som intervall. Den er likevel ikke forholdstall: 30 er ikke «dobbelt så deprimert» som 15.',
     'Fristende, men et nullpunkt på skalaen er ikke det samme som et <em>ekte</em> nullpunkt. Sammenlign med celsius: 0 °C er ikke fravær av temperatur.',
-    'Strengt tatt er enkeltleddene ordinale, men summen av mange ledd behandles konvensjonelt som intervall. Det er den vanlige praksisen i faget.',
-    'Nei — skåren har en klar rekkefølge og er ikke bare merkelapper.']},
-
-/* ---- E: SPINE ---- */
+    'Halvveis. Leddene er ordinale, men i praksis regnes gjennomsnitt, SD og t-tester på sumskårer hele tiden. Det er nettopp konvensjonen om å behandle summen som intervall.',
+    'Nei — skåren har en klar rekkefølge, og avstandene brukes i regningen. Den er ikke bare merkelapper.']},
 {t:'SPINE', n:21, q:'Du regner ut gjennomsnittlig depresjonsskåre for de 75 deltagerne i studien. Tallet du får er:',
  o:['Et estimat','En parameter','En standardfeil','En operasjonalisering'], c:0,
  f:['Riktig. Alt du regner ut fra et <em>utvalg</em> er et estimat, skrevet med latinske bokstaver (M, SD, r). Det er et anslag på parameteren du egentlig vil vite noe om.',

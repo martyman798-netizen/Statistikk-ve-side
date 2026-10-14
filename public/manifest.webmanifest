@@ -1,0 +1,70 @@
+{
+  "name": "Statistikkens alfabet",
+  "short_name": "Statistikk",
+  "description": "Statistikken i PSY300: tegnene med demoer, en ordbok for artikler, et formelark og oppgaver i eksamensformat.",
+  "lang": "nb",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#EDF0F3",
+  "theme_color": "#EDF0F3",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Oppgaver",
+      "short_name": "Oppgaver",
+      "url": "/#oppgPanel",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Øvingskort",
+      "short_name": "Kort",
+      "url": "/#kortPanel",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Formelarket",
+      "short_name": "Formler",
+      "url": "/#formler",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

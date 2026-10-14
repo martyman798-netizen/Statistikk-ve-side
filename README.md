@@ -109,8 +109,9 @@ npm run deploy
   vanlige. Logikken ligger i `SEARCHTEXT` øverst i skriptet (`parse`,
   `Index`, `mark`), og brukes både av søkeruta og av filteret i den
   samlede ordboka. De siste søkene huskes i nettleseren.
-- «Grupper mot grupper» (`#ttest`, `#anova1`, `#anova2`) har egne demoer
-  som regner ut nøyaktig det JASP ville vist for like store grupper.
+- «Grupper mot grupper» (`#ttest`, `#anova1`, `#anova2`, `#anova3` for
+  gjentatte målinger og `#kjikvadrat`) har egne demoer som regner ut
+  nøyaktig det JASP ville vist for like store grupper.
   Startverdiene gjenskaper forelesningenes tall: terapistudien
   (t ≈ 7.2, d ≈ 1.67), tidligere behandlingsforsøk (F(2, 72) = 15.27,
   η² = .30) og Roediger & Karpicke (F(1, 116) = 2.13 og 13.33).
@@ -122,11 +123,33 @@ npm run deploy
 - `#formler` er formelarket: alt som må pugges til en eksamen uten
   hjelpemidler. Tabellene har `data-fam="Formler: …"`, så hver linje også
   blir et øvingskort.
-- Oppgavepanelet har en prøveeksamen: 30 oppgaver trukket på tvers av alle
-  temaene, uten fasit underveis, med resultat per tema til slutt. Du kan
-  gå tilbake og endre et svar, og en påbegynt eksamen avbrytes ikke uten
-  at du bekrefter det. Svarene lagres når du er ferdig, så «bare de jeg
-  har bommet på» fanger dem opp.
+- Oppgavene ligger i `BANK` i skriptet som `{t, n, k, ch, q, o, c, f, x?}`:
+  tema, nummer, begrepskoder (A1–D4: design og måling, slutning,
+  analysene, lese og formidle), kapittel i Field, spørsmål, fire
+  alternativer, indeksen til det riktige, én begrunnelse per alternativ og
+  eventuelt en utstilling (tabell eller SVG) som vises over spørsmålet.
+  Alternativene stokkes ved visning. «Øv på» filtrerer på tema, kapittel
+  eller begrep; navnene på kapitlene og begrepene står i `KAPITTEL` og
+  `BEGREP`.
+- «Les utskriften» lages av `JASPGEN`: 24 maler som hver gang lager en
+  JASP-lignende utskrift med nye tall som henger sammen (p regnet fra t, F
+  eller χ² og df, symmetriske KI, df som stemmer med N) og et spørsmål til.
+  `JASPGEN.make(malId, rng(frø))` gir en oppgave i samme format som
+  `BANK`. Definisjonen må stå før oppgavepanelet (`(function oppgaver(){`)
+  i skriptet, fordi panelet leser malene når det starter. Statistikk­
+  hjelperne den bruker (normalfordeling, F- og χ²-fordeling, kritiske
+  verdier, JASP-tabeller) ligger i `STATX`.
+- Oppgavepanelet har en prøveeksamen: 30 oppgaver uten fasit underveis,
+  trukket med samme vekting per kapittel som eksamen (`KVOTE`, tyngst på
+  kapittel 6–16) og spredt på begrepene, alltid med tre genererte
+  JASP-utskrifter. Til slutt får du resultat per kapittel. Du kan gå
+  tilbake og endre et svar, og en påbegynt eksamen avbrytes ikke uten at du
+  bekrefter det. Svarene lagres når du er ferdig, så «bare de jeg har
+  bommet på» fanger dem opp.
+- Oppgavene og forklaringene er skrevet for siden. De følger emnets
+  konvensjoner (Levene + Welch, η² i enveis og η²p i faktoriell ANOVA og
+  ved gjentatte målinger, KI = M ± 1,96 · SE, Cohens grenser), men er ikke
+  hentet fra noe kursmateriell. Siden er ikke offisiell.
 - **Mobil (under 900px):** en fast bunnmeny har Søk, Innhold, Oppgaver,
   Kort og Formler. «Innhold» er innholdsfortegnelsen som en skuff som glir
   opp. Snarveiene til oppgavene og kortene lander rett på øvingspanelet.

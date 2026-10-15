@@ -8187,6 +8187,8 @@ const JASPGEN = (function(){
     const g = k => vars.find(o => o.k === k), R = g('R'), L = g('L'), S = g('S');
     if(R.sk < 1 || L.sk > -1 || Math.abs(S.sk) > .4 || Math.abs(S.sk) < .02) return null;
     if(!(R.M > R.Md) || !(L.M < L.Md)) return null;
+    /* ingen urimelige maksimumsverdier, som mer enn et døgn med skjermtid */
+    if(R.max > {Innsovning_min: 180, Reaksjonstid_ms: 2000, Skjermtid_min: 960, Pendletid_min: 180}[R.v.nm]) return null;
     const se = seSkew(n), sk = seKurt(n), dp = o => o.v.dec === 0 ? 2 : 2;
     const col = f => vars.map(f);
     const x = tab([''].concat(col(o => o.v.nm)), [
@@ -8589,7 +8591,7 @@ const JASPGEN = (function(){
   def('anovaw', 'Enveis ANOVA: Levene, Welch og Games–Howell', ['C13', 'D2', 'C8'], 11, r => {
     const sc = P(r, GRP.filter(g => g.g.length === 3)), k = 3, uneq = r() < .55;
     const ns = Array.from({length: k}, () => I(r, 10, 40)), c = effCat(r);
-    const sd = Array.from({length: k}, (_, i) => sc.s*(uneq && i === 0 ? U(r, 2.2, 3.2) : U(r, .85, 1.15)));
+    const sd = Array.from({length: k}, (_, i) => sc.s*(uneq && i === 0 ? U(r, 1.8, 2.4) : U(r, .85, 1.15)));
     const order = shuf(r, [0, 1, 2]);
     const groups = ns.map((n, i) => draw(r, n, sc.m + (order[i] - 1)*effD(r, c)*sc.s*.8, sd[order[i]], 1));
     const S = anova1(groups), L = levene(groups), W = welchF(groups);
@@ -8615,7 +8617,7 @@ const JASPGEN = (function(){
              : [[repW + ', fordi Levene viser at variansene er ulike', 'Levene er ikke signifikant (' + LP + '). Ulike varianser er altså ikke påvist.', true],
                 ['F(' + L.df1 + ', ' + L.df2 + ') = ' + N(L.F, 2) + ', ' + LP, 'Dette er Levenes test, ikke testen av gruppegjennomsnittene.'],
                 ['F(' + S.dfm + ', ' + S.N + ') = ' + N(S.F, 2) + ', ' + PE(S.p), 'Den andre df-en er N − k = ' + S.dfr + ', ikke N.']]),
-      post: () => Q(r, sc.txt + ' Omnibus-testen skal følges opp med parvise sammenligninger. Hvilken post hoc-test passer best?',
+      post: () => (lsig ? W.p : S.p) >= .05 ? null : Q(r, sc.txt + ' Omnibus-testen er signifikant og skal følges opp med parvise sammenligninger. Hvilken post hoc-test passer best?',
         lsig ? ['Games–Howell, fordi Levene viser ulike varianser', 'Games–Howell er post hoc-testen som tåler ulike varianser og ulike gruppestørrelser. Den er partneren til Welch, slik Tukey er partneren til den vanlige F-testen.']
              : ['Tukey, fordi ulike varianser ikke er påvist', 'Tukey forutsetter like varianser. Levene er ikke signifikant (' + LP + '), så det er forsvarlig. Games–Howell hadde også vært trygt.'],
         lsig ? [['Tukey, fordi den er standardvalget', 'Tukey forutsetter like varianser, og Levene sier at de er ulike.', true],
@@ -8876,7 +8878,7 @@ const JASPGEN = (function(){
         [sigRows.length === 3 ? [sc.a + ', ' + sc.b + ' (interaksjonen er ikke en effekt)', 'Interaksjonen er en effekt med sin egen test, og her er ' + PE(S.AB.p) + '.', true] : ['Alle tre: ' + rows.map(x => x[0]).join(', '), 'Tre rader betyr ikke tre funn. Hver rad har sin egen test og sin egen p.', true],
          [setTxt(rows.filter(([, o]) => o.ep >= .06).map(([nm]) => nm)), 'Store η²<sub>p</sub> er ikke det samme som signifikant. Signifikans står i p.'],
          sigRows.length && sigRows.length < 3 ? [setTxt(rows.filter(([, o]) => o.p >= .05).map(([nm]) => nm)), 'Det er radene med p over .05, altså de som ikke er signifikante.'] : null,
-         ['Ingen av effektene, fordi Residuals er stor', 'Hver effekt testes mot Residuals. Hvor stor den er, står allerede i F og p.']])
+         sigRows.length ? ['Ingen av effektene, fordi Residuals er stor', 'Hver effekt testes mot Residuals. Hvor stor den er, står allerede i F og p.'] : [setTxt([sc.a, sc.b]), 'Hovedeffektene har ' + PE(S.A.p) + ' og ' + PE(S.B.p) + ', begge over .05.']])
     });
     return out && Object.assign({x}, out);
   });
@@ -9108,7 +9110,7 @@ const JASPGEN = (function(){
       stars: () => {
         const o = P(r, pairs.filter(q => q.p < .001)); if(!o) return null;
         return Q(r, intro + 'Hva forteller de tre stjernene ved ' + o.rs + ' (' + pn(o) + ')?',
-          ['At p < .001: en korrelasjon minst så langt fra 0 ville vært svært usannsynlig hvis ρ = 0. Stjernene avhenger av N, ikke bare av styrken', 'Stjernene er en kode for p. Med N = ' + Nn + ' får selv en ' + (Nn >= 150 ? 'ganske svak' : 'moderat') + ' korrelasjon lav p. Hvor sterk sammenhengen er, ser du av r (' + o.rs + ') og r² (' + Z(o.r*o.r, 2) + ').'],
+          ['At p < .001: en korrelasjon minst så langt fra 0 ville vært svært usannsynlig hvis ρ = 0. Stjernene avhenger av N, ikke bare av styrken', 'Stjernene er en kode for p. ' + (Nn >= 60 ? 'Med N = ' + Nn + ' får selv en ' + (Nn >= 150 ? 'ganske svak' : 'moderat') + ' korrelasjon lav p.' : 'Med N = ' + Nn + ' trengs en ganske sterk korrelasjon for tre stjerner, men med flere deltagere ville også svakere korrelasjoner fått dem.') + ' Hvor sterk sammenhengen er, ser du av r (' + o.rs + ') og r² (' + Z(o.r*o.r, 2) + ').'],
           [['At korrelasjonen er sterk: tre stjerner betyr sterk sammenheng', 'Stjernene viser p, og p avhenger av N. Den samme r kan få null eller tre stjerner, alt etter hvor mange som er med.', true],
            ['At det er 99,9 % sannsynlig at sammenhengen er kausal', 'p sier ingenting om årsak, og det er ikke sannsynligheten for at en hypotese er sann.'],
            ['At 99,9 % av deltagerne følger mønsteret', 'p handler om hvor overraskende utvalget er hvis ρ = 0, ikke om andelen deltagere.']]);
@@ -9601,13 +9603,13 @@ const JASPGEN = (function(){
      ===================================================================== */
   const INT = [
     {a:'tid', al:['Før', 'Etter'], g:['Kurs', 'Venteliste'], dv:'Mestring', m:20, s:5, txt:'Deltagere ble trukket tilfeldig til et kurs eller venteliste og målt før og etter.'},
-    {a:'oppgave', al:['Enkel', 'Vanskelig'], g:['Koffein', 'Placebo'], dv:'Riktige', m:15, s:4, txt:'Deltagere fikk koffein eller placebo og løste en enkel og en vanskelig oppgave.'},
+    {a:'oppgave', al:['Enkel', 'Vanskelig'], g:['Koffein', 'Placebo'], dv:'Riktige', m:15, s:4, sgn:-1, txt:'Deltagere fikk koffein eller placebo og løste en enkel og en vanskelig oppgave.'},
     {a:'tekst', al:['Kort', 'Middels', 'Lang'], g:['Papir', 'Skjerm'], dv:'Forståelse', m:20, s:5, txt:'Elever leste en kort, en middels og en lang tekst, på papir eller på skjerm.'},
     {a:'tidspunkt', al:['Morgen', 'Kveld'], g:['A-menneske', 'B-menneske'], dv:'Konsentrasjon', m:50, s:10, txt:'A- og B-mennesker tok en konsentrasjonstest om morgenen og om kvelden.'}
   ];
   def('inter', 'Interaksjonsplott: parallelle eller kryssende linjer', ['C9', 'D3', 'D2'], 13, r => {
     const sc = P(r, INT), pat = P(r, ['par', 'ord', 'dis']), L = sc.al.length, n = I(r, 20, 40), s = sc.s;
-    const e = U(r, .5, 1)*(r() < .5 ? 1 : -1), off = U(r, .3, .7)*(r() < .5 ? 1 : -1);
+    const e = U(r, .5, 1)*(sc.sgn || (r() < .5 ? 1 : -1)), off = U(r, .3, .7)*(r() < .5 ? 1 : -1);
     const mean = [[], []];
     for(let j = 0; j < L; j++){
       const t = j/(L - 1);
@@ -9617,9 +9619,10 @@ const JASPGEN = (function(){
       mean[0][j] = base + d*s/2 + normal(r)*s/Math.sqrt(n)*.4; mean[1][j] = base - d*s/2 + normal(r)*s/Math.sqrt(n)*.4;
     }
     const diff = mean[0].map((v, j) => (v - mean[1][j])/s);
-    if(pat === 'par' && Math.abs(diff[L - 1] - diff[0]) > .15) return null;
+    if(pat === 'par' && diff.some(dd => Math.abs(dd - diff[0]) > .15)) return null;
     if(pat === 'ord' && (diff.some(dd => Math.sign(dd) !== Math.sign(diff[0]) || Math.abs(dd) < .2) || Math.abs(diff[L - 1] - diff[0]) < .7)) return null;
     if(pat === 'dis' && (Math.sign(diff[0]) === Math.sign(diff[L - 1]) || Math.abs(diff[0]) < .35 || Math.abs(diff[L - 1]) < .35)) return null;
+    if(sc.sgn && mean.some(row => Math.sign(row[L - 1] - row[0]) !== sc.sgn)) return null;
     const arm = tCrit(n - 1)*s/Math.sqrt(n);
     const all = [].concat(...mean), lo = Math.min(...all) - arm*1.4, hi = Math.max(...all) + arm*1.4;
     const tk = ticks(lo, hi, 5), step = tk.t.length > 1 ? tk.t[1] - tk.t[0] : 1, y0 = Math.floor(lo/step)*step, y1 = Math.ceil(hi/step)*step;
@@ -9645,7 +9648,7 @@ const JASPGEN = (function(){
     const T = {
       par: 'Linjene er omtrent parallelle: forskjellen mellom ' + a0.toLowerCase() + ' og ' + aL.toLowerCase() + ' er omtrent like stor i begge gruppene, og det er ikke tegn til interaksjon',
       ord: 'Forskjellen mellom ' + a0.toLowerCase() + ' og ' + aL.toLowerCase() + ' er større for ' + big + ' enn for ' + small + ': et interaksjonsmønster, selv om linjene ikke krysser',
-      dis: 'Linjene krysser: ' + hiStart + ' ligger høyest ved ' + a0.toLowerCase() + ', ' + hiEnd + ' ved ' + aL.toLowerCase() + ', så effekten av ' + sc.a + ' går ulik vei i gruppene'
+      dis: 'Linjene krysser: ' + hiStart + ' ligger høyest ved ' + a0.toLowerCase() + ', ' + hiEnd + ' ved ' + aL.toLowerCase() + ', så forskjellen mellom gruppene snur'
     };
     /* hva figuren faktisk viser, brukt i begrunnelsene for de gale alternativene */
     const ACT = {par: 'Her er avstanden mellom linjene nesten den samme på alle nivåene.',
@@ -9662,16 +9665,17 @@ const JASPGEN = (function(){
         [T[pat], {par: 'Avstanden mellom linjene er nesten den samme på alle nivåene. Hovedeffektene kan da beskrives hver for seg.', ord: 'Linjene er ikke parallelle: avstanden mellom dem endrer seg. Interaksjon betyr at effekten av den ene faktoren avhenger av den andre, og linjene trenger ikke krysse.', dis: 'Når linjene krysser, snur forskjellen mellom gruppene. Det er en disordinal interaksjon, og en hovedeffekt alene ville gitt et misvisende bilde.'}[pat]],
         Object.keys(T).filter(k => k !== pat).map(k => [T[k], W[k], true])
           .concat(pat !== 'par' ? [['Linjene er ikke parallelle, så interaksjonen er statistisk signifikant', 'Figuren viser mønsteret i utvalget. Om det er signifikant, står i raden for interaksjonen i ANOVA-tabellen.']] : [])
-          .concat(pat === 'ord' ? [['Linjene krysser ikke, så det er ingen interaksjon', 'Interaksjon betyr ikke-parallelle linjer, ikke kryssende linjer. Her endrer avstanden seg.', true]] : [])),
+          .concat(pat === 'ord' ? [['Linjene krysser ikke, så det er ingen interaksjon', 'Interaksjon betyr ikke-parallelle linjer, ikke kryssende linjer. Her endrer avstanden seg.', true]] : [])
+          .concat(pat === 'par' ? [['Linjene er parallelle, så ingen av faktorene har noen effekt', 'Parallelle linjer betyr bare at det ikke er tegn til interaksjon. Hovedeffektene kan likevel være tydelige: her ' + (e > 0 ? 'stiger' : 'synker') + ' begge linjene fra ' + a0.toLowerCase() + ' til ' + aL.toLowerCase() + ', og ' + hiStart + ' ligger høyest hele veien.']] : [])),
       sig: () => Q(r, intro + 'Kan du avgjøre ut fra figuren alene om interaksjonen er statistisk signifikant?',
         ['Nei. Figuren viser mønsteret i utvalget. Om det er signifikant, står i raden ' + sc.a.charAt(0).toUpperCase() + sc.a.slice(1) + ' ✻ Gruppe i ANOVA-tabellen', 'Ikke-parallelle linjer kan skyldes tilfeldig variasjon, og feilfeltene for hvert gjennomsnitt sier ikke direkte noe om testen av interaksjonen.'],
         [['Ja: ' + (pat === 'par' ? 'linjene er parallelle, så interaksjonen er bevist å være null' : 'linjene er ikke parallelle, så interaksjonen er signifikant'), pat === 'par' ? 'Parallelle linjer i utvalget beviser ikke at interaksjonen er null i populasjonen.' : 'Et mønster i utvalget kan skyldes tilfeldigheter. Det er testen som avgjør.', true],
          ['Ja: feilfeltene overlapper, så ingen av effektene er signifikante', 'Overlapp mellom feilfelt avgjør ikke signifikans, og feilfeltene er for enkeltgjennomsnitt, ikke for interaksjonen.'],
          ['Ja: feilfeltene er korte, så alle effektene er signifikante', 'Korte feilfelt betyr presise gjennomsnitt, ikke at hver effekt er signifikant.']]),
-      main: () => pat !== 'dis' ? null : Q(r, intro + 'Anta at hovedeffekten av ' + sc.a + ' er langt fra signifikant i ANOVA-tabellen. Betyr det at ' + sc.a + ' ikke spiller noen rolle?',
-        ['Nei. Effekten av ' + sc.a + ' går ulik vei i de to gruppene, og i snittet kan de nulle hverandre ut', 'En hovedeffekt er snittet over den andre faktoren. Når linjene krysser, kan en tydelig effekt i hver gruppe gi et snitt nær 0. Effekten må beskrives for hver gruppe.'],
-        [['Ja. En ikke-signifikant hovedeffekt betyr at ' + sc.a + ' er uten betydning', 'Hovedeffekten skjuler at effekten går ulik vei i gruppene.', true],
-         ['Ja, fordi linjene krysser og effektene er like store', 'At linjene krysser, betyr at effekten av ' + sc.a + ' avhenger av gruppe, ikke at den er null.'],
+      main: () => pat !== 'dis' ? null : Q(r, intro + 'Anta at hovedeffekten av gruppe (' + A + ' mot ' + B + ') er langt fra signifikant i ANOVA-tabellen. Betyr det at gruppe ikke spiller noen rolle?',
+        ['Nei. Forskjellen mellom gruppene går ulik vei ved ' + a0.toLowerCase() + ' og ' + aL.toLowerCase() + ', og i snittet kan den nulles ut', 'En hovedeffekt er snittet over den andre faktoren. Når linjene krysser, kan en tydelig forskjell mellom gruppene i hver ende gi et snitt nær 0. Forskjellen må beskrives for hvert nivå av ' + sc.a + '.'],
+        [['Ja. En ikke-signifikant hovedeffekt betyr at gruppe er uten betydning', 'Hovedeffekten skjuler at forskjellen mellom gruppene snur.', true],
+         ['Ja, fordi linjene krysser og forskjellene er like store', 'At linjene krysser, betyr at forskjellen mellom gruppene avhenger av ' + sc.a + ', ikke at den er null.'],
          ['Nei, fordi en hovedeffekt alltid er signifikant når linjene krysser', 'Det er motsatt: kryssende linjer gir ofte svake hovedeffekter.']])
     });
     return out && Object.assign({x}, out);
@@ -9733,10 +9737,13 @@ const JASPGEN = (function(){
     let zx = Array.from({length: n}, () => normal(r)), e = Array.from({length: n}, () => normal(r));
     const mzx = avg(zx), szx = sdv(zx); zx = zx.map(v => (v - mzx)/szx);
     const be = sum(e.map((v, i) => v*zx[i]))/(n - 1); e = e.map((v, i) => v - be*zx[i]); const me = avg(e), se_ = sdv(e); e = e.map(v => (v - me)/se_);
-    const b1 = P(r, sc.b), b0 = P(r, sc.b0), sy = Math.abs(b1*sc.sx/rr), my = b0 + b1*sc.mx;
-    const X = zx.map(z => sc.mx + sc.sx*z), Y = zx.map((z, i) => my + sy*(rr*z + Math.sqrt(1 - rr*rr)*e[i]));
+    const b1 = P(r, sc.b), b0 = P(r, sc.b0), sxs = Math.min(sc.sx, sc.mx/2.5), sy = Math.abs(b1*sxs/rr), my = b0 + b1*sc.mx;
+    const X = zx.map(z => sc.mx + sxs*z), Y = zx.map((z, i) => my + sy*(rr*z + Math.sqrt(1 - rr*rr)*e[i]));
     let xa = null, ya = null;
-    if(lev){ xa = sc.mx + sc.sx*U(r, 3.6, 4.2); ya = b0 + b1*xa + (lev === 'off' ? -Math.sign(b1)*sy*U(r, 2.6, 3.4) : sy*U(r, -.15, .15)); X.push(xa); Y.push(ya); }
+    if(lev){ xa = sc.mx + sxs*U(r, 3.6, 4.2); ya = b0 + b1*xa + (lev === 'off' ? -Math.sign(b1)*sy*U(r, 2.6, 3.4) : sy*U(r, -.15, .15)); X.push(xa); Y.push(ya); }
+    /* ingen negative tider eller antall, og ingen skårer utenfor skalaen */
+    const yb = {Søvn: [3, 12], Stress: [0, 40], Ordforråd: [0, 100], Innsovning: [1, 120], Poeng: [0, 100]}[sc.y];
+    if(X.some(v => v < 0) || Y.some(v => v < yb[0] || v > yb[1])) return null;
     const fit = ols([X], Y); if(!fit) return null;
     const B0 = fit.coef[0], B1 = fit.coef[1], R2 = fit.R2, nn = X.length;
     let cook = 0, hA = 0;
@@ -9783,7 +9790,8 @@ const JASPGEN = (function(){
          ['Linja viser at ' + sc.x + ' påvirker ' + sc.y, 'En regresjonslinje i observasjonsdata viser en sammenheng, ikke årsak.']]),
       yhat: () => {
         if(lev) return null;
-        const x0 = P(r, sc.x0), b0r = +N(B0, 2).replace('−', '-'), b1r = +N(B1, eqd).replace('−', '-'), yh = b0r + b1r*x0;
+        const x0 = P(r, sc.x0.filter(v => v >= xs[0] && v <= xs[nn - 1])); if(x0 == null) return null;
+        const b0r = +N(B0, 2).replace('−', '-'), b1r = +N(B1, eqd).replace('−', '-'), yh = b0r + b1r*x0;
         return Q(r, intro + 'Hvilken verdi predikerer linja for ' + sc.x + ' = ' + x0 + '?',
           [N(yh, 2), 'Sett inn i likningen: ' + N(b0r, 2) + (b1r < 0 ? ' − ' : ' + ') + N(Math.abs(b1r), eqd) + ' · ' + x0 + ' = ' + N(yh, 2) + '.'],
           [[N(b1r*x0, 2), 'Konstantleddet mangler. ŷ = b₀ + b₁ · x.', true],
@@ -13121,6 +13129,17 @@ const JASPGEN = (function(){
   window.addEventListener('resize', all);
   document.addEventListener('toggle', all, true);   /* en forklaringsboks som foldes ut */
   all();
+  /* tabeller som legges inn senere, som de genererte utskriftene i øvingen, får samme hint */
+  if('MutationObserver' in window) new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => {
+    if(n.nodeType !== 1) return;
+    (n.matches('.scroller') ? [n] : [...n.querySelectorAll('.scroller')]).forEach(el => {
+      if(!els.includes(el)){
+        for(let i = els.length - 1; i >= 0; i--) if(!els[i].isConnected) els.splice(i, 1);
+        els.push(el); el.addEventListener('scroll', ()=>check(el), {passive:true});
+      }
+      check(el);
+    });
+  }))).observe(document.body, {childList: true, subtree: true});
 })();
 
 /* ================= navigasjon: innholdsfortegnelsen, bunnmenyen og «fortsett der du slapp» ================= */

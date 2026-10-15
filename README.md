@@ -120,6 +120,10 @@ npm run deploy
   ideen med hverdagseksempler; de andre har utregninger, formler og maler.
   Tall i `data-s`-spenn inne i boksene følger datasettet i sandkassen.
   Et søketreff inne i en lukket boks folder den ut.
+- Hvert tegn i innholdsfortegnelsen har et «Kort fortalt»-kort (`.symkort`)
+  øverst i seksjonen sin: hva tegnet er, hvorfor det brukes, hvilke verdier
+  det kan ha og hvordan du leser høye, lave, positive og negative verdier.
+  Kortene er med i søket som egne treff.
 - `#formler` er formelarket: alt som må pugges til en eksamen uten
   hjelpemidler. Tabellene har `data-fam="Formler: …"`, så hver linje også
   blir et øvingskort.

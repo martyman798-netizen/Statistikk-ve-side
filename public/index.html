@@ -539,6 +539,29 @@ svg.forest .fp-dia{fill:var(--mark)}
   .jg table.jasp.jg-c2 td:nth-child(2){white-space:normal;min-width:64px}
 }
 
+/* «Kort fortalt»: hva tegnet er, hvorfor det brukes og hvordan tallet leses */
+.symkort{background:var(--surface);border:1px solid var(--rule-soft);border-left:3px solid var(--accent);border-radius:6px;padding:14px 18px 14px;margin:16px 0 22px;max-width:66ch;font-size:15.5px;line-height:1.5;color:var(--ink)}
+.symkort p{margin:0}
+.symkort .sk-tittel{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.symkort .sk-sym{font-family:var(--serif);font-size:19px;letter-spacing:0;text-transform:none;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:0 8px;line-height:1.5}
+.symkort dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0}
+.symkort dt{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);padding-top:3px}
+.symkort dd{margin:0}
+.symkort .sk-les{margin:12px 0 6px;font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+.symkort ul.sk-skala{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:max-content 1fr;gap:6px 12px;align-items:baseline}
+.symkort .sk-skala li{display:contents}
+.symkort .sk-v{font-family:var(--mono);font-size:13px;white-space:nowrap;justify-self:start;background:var(--surface-2);border:1px solid var(--rule-soft);border-radius:4px;padding:0 6px}
+.symkort .sk-merk{margin-top:10px;font-size:14.5px;color:var(--ink-2)}
+@media (max-width:640px){
+  .symkort{padding:12px 14px;font-size:15px}
+  .symkort dl{grid-template-columns:1fr;gap:0}
+  .symkort dt{padding-top:8px}
+  .symkort dt:first-child{padding-top:0}
+  .symkort ul.sk-skala{grid-template-columns:1fr;gap:2px}
+  .symkort .sk-skala li{display:block;margin-bottom:6px}
+  .symkort .sk-v{display:inline-block;margin-right:6px;white-space:normal}
+}
+
 /* ---------- mobil ----------
    Under 900px: bunnmeny med søk, innhold og øving; innholdsfortegnelsen
    blir en skuff som glir opp; datasettbaren flyttes ned til Del I. */
@@ -1108,6 +1131,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Populasjon og utvalg</h2>
         <p class="asks">Hvem gjelder svaret for?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">μ</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Gjennomsnittet i hele populasjonen: alle du vil si noe om, ikke bare de du faktisk målte.</dd><dt>Hvorfor bruker vi det?</dt><dd>Det er dette tallet forskningen egentlig vil vite. Vi kjenner det nesten aldri, så vi anslår det med utvalgets gjennomsnitt, <em class="v">M</em>.</dd><dt>Hvilke verdier?</dt><dd>Samme enhet som variabelen (minutter, poeng, kroner). Det ligger fast, men er ukjent.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">M nær μ</span><span>Utvalget traff godt. Store, tilfeldige utvalg gjør det oftest.</span></li><li><span class="sk-v">M ≠ μ</span><span>Helt normalt. Avstanden heter utvalgsfeil, og standardfeilen sier hvor stor den typisk er.</span></li><li><span class="sk-v">μ₁ = μ₂</span><span>Det nullhypotesen ofte påstår: ingen forskjell mellom gruppene i populasjonen.</span></li></ul></div>
         <p>Dette skillet er selve grunnen til at statistikk finnes. Du vil vite noe om <strong>alle</strong>, men du kan bare måle <strong>noen</strong>.</p>
         <div class="scroller"><table class="dict terms tight" data-fam="Grunnbegreper">
           <tbody>
@@ -1239,6 +1263,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Sannsynlighet</h2>
         <p class="asks">Språket som p, α og «95 %» er skrevet på</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">P(A)</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Hvor ofte noe skjer i det lange løp, skrevet som et tall fra 0 til 1.</dd><dt>Hvorfor bruker vi det?</dt><dd>All slutningsstatistikk bygger på sannsynligheter: <em class="v">p</em>, α, styrke og konfidensintervaller. Du må kunne lese dem for å forstå resten.</dd><dt>Hvilke verdier?</dt><dd>Fra 0 til 1, eller fra 0 til 100 %.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">0</span><span>Kan ikke skje.</span></li><li><span class="sk-v">.05</span><span>Skjer i omtrent 1 av 20 forsøk. Det er den vanlige grensen α.</span></li><li><span class="sk-v">.50</span><span>Like sannsynlig som kron på et myntkast.</span></li><li><span class="sk-v">1</span><span>Skjer helt sikkert.</span></li><li><span class="sk-v">P(A | B)</span><span>Sannsynligheten for A når du vet at B har skjedd. Den er ikke det samme som P(B | A).</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: hva en sannsynlighet er</summary>
           <div class="more-body">
@@ -1345,6 +1370,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Gjennomsnittet</h2>
         <p class="asks">Hvor ligger tyngdepunktet?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">M</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Gjennomsnittet: summen av alle verdiene delt på hvor mange det er.</dd><dt>Hvorfor bruker vi det?</dt><dd>Det er det vanligste svaret på «hvor ligger gruppen?». Det er også gjennomsnitt t-tester og ANOVA sammenligner.</dd><dt>Hvilke verdier?</dt><dd>Samme enhet som variabelen. Det ligger alltid mellom den laveste og den høyeste verdien.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">høy M</span><span>Gruppen ligger høyt i snitt.</span></li><li><span class="sk-v">M₁ − M₂</span><span>Forskjellen mellom to grupper, altså det en t-test tester.</span></li><li><span class="sk-v">M &gt; Mdn</span><span>Noen få høye verdier drar snittet opp: fordelingen er høyreskjev.</span></li><li><span class="sk-v">M &lt; Mdn</span><span>Noen få lave verdier drar snittet ned: fordelingen er venstreskjev.</span></li></ul></div>
         <p>Legg sammen alle poengsummene og del på antall deltagere. I ditt utvalg av <span class="stat" data-s="n"></span> studenter ble <em class="v">M</em> = <span class="stat" data-s="my"></span> poeng.</p>
         <p>Gjennomsnittet alene sier ingenting om hvor <em>ulike</em> folk er. To klasser kan ha nøyaktig samme snitt, der den ene består av lutter middelmådige og den andre av halvt strålende og halvt strøkne. Derfor kommer det neste tegnet aldri langt bak.</p>
         <div class="panel">
@@ -1367,6 +1393,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Standardavviket</h2>
         <p class="asks">Hvor spredt ligger folk rundt gjennomsnittet?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">SD</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Standardavviket: omtrent hvor langt en typisk verdi ligger fra gjennomsnittet.</dd><dt>Hvorfor bruker vi det?</dt><dd>Gjennomsnittet sier hvor gruppen ligger, <em class="v">SD</em> sier hvor spredt den er. Uten <em class="v">SD</em> vet du ikke om en forskjell på 5 poeng er stor eller liten.</dd><dt>Hvilke verdier?</dt><dd>0 eller mer, i samme enhet som variabelen. Aldri negativt.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">0</span><span>Alle har nøyaktig samme verdi.</span></li><li><span class="sk-v">liten</span><span>Verdiene klumper seg tett rundt gjennomsnittet.</span></li><li><span class="sk-v">stor</span><span>Verdiene spriker. Gjennomsnittet beskriver da enkeltpersonene dårligere.</span></li><li><span class="sk-v">±1 og ±2 SD</span><span>I en normalfordeling ligger omtrent 68 % innenfor ±1 SD og 95 % innenfor ±2 SD (nøyaktig ±1,96).</span></li></ul></div>
         <p>Mål avstanden fra hver student til snittet, og finn en slags typisk avstand. Det er standardavviket. Her ble <em class="v">SD</em> = <span class="stat" data-s="sdy"></span> poeng: studentene ligger typisk så langt fra snittet, i den ene eller andre retningen.</p>
         <p>Skru på «± 1 SD» i demoen over. Båndet dekker omtrent to tredjedeler av deltagerne. Det er tommelfingerregelen for en normalfordeling: ca. <em class="v">68 %</em> innenfor ett standardavvik, ca. <em class="v">95 %</em> innenfor to, og ca. <em class="v">99,7 %</em> innenfor tre. Er noen mer enn tre standardavvik unna, er det verdt å se nærmere på hvorfor.</p>
         <p>«En slags typisk avstand» er upresist med vilje, for veien dit går gjennom fire steg som er verdt å kunne hver for seg — de dukker opp igjen i ANOVA og regresjon under navnet <em class="v">SS</em>:</p>
@@ -1401,6 +1428,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Antall deltagere</h2>
         <p class="asks">Hvor mye vet vi egentlig?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">N</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Antall deltagere eller observasjoner. <em class="v">N</em> er hele utvalget, <em class="v">n</em> brukes ofte om én gruppe.</dd><dt>Hvorfor bruker vi det?</dt><dd>Antallet avgjør hvor presise tallene blir. Standardfeil, frihetsgrader og testtall har alle <em class="v">N</em> eller <em class="v">n</em> i seg.</dd><dt>Hvilke verdier?</dt><dd>Et helt tall, 1 eller mer.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">stor N</span><span>Små standardfeil, smale intervaller og høy styrke.</span></li><li><span class="sk-v">liten N</span><span>Tallene hopper mye fra utvalg til utvalg, og ekte effekter blir lett oversett.</span></li><li><span class="sk-v">4 × N</span><span>Gir halvparten så stor standardfeil, fordi SE = SD/√N.</span></li><li><span class="sk-v">svært stor N</span><span>Gjør selv bittesmå effekter signifikante, og gjør ikke et skjevt utvalg representativt.</span></li></ul></div>
         <p>Akkurat nå er <em class="v">N</em> = <span class="stat" data-s="n"></span>. Antallet gjør to ting samtidig, og de blandes stadig sammen: det gjør anslagene dine <strong>mer presise</strong>, og det gjør at selv <strong>bitte små</strong> sammenhenger blir statistisk signifikante.</p>
         <p>Det andre er verdt å tygge på. Med N = 20 kan en ganske tydelig sammenheng bli «ikke signifikant» fordi datamaterialet er for tynt til å utelukke flaks. Med N = 5000 blir en fullstendig ubetydelig sammenheng «høyst signifikant». <strong>Signifikant betyr «vanskelig å forklare med flaks alene», aldri «stort».</strong></p>
         <div class="aside tryit"><b>Prøv:</b> sett N = 20 og trekk nytt utvalg til du får en p-verdi over .05 — det skjer ganske ofte, selv om sammenhengen i sannhet er sterk (ρ = .67). Det er en <em>type II-feil</em>: å overse noe som faktisk er der. Sett så N = 100 og prøv å få det til å skje igjen.</div>
@@ -1413,6 +1441,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Korrelasjonen</h2>
         <p class="asks">Følges de to variablene ad?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">r</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Korrelasjonen: hvor tett to variabler følger hverandre langs en rett linje.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den svarer på «henger dette sammen, og hvor sterkt?» med ett tall som kan sammenlignes på tvers av studier.</dd><dt>Hvilke verdier?</dt><dd>Fra −1 til +1. Fortegnet sier retning, tallverdien sier styrke.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">+1</span><span>Perfekt positiv: de som er høye på den ene, er høye på den andre.</span></li><li><span class="sk-v">.10 · .30 · .50</span><span>Liten, middels og stor sammenheng etter Cohens grenser. Det gjelder også med minus foran.</span></li><li><span class="sk-v">0</span><span>Ingen rett-linje-sammenheng. Det kan likevel finnes en buet sammenheng.</span></li><li><span class="sk-v">negativ</span><span>Høy på den ene går sammen med lav på den andre. −.40 er like sterk som +.40.</span></li><li><span class="sk-v">−1</span><span>Perfekt negativ sammenheng.</span></li></ul><p class="sk-merk">Korrelasjon sier ikke hva som er årsak.</p></div>
         <p>Ett tall mellom −1 og +1. Fortegnet sier retning: pluss betyr at de går opp og ned sammen, minus at den ene er høy når den andre er lav. Tallverdien sier hvor tett punktene klemmer seg rundt en rett strek.</p>
         <p>I ditt utvalg er korrelasjonen mellom timer studert og poeng <em class="v">r</em> = <span class="stat" data-s="r"></span>. Den sanne verdien i populasjonen er <span class="stat blue" data-s="truer"></span> — sammenlign gjerne de to.</p>
         <div class="panel">
@@ -1550,6 +1579,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Delt variasjon</h2>
         <p class="asks">Hvor mye av de to er den samme historien?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">r²</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Korrelasjonen ganget med seg selv: andelen av variasjonen som de to variablene deler.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den gjør styrken lettere å forestille seg: hvor stor del av forskjellene i den ene som henger sammen med forskjellene i den andre.</dd><dt>Hvilke verdier?</dt><dd>Fra 0 til 1 (0 til 100 %). Aldri negativ, så fortegnet til <em class="v">r</em> forsvinner.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">0</span><span>Ingenting er delt.</span></li><li><span class="sk-v">.09</span><span>Det samme som r = .30: 9 % av variasjonen er felles.</span></li><li><span class="sk-v">.25</span><span>Det samme som r = .50: en fjerdedel er felles.</span></li><li><span class="sk-v">1</span><span>All variasjon er felles: punktene ligger på en rett linje.</span></li></ul><p class="sk-merk">En liten r² betyr ikke at sammenhengen er uviktig. I psykologien er mange små bidrag det vanlige.</p></div>
         <p><em class="v">r</em> ganget med seg selv. Det gjør korrelasjonen om til noe du kan si i prosent, og det er den eneste grunnen til at tallet finnes. Her: <span class="stat" data-s="r"></span> × <span class="stat" data-s="r"></span> = <span class="stat" data-s="r2"></span>, altså <span class="stat" data-s="r2pct"></span> delt variasjon.</p>
         <div class="panel">
           <div class="panel-head"><span>Andel delt variasjon</span><span>r² som areal</span></div>
@@ -1592,6 +1622,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>p-verdien: hvor uvanlig er resultatet hvis H₀ er sann?</h2>
         <p class="asks">Kunne tilfeldigheter alene gitt meg dette?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">p</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Sannsynligheten for å få et resultat minst så ekstremt som ditt hvis nullhypotesen er sann.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den sier om resultatet ville vært uvanlig hvis det ikke fantes noen effekt. Det er grunnlaget for å kalle noe «signifikant».</dd><dt>Hvilke verdier?</dt><dd>Fra 0 til 1. Den skrives uten null foran: p = .03.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">p &lt; .05</span><span>Uvanlig hvis H₀ er sann. Resultatet er signifikant, og H₀ forkastes.</span></li><li><span class="sk-v">p ≥ .05</span><span>Ikke uvanlig nok. Det er ikke bevis for at effekten er null, bare for lite til å forkaste H₀.</span></li><li><span class="sk-v">svært lav p</span><span>Sterkere bevis mot H₀, men ikke en større effekt. Størrelsen leser du av d, r eller η².</span></li></ul><p class="sk-merk">p er ikke sannsynligheten for at H₀ er sann.</p></div>
         <details class="more easy">
           <summary>Enkelt forklart: hva p betyr</summary>
           <div class="more-body">
@@ -1682,6 +1713,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Jakten på p under .05</h2>
         <p class="asks">Hva skjer når alle leter etter det samme tallet?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">p &lt; .05</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Grensen for «signifikant». Grensen kalles α og er nesten alltid .05, bestemt før dataene samles inn.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den gir en fast regel for når H₀ forkastes. Da tar du i det lange løp feil i høyst 5 % av testene der H₀ faktisk er sann.</dd><dt>Hvilke verdier?</dt><dd>α er oftest .05, noen ganger .01 eller .001. JASP merker med stjerner: * p &lt; .05, ** p &lt; .01, *** p &lt; .001.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">p = .049 / .051</span><span>Nesten like sterke bevis, selv om bare det ene er «signifikant».</span></li><li><span class="sk-v">flere stjerner</span><span>Lavere p, ikke større effekt.</span></li><li><span class="sk-v">mange forsøk</span><span>Prøver du mange tester eller analyser til noe blir signifikant, beskytter ikke grensen lenger mot falske funn.</span></li></ul></div>
         <p>Alt på forrige side forutsetter én ting: at du bestemte deg for analysen <em>før</em> du så dataene, og at resultatet blir publisert uansett hva det viser. Begge forutsetningene brytes rutinemessig. Da slutter p-verdien å bety det den skal — ikke fordi matematikken svikter, men fordi den får feil spørsmål.</p>
         <p>De to demoene under kjører på data der <strong>det ikke finnes noen effekt i det hele tatt</strong>. Alt du ser er ren flaks.</p>
 
@@ -1721,6 +1753,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Standardfeilen</h2>
         <p class="asks">Hvor presist er anslaget mitt?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">SE</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Standardfeilen: hvor mye et estimat, for eksempel et gjennomsnitt, typisk ville bommet fra utvalg til utvalg.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den sier hvor presist tallet ditt er. Konfidensintervaller, <em class="v">t</em> og <em class="v">p</em> bygger alle på <em class="v">SE</em>.</dd><dt>Hvilke verdier?</dt><dd>0 eller mer, i samme enhet som estimatet. For et gjennomsnitt er SE = SD/√n.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">liten SE</span><span>Estimatet er presist. Et nytt utvalg ville gitt omtrent det samme.</span></li><li><span class="sk-v">stor SE</span><span>Estimatet er usikkert, ofte fordi utvalget er lite eller spredningen stor.</span></li><li><span class="sk-v">SE mot SD</span><span>SD beskriver personene og krymper ikke med flere deltagere. SE beskriver presisjonen og krymper når n øker.</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: SD mot SE</summary>
           <div class="more-body">
@@ -1779,6 +1812,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Konfidensintervallet</h2>
         <p class="asks">Hvor mye kan den sanne verdien avvike fra min?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">KI</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Konfidensintervallet: et område rundt estimatet med de verdiene som passer med dataene. Et 95 % KI er M ± 1,96 · SE.</dd><dt>Hvorfor bruker vi det?</dt><dd>Det viser både estimatet og usikkerheten på én gang. Det sier mer enn en p-verdi alene.</dd><dt>Hvilke verdier?</dt><dd>To tall, [nedre, øvre], i samme enhet som estimatet.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">smalt</span><span>Presist estimat, ofte fra et stort utvalg.</span></li><li><span class="sk-v">bredt</span><span>Usikkert estimat. Mange ulike sanne verdier passer med dataene.</span></li><li><span class="sk-v">uten 0</span><span>Gjelder intervallet en forskjell og 0 ikke er med, er forskjellen signifikant ved α = .05.</span></li><li><span class="sk-v">med 0</span><span>Ikke signifikant. Både ingen effekt og en reell effekt passer med dataene.</span></li></ul><p class="sk-merk">«95 %» handler om metoden: 95 av 100 slike intervaller fanger den sanne verdien.</p></div>
         <details class="more easy">
           <summary>Enkelt forklart: hva intervallet betyr</summary>
           <div class="more-body">
@@ -1872,6 +1906,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Linja: konstantledd og stigningstall</h2>
         <p class="asks">Hvor mange poeng gir én time til?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">b</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Stigningstallet i en regresjon: hvor mye <em class="v">Y</em> endrer seg i snitt når <em class="v">X</em> øker med én enhet.</dd><dt>Hvorfor bruker vi det?</dt><dd>Det beskriver sammenhengen i variablenes egne enheter, så du kan si noe konkret: «én time mer studier går sammen med 3 poeng mer i snitt».</dd><dt>Hvilke verdier?</dt><dd>Hva som helst, positivt eller negativt. Størrelsen avhenger av enhetene.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">b &gt; 0</span><span>Y øker når X øker.</span></li><li><span class="sk-v">b &lt; 0</span><span>Y synker når X øker.</span></li><li><span class="sk-v">b = 0</span><span>Flat linje: X sier ingenting om Y.</span></li><li><span class="sk-v">stor b</span><span>Ikke automatisk en sterk sammenheng. Bytter du fra timer til minutter, endres b uten at noe annet endres.</span></li></ul><p class="sk-merk">Vil du sammenligne prediktorer med ulike enheter, bruk β.</p></div>
         <p>Regresjon legger en rett strek gjennom punktskyen. Streken beskrives av to tall: <em class="v">b₀</em> er <strong>konstantleddet</strong>, der linja krysser den loddrette aksen, og <em class="v">b₁</em> er <strong>stigningstallet</strong>, hvor mye linja stiger per steg mot høyre.</p>
         <p>I ditt utvalg: ŷ = <span class="stat" data-s="b0"></span> + <span class="stat" data-s="b1"></span> · timer studert. Altså <strong><span class="stat" data-s="b1abs"></span> poeng per ekstra time studert</strong>. Den sanne verdien er 2.50.</p>
         <p>Men hvilken av alle mulige linjer er «riktig»? Svaret er den som gjør <strong>summen av alle kvadrerte bommer</strong> minst mulig. Dra i kontrollene og prøv å slå datamaskinen.</p>
@@ -1929,6 +1964,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Testtallet</h2>
         <p class="asks">Hvor mange standardfeil unna null ligger anslaget?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">t</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Testtallet: hvor mange standardfeil estimatet ligger fra det nullhypotesen sier, oftest null. t = estimat / SE.</dd><dt>Hvorfor bruker vi det?</dt><dd>Det setter signalet opp mot støyen. Sammen med frihetsgradene gir det p-verdien.</dd><dt>Hvilke verdier?</dt><dd>Positivt eller negativt, oftest mellom −4 og 4.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">nær 0</span><span>Estimatet er lite i forhold til usikkerheten.</span></li><li><span class="sk-v">|t| over ca. 2</span><span>Gir p &lt; .05 når df er over omtrent 30. Med færre df må t være litt større.</span></li><li><span class="sk-v">fortegnet</span><span>Sier bare retning, for eksempel hvilken gruppe som er høyest. Det avhenger av hva som trekkes fra hva.</span></li><li><span class="sk-v">stor |t|</span><span>Kan komme av en stor effekt eller av et stort utvalg. Se d for størrelsen.</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: hva t måler</summary>
           <div class="more-body">
@@ -1980,6 +2016,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Frihetsgrader</h2>
         <p class="asks">Hvor mange uavhengige biter informasjon står igjen?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">df</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Frihetsgradene: hvor mange uavhengige opplysninger testen har igjen etter at noe er anslått fra dataene.</dd><dt>Hvorfor bruker vi det?</dt><dd>Samme <em class="v">t</em> eller <em class="v">F</em> gir ulik p avhengig av df. Df forteller også hvor stort utvalget var.</dd><dt>Hvilke verdier?</dt><dd>Positive tall, oftest hele. Desimaler betyr en korreksjon (Welch eller Greenhouse–Geisser).</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">mange df</span><span>Mer informasjon. Grensen for signifikans blir lavere.</span></li><li><span class="sk-v">få df</span><span>Testtallet må være større for å bli signifikant.</span></li><li><span class="sk-v">N fra df</span><span>Uavhengig t og r: N = df + 2. Paret t: n = df + 1.</span></li><li><span class="sk-v">F(2, 72)</span><span>To df: antall grupper − 1 og N − antall grupper. Her 3 grupper og 75 deltagere.</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: frihetsgrader</summary>
           <div class="more-body">
@@ -2033,6 +2070,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Residualer og antakelser</h2>
         <p class="asks">Kan jeg stole på tallene modellen ga meg?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">e</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Residualen: forskjellen mellom det en person faktisk fikk og det modellen spådde. e = observert − predikert.</dd><dt>Hvorfor bruker vi det?</dt><dd>Residualene viser hvor godt modellen passer. Det er dem forutsetningene om normalitet og lik spredning gjelder.</dd><dt>Hvilke verdier?</dt><dd>Positive eller negative, i samme enhet som Y. I snitt er de 0.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">e &gt; 0</span><span>Personen skåret høyere enn modellen spådde.</span></li><li><span class="sk-v">e &lt; 0</span><span>Personen skåret lavere enn spådd.</span></li><li><span class="sk-v">små</span><span>Modellen treffer godt.</span></li><li><span class="sk-v">over ±3</span><span>En standardisert residual så langt ute er verdt en ekstra titt: uteligger eller tastefeil?</span></li><li><span class="sk-v">mønster</span><span>En bue eller trakt i residualplottet betyr at en forutsetning kan være brutt.</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: hva en residual er</summary>
           <div class="more-body">
@@ -2110,6 +2148,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Den standardiserte koeffisienten</h2>
         <p class="asks">Hvilken prediktor veier tyngst?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">β</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Den standardiserte koeffisienten: <em class="v">b</em> regnet om til standardavvik. Hvor mange SD Y endrer seg når X øker med én SD.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den gjør prediktorer med ulike enheter sammenlignbare.</dd><dt>Hvilke verdier?</dt><dd>Oftest mellom −1 og 1. Med bare én prediktor er β lik r.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">β &gt; 0 / &lt; 0</span><span>Samme retning som b.</span></li><li><span class="sk-v">β = .50</span><span>Én SD mer på X går sammen med en halv SD mer på Y.</span></li><li><span class="sk-v">størst |β|</span><span>Den prediktoren som henger sterkest sammen med Y når de andre holdes konstant.</span></li><li><span class="sk-v">nær 0</span><span>Lite unikt bidrag utover de andre prediktorene.</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: b mot β</summary>
           <div class="more-body">
@@ -2141,6 +2180,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Forklart variasjon</h2>
         <p class="asks">Hvor mye av utfallet fanger modellen opp?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">R²</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Andelen av variasjonen i Y som hele regresjonsmodellen forklarer.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den sier hvor godt modellen passer med alle prediktorene samlet.</dd><dt>Hvilke verdier?</dt><dd>Fra 0 til 1. Justert R² trekker fra litt for hver prediktor, så den blir litt lavere.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">0</span><span>Modellen forklarer ingenting.</span></li><li><span class="sk-v">.30</span><span>30 % av forskjellene i Y henger sammen med prediktorene.</span></li><li><span class="sk-v">1</span><span>Perfekt treff. Det er mistenkelig i ekte data.</span></li><li><span class="sk-v">= r²</span><span>Med bare én prediktor er R² det samme som r².</span></li></ul><p class="sk-merk">En høy R² betyr ikke at prediktorene er årsaker.</p></div>
         <details class="more easy">
           <summary>Enkelt forklart: hva R² betyr</summary>
           <div class="more-body">
@@ -2189,6 +2229,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Helhetstesten</h2>
         <p class="asks">Forklarer modellen som helhet noe i det hele tatt?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">F</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Forholdet mellom forklart og uforklart variasjon: signal delt på støy.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den tester hele modellen, eller alle gruppene, på én gang: finnes det noen forskjell eller sammenheng i det hele tatt?</dd><dt>Hvilke verdier?</dt><dd>0 eller mer, aldri negativ. Den har to df, for eksempel F(2, 72).</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">rundt 1</span><span>Signalet er ikke større enn støyen. Det er det man venter når H₀ er sann.</span></li><li><span class="sk-v">stor F</span><span>Tydelig signal. F over omtrent 3–4 gir ofte p &lt; .05 når det er mange deltagere.</span></li><li><span class="sk-v">signifikant F</span><span>Sier ikke hvilke grupper som skiller seg, eller i hvilken retning. Det krever post hoc-tester eller kontraster.</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: hva F måler</summary>
           <div class="more-body">
@@ -2222,6 +2263,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Endringen i forklart variasjon</h2>
         <p class="asks">Hva tjente jeg på å legge til en prediktor til?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">ΔR²</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Hvor mye R² øker når du legger nye prediktorer til modellen.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den svarer på om de nye variablene forklarer noe ekstra utover det modellen alt hadde.</dd><dt>Hvilke verdier?</dt><dd>Fra 0 til 1, i praksis ofte små tall. Økningen testes med en egen F.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">0</span><span>De nye prediktorene tilfører ingenting.</span></li><li><span class="sk-v">.05</span><span>Fem prosentpoeng mer av Y er forklart.</span></li><li><span class="sk-v">signifikant</span><span>Økningen er større enn tilfeldigheter alene ville gitt.</span></li></ul><p class="sk-merk">Rekkefølgen du legger inn variablene i, avgjør hvilke som får æren for den delte variasjonen.</p></div>
         <details class="more easy">
           <summary>Enkelt forklart: hva ΔR² er</summary>
           <div class="more-body">
@@ -2270,6 +2312,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Statistisk kontroll: når b flytter seg</h2>
         <p class="asks">Hva skjer med koeffisienten når en tredjevariabel kommer inn?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">b|Z</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Stigningstallet for X når en annen variabel, Z, også er med i modellen. Det er sammenhengen mellom X og Y når Z holdes konstant.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den viser om sammenhengen mellom X og Y står seg når en mulig tredjevariabel tas med.</dd><dt>Hvilke verdier?</dt><dd>Som b: positivt, negativt eller nær null, i Ys enhet per enhet X.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">omtrent som før</span><span>Sammenhengen henger ikke på Z.</span></li><li><span class="sk-v">mye mindre</span><span>En del av sammenhengen gikk gjennom Z eller ble delt med Z.</span></li><li><span class="sk-v">nær 0</span><span>X sier lite om Y utover det Z alt sier.</span></li></ul><p class="sk-merk">Statistisk kontroll er ikke et eksperiment. Variabler du ikke målte, er fortsatt ukontrollert.</p></div>
         <details class="more easy">
           <summary>Enkelt forklart: å «holde konstant»</summary>
           <div class="more-body">
@@ -2372,6 +2415,7 @@ svg.lupe{width:1em;height:1em;display:block}
       <div>
         <h2>Overlapp mellom prediktorene</h2>
         <p class="asks">Forteller prediktorene mine den samme historien?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">VIF</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Variansinflasjonsfaktoren: hvor mye usikkerheten i en koeffisient blåses opp fordi prediktoren overlapper med de andre prediktorene.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den varsler om multikollinearitet. Da måler prediktorene nesten det samme, og <em class="v">b</em>-ene blir ustabile.</dd><dt>Hvilke verdier?</dt><dd>1 eller mer. Toleranse er 1/VIF.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">1</span><span>Ingen overlapp med de andre prediktorene.</span></li><li><span class="sk-v">over 5</span><span>Grunn til uro (toleranse under .20).</span></li><li><span class="sk-v">over 10</span><span>Et problem (toleranse under .10). b kan hoppe mye fra utvalg til utvalg.</span></li></ul><p class="sk-merk">Høy VIF gjør ikke R² feil. Det er de enkelte b-ene som blir usikre.</p></div>
         <details class="more easy">
           <summary>Enkelt forklart: hva overlapp er</summary>
           <div class="more-body">
@@ -2558,6 +2602,7 @@ Venteliste: 20, 26, 29, 31, 33, 35 → x̄₂ = 29, SS₂ = 146<br>
       <div>
         <h2>Tre eller flere gjennomsnitt: enveis ANOVA</h2>
         <p class="asks">Spriker gruppene mer enn tilfeldighetene alene ville laget?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">η²</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Eta-kvadrat: andelen av all variasjon i utfallet som henger sammen med hvilken gruppe personene er i. η² = SS mellom / SS total.</dd><dt>Hvorfor bruker vi det?</dt><dd><em class="v">F</em> og <em class="v">p</em> sier om gruppene skiller seg. η² sier hvor mye.</dd><dt>Hvilke verdier?</dt><dd>Fra 0 til 1. Den kan regnes fra F: η² = F·df₁ / (F·df₁ + df₂).</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">.01</span><span>Liten effekt.</span></li><li><span class="sk-v">.06</span><span>Middels effekt.</span></li><li><span class="sk-v">.14</span><span>Stor effekt.</span></li><li><span class="sk-v">.30</span><span>30 % av forskjellene mellom personene henger sammen med gruppetilhørigheten.</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: enveis ANOVA</summary>
           <div class="more-body">
@@ -2690,6 +2735,7 @@ Kontrast 2: 0·20 + (−1)·24 + (+1)·28 = 4<br>
       <div>
         <h2>To faktorer: faktoriell ANOVA</h2>
         <p class="asks">«Det kommer an på», skrevet med tall</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">η²p</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Partiell eta-kvadrat: én effekt sett opp mot effekten pluss feilen, med de andre effektene holdt utenfor. JASP skriver den ut i faktoriell ANOVA og ved gjentatte målinger.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den gir en effektstørrelse for hver effekt (A, B og A × B) uten at de andre effektene spiser av nevneren.</dd><dt>Hvilke verdier?</dt><dd>Fra 0 til 1. Summen over effektene kan bli mer enn 1.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">.01 · .06 · .14</span><span>Liten, middels og stor. De samme grensene som for η² brukes ofte.</span></li><li><span class="sk-v">η²p ≥ η²</span><span>For samme effekt er η²p som regel større enn η². Sammenlign derfor ikke de to direkte.</span></li><li><span class="sk-v">A × B</span><span>Er interaksjonen signifikant, les den først. Hovedeffektene må da tolkes med forsiktighet.</span></li></ul><p class="sk-merk">ω²p er en mer forsiktig variant som forelesningen anbefalte for rapportering.</p></div>
         <details class="more easy">
           <summary>Enkelt forklart: fire celler, tre spørsmål</summary>
           <div class="more-body">
@@ -2817,6 +2863,7 @@ Til sammenligning, vanlig η² for A:<br>
       <div>
         <h2>Samme personer flere ganger: ANOVA med gjentatte målinger</h2>
         <p class="asks">Hva vinner du når hver person er sin egen kontroll?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">ε</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Epsilon: hvor godt dataene oppfyller sfærisitet, altså at differansene mellom alle par av målinger har omtrent like stor spredning.</dd><dt>Hvorfor bruker vi det?</dt><dd>Ved brudd blir F-testen for liberal. ε korrigerer det: begge df ganges med ε, og p blir større.</dd><dt>Hvilke verdier?</dt><dd>Fra 1/(k − 1) til 1, der k er antall målinger. Med bare to målinger er ε alltid 1.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">1</span><span>Sfærisiteten er oppfylt, så det trengs ingen korreksjon.</span></li><li><span class="sk-v">under .75</span><span>Bruk Greenhouse–Geisser-raden.</span></li><li><span class="sk-v">over .75</span><span>Huynh–Feldt er et godt valg.</span></li><li><span class="sk-v">F(1.40, 40.60)</span><span>Frihetsgrader med desimaler viser at korreksjonen er brukt.</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: hver person er sin egen kontroll</summary>
           <div class="more-body">
@@ -3056,6 +3103,7 @@ Halvparten av det: 8.27 / 2 ≈ 4.14 = MS for feilleddet</div>
       <div>
         <h2>Kategorier mot kategorier: kjikvadrattesten</h2>
         <p class="asks">Henger to kategoriske variabler sammen — og hvor sterkt?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">χ²</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Kjikvadrat: hvor langt de observerte antallene i en tabell ligger fra antallene du ville ventet hvis det ikke fantes noen sammenheng.</dd><dt>Hvorfor bruker vi det?</dt><dd>Det tester sammenheng mellom kategorier, for eksempel studieretning og valg av læringsform, der det ikke finnes gjennomsnitt å sammenligne.</dd><dt>Hvilke verdier?</dt><dd>0 eller mer. df = (rader − 1)(kolonner − 1).</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">0</span><span>De observerte antallene er nøyaktig som forventet.</span></li><li><span class="sk-v">stor χ²</span><span>Tabellen avviker mer enn tilfeldigheter tilsier, og det gir lav p.</span></li><li><span class="sk-v">φ eller V</span><span>χ² vokser med N, så styrken leser du av φ (2 × 2) eller Cramérs V: .10 liten, .30 middels, .50 stor.</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: å telle i bokser</summary>
           <div class="more-body">
@@ -3294,6 +3342,7 @@ Annet: (20 − 20)² / 20 = 0<br>
       <div>
         <h2>Beskrive utvalget</h2>
         <p class="asks">Metodedelen og Tabell 1</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">Mdn</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Medianen: den midterste verdien når alle er sortert fra lavest til høyest.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den beskriver midten uten å bli dratt av ekstreme verdier. Derfor passer den for skjeve data, som inntekt og reaksjonstid.</dd><dt>Hvilke verdier?</dt><dd>Samme enhet som variabelen. Halvparten ligger under, halvparten over.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">Mdn ≈ M</span><span>Fordelingen er omtrent symmetrisk.</span></li><li><span class="sk-v">M over Mdn</span><span>Høyreskjev: noen få høye verdier drar gjennomsnittet opp.</span></li><li><span class="sk-v">M under Mdn</span><span>Venstreskjev: noen få lave verdier drar gjennomsnittet ned.</span></li></ul></div>
         <p>Nesten alle artikler åpner resultatdelen med å beskrive hvem deltagerne var og hvordan svarene fordelte seg. Her er tegnene du møter der.</p>
         <div class="scroller"><table class="dict tight" data-fam="Deskriptivt">
           <tbody>
@@ -3326,6 +3375,7 @@ Annet: (20 − 20)² / 20 = 0<br>
       <div>
         <h2>Effektstørrelser</h2>
         <p class="asks">Hvor stort er det egentlig?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">d</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Cohens d: forskjellen mellom to gjennomsnitt, målt i standardavvik.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den sier hvor stor forskjellen er, uavhengig av måleskala og utvalgsstørrelse. Derfor kan den sammenlignes på tvers av studier.</dd><dt>Hvilke verdier?</dt><dd>Positiv eller negativ, oftest mellom −2 og 2. Fortegnet sier bare hvilken gruppe som er høyest.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">0</span><span>Ingen forskjell.</span></li><li><span class="sk-v">0.2 · 0.5 · 0.8</span><span>Liten, middels og stor effekt etter Cohens grenser.</span></li><li><span class="sk-v">1.0</span><span>Gruppene ligger én SD fra hverandre.</span></li></ul><p class="sk-merk">En stor d med få deltagere kan være ikke-signifikant. En liten d med svært mange kan være signifikant.</p></div>
         <details class="more easy">
           <summary>Enkelt forklart: hvorfor effektstørrelse</summary>
           <div class="more-body">
@@ -3569,6 +3619,7 @@ r = d / √(d² + 4)</div>
       <div>
         <h2>Reliabilitet og måling</h2>
         <p class="asks">Måler instrumentet i det hele tatt noe stabilt?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">α</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Cronbachs alfa: hvor godt spørsmålene i en skala henger sammen, altså om de ser ut til å måle det samme.</dd><dt>Hvorfor bruker vi det?</dt><dd>Det er det vanligste målet på reliabilitet. Et upålitelig mål svekker alle sammenhengene du finner med det.</dd><dt>Hvilke verdier?</dt><dd>Oftest mellom 0 og 1. Den kan bli negativ hvis noe er galt, for eksempel et spørsmål som skulle vært snudd.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">under .70</span><span>Svak indre konsistens.</span></li><li><span class="sk-v">≥ .70</span><span>Akseptabel.</span></li><li><span class="sk-v">≥ .80</span><span>God.</span></li><li><span class="sk-v">over .95</span><span>Mistenkelig: spørsmålene er nesten like.</span></li></ul><p class="sk-merk">α stiger med antall spørsmål, så en høy α beviser ikke at skalaen måler én ting. Ikke forveksle den med signifikansnivået α = .05.</p></div>
         <p>Før noen analyse er verdt noe, må måleinstrumentet være til å stole på. Disse tallene står som regel i metodedelen, ett per skala.</p>
         <div class="scroller"><table class="dict tight" data-fam="Reliabilitet">
           <tbody>
@@ -3611,6 +3662,7 @@ r = d / √(d² + 4)</div>
       <div>
         <h2>Faktoranalyse og SEM</h2>
         <p class="asks">Hvilken struktur ligger under svarene?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">λ</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Faktorladningen: hvor sterkt ett spørsmål henger sammen med en underliggende faktor.</dd><dt>Hvorfor bruker vi det?</dt><dd>Ladningene viser hvilke spørsmål som måler hva, og om en skala har én eller flere dimensjoner.</dd><dt>Hvilke verdier?</dt><dd>Standardiserte ladninger ligger oftest mellom −1 og 1.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">over .40</span><span>Spørsmålet laster på faktoren.</span></li><li><span class="sk-v">nær 0</span><span>Spørsmålet har lite med faktoren å gjøre.</span></li><li><span class="sk-v">negativ</span><span>Spørsmålet går motsatt vei, ofte fordi det er formulert omvendt.</span></li><li><span class="sk-v">høy på to</span><span>Spørsmålet måler to ting og er uklart.</span></li></ul></div>
         <p>Faktoranalyse leter etter de få underliggende dimensjonene som forklarer hvorfor mange spørsmål henger sammen. SEM tester en hel modell av slike dimensjoner samtidig.</p>
         <div class="scroller"><table class="dict tight" data-fam="Faktoranalyse">
           <tbody>
@@ -3640,6 +3692,7 @@ r = d / √(d² + 4)</div>
       <div>
         <h2>Bayesiansk statistikk</h2>
         <p class="asks">Hvor mye taler dataene for den ene hypotesen framfor den andre?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">BF</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Bayesfaktoren: hvor mange ganger bedre dataene passer med én hypotese enn med en annen. BF₁₀ setter H₁ opp mot H₀.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den kan vise evidens både for og mot en effekt. Det kan ikke p-verdien.</dd><dt>Hvilke verdier?</dt><dd>Større enn 0. BF₀₁ = 1/BF₁₀.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">1</span><span>Dataene skiller ikke mellom hypotesene.</span></li><li><span class="sk-v">1–3</span><span>Knapt verdt å nevne.</span></li><li><span class="sk-v">3–10</span><span>Moderat evidens for H₁.</span></li><li><span class="sk-v">over 10</span><span>Sterk evidens for H₁.</span></li><li><span class="sk-v">under 1/3</span><span>Moderat evidens for H₀. BF₁₀ = 0.20 betyr at dataene passer 5 ganger bedre med H₀.</span></li></ul></div>
         <details class="more easy">
           <summary>Enkelt forklart: hva en Bayesfaktor er</summary>
           <div class="more-body">
@@ -3678,6 +3731,7 @@ r = d / √(d² + 4)</div>
       <div>
         <h2>Metaanalyse</h2>
         <p class="asks">Hva sier alle studiene til sammen?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">I²</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Hvor stor del av forskjellene mellom studiene i en metaanalyse som er reelle forskjeller, og ikke bare tilfeldigheter.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den sier om studiene måler den samme effekten, eller om effekten varierer med hvem, hvor og hvordan.</dd><dt>Hvilke verdier?</dt><dd>Fra 0 til 100 %.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">0 %</span><span>Studiene spriker ikke mer enn tilfeldigheter tilsier.</span></li><li><span class="sk-v">25 %</span><span>Lav heterogenitet.</span></li><li><span class="sk-v">50 %</span><span>Moderat heterogenitet.</span></li><li><span class="sk-v">75 %</span><span>Høy heterogenitet. Ett samlet tall kan være misvisende, så let etter det som skiller studiene.</span></li></ul></div>
         <p>En metaanalyse behandler enkeltstudier som datapunkter. Du møter dem hele tiden i pensum, fordi de er det nærmeste faget kommer et fasitsvar.</p>
         <div class="scroller"><table class="dict tight" data-fam="Metaanalyse">
           <tbody>
@@ -3723,6 +3777,7 @@ r = d / √(d² + 4)</div>
       <div>
         <h2>Styrke, feiltyper og forskningsetikk</h2>
         <p class="asks">Kunne studien i det hele tatt ha funnet noe?</p>
+        <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">1 − β</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Styrken: sannsynligheten for å få et signifikant resultat hvis effekten du leter etter, faktisk finnes.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den sier om studien hadde en rimelig sjanse til å finne noe. Lav styrke gir mange bom, og funnene som blir signifikante, er ofte overdrevne.</dd><dt>Hvilke verdier?</dt><dd>Fra 0 til 1. β er sannsynligheten for type II-feil: å overse en ekte effekt.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">.80</span><span>Vanlig mål når en studie planlegges.</span></li><li><span class="sk-v">.50</span><span>Som å kaste mynt om du finner effekten.</span></li><li><span class="sk-v">høyere styrke</span><span>Kommer av flere deltagere, en større effekt, mindre støy i målingene eller en høyere α (for eksempel .10 i stedet for .05).</span></li></ul><p class="sk-merk">Et ikke-signifikant resultat i en studie med lav styrke sier nesten ingenting.</p></div>
         <p>Denne familien handler om studiens design snarere enn om resultatene, men den avgjør hvor mye resultatene er verdt.</p>
         <div class="scroller"><table class="dict tight" data-fam="Styrke">
           <tbody>
@@ -7426,7 +7481,7 @@ const JUMP = (function(){
 
   /* 6 · den løpende teksten: avsnitt, kommentarbokser og rolleruter */
   document.querySelectorAll('main .entry p, main .entry .aside, main .entry .roles > div, main .partbreak .partlede').forEach(el=>{
-    if(el.closest('.ff, details.more, .panel, table, .roles') && !el.matches('.roles > div')) return;
+    if(el.closest('.ff, details.more, .panel, table, .roles, .symkort') && !el.matches('.roles > div')) return;
     if(el.matches('.asks, .ffhint') || (el.matches('p') && el.closest('.roles'))) return;
     const sec = secOf(el), st = secTitle(sec);
     const leadEl = el.matches('.aside') ? el.querySelector(':scope > b') : (el.matches('.roles > div') ? el.querySelector('h4') : null);
@@ -7440,6 +7495,18 @@ const JUMP = (function(){
                 title, lead: secGlyph(sec), leadUp:true, sub:text, text,
                 row:null, target:el, sv:[], svlen:0, nf:'',
                 head: lead, body: text, prose:true});
+  });
+
+  /* 7 · «Kort fortalt»-kortene: hva tegnet er og hvordan tallet leses */
+  document.querySelectorAll('main .symkort').forEach(k=>{
+    const sec = secOf(k), st = secTitle(sec),
+          sym = clean(k.querySelector('.sk-sym')?.textContent),
+          text = clean([...k.querySelectorAll('dd, .sk-skala li, .sk-merk')].map(e=>e.textContent).join(' · '));
+    const title = 'Kort fortalt: ' + sym;
+    items.push({kind:'text', name:title, fam: st,
+                title, lead: sym, leadUp:true, sub:text, text,
+                row:null, target:k, sv:[], svlen:0, nf:'',
+                head: title + ' ' + st, body: text, prose:true});
   });
 
   const index = Index(items);

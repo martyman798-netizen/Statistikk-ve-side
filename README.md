@@ -116,7 +116,14 @@ npm run deploy
   «Kort fortalt»-kortet med samme tegn, så forklaringen er den samme som i
   seksjonen. Ord uten eget kort (Levene, Welch, Mauchly, SS, MS,
   Residuals, RMSE, Adjusted R², Intercept, Mean Difference, interaksjonen,
-  R og H₀) står i `EGNE` i skriptet.
+  R og H₀) står i `EGNE` i skriptet. Øverst i vinduet står en forklaring
+  med vanlige ord fra `ENKELT`: hva tallet er, hvorfor vi bruker det, og
+  hva det betyr i studien tegnet står i (appstudien, ordstudien eller
+  studietimestudien, valgt av `ctx`). Den statistiske definisjonen ligger
+  under «Mer presist».
+- «Velg analysen» i `#ov-kart` følger forelesningens tabell: faktorer,
+  nivåer og om det er de samme personene på begge sider. Blandet ANOVA
+  lenker til `#rm-blandet`, som foldes ut.
 - Søket (`/` eller knappen i toppbaren) slår opp i alle ordbokstabellene,
   seksjonene, «falske venner»-boksene, veivisertabellene, forklaringsboksene
   og den løpende teksten. Greske tegn indekseres både på lyden og på formen,

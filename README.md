@@ -108,6 +108,15 @@ npm run deploy
   varianten. Tallene er regnet ut på forhånd og henger sammen (p fra t
   eller F og df, SS summerer seg til samme total i de tre ANOVA-ene, og
   den hierarkiske regresjonen består av den enkle og den multiple).
+- Tegnene og JASP-ordene i «Start her» forklares i et lite vindu når
+  pekeren holdes over dem (trykk på mobil, Enter med tastaturet). Skriptet
+  `tegnforklaring` merker dem når siden lastes: tabellhoder og -rader slås
+  opp i `EKSAKT`, og i teksten merkes et tegn når det står foran `=`, `(`,
+  `<` eller lignende (`t(48)`, `p = .017`). Innholdet hentes fra
+  «Kort fortalt»-kortet med samme tegn, så forklaringen er den samme som i
+  seksjonen. Ord uten eget kort (Levene, Welch, Mauchly, SS, MS,
+  Residuals, RMSE, Adjusted R², Intercept, Mean Difference, interaksjonen,
+  R og H₀) står i `EGNE` i skriptet.
 - Søket (`/` eller knappen i toppbaren) slår opp i alle ordbokstabellene,
   seksjonene, «falske venner»-boksene, veivisertabellene, forklaringsboksene
   og den løpende teksten. Greske tegn indekseres både på lyden og på formen,

@@ -796,6 +796,37 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
   table.ov-cmp{font-size:13.5px}
   table.ov-cmp tbody th{width:96px}
 }
+
+/* ---------- Start her: tegn som forklares når pekeren er over dem ---------- */
+.tip{cursor:help;border-radius:2px;text-decoration:underline dotted;text-decoration-color:color-mix(in srgb, var(--accent) 60%, transparent);text-decoration-thickness:1px;text-underline-offset:3px}
+.tip:hover, .tip.on{background:var(--accent-soft);text-decoration-color:var(--accent)}
+.tip:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.tipbox{position:fixed;z-index:90;left:0;top:0;width:min(380px, calc(100vw - 16px));max-height:min(72vh, 540px);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:6px;
+  box-shadow:0 18px 44px -14px rgba(0,0,0,.5);padding:12px 14px 12px;font-family:var(--serif);font-size:14.5px;line-height:1.45;color:var(--ink);text-align:left}
+.tipbox p{margin:0}
+.tipbox .tb-head{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.tipbox .tb-head b{flex:1;font-family:var(--mono);font-size:12px;letter-spacing:.04em;font-weight:600;color:var(--ink)}
+.tipbox .tb-sym{font-family:var(--serif);font-size:18px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:0 8px;line-height:1.5;white-space:nowrap}
+.tipbox .tb-close{background:transparent;color:var(--ink-3);border:none;padding:0 4px;font-size:20px;line-height:1;min-height:0}
+.tipbox .tb-close:hover{color:var(--ink)}
+.tipbox dl{margin:0}
+.tipbox dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:8px}
+.tipbox dd{margin:1px 0 0}
+.tipbox .tb-les{margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.tipbox ul.sk-skala{list-style:none;margin:4px 0 0;padding:0;display:grid;grid-template-columns:max-content 1fr;gap:5px 10px;align-items:baseline}
+.tipbox .sk-skala li{display:contents}
+.tipbox .sk-v{font-family:var(--mono);font-size:12px;white-space:nowrap;justify-self:start;background:var(--surface-2);border:1px solid var(--rule-soft);border-radius:4px;padding:0 6px}
+.tipbox .sk-merk{margin-top:9px;font-size:13.5px;color:var(--ink-2)}
+.tipbox .tb-mer{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none}
+.tipbox .tb-mer:hover{text-decoration:underline}
+.tipbox.sheet{left:8px !important;right:8px;top:auto !important;bottom:calc(66px + env(safe-area-inset-bottom));width:auto;max-height:52vh;padding:14px 16px;font-size:15px}
+@media (max-width:640px){
+  .tipbox .tb-close{font-size:24px;padding:4px 8px}
+  .tipbox ul.sk-skala{grid-template-columns:1fr;gap:2px}
+  .tipbox .sk-skala li{display:block;margin-bottom:5px}
+  .tipbox .sk-v{display:inline-block;margin-right:6px;white-space:normal}
+}
 </style>
 
 <div class="wrap">
@@ -13845,6 +13876,313 @@ const JASPGEN = (function(){
     const b = sec && sec.querySelector('[data-ov-v="' + a.dataset.ovGo + '"]');
     if(b) b.click();
   }));
+})();
+
+/* ================= Start her: hold pekeren over et tegn, så forklares det =================
+   Innholdet hentes fra «Kort fortalt»-kortene lenger ned, så forklaringen er den samme
+   som i seksjonen. Ordene i JASP-utskriftene som ikke har et eget kort, står i EGNE. */
+(function tegnforklaring(){
+  const roots = [...document.querySelectorAll('#ov-kart, #ov-t, #ov-anova, #ov-reg')];
+  if(!roots.length) return;
+
+  const KORT = {};
+  document.querySelectorAll('main .symkort').forEach(k=>{
+    const s = k.querySelector('.sk-sym');
+    if(s && !KORT[s.textContent.trim()]) KORT[s.textContent.trim()] = k;
+  });
+  const EGNE = {
+    H0: {s:'H₀', n:'Nullhypotesen', sec:'p',
+      hva:'Påstanden om at det ikke finnes noen effekt: ingen forskjell mellom snittene, ingen sammenheng, b = 0.',
+      hvorfor:'Testen regner ut hvor uvanlig resultatet ville vært hvis H₀ var sann. Det er det p-verdien sier.',
+      verdier:'Skrives som en likning: μ = 20, μ₁ = μ₂, μ<sub>diff</sub> = 0.',
+      skala:[['forkastes','p < .05: resultatet passer dårlig med H₀.'],['ikke forkastes','Betyr ikke at H₀ er sann, bare at dataene ikke motsier den tydelig nok.']]},
+    levene: {s:'Levene', n:'Levenes test', sec:'ttest',
+      hva:'En test av om spredningen (variansen) er like stor i gruppene. H₀ er like varianser.',
+      hvorfor:'Vanlig t-test og ANOVA antar like varianser. Levene avgjør om du kan stole på den vanlige raden, eller må bruke Welch.',
+      verdier:'F med to df og en p-verdi.',
+      skala:[['p ≥ .05','Ingen tegn til ulike varianser. Les Student-raden.'],['p < .05','Variansene er ulike. Les Welch-raden, og bruk Games–Howell som post hoc etter ANOVA.']],
+      merk:'Rapporter Levene i resultatdelen, også når den ikke er signifikant.'},
+    welch: {s:'Welch', n:'Student- og Welch-raden', sec:'ttest',
+      hva:'Student-raden er den vanlige t-testen, som antar like varianser. Welch-raden er samme test uten den antagelsen.',
+      hvorfor:'Welch gir riktig p også når gruppene sprer ulikt, særlig når den minste gruppen sprer mest.',
+      verdier:'Nesten samme t, men df blir lavere og får som regel desimaler.',
+      skala:[['Levene p ≥ .05','Les Student-raden.'],['Levene p < .05','Les Welch-raden, og si at du gjorde det.'],['df med desimaler','Tegnet på at det er Welch, for eksempel t(43.8).']]},
+    mauchly: {s:'W', n:'Mauchlys test', sec:'anova3',
+      hva:'En test av sfærisitet ved gjentatte målinger: at differansene mellom alle par av målinger sprer like mye. H₀ er sfærisitet.',
+      hvorfor:'Er sfærisiteten brutt, blir F-testen for liberal. Mauchly avgjør hvilken rad i utskriften du leser.',
+      verdier:'W fra 0 til 1, med χ², df og p.',
+      skala:[['W nær 1, p ≥ .05','Sfærisitet kan antas. Les den ukorrigerte raden.'],['p < .05','Brudd. Les Greenhouse–Geisser-raden (ε under .75) eller Huynh–Feldt (ε over .75).'],['to målinger','Testen er tom: med bare to nivåer er sfærisitet alltid oppfylt.']]},
+    ss: {s:'SS', n:'Kvadratsum (Sum of Squares)', sec:'anova1',
+      hva:'Summen av kvadrerte avvik: hvor mye av variasjonen i utfallet en rad i tabellen står for.',
+      hvorfor:'ANOVA deler den totale variasjonen opp i biter, én per rad. Effektstørrelsene regnes rett fra SS.',
+      verdier:'0 eller mer. Radene summerer seg til den totale variasjonen.',
+      skala:[['stor SS for effekten','Effekten står for mye av variasjonen.'],['η²','SS for effekten / SS total.'],['η²p','SS for effekten / (SS for effekten + SS for feilleddet).']]},
+    ms: {s:'MS', n:'Gjennomsnittskvadrat (Mean Square)', sec:'F',
+      hva:'SS delt på df. Det er en varians: gjennomsnittlig variasjon per frihetsgrad.',
+      hvorfor:'F er MS for effekten delt på MS for feilleddet. MS for feilleddet er støyen.',
+      verdier:'0 eller mer.',
+      skala:[['MS effekt / MS feil','= F. Rundt 1 når H₀ er sann.'],['MS for feilleddet','Variansen innen gruppene. √MS er omtrent SD innen gruppene.']]},
+    residuals: {s:'e', n:'Feilleddet (Residuals)', sec:'res',
+      hva:'Variasjonen modellen ikke forklarer: forskjellene innen gruppene, eller avstanden fra punktene til linja.',
+      hvorfor:'Det er støyen effekten måles mot. Jo mindre feilledd, jo større F.',
+      verdier:'SS, df og MS, men aldri noen F eller p.',
+      skala:[['df = N − k','Enveis ANOVA.'],['df = (k − 1)(n − 1)','Gjentatte målinger.'],['Between Subjects','Ved gjentatte målinger: forskjellene mellom personene, som er tatt ut av feilleddet.']]},
+    rmse: {s:'RMSE', n:'Typisk bom', sec:'R2',
+      hva:'Standardavviket til residualene, i Y-enhetene: hvor mye prediksjonene typisk bommer.',
+      hvorfor:'Den gir R² en konkret betydning: hvor presise er prediksjonene, i poeng?',
+      verdier:'0 eller mer. For modellen uten prediktorer (M₀) er RMSE det samme som SD for Y.',
+      skala:[['lavere enn SD for Y','Modellen predikerer bedre enn å gjette snittet for alle.'],['13.49 mot 15.00','Timer studert gjør det typiske bommet 1.5 poeng mindre.']]},
+    adjR2: {s:'R²<sub>adj</sub>', n:'Justert R² (Adjusted R²)', sec:'R2',
+      hva:'R² trukket litt ned for hvor mange prediktorer modellen har.',
+      hvorfor:'R² øker alltid når du legger til en prediktor, også en ubrukelig. Justert R² gjør ikke det, og er et bedre anslag for populasjonen.',
+      verdier:'Litt lavere enn R². Kan bli negativ når modellen er svært dårlig.',
+      skala:[['nær R²','Mange deltagere per prediktor.'],['mye lavere enn R²','Mange prediktorer i forhold til N.']]},
+    intercept: {s:'b₀', n:'Konstantleddet (Intercept)', sec:'b',
+      hva:'Predikert Y når alle prediktorene er 0. Der linja krysser Y-aksen.',
+      hvorfor:'Den plasserer linja i høyden. Testen på raden (H₀: b₀ = 0) er nesten aldri det du vil vite.',
+      verdier:'Hvilket som helst tall, i Y-enhetene.',
+      skala:[['43.8','Predikert poeng for en som studerer 0 timer.'],['uten mening','Er 0 langt utenfor dataene, for eksempel 0 timer søvn, er tallet bare et regnepunkt.']]},
+    meandiff: {s:'x̄₁ − x̄₂', n:'Mean Difference', sec:'ttest',
+      hva:'Forskjellen mellom snittene: gruppe 1 minus gruppe 2, snittet minus testverdien, eller snittet av differansene.',
+      hvorfor:'Det er signalet i t-testen, i de opprinnelige enhetene. t = Mean Difference / SE Difference.',
+      verdier:'Positiv eller negativ. Fortegnet avhenger bare av hva som trekkes fra hva.',
+      skala:[['0','Ingen forskjell.'],['−3.5','Appgruppen har 3.5 poeng lavere stress enn kontrollgruppen.']]},
+    interaksjon: {s:'A × B', n:'Interaksjonen', sec:'interaksjon',
+      hva:'Om effekten av den ene faktoren avhenger av nivået på den andre. JASP skriver den med ✻.',
+      hvorfor:'En signifikant interaksjon endrer hvordan hovedeffektene skal leses. Derfor leses den først.',
+      verdier:'F med df = (a − 1)(b − 1) og feilleddets df.',
+      skala:[['ikke signifikant','Hovedeffektene kan leses hver for seg.'],['signifikant','Se på enkle effekter: effekten av A innen hvert nivå av B.'],['i et plott','Linjer som ikke er parallelle.']]},
+    Rmult: {s:'R', n:'Multippel korrelasjon', sec:'R2',
+      hva:'Korrelasjonen mellom det modellen predikerer og de faktiske verdiene.',
+      hvorfor:'Det er R² (R kvadrert) som tolkes, som andelen forklart variasjon.',
+      verdier:'Fra 0 til 1. Med én prediktor er R det samme som |r|.',
+      skala:[['0.450','R² = 0.450² ≈ .20.']]}
+  };
+  /* tekst i utskriftene og tabellene → nøkkel */
+  const EKSAKT = {
+    't':'t','df':'df','p':'p','F':'F','R²':'R²','η²':'η²','η²p':'η²p','H₀':'H0','Støyen (SE)':'SE',
+    'Mean Difference':'meandiff',"Cohen's d":'d','SE Difference':'SE','Standard Error':'SE',
+    'Sum of Squares':'ss','Mean Square':'ms','Unstandardized':'b','Standardized':'β','R':'Rmult',
+    'Adjusted R²':'adjR2','RMSE':'rmse','R² Change':'ΔR²','F Change':'ΔR²',
+    'df1':'df','df2':'df','df₁':'df','df₂':'df',"Mauchly's W":'mauchly','Approx. Χ²':'χ²','p-value':'p',
+    'Greenhouse-Geisser ε':'ε','Huynh-Feldt ε':'ε','Lower Bound ε':'ε',
+    'Residuals':'residuals','Residual':'residuals','(Intercept)':'intercept','Student':'welch','Welch':'welch',
+    'Strategi ✻ Søvn':'interaksjon',"Test of Equality of Variances (Levene's)":'levene','Test of Sphericity':'mauchly'
+  };
+  const ORD = {'R² Change':'ΔR²','F Change':'ΔR²','Levene':'levene','Levenes':'levene','Welch':'welch','Welchs':'welch',
+               'Mauchly':'mauchly','Mauchlys':'mauchly','Greenhouse–Geisser':'ε','H₀':'H0'};
+  const finnes = k => !!(KORT[k] || EGNE[k]);
+
+  /* ---- merk tegnene ---- */
+  const seen = new Map();
+  function mark(el, key){
+    el.classList.add('tip');
+    el.dataset.tip = key;
+    const sec = el.closest('section'), s = seen.get(sec) || new Set();
+    seen.set(sec, s);
+    if(!s.has(key)){ s.add(key); el.tabIndex = 0; el.setAttribute('role', 'button'); el.setAttribute('aria-expanded', 'false'); }
+  }
+  function wrap(nodes, key){
+    const span = document.createElement('span');
+    nodes[0].parentNode.insertBefore(span, nodes[0]);
+    nodes.forEach(n=> span.appendChild(n));
+    mark(span, key);
+    return span;
+  }
+  let RX;
+  try{
+    RX = /(^|[^\p{L}\p{N}_])(ΔR²|R² Change|F Change|η²|R²|χ²|H₀|β|μ|ε|(?:Levenes?|Welchs?|Mauchlys?|Greenhouse–Geisser)(?!\p{L})|(?:SD|SE|KI|df|M|N|t|F|p|d|b|r)(?=\s*[(=<>≈\[:]))/gu;
+  }catch(e){ return; }
+  roots.forEach(root=>{
+    root.querySelectorAll('table.jasp th, table.jasp td, table.jasp caption, table.ov-cmp tbody th').forEach(el=>{
+      const key = EKSAKT[el.textContent.trim()];
+      if(key && finnes(key) && el.firstChild) wrap([...el.childNodes], key);
+    });
+    root.querySelectorAll('em.v').forEach(el=>{
+      const key = EKSAKT[el.textContent.trim()];
+      if(key && finnes(key)) mark(el, key);
+    });
+    const skip = 'a, button, .tip, h2, h3, .asks, .glyphcol, .of-sym, th, caption, table.jasp, .panel-head, .chips, .ov-key, .oa-tit, dt, sup';
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: n => (n.parentElement.closest(skip) || !n.nodeValue.trim()) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+    });
+    const texts = [];
+    while(walker.nextNode()) texts.push(walker.currentNode);
+    texts.forEach(node=>{
+      const v = node.nodeValue;
+      RX.lastIndex = 0;
+      if(!RX.test(v)) return;
+      RX.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m, lastSpan = null, lastKey = null, endsAt = -1;
+      while((m = RX.exec(v))){
+        const at = m.index + m[1].length, tok = m[2];
+        const key = ORD[tok] || tok;
+        if(at > last) frag.appendChild(document.createTextNode(v.slice(last, at)));
+        const span = document.createElement('span');
+        span.textContent = tok;
+        frag.appendChild(span);
+        if(finnes(key)) mark(span, key);
+        lastSpan = span; lastKey = key; endsAt = at + tok.length;
+        last = endsAt;
+      }
+      if(last < v.length) frag.appendChild(document.createTextNode(v.slice(last)));
+      const next = node.nextSibling;
+      node.parentNode.replaceChild(frag, node);
+      /* η² rett før <sub>p</sub> er η²p, og hører sammen i ett merke */
+      if(lastSpan && endsAt === v.length && lastKey === 'η²' && next && next.nodeName === 'SUB' && next.textContent.trim() === 'p' && finnes('η²p')){
+        lastSpan.appendChild(next);
+        lastSpan.dataset.tip = 'η²p';
+      }
+    });
+  });
+
+  /* ---- vinduet ---- */
+  const box = document.createElement('div');
+  box.className = 'tipbox';
+  box.id = 'tipbox';
+  box.setAttribute('role', 'tooltip');
+  box.hidden = true;
+  document.body.appendChild(box);
+  const sheet = window.matchMedia('(max-width:640px)');
+
+  function el(tag, cls, html){ const e = document.createElement(tag); if(cls) e.className = cls; if(html != null) e.innerHTML = html; return e; }
+  function secName(id){
+    const h = document.getElementById(id)?.querySelector('h2');
+    const t = h ? h.textContent.trim() : '';
+    return t.includes(':') ? t.split(':')[0] : t;
+  }
+  function fill(key){
+    const k = KORT[key], e = EGNE[key];
+    if(!k && !e) return false;
+    box.textContent = '';
+    const head = el('p', 'tb-head');
+    const sym = el('span', 'tb-sym');
+    const close = el('button', 'tb-close', '×');
+    close.type = 'button';
+    close.setAttribute('aria-label', 'Lukk');
+    close.addEventListener('click', ()=> hide(true));
+    let name, secId;
+    if(k){
+      sym.innerHTML = k.querySelector('.sk-sym').innerHTML;
+      secId = k.closest('section[id]').id;
+      const first = k.querySelector('dd')?.textContent || '';
+      name = first.indexOf(':') > 0 && first.indexOf(':') < 40 ? first.split(':')[0] : secName(secId);
+    }else{
+      sym.innerHTML = e.s; secId = e.sec; name = e.n;
+    }
+    head.append(sym, el('b', null, name), close);
+    box.appendChild(head);
+    if(k){
+      const dl = k.querySelector('dl').cloneNode(true);
+      dl.querySelectorAll('dt').forEach(dt=>{ if(/^Hvorfor/.test(dt.textContent)) dt.textContent = 'Hvorfor er det viktig?'; });
+      box.appendChild(dl);
+      const ul = k.querySelector('.sk-skala');
+      if(ul){ box.appendChild(el('p', 'tb-les', 'Slik leser du tallet')); box.appendChild(ul.cloneNode(true)); }
+      const merk = k.querySelector('.sk-merk');
+      if(merk) box.appendChild(merk.cloneNode(true));
+    }else{
+      const dl = el('dl');
+      [['Hva er det?', e.hva], ['Hvorfor er det viktig?', e.hvorfor], ['Hvilke verdier?', e.verdier]].forEach(([t, d])=>{
+        dl.append(el('dt', null, t), el('dd', null, d));
+      });
+      box.appendChild(dl);
+      box.appendChild(el('p', 'tb-les', 'Slik leser du tallet'));
+      const ul = el('ul', 'sk-skala');
+      e.skala.forEach(([v, t])=>{ const li = el('li'); li.append(el('span', 'sk-v'), el('span')); li.children[0].textContent = v; li.children[1].textContent = t; ul.appendChild(li); });
+      box.appendChild(ul);
+      if(e.merk) box.appendChild(el('p', 'sk-merk', e.merk));
+    }
+    const sn = secName(secId);
+    if(sn){
+      const a = el('a', 'tb-mer');
+      a.href = '#' + secId;
+      a.textContent = 'Mer i «' + sn + '» →';
+      a.addEventListener('click', ()=> hide(false));
+      box.appendChild(a);
+    }
+    return true;
+  }
+  let cur = null, pinned = false, tShow = 0, tHide = 0;
+  function place(){
+    if(!cur) return;
+    if(sheet.matches){ box.classList.add('sheet'); box.style.left = box.style.top = ''; return; }
+    box.classList.remove('sheet');
+    const r = cur.getBoundingClientRect(), bw = box.offsetWidth, bh = box.offsetHeight, vw = window.innerWidth, vh = window.innerHeight;
+    const x = Math.min(Math.max(8, r.left + r.width / 2 - bw / 2), vw - bw - 8);
+    let y = r.bottom + 8;
+    if(y + bh > vh - 8) y = r.top - bh - 8 >= 8 ? r.top - bh - 8 : Math.max(8, vh - bh - 8);
+    box.style.left = x + 'px';
+    box.style.top = y + 'px';
+  }
+  function show(t, pin){
+    clearTimeout(tHide); clearTimeout(tShow);
+    if(cur !== t){
+      if(!fill(t.dataset.tip)) return;
+      if(cur){ cur.classList.remove('on'); cur.removeAttribute('aria-describedby'); if(cur.hasAttribute('aria-expanded')) cur.setAttribute('aria-expanded', 'false'); }
+      cur = t;
+      box.scrollTop = 0;
+    }
+    pinned = pin;
+    t.classList.add('on');
+    t.setAttribute('aria-describedby', 'tipbox');
+    if(t.hasAttribute('aria-expanded')) t.setAttribute('aria-expanded', 'true');
+    box.hidden = false;
+    place();
+  }
+  function hide(refocus){
+    clearTimeout(tHide); clearTimeout(tShow);
+    if(!cur) return;
+    const t = cur;
+    box.hidden = true;
+    t.classList.remove('on');
+    t.removeAttribute('aria-describedby');
+    if(t.hasAttribute('aria-expanded')) t.setAttribute('aria-expanded', 'false');
+    cur = null; pinned = false;
+    if(refocus && t.tabIndex === 0) t.focus({preventScroll:true});
+  }
+
+  /* mus: vis etter et lite øyeblikk, og la vinduet stå mens pekeren er over det */
+  document.addEventListener('pointerover', e=>{
+    if(e.pointerType !== 'mouse') return;
+    const t = e.target.closest('.tip');
+    if(t){
+      clearTimeout(tHide);
+      if(pinned && cur !== t) return;
+      if(cur === t) return;
+      clearTimeout(tShow);
+      tShow = setTimeout(()=> show(t, false), cur ? 0 : 140);
+    }else if(e.target.closest('.tipbox')) clearTimeout(tHide);
+  });
+  document.addEventListener('pointerout', e=>{
+    if(e.pointerType !== 'mouse') return;
+    const from = e.target.closest('.tip, .tipbox');
+    if(!from) return;
+    const to = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest('.tip, .tipbox') : null;
+    if(to === from) return;
+    clearTimeout(tShow);
+    if(!pinned && !(to && to === box)) tHide = setTimeout(()=> hide(false), 220);
+  });
+  /* trykk (og klikk): fest vinduet, trykk igjen eller utenfor for å lukke */
+  document.addEventListener('click', e=>{
+    const t = e.target.closest('.tip');
+    if(t){ if(cur === t && pinned) hide(false); else show(t, true); return; }
+    if(cur && !e.target.closest('.tipbox')) hide(false);
+  });
+  document.addEventListener('keydown', e=>{
+    const t = e.target.closest && e.target.closest('.tip');
+    if(t && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); if(cur === t) hide(false); else show(t, true); }
+    else if(e.key === 'Escape' && cur) hide(true);
+  });
+  document.addEventListener('focusin', e=>{
+    const t = e.target.closest && e.target.closest('.tip');
+    if(t && t.tabIndex === 0 && cur !== t && e.target.matches(':focus-visible')) show(t, false);
+  });
+  document.addEventListener('focusout', e=>{
+    if(cur && e.target === cur && !pinned && !(e.relatedTarget && box.contains(e.relatedTarget))) hide(false);
+  });
+  window.addEventListener('scroll', ()=>{ if(!cur) return; if(pinned || sheet.matches) place(); else hide(false); }, {passive:true});
+  window.addEventListener('resize', place);
 })();
 
 /* ================= frakoblet: legg siden i hurtigbufferen, så den virker uten nett ================= */

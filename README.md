@@ -98,16 +98,34 @@ npm run deploy
 
 ## Notater
 
-- **Start her** (`#start`, før Del 0) er oversiktsarket over analysene:
-  `#ov-kart` viser de tre familiene (t-test, ANOVA, regresjon), delene
-  hvert resultat består av, og en tabell med alle ni variantene. `#ov-t`,
-  `#ov-anova` og `#ov-reg` sammenligner tre varianter hver i en tabell der
-  rader merket `oc-likt` er det som er likt i alle tre, og har en JASP-lik
-  utskrift per variant bak fanene (`data-ov`, `data-ov-v`,
-  `data-ov-view`). Celler merket `ov-ny` er det som er særegent for
-  varianten. Tallene er regnet ut på forhånd og henger sammen (p fra t
-  eller F og df, SS summerer seg til samme total i de tre ANOVA-ene, og
-  den hierarkiske regresjonen består av den enkle og den multiple).
+- **Start her** (`#start`, før Del 0) begynner med `#bruk`, «Slik kan du
+  bruke siden»: seks måter å bruke siden på, med søket først, og bryteren
+  for eksamensfokus. Så kommer oversiktsarket over analysene: `#ov-kart`
+  viser familiene (t-test, ANOVA, korrelasjon og regresjon), delene hvert
+  resultat består av, og en tabell med alle variantene. `#ov-t`,
+  `#ov-anova` og `#ov-reg` sammenligner variantene i en tabell der rader
+  merket `oc-likt` er det som er likt i alle, og har en JASP-lik utskrift
+  per variant bak fanene (`data-ov`, `data-ov-v`, `data-ov-view`). Celler
+  merket `ov-ny` er det som er særegent for varianten. `#ov-reg` setter
+  korrelasjon og enkel regresjon side om side. Multippel og hierarkisk
+  regresjon ligger der også, men er merket `data-x`. Tallene er regnet ut
+  på forhånd og henger sammen (p fra t eller F og df, SS summerer seg til
+  samme total i de tre ANOVA-ene, r og b gir samme t, og den hierarkiske
+  regresjonen består av den enkle og den multiple).
+- **Eksamensfokus.** Faglærer har sagt at partiell og semipartiell
+  korrelasjon og multippel og hierarkisk regresjon ikke vektlegges på
+  eksamen. Alt stoff om det er merket `data-x` og skjult som standard:
+  seksjonene `#dR2`, `#kontroll` og `#vif`, og enkeltdeler, rader og
+  forklaringsbokser ellers. `data-xi` er det motsatte: tekst som bare
+  vises når det andre er skjult. Bryteren (`data-xs-toggle`, i `#bruk` og
+  i bunnteksten) lagrer valget i `sa-alt-v1` og laster siden på nytt.
+  Valget leses i `<head>` og settes som klassen `vis-alt` på `<html>`, så
+  `XS.on` og `XS.ut(el)` øverst i skriptet sier om noe er skjult. Søket,
+  ordboka og kortene hopper over skjulte rader, og en lenke til noe skjult
+  gir en melding med knappen «Vis alt stoffet». Oppgavene i `UTENFOR` og
+  JASP-malene i `UTENFOR_GEN` er bare med i øvingen når alt vises, og
+  aldri på prøveeksamen. Skal mer stoff skjules, er det nok å sette
+  `data-x` på det, og legge oppgavenumrene i `UTENFOR`.
 - Tegnene og JASP-ordene i «Start her» forklares i et lite vindu når
   pekeren holdes over dem (trykk på mobil, Enter med tastaturet). Skriptet
   `tegnforklaring` merker dem når siden lastes: tabellhoder og -rader slås

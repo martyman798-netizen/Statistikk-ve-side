@@ -6,6 +6,7 @@
 <meta name="description" content="Grunnbegreper, en interaktiv statistikksandkasse og en leseordbok for vitenskapelige artikler.">
 <title>Statistikkens alfabet</title>
 <meta name="color-scheme" content="light dark">
+<script>try{if(localStorage.getItem('sa-alt-v1')==='1')document.documentElement.classList.add('vis-alt')}catch(e){}</script>
 <meta name="theme-color" content="#EDF0F3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#11171D" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -845,6 +846,46 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
   .tipbox .sk-skala li{display:block;margin-bottom:5px}
   .tipbox .sk-v{display:inline-block;margin-right:6px;white-space:normal}
 }
+
+/* ---------- eksamensfokus: stoff som ikke vektlegges på eksamen (data-x) ---------- */
+html:not(.vis-alt) [data-x]{display:none !important}
+html.vis-alt [data-xi]{display:none !important}
+html:not(.vis-alt) .ffgrid:has(> [data-x]){grid-template-columns:minmax(0,1fr)}
+html.vis-alt section[data-x] h2::after, html.vis-alt details[data-x] > summary::after, html.vis-alt .ov-x[data-x] > h3::after{
+  content:"Vektlegges ikke på eksamen";display:inline-block;margin-left:10px;vertical-align:middle;font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--mark);background:var(--mark-soft);border-radius:3px;padding:1px 7px;line-height:1.6;font-style:normal}
+html.vis-alt p[data-x]::before, html.vis-alt .panel[data-x]::before, html.vis-alt .aside[data-x]::before, html.vis-alt .ffgrid > div[data-x]::before{
+  content:"Vektlegges ikke på eksamen";display:block;margin-bottom:4px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mark)}
+html.vis-alt tr[data-x] > td:first-child::after{content:"ikke eksamen";display:block;font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mark);font-style:normal}
+html.vis-alt .ov-x[data-x]{border-left:3px solid var(--mark-soft);padding-left:14px;margin-top:22px}
+table.ov-cmp.to td.oc-likt::before{content:"Likt i begge"}
+
+/* ---------- «Slik kan du bruke siden» ---------- */
+.ov-bruk{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:20px 0 8px}
+.ov-bruk > div{display:flex;flex-direction:column;gap:6px;padding:14px 16px;background:var(--surface);border:1px solid var(--rule-soft);border-radius:4px}
+.ov-bruk h3{font-family:var(--serif);font-weight:600;font-size:18px;margin:0}
+.entry .ov-bruk p{margin:0;font-size:15px;line-height:1.5;color:var(--ink-2);max-width:none}
+.ov-bruk a{margin-top:auto;padding-top:4px;font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none}
+.ov-bruk a:hover{text-decoration:underline}
+.ov-bruk .ob-hoved{grid-column:1 / -1;border-left:3px solid var(--accent);box-shadow:var(--shadow);padding:16px 18px}
+.entry .ov-bruk .ob-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mark);font-weight:600}
+.ov-bruk .ob-hoved h3{font-size:21px}
+.entry .ov-bruk .ob-hoved p:not(.ob-tag){font-size:16px;color:var(--ink);max-width:66ch}
+.ov-bruk .ob-knapp{align-self:flex-start;margin-top:6px}
+.ov-bruk kbd{font-family:var(--mono);font-size:12px;border:1px solid var(--rule);border-bottom-width:2px;border-radius:3px;padding:0 5px;background:var(--surface-2);color:var(--ink)}
+.xs-boks{margin:20px 0;padding:14px 18px;background:var(--surface);border:1px solid var(--rule-soft);border-left:3px solid var(--good);border-radius:4px;max-width:66ch}
+.entry .xs-boks p{margin:0 0 10px;font-size:15.5px;color:var(--ink-2);max-width:none}
+.xs-boks p b{color:var(--ink)}
+.xs-bryter{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;color:var(--ink);cursor:pointer;line-height:1.4}
+.xs-bryter input{width:18px;height:18px;accent-color:var(--accent);flex:none;margin:0}
+footer .xs-bryter{margin-top:12px;color:var(--ink-2);font-size:11.5px}
+.xs-toast{position:fixed;z-index:95;left:50%;transform:translateX(-50%);bottom:20px;width:min(520px, calc(100vw - 24px));display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;
+  padding:12px 14px;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--mark);border-radius:6px;box-shadow:0 18px 44px -14px rgba(0,0,0,.5);font-size:15px;color:var(--ink)}
+.xs-toast p{margin:0;flex:1 1 100%}
+@media (max-width:900px){
+  .xs-toast{bottom:calc(70px + env(safe-area-inset-bottom))}
+  .xs-bryter{min-height:44px}
+}
 </style>
 
 <div class="wrap">
@@ -934,10 +975,11 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
     <div class="navhead"><b>Innhold</b><a class="navtop" href="#top">↑ Til toppen</a><button type="button" data-toc-close>Lukk</button></div>
     <p class="navgroup">Start her · på ett ark</p>
     <ol>
+      <li><a href="#bruk"><span class="g">☞</span> Slik bruker du siden</a></li>
       <li><a href="#ov-kart"><span class="g">t·F·b</span> Tre familier</a></li>
       <li><a href="#ov-t"><span class="g">t</span> Tre t-tester</a></li>
       <li><a href="#ov-anova"><span class="g">F</span> Tre ANOVA-er</a></li>
-      <li><a href="#ov-reg"><span class="g">b</span> Tre regresjoner</a></li>
+      <li><a href="#ov-reg"><span class="g">r·b</span> Korrelasjon, regresjon</a></li>
     </ol>
     <p class="navgroup">Øving</p>
     <ol>
@@ -978,9 +1020,9 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
       <li><a href="#beta"><span class="g">β</span> Vekten</a></li>
       <li><a href="#R2"><span class="g">R²</span> Modellen</a></li>
       <li><a href="#F"><span class="g">F</span> Helhetstesten</a></li>
-      <li><a href="#dR2"><span class="g">ΔR²</span> Tillegget</a></li>
-      <li><a href="#kontroll"><span class="g">b|Z</span> Kontrollen</a></li>
-      <li><a href="#vif"><span class="g">VIF</span> Overlappet</a></li>
+      <li data-x><a href="#dR2"><span class="g">ΔR²</span> Tillegget</a></li>
+      <li data-x><a href="#kontroll"><span class="g">b|Z</span> Kontrollen</a></li>
+      <li data-x><a href="#vif"><span class="g">VIF</span> Overlappet</a></li>
     </ol>
     <p class="navgroup">Del I · grupper</p>
     <ol>
@@ -1031,7 +1073,34 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
     <section class="partbreak first" id="start">
       <p class="eyebrow">Start her</p>
       <h2 class="parttitle">Analysene på ett ark</h2>
-      <p class="partlede">Før detaljene kommer en oversikt over t-testene, ANOVA-ene og regresjonene i emnet. For hver av dem ser du hvordan resultatet ser ut, hva som er likt og hva som skiller dem fra hverandre. Eksemplene er oppdiktet, men tallene henger sammen, så du kan regne etter. Hver analyse har også en egen seksjon lenger ned med demoer og forklaringer.</p>
+      <p class="partlede">Før detaljene kommer en oversikt over t-testene, ANOVA-ene, korrelasjonen og regresjonen i emnet. For hver av dem ser du hvordan resultatet ser ut, hva som er likt og hva som skiller dem fra hverandre. Eksemplene er oppdiktet, men tallene henger sammen, så du kan regne etter. Hver analyse har også en egen seksjon lenger ned med demoer og forklaringer.</p>
+    </section>
+
+    <section class="entry" id="bruk">
+      <div class="glyphcol"><span class="step">0</span><span class="glyph up">☞</span></div>
+      <div>
+        <h2>Slik kan du bruke siden</h2>
+        <p class="asks">Du trenger ikke lese den fra start til slutt</p>
+        <p>Siden er laget for å slå opp, forstå og øve. Her er seks måter å bruke den på. Den første er den jeg selv bruker mest.</p>
+        <div class="ov-bruk">
+          <div class="ob-hoved">
+            <p class="ob-tag">Slik bruker jeg den mest</p>
+            <h3>Slå opp mens du leser</h3>
+            <p>Har du forelesningsnotater, en artikkel eller en JASP-utskrift foran deg, og møter et tegn eller et ord du ikke husker? Trykk <kbd>/</kbd> eller <b>Søk</b>, og skriv det du lurer på. <em class="v">n2</em> finner η², og «forskjellen på SD og SE» finner riktig forklaring. Søket tåler skrivefeil, bøyde ord og engelske navn. Trykk på treffet, så havner du rett på stedet.</p>
+            <button type="button" class="ob-knapp" data-pal-open>Prøv søket</button>
+          </div>
+          <div><h3>Få oversikten</h3><p>Start med «Tre familier» og tabellen for å velge analyse. Hold pekeren over et tegn, eller trykk på det, så forklares det med vanlige ord.</p><a href="#ov-kart">Til oversikten →</a></div>
+          <div><h3>Forstå hva tallene gjør</h3><p>I Del I drar du i glidebrytere og ser hva som skjer med t, p og r når forskjellen, spredningen eller antall deltagere endres. Begynn med «Enkelt forklart»-boksene.</p><a href="#del1">Til Del I →</a></div>
+          <div><h3>Lese en utskrift eller en artikkel</h3><p>Leseordboka i Del II oversetter tegnene og JASP-ordene. Oppgavetypen «Les utskriften» lager nye JASP-utskrifter med nye tall hver gang.</p><a href="#del2">Til leseordboka →</a></div>
+          <div><h3>Pugge til eksamen</h3><p>Eksamen er uten hjelpemidler. Formelarket har det som må sitte, og øvingskortene spør deg om hvert begrep og hver formel til de sitter.</p><a href="#formler">Til formelarket →</a></div>
+          <div><h3>Øve i eksamensformat</h3><p>Flervalgsoppgaver der hvert feilsvar forklares, og en prøveeksamen på 30 oppgaver med resultat per kapittel. Etterpå kan du øve på bare dem du bommet på.</p><a href="#oppgaver">Til oppgavene →</a></div>
+        </div>
+        <div class="xs-boks" id="xsBoks">
+          <p><b>Eksamensfokus.</b> Noe av stoffet i læreboka vektlegges ikke på eksamen, fordi det har fått lite plass i forelesninger og seminarer: partiell og semipartiell korrelasjon, og multippel og hierarkisk regresjon. Det er skjult på siden, også i søket, kortene og oppgavene.</p>
+          <label class="xs-bryter"><input type="checkbox" data-xs-toggle> Vis også stoffet som ikke vektlegges på eksamen</label>
+        </div>
+        <div class="aside"><b>På mobilen</b> kan du legge siden til på hjemskjermen, så åpnes den som en app. Etter første besøk virker den også uten nett. Siden husker hvor du var, og øverst får du en lenke dit neste gang.</div>
+      </div>
     </section>
 
     <section class="entry" id="ov-kart">
@@ -1066,16 +1135,16 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
             <a class="of-go" href="#ov-anova">Se de tre ANOVA-ene →</a>
           </div>
           <div>
-            <span class="of-sym">b</span>
-            <h3>Regresjon</h3>
+            <span class="of-sym">r·b</span>
+            <h3>Korrelasjon og regresjon</h3>
             <dl>
-              <dt>Spør</dt><dd>Hvor mye endres Y når X øker, og hvor mye av Y forklarer X?</dd>
-              <dt>X er</dt><dd>Én eller flere prediktorer målt som tall.</dd>
-              <dt>Testtallet</dt><dd><em class="v">t</em> for hver <em class="v">b</em>, <em class="v">F</em> for hele modellen</dd>
-              <dt>Effektstørrelse</dt><dd><em class="v">R²</em>, og <em class="v">β</em> for hver prediktor</dd>
+              <dt>Spør</dt><dd>Henger to variabler sammen, og hvor mye endres Y når X øker?</dd>
+              <dt>X er</dt><dd>En variabel målt som tall, ikke grupper.</dd>
+              <dt>Testtallet</dt><dd><em class="v">t</em> for <em class="v">r</em> og for <em class="v">b</em>, <em class="v">F</em> for modellen</dd>
+              <dt>Effektstørrelse</dt><dd><em class="v">r</em> og <em class="v">R²</em></dd>
             </dl>
-            <span class="of-res">b = 1.35, t(73) = 4.31, p &lt; .001, R² = .20</span>
-            <a class="of-go" href="#ov-reg">Se de tre regresjonene →</a>
+            <span class="of-res">r(73) = .45, b = 1.35, p &lt; .001, R² = .20</span>
+            <a class="of-go" href="#ov-reg">Se korrelasjon og regresjon →</a>
           </div>
         </div>
 
@@ -1105,9 +1174,9 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
             <tr><td>2</td><td>2 × 3</td><td><span class="ov-ja">ja</span> på den ene, <span class="ov-nei">nei</span> på den andre</td><td><a href="#rm-blandet">blandet ANOVA</a></td></tr>
           </tbody>
         </table></div>
-        <p class="ov-velg-note">To tilfeller står ikke i tabellen. Ett snitt mot en fast verdi, for eksempel en norm, gir <a href="#ov-t" data-ov-go="en">ettutvalgs t-test</a>. Er X målt som tall i stedet for grupper, er det <a href="#ov-reg">regresjon</a>. Blandet ANOVA har ingen egen utskrift her. Den står under <a href="#rm-blandet">gjentatte målinger</a>, der Tid × Gruppe er testen.</p>
+        <p class="ov-velg-note">To tilfeller står ikke i tabellen. Ett snitt mot en fast verdi, for eksempel en norm, gir <a href="#ov-t" data-ov-go="en">ettutvalgs t-test</a>. Er X målt som tall i stedet for grupper, er det <a href="#ov-reg">korrelasjon eller regresjon</a>. Blandet ANOVA har ingen egen utskrift her. Den står under <a href="#rm-blandet">gjentatte målinger</a>, der Tid × Gruppe er testen.</p>
 
-        <h3>Alle ni på én gang</h3>
+        <h3>Alle på én gang</h3>
         <p>Trykk på navnet for å se hele utskriften. Kolonnen til høyre sier hva du skal se etter først i utskriften.</p>
         <div class="scroller"><table class="ov-tab">
           <thead><tr><th>Analyse</th><th>Brukes når</th><th>Slik ser resultatet ut</th><th>Se først etter</th></tr></thead>
@@ -1120,13 +1189,14 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
             <tr><td><a href="#ov-anova" data-ov-go="enveis">Enveis ANOVA</a></td><td>Tre eller flere grupper, én faktor, ulike personer</td><td class="ot-res">F(2, 57) = 6.66, p = .003, η² = .19</td><td>Levene, så F. Post hoc bare hvis F er signifikant</td></tr>
             <tr><td><a href="#ov-anova" data-ov-go="fakt">Faktoriell ANOVA</a></td><td>To eller flere faktorer samtidig, og samspillet mellom dem</td><td class="ot-res">F(2, 54) = 1.67, p = .198, η²<sub>p</sub> = .06 for A × B, og én F per hovedeffekt</td><td>Interaksjonsraden (A ✻ B) før hovedeffektene</td></tr>
             <tr><td><a href="#ov-anova" data-ov-go="gjentatt">ANOVA med gjentatte målinger</a></td><td>De samme personene i tre eller flere betingelser eller tidspunkter</td><td class="ot-res">F(2, 38) = 15.83, p &lt; .001, η²<sub>p</sub> = .45</td><td>Mauchly: er sfærisiteten brutt, les Greenhouse–Geisser-raden</td></tr>
-            <tr class="ot-grp"><th colspan="4">Regresjon · testtall t og F, effektstørrelse R²</th></tr>
+            <tr class="ot-grp"><th colspan="4">Korrelasjon og regresjon · testtall t, effektstørrelse r og R²</th></tr>
+            <tr><td><a href="#ov-reg" data-ov-go="korr">Korrelasjon</a></td><td>To variabler målt som tall, uten noen retning</td><td class="ot-res">r(73) = .45, p &lt; .001</td><td>r og p i Pearson's Correlations. Kvadrer r for delt variasjon</td></tr>
             <tr><td><a href="#ov-reg" data-ov-go="enkel">Enkel regresjon</a></td><td>Én prediktor målt som tall</td><td class="ot-res">b = 1.35, β = .45, t(73) = 4.31, p &lt; .001, R² = .20</td><td>b og p for prediktoren i Coefficients, og R²</td></tr>
-            <tr><td><a href="#ov-reg" data-ov-go="multi">Multippel regresjon</a></td><td>Flere prediktorer samtidig, hver kontrollert for de andre</td><td class="ot-res">R² = .32, F(2, 72) = 17.15, p &lt; .001, pluss b, β og t per prediktor</td><td>F for hele modellen, så b, β og p for hver prediktor</td></tr>
-            <tr><td><a href="#ov-reg" data-ov-go="hier">Hierarkisk regresjon</a></td><td>Prediktorer i blokker: tilfører blokk 2 noe?</td><td class="ot-res">ΔR² = .12, F(1, 72) = 12.78, p &lt; .001</td><td>R² Change og F Change i raden for den siste modellen</td></tr>
+            <tr data-x><td><a href="#ov-reg" data-ov-go="multi">Multippel regresjon</a></td><td>Flere prediktorer samtidig, hver kontrollert for de andre</td><td class="ot-res">R² = .32, F(2, 72) = 17.15, p &lt; .001, pluss b, β og t per prediktor</td><td>F for hele modellen, så b, β og p for hver prediktor</td></tr>
+            <tr data-x><td><a href="#ov-reg" data-ov-go="hier">Hierarkisk regresjon</a></td><td>Prediktorer i blokker: tilfører blokk 2 noe?</td><td class="ot-res">ΔR² = .12, F(1, 72) = 12.78, p &lt; .001</td><td>R² Change og F Change i raden for den siste modellen</td></tr>
           </tbody>
         </table></div>
-        <div class="aside"><b>Det samme spørsmålet gjelder regresjon.</b> Én prediktor gir enkel regresjon, flere samtidig gir multippel, og prediktorer i blokker gir hierarkisk. Flere eksempler på hvilket spørsmål som hører til hvilken analyse står i <a href="#loypa">Analyseløypa</a> og <a href="#hypoteser">Fra hypotese til testrad</a>.</div>
+        <div class="aside"><b>Når X er et tall.</b> Er X målt som tall og ikke som grupper, er det korrelasjon eller regresjon. Velg korrelasjon når du vil vite hvor tett to variabler henger sammen, og regresjon når du vil forutsi den ene fra den andre. <span data-x>Flere prediktorer samtidig gir multippel regresjon, og prediktorer i blokker gir hierarkisk regresjon.</span> Flere eksempler på hvilket spørsmål som hører til hvilken analyse står i <a href="#loypa">Analyseløypa</a> og <a href="#hypoteser">Fra hypotese til testrad</a>.</div>
         <div class="aside"><b>Familiene er i slekt.</b> Med to grupper gir en enveis ANOVA og en uavhengig t-test nøyaktig samme p, og F = t². En ANOVA er en regresjon der gruppene er kodet som 0 og 1, og da er η² det samme som R². Derfor ligner utskriftene hverandre så mye. Se <a href="#samme">Samme modell, flere navn</a>.</div>
       </div>
     </section>
@@ -1335,33 +1405,75 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
     </section>
 
     <section class="entry" id="ov-reg">
-      <div class="glyphcol"><span class="step">D</span><span class="glyph">b</span></div>
+      <div class="glyphcol"><span class="step">D</span><span class="glyph sm">r·b</span></div>
       <div>
-        <h2>Tre regresjoner side om side</h2>
-        <p class="asks">Én prediktor, flere samtidig, eller i blokker</p>
-        <p>Eksempelet er samme slags studie som i Del I: 75 studenter, timer studert per uke, timer søvn natta før og poeng på prøven (0–100). Her er tallene faste, så de endrer seg ikke med datasettbaren. Timer studert varierer mye (SD = 5), søvnen lite (SD = 1.2), og de som studerer mye, sover litt mindre (r = −.10).</p>
-        <div class="scroller"><table class="ov-cmp">
-          <thead><tr><th></th><th>Enkel</th><th>Multippel</th><th>Hierarkisk</th></tr></thead>
+        <h2>Korrelasjon og regresjon side om side</h2>
+        <p class="asks">Hvor tett henger det sammen, og hvor bratt er linja?</p>
+        <p>Eksempelet er samme slags studie som i Del I: 75 studenter, hvor mange timer de studerte per uke, og poengene deres på prøven (0–100). Her er tallene faste, så de endrer seg ikke med datasettbaren. Den samme sammenhengen kan beskrives på to måter: som en <strong>korrelasjon</strong>, som sier hvor tett timer og poeng henger sammen, eller som en <strong>regresjon</strong>, som sier hvor mange flere poeng én time mer gir.</p>
+        <div class="scroller"><table class="ov-cmp to">
+          <thead><tr><th></th><th>Korrelasjon</th><th>Enkel regresjon</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Prediktorer</th><td>Timer studert</td><td>Timer studert og søvn, samtidig</td><td>Blokk 1: timer studert. Blokk 2: + søvn</td></tr>
-            <tr><th scope="row">Spørsmålet</th><td>Henger timer sammen med poeng, og hvor sterkt?</td><td>Hva bidrar hver prediktor med når den andre holdes konstant?</td><td>Forklarer søvn noe utover det timer allerede forklarer?</td></tr>
-            <tr><th scope="row">Modellen</th><td colspan="3" class="oc-likt">ŷ = b₀ + b₁·X₁ (+ b₂·X₂): den linja som bommer minst. Hver b testes med t = b / SE, og hele modellen med F.</td></tr>
-            <tr><th scope="row">b for timer</th><td>1.35</td><td>1.45, med søvn holdt konstant</td><td>1.35 i M₀, 1.45 i M₁</td></tr>
-            <tr><th scope="row">Testen av modellen</th><td class="oc-res">F(1, 73) = 18.54</td><td class="oc-res">F(2, 72) = 17.15</td><td class="oc-res">F Change(1, 72) = 12.78 for blokk 2</td></tr>
-            <tr><th scope="row">Effekt­størrelse</th><td>R² = .20, og β = r = .45</td><td>R² = .32, og β for hver prediktor</td><td>ΔR² = .12</td></tr>
-            <tr><th scope="row">Nøkkeltabellen</th><td>Coefficients</td><td>ANOVA og Coefficients</td><td>Model Summary med R² Change</td></tr>
-            <tr><th scope="row">Rapporteres</th><td colspan="3" class="oc-likt">b (gjerne med KI), β, t(df), p for prediktorene, og R² med F for modellen.</td></tr>
-            <tr><th scope="row">I JASP</th><td>Regression → Linear Regression</td><td>Samme meny, begge prediktorene i Covariates</td><td>Samme meny, med timer lagt i nullmodellen</td></tr>
+            <tr><th scope="row">Spørsmålet</th><td>Henger timer og poeng sammen, og hvor tett?</td><td>Hvor mange flere poeng gir én time mer, og hvor mye av poengene forklarer timene?</td></tr>
+            <tr><th scope="row">Retning</th><td>Ingen. Timer og poeng er likestilte, og r blir den samme uansett rekkefølge.</td><td>X → Y. Timer predikerer poeng. Bytter du dem om, får du en annen b.</td></tr>
+            <tr><th scope="row">Tallet du tolker</th><td>r = .45, fra −1 til 1 og uten enhet</td><td>b = 1.35 poeng per time, i Y-enhetene</td></tr>
+            <tr><th scope="row">Testen</th><td colspan="2" class="oc-likt">t(73) = 4.31, p &lt; .001. H₀ er r = 0, og det er det samme som b = 0. Derfor gir de nøyaktig samme t og p.</td></tr>
+            <tr><th scope="row">df</th><td colspan="2" class="oc-likt">N − 2 = 73</td></tr>
+            <tr><th scope="row">Effekt­størrelse</th><td>r = .45, og r² = .20 delt variasjon</td><td>R² = .20, og β = .45. Med én prediktor er R² = r² og β = r.</td></tr>
+            <tr><th scope="row">Utskriften</th><td>Pearson's Correlations</td><td>Model Summary, ANOVA og Coefficients</td></tr>
+            <tr><th scope="row">Resultatet</th><td class="oc-res">r(73) = .45, p &lt; .001</td><td class="oc-res">b = 1.35, β = .45, t(73) = 4.31, p &lt; .001, R² = .20</td></tr>
+            <tr><th scope="row">I JASP</th><td>Regression → Correlation</td><td>Regression → Linear Regression</td></tr>
           </tbody>
         </table></div>
+        <div class="ov-x" data-x>
+          <h3>Utover den enkle: multippel og hierarkisk regresjon</h3>
+          <p>Her er søvn natta før lagt til som prediktor nummer to. Timer studert varierer mye (SD = 5), søvnen lite (SD = 1.2), og de som studerer mye, sover litt mindre (r = −.10).</p>
+          <div class="scroller"><table class="ov-cmp">
+            <thead><tr><th></th><th>Enkel</th><th>Multippel</th><th>Hierarkisk</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Prediktorer</th><td>Timer studert</td><td>Timer studert og søvn, samtidig</td><td>Blokk 1: timer studert. Blokk 2: + søvn</td></tr>
+              <tr><th scope="row">Spørsmålet</th><td>Henger timer sammen med poeng, og hvor sterkt?</td><td>Hva bidrar hver prediktor med når den andre holdes konstant?</td><td>Forklarer søvn noe utover det timer allerede forklarer?</td></tr>
+              <tr><th scope="row">Modellen</th><td colspan="3" class="oc-likt">ŷ = b₀ + b₁·X₁ (+ b₂·X₂): den linja som bommer minst. Hver b testes med t = b / SE, og hele modellen med F.</td></tr>
+              <tr><th scope="row">b for timer</th><td>1.35</td><td>1.45, med søvn holdt konstant</td><td>1.35 i M₀, 1.45 i M₁</td></tr>
+              <tr><th scope="row">Testen av modellen</th><td class="oc-res">F(1, 73) = 18.54</td><td class="oc-res">F(2, 72) = 17.15</td><td class="oc-res">F Change(1, 72) = 12.78 for blokk 2</td></tr>
+              <tr><th scope="row">Effekt­størrelse</th><td>R² = .20, og β = r = .45</td><td>R² = .32, og β for hver prediktor</td><td>ΔR² = .12</td></tr>
+              <tr><th scope="row">Nøkkeltabellen</th><td>Coefficients</td><td>ANOVA og Coefficients</td><td>Model Summary med R² Change</td></tr>
+              <tr><th scope="row">Rapporteres</th><td colspan="3" class="oc-likt">b (gjerne med KI), β, t(df), p for prediktorene, og R² med F for modellen.</td></tr>
+              <tr><th scope="row">I JASP</th><td>Regression → Linear Regression</td><td>Samme meny, begge prediktorene i Covariates</td><td>Samme meny, med timer lagt i nullmodellen</td></tr>
+            </tbody>
+          </table></div>
+        </div>
         <div class="panel ov-panel" data-ov>
           <div class="panel-head"><span>Slik ser utskriften ut</span><span>bytt og se hva som endrer seg</span></div>
           <div class="chips">
-            <button class="chip" type="button" data-ov-v="enkel">Enkel</button>
-            <button class="chip" type="button" data-ov-v="multi">Multippel</button>
-            <button class="chip" type="button" data-ov-v="hier">Hierarkisk</button>
+            <button class="chip" type="button" data-ov-v="korr">Korrelasjon</button>
+            <button class="chip" type="button" data-ov-v="enkel">Enkel regresjon</button>
+            <button class="chip" type="button" data-ov-v="multi" data-x>Multippel</button>
+            <button class="chip" type="button" data-ov-v="hier" data-x>Hierarkisk</button>
           </div>
           <p class="ov-key"><span class="ov-sw" aria-hidden="true"></span>Farget = finnes bare i denne varianten</p>
+
+          <div class="ov-view" data-ov-view="korr">
+            <div class="scroller"><table class="jasp">
+              <caption>Pearson's Correlations</caption>
+              <thead><tr><th>Variable</th><th></th><th>Timer</th><th>Poeng</th></tr></thead>
+              <tbody>
+                <tr><td>Timer</td><td>Pearson's r</td><td>—</td><td></td></tr>
+                <tr><td></td><td>p-value</td><td>—</td><td></td></tr>
+                <tr><td>Poeng</td><td>Pearson's r</td><td>0.450</td><td>—</td></tr>
+                <tr><td></td><td>p-value</td><td>&lt; .001</td><td>—</td></tr>
+                <tr><td></td><td>Upper 95% CI</td><td>0.614</td><td>—</td></tr>
+                <tr><td></td><td>Lower 95% CI</td><td>0.248</td><td>—</td></tr>
+              </tbody>
+            </table></div>
+            <ul>
+              <li><b>Tabellen er symmetrisk.</b> r mellom timer og poeng er det samme som mellom poeng og timer, så JASP fyller bare den ene halvdelen. Streken er hver variabel mot seg selv.</li>
+              <li><b>r = 0.450:</b> de som studerer mye, får som regel flere poeng. Etter Cohens grenser (.10, .30, .50) er det en middels til sterk sammenheng.</li>
+              <li><b>p &lt; .001</b> tester H₀: r = 0. Testen er t = r · √(N − 2) / √(1 − r²) ≈ 4.31 med df = 73, nøyaktig samme t som for b i regresjonen.</li>
+              <li><b>KI [0.248, 0.614]:</b> verdiene for r i populasjonen som passer med dataene. Intervallet er ikke symmetrisk rundt .45, fordi r ikke kan bli større enn 1.</li>
+              <li><b>r² = 0.450² ≈ .20:</b> timer og poeng deler 20 % av variasjonen. Det er det samme tallet som R² i regresjonen.</li>
+            </ul>
+            <p class="ov-apa"><b>Slik skrives det</b>Timer studert hang sammen med poeng, r(73) = .45, p &lt; .001, 95 % KI [.25, .61].</p>
+          </div>
 
           <div class="ov-view" data-ov-view="enkel">
             <div class="scroller"><table class="jasp">
@@ -1400,7 +1512,7 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
             <p class="ov-apa"><b>Slik skrives det</b>Timer studert predikerte poeng, b = 1.35, 95 % KI [0.73, 1.97], β = .45, t(73) = 4.31, p &lt; .001. Modellen forklarte 20 % av variasjonen, R² = .20, F(1, 73) = 18.54, p &lt; .001.</p>
           </div>
 
-          <div class="ov-view" data-ov-view="multi">
+          <div class="ov-view" data-ov-view="multi" data-x>
             <div class="scroller"><table class="jasp">
               <caption>Model Summary - Poeng</caption>
               <thead><tr><th>Model</th><th>R</th><th>R²</th><th>Adjusted R²</th><th>RMSE</th></tr></thead>
@@ -1437,7 +1549,7 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
             <p class="ov-apa"><b>Slik skrives det</b>Timer studert og søvn forklarte sammen 32 % av variasjonen i poeng, R² = .32, F(2, 72) = 17.15, p &lt; .001. Begge bidro unikt: timer studert, b = 1.45, β = .48, t(72) = 4.97, p &lt; .001, og søvn, b = 4.36, β = .35, t(72) = 3.58, p &lt; .001.</p>
           </div>
 
-          <div class="ov-view" data-ov-view="hier">
+          <div class="ov-view" data-ov-view="hier" data-x>
             <div class="scroller"><table class="jasp reg-wrap">
               <caption>Model Summary - Poeng</caption>
               <thead><tr><th>Model</th><th>R</th><th>R²</th><th>Adjusted R²</th><th>RMSE</th><th class="ov-ny">R² Change</th><th class="ov-ny">F Change</th><th class="ov-ny">df1</th><th class="ov-ny">df2</th><th class="ov-ny">p</th></tr></thead>
@@ -1448,7 +1560,7 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
               <tfoot><tr><td colspan="10">Note. M₀ includes Timer. M₁ includes Timer, Søvn.</td></tr></tfoot>
             </table></div>
             <ul>
-              <li><b>Hver blokk får sin egen rad.</b> M₀ er timer alene, altså den enkle regresjonen. M₁ er timer pluss søvn, altså den multiple. Tallene i begge radene har du sett i de to andre fanene, og Coefficients for M₁ er den samme som i den multiple.</li>
+              <li><b>Hver blokk får sin egen rad.</b> M₀ er timer alene, altså den enkle regresjonen. M₁ er timer pluss søvn, altså den multiple. Tallene i begge radene har du sett i fanene Enkel regresjon og Multippel, og Coefficients for M₁ er den samme som i den multiple.</li>
               <li><b>R² Change i M₁ er svaret:</b> .323 − .203 = .120. Søvn forklarer 12 prosentpoeng mer, utover timer.</li>
               <li><b>F Change(1, 72) = 12.78, p &lt; .001</b> tester om tillegget er større enn null. Når blokken har én prediktor, er F Change = t² for den prediktoren: 3.575² ≈ 12.78.</li>
               <li><b>Rekkefølgen bestemmer du før analysen</b>, ut fra teorien. Det du vil kontrollere for, kommer først. Med søvn i blokk 1 ville søvn alene forklart 9 %, og timer lagt til 23 prosentpoeng.</li>
@@ -1456,7 +1568,8 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
             <p class="ov-apa"><b>Slik skrives det</b>I trinn 1 forklarte timer studert 20 % av variasjonen i poeng, R² = .20, F(1, 73) = 18.54, p &lt; .001. Søvn ble lagt til i trinn 2 og forklarte 12 prosentpoeng mer, ΔR² = .12, F(1, 72) = 12.78, p &lt; .001.</p>
           </div>
         </div>
-        <div class="aside"><b>Det viktigste skillet:</b> enkel og multippel regresjon er én modell hver. Hierarkisk regresjon er to modeller som sammenlignes, og den siste av dem er den multiple. Koeffisientene blir derfor de samme. Det nye er spørsmålet. Det er ikke lenger «hva predikerer poeng?», men «hva legger søvn til?». Mer i <a href="#b">Linja</a>, <a href="#R2">Forklart variasjon</a>, <a href="#dR2">Endringen i forklart variasjon</a> og <a href="#kontroll">Statistisk kontroll</a>.</div>
+        <div class="aside"><b>Det viktigste skillet:</b> korrelasjon og enkel regresjon er den samme analysen sett fra to sider. r sier hvor tett punktene ligger rundt linja, og b sier hvor bratt linja er. De gir samme t og p, og R² = r². Velg korrelasjon når ingen av variablene er utfallet, og regresjon når du vil forutsi den ene fra den andre. Mer i <a href="#r">Korrelasjonen</a>, <a href="#b">Linja</a> og <a href="#R2">Forklart variasjon</a>.</div>
+        <div class="aside" data-x><b>Utover den enkle:</b> enkel og multippel regresjon er én modell hver. Hierarkisk regresjon er to modeller som sammenlignes, og den siste av dem er den multiple. Koeffisientene blir derfor de samme. Det nye er spørsmålet. Det er ikke lenger «hva predikerer poeng?», men «hva legger søvn til?». Mer i <a href="#b">Linja</a>, <a href="#R2">Forklart variasjon</a>, <a href="#dR2">Endringen i forklart variasjon</a> og <a href="#kontroll">Statistisk kontroll</a>.</div>
       </div>
     </section>
 
@@ -2108,13 +2221,13 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
             <tr><td>Punkt-biseriell korrelasjon</td><td>r<sub>pb</sub></td><td>Den ene variabelen er en ekte dikotomi (for eksempel gruppe), den andre er kontinuerlig. Regnes som Pearson med 0 og 1. Fortegnet sier bare hvilken gruppe som er kodet 1.</td></tr>
             <tr><td>Biseriell korrelasjon</td><td>r<sub>b</sub></td><td>Som punkt-biseriell, men dikotomien er et kunstig delt kontinuum, for eksempel bestått og ikke bestått på en poengskala. Anslår korrelasjonen med den underliggende skalaen og blir større enn r<sub>pb</sub>.</td></tr>
             <tr><td>Nullte-ordens korrelasjon</td><td>vanlig r, ukontrollert</td><td>Korrelasjonen mellom to variabler uten at noe er holdt konstant. Det er tallene i en vanlig korrelasjonsmatrise.</td></tr>
-            <tr><td>Partiell korrelasjon</td><td>pr, r<sub>XY·Z</sub></td><td>Sammenhengen mellom X og Y når Z er tatt ut av <em>både</em> X og Y. Svarer på: henger X og Y sammen blant folk med lik Z? I JASP: Correlation med Z under <em>Partial out</em>.</td></tr>
-            <tr><td>Semipartiell korrelasjon</td><td>delkorrelasjon, sr</td><td>Z er tatt ut av bare X, ikke av Y. sr² er andelen av <em>hele</em> Y som X forklarer alene, altså ΔR² når X legges inn sist. JASP kaller den <em>part correlation</em>. Den er aldri større enn den partielle i tallverdi.</td></tr>
+            <tr data-x><td>Partiell korrelasjon</td><td>pr, r<sub>XY·Z</sub></td><td>Sammenhengen mellom X og Y når Z er tatt ut av <em>både</em> X og Y. Svarer på: henger X og Y sammen blant folk med lik Z? I JASP: Correlation med Z under <em>Partial out</em>.</td></tr>
+            <tr data-x><td>Semipartiell korrelasjon</td><td>delkorrelasjon, sr</td><td>Z er tatt ut av bare X, ikke av Y. sr² er andelen av <em>hele</em> Y som X forklarer alene, altså ΔR² når X legges inn sist. JASP kaller den <em>part correlation</em>. Den er aldri større enn den partielle i tallverdi.</td></tr>
             <tr><td>Fishers z</td><td>r-til-z</td><td>En omregning som gjør utvalgsfordelingen til r tilnærmet normal. Brukes til konfidensintervall for r og til å teste om r er ulik i to uavhengige grupper.</td></tr>
           </tbody>
         </table></div>
-        <p>Forskjellen på partiell og semipartiell er lettest å se som overlapp. Sirkelen Y er all variasjonen i utfallet. Der X og Z overlapper med Y, forklarer de en del av den.</p>
-        <div class="panel">
+        <p data-x>Forskjellen på partiell og semipartiell er lettest å se som overlapp. Sirkelen Y er all variasjonen i utfallet. Der X og Z overlapper med Y, forklarer de en del av den.</p>
+        <div class="panel" data-x>
           <div class="panel-head"><span>Hva tas ut, og av hva?</span><span>X, Y og Z som overlapp</span></div>
           <canvas id="cvVenn" height="250"></canvas>
           <div class="chips">
@@ -2124,7 +2237,7 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
           </div>
           <div class="readout" id="vennRead"></div>
         </div>
-        <details class="more" id="partiell-eksempel">
+        <details class="more" id="partiell-eksempel" data-x>
           <summary>Eksempel: fra r = .50 til .10 når Z holdes konstant</summary>
           <div class="more-body">
             <p>I 60 kommuner henger antall kafeer sammen med antall innbrudd: <em class="v">r</em> = .50. Gir kafeene innbrudd? Begge henger sammen med folketallet, med <em class="v">r</em> ≈ .67 (to tredeler) for hver av dem. Store kommuner har mer av alt.</p>
@@ -2619,7 +2732,7 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
             <tr><td>t(24), ettutvalgs t-test</td><td>n = df + 1</td><td>Ett snitt: 25 personer.</td></tr>
             <tr><td>r(48), korrelasjon</td><td>N = df + 2</td><td>50 personer.</td></tr>
             <tr><td>F(1, 73), enkel regresjon</td><td>N = df₂ + 2</td><td>Konstantledd og stigningstall er regnet ut: 75 personer. t(73) for b betyr det samme.</td></tr>
-            <tr><td>F(3, 96), multippel regresjon</td><td>N = df₂ + k + 1</td><td>F(k, df₂) med k = 3 prediktorer: 96 + 3 + 1 = 100 personer.</td></tr>
+            <tr data-x><td>F(3, 96), multippel regresjon</td><td>N = df₂ + k + 1</td><td>F(k, df₂) med k = 3 prediktorer: 96 + 3 + 1 = 100 personer.</td></tr>
             <tr><td>F(2, 57), enveis ANOVA</td><td>k = df₁ + 1 · N = df₂ + k</td><td>F(k − 1, N − k): 3 grupper og 57 + 3 = 60 personer.</td></tr>
             <tr><td>F(2, 114), 2 × 3 faktoriell</td><td>N = df<sub>feil</sub> + antall celler</td><td>114 + 6 = 120 personer. Interaksjonen har (2 − 1)(3 − 1) = 2 df.</td></tr>
             <tr><td>F(2, 58), gjentatte målinger</td><td>n = df₂ / df₁ + 1</td><td>F(k − 1, (n − 1)(k − 1)): 58 / 2 + 1 = 30 personer, målt 3 ganger. Bruk de ukorrigerte df. Se <a href="#anova3">Gjentatte målinger</a>.</td></tr>
@@ -2713,17 +2826,24 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
       <div class="glyphcol"><span class="step">14</span><span class="glyph">β</span></div>
       <div>
         <h2>Den standardiserte koeffisienten</h2>
-        <p class="asks">Hvilken prediktor veier tyngst?</p>
+        <p class="asks"><span data-x>Hvilken prediktor veier tyngst?</span><span data-xi>b regnet om til standardavvik</span></p>
         <div class="symkort" aria-label="Kort fortalt"><p class="sk-tittel"><span class="sk-sym">β</span><span>Kort fortalt</span></p><dl><dt>Hva er det?</dt><dd>Den standardiserte koeffisienten: <em class="v">b</em> regnet om til standardavvik. Hvor mange SD Y endrer seg når X øker med én SD.</dd><dt>Hvorfor bruker vi det?</dt><dd>Den gjør prediktorer med ulike enheter sammenlignbare.</dd><dt>Hvilke verdier?</dt><dd>Oftest mellom −1 og 1. Med bare én prediktor er β lik r.</dd></dl><p class="sk-les">Slik leser du tallet</p><ul class="sk-skala"><li><span class="sk-v">β &gt; 0 / &lt; 0</span><span>Samme retning som b.</span></li><li><span class="sk-v">β = .50</span><span>Én SD mer på X går sammen med en halv SD mer på Y.</span></li><li><span class="sk-v">størst |β|</span><span>Den prediktoren som henger sterkest sammen med Y når de andre holdes konstant.</span></li><li><span class="sk-v">nær 0</span><span>Lite unikt bidrag utover de andre prediktorene.</span></li></ul></div>
-        <details class="more easy">
+        <details class="more easy" data-xi>
+          <summary>Enkelt forklart: β</summary>
+          <div class="more-body">
+            <p>b svarer i variablenes egne enheter: «én time mer studert gir 2,5 poeng mer». β sier det samme, men målt i standardavvik: hvor mange standardavvik poengene stiger når studietiden stiger med ett standardavvik.</p>
+            <p>Med én prediktor er β nøyaktig det samme tallet som korrelasjonen r. Det er derfor JASP viser den samme verdien to steder.</p>
+          </div>
+        </details>
+        <details class="more easy" data-x>
           <summary>Enkelt forklart: b mot β</summary>
           <div class="more-body">
             <p>b svarer i variablenes egne enheter: «én time mer studert gir 2,5 poeng mer». Det er lett å forstå, men vanskelig å sammenligne. Hva veier mest — 2,5 poeng per time studert eller 1,5 poeng per time søvn — når folk varierer mye mer i studietid enn i søvn?</p>
             <p>Det er som å sammenligne lønn i kroner og euro: du må gjøre om til samme valuta først. β er den felles valutaen. Alt regnes om til standardavvik, og da kan prediktorene sammenlignes direkte. Den med størst β (uansett fortegn) veier tyngst.</p>
           </div>
         </details>
-        <p><em class="v">b</em> er i råenheter — poeng per time — og avhenger av hvilken skala variabelen tilfeldigvis er målt på. Det gjør at to b-er ikke kan sammenlignes direkte: timer studert og timer søvn har ulik spredning, så «per time» betyr ikke det samme for de to. <em class="v">β</em> løser dette ved å regne alt om til standardavvik.</p>
-        <div class="panel">
+        <p data-x><em class="v">b</em> er i råenheter — poeng per time — og avhenger av hvilken skala variabelen tilfeldigvis er målt på. Det gjør at to b-er ikke kan sammenlignes direkte: timer studert og timer søvn har ulik spredning, så «per time» betyr ikke det samme for de to. <em class="v">β</em> løser dette ved å regne alt om til standardavvik.</p>
+        <div class="panel" data-x>
           <div class="panel-head"><span>Begge prediktorene, to målestokker</span><span>full modell</span></div>
           <canvas id="cvBeta" height="200"></canvas>
           <div class="readout" id="betaRead"></div>
@@ -2766,7 +2886,7 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
         </details>
         <div class="aside tryit"><b>Prøv:</b> sett N helt ned til 20 og se på forskjellen mellom R² og justert R². Der er fradraget merkbart. Med N = 100 er de nesten like. <strong>Jo færre deltagere per prediktor, jo mer lurer R² deg</strong> — modellen begynner å tilpasse seg støyen i akkurat ditt utvalg. Det kalles overtilpasning.</div>
       
-        <details class="more" id="krymping">
+        <details class="more" id="krymping" data-x>
           <summary>R² kan aldri synke: justert R², krymping og kryssvalidering</summary>
           <div class="more-body">
             <p>Legger du en prediktor til en modell, kan R² bare stige eller stå stille. Den kan aldri synke. Grunnen er mekanisk: minste kvadraters metode kan alltid gi den nye prediktoren b = 0, og da er modellen like god som før. Alt den finner av tilfeldig samvariasjon i akkurat dette utvalget, tar den med.</p>
@@ -2824,7 +2944,7 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
     </section>
 
     <!-- ---------- dR2 ---------- -->
-    <section class="entry" id="dR2">
+    <section class="entry" id="dR2" data-x>
       <div class="glyphcol"><span class="step">17</span><span class="glyph up">ΔR²</span></div>
       <div>
         <h2>Endringen i forklart variasjon</h2>
@@ -2873,7 +2993,7 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
     </section>
 
     <!-- ---------- statistisk kontroll ---------- -->
-    <section class="entry" id="kontroll">
+    <section class="entry" id="kontroll" data-x>
       <div class="glyphcol"><span class="step">18</span><span class="glyph sm up">b|Z</span></div>
       <div>
         <h2>Statistisk kontroll: når b flytter seg</h2>
@@ -2976,7 +3096,7 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
     </section>
 
     <!-- ---------- VIF ---------- -->
-    <section class="entry" id="vif">
+    <section class="entry" id="vif" data-x>
       <div class="glyphcol"><span class="step">19</span><span class="glyph up">VIF</span></div>
       <div>
         <h2>Overlapp mellom prediktorene</h2>
@@ -4149,18 +4269,18 @@ r = d / √(d² + 4)</div>
       <div class="glyphcol"><span class="step">30</span><span class="glyph up">B</span></div>
       <div>
         <h2>Regresjon utover den enkle</h2>
-        <p class="asks">Flere prediktorer, andre utfallstyper, indirekte veier</p>
+        <p class="asks"><span data-x>Flere prediktorer, andre utfallstyper, indirekte veier</span><span data-xi>Andre utfallstyper, indirekte veier og diagnostikk</span></p>
         <p>Du kan allerede den enkle regresjonen fra Del I. Dette er utvidelsene du møter i artikler.</p>
         <div class="scroller"><table class="dict tight" data-fam="Regresjon">
           <tbody>
             <tr><td class="up">B</td><td>Ustandardisert koeffisient</td><td>Stor B. I råpoeng. Noen skriver <em>b</em>, det er det samme. Se falske venner.</td></tr>
             <tr><td>β</td><td>Standardisert koeffisient</td><td>I standardavvik, så prediktorer kan sammenlignes.</td></tr>
-            <tr><td class="up">ΔR²</td><td>Endring i R²</td><td>Hva et nytt sett prediktorer la til. Kjernen i hierarkisk regresjon.</td></tr>
-            <tr><td class="up">F change</td><td>Test av endringen</td><td>Er ΔR² større enn tilfeldig? Rapporteres som <code>F(1, 388) = 11.11</code>.</td></tr>
-            <tr><td class="up">VIF</td><td>Variance inflation factor</td><td>Overlapp mellom prediktorer. Over 5 uroende, over 10 problematisk.</td></tr>
-            <tr><td class="up">Toleranse</td><td>Tolerance</td><td>1 delt på VIF. Under 0.20 (VIF over 5) gir grunn til uro; under 0.10 (VIF over 10) er det et problem.</td></tr>
-            <tr><td>sr²</td><td>Kvadrert delkorrelasjon</td><td>Andelen av utfallet som <em>bare</em> denne prediktoren forklarer. Det samme som ΔR² når prediktoren legges inn sist. JASP kaller den <em>part correlation</em>.</td></tr>
-            <tr><td>pr</td><td>Partiell korrelasjon</td><td>Sammenhengen mellom prediktoren og utfallet når de andre prediktorene er fjernet fra begge. Alltid minst like stor som sr.</td></tr>
+            <tr data-x><td class="up">ΔR²</td><td>Endring i R²</td><td>Hva et nytt sett prediktorer la til. Kjernen i hierarkisk regresjon.</td></tr>
+            <tr data-x><td class="up">F change</td><td>Test av endringen</td><td>Er ΔR² større enn tilfeldig? Rapporteres som <code>F(1, 388) = 11.11</code>.</td></tr>
+            <tr data-x><td class="up">VIF</td><td>Variance inflation factor</td><td>Overlapp mellom prediktorer. Over 5 uroende, over 10 problematisk.</td></tr>
+            <tr data-x><td class="up">Toleranse</td><td>Tolerance</td><td>1 delt på VIF. Under 0.20 (VIF over 5) gir grunn til uro; under 0.10 (VIF over 10) er det et problem.</td></tr>
+            <tr data-x><td>sr²</td><td>Kvadrert delkorrelasjon</td><td>Andelen av utfallet som <em>bare</em> denne prediktoren forklarer. Det samme som ΔR² når prediktoren legges inn sist. JASP kaller den <em>part correlation</em>.</td></tr>
+            <tr data-x><td>pr</td><td>Partiell korrelasjon</td><td>Sammenhengen mellom prediktoren og utfallet når de andre prediktorene er fjernet fra begge. Alltid minst like stor som sr.</td></tr>
             <tr><td class="up">DW</td><td>Durbin–Watson</td><td>Tester om residualene henger sammen. Rundt 2 er bra, under 1 eller over 3 er ikke.</td></tr>
             <tr><td class="up">Cooks D</td><td>Cook's distance</td><td>Hvor mye én enkelt deltager flytter hele modellen. Over 1 er en observasjon å se nærmere på.</td></tr>
             <tr><td class="up">Std. residual</td><td>Standardisert residual</td><td>Bommen målt i standardavvik. Over ±3 er en mulig uteligger; JASP lister dem under <em>Casewise diagnostics</em>.</td></tr>
@@ -4472,16 +4592,16 @@ r = d / √(d² + 4)</div>
             <tr><td>Pearson's Correlations</td><td>Korrelasjonsmatrisen</td><td>Én celle per par av variabler. Diagonalen har en strek (—), og den andre halvdelen er et speilbilde og står tom.</td></tr>
             <tr><td>* p &lt; .05, ** p &lt; .01, *** p &lt; .001</td><td>Stjernene</td><td>Flagg for signifikans, forklart i fotnoten. To stjerner betyr p &lt; .01 for akkurat den korrelasjonen. Stjernene sier ingenting om hvor sterk r er.</td></tr>
             <tr><td>Model Summary</td><td>Modelloppsummeringen</td><td>R, R², Adjusted R² og RMSE for hver modell. Ofte er første rad en modell uten prediktorer, merket H₀ eller M₀. Med blokker får hver blokk sin egen rad.</td></tr>
-            <tr><td>R² Change (ΔR²)</td><td>Endringen i R²</td><td>Hvor mye R² øker når en ny blokk legges til. F Change og p i samme rad tester om økningen er signifikant. Se <a href="#dR2">Tillegget</a>.</td></tr>
+            <tr data-x><td>R² Change (ΔR²)</td><td>Endringen i R²</td><td>Hvor mye R² øker når en ny blokk legges til. F Change og p i samme rad tester om økningen er signifikant. Se <a href="#dR2">Tillegget</a>.</td></tr>
             <tr><td>Adjusted R²</td><td>Justert R²</td><td>R² trukket ned for antall prediktorer. Litt lavere enn R², og et bedre anslag på hvor mye modellen ville forklart i populasjonen.</td></tr>
             <tr><td>RMSE</td><td>Typisk bom</td><td>Standardavviket til residualene, i Y-enhetene: hvor mye prediksjonene typisk bommer.</td></tr>
             <tr><td>Coefficients</td><td>Koeffisienttabellen</td><td>Én rad per prediktor, pluss (Intercept). Her står b, SE, β, t og p.</td></tr>
             <tr><td>(Intercept)</td><td>Konstantleddet</td><td>Predikert Y når alle prediktorene er 0. Testen på raden (H₀: konstantleddet = 0) er sjelden interessant.</td></tr>
             <tr><td>Unstandardized</td><td>b</td><td>Endringen i Y, i Y-enhetene, når prediktoren øker med én enhet og de andre holdes konstant.</td></tr>
             <tr><td>Standardized</td><td>β</td><td>Det samme målt i standardavvik. Kan sammenlignes mellom prediktorene i samme modell.</td></tr>
-            <tr><td>Tolerance</td><td>Toleranse</td><td>1 − R² når prediktoren forklares av de andre prediktorene. Lav toleranse betyr mye overlapp. Toleranse = 1 / VIF. Se <a href="#vif">VIF</a>.</td></tr>
-            <tr><td>VIF</td><td>Variance inflation factor</td><td>1 / toleranse. Hvor mye variansen til b blåses opp av overlapp med de andre prediktorene. SE-en til b vokser med √VIF: VIF = 4 gir dobbelt så stor SE.</td></tr>
-            <tr><td>Entered simultaneously</td><td>Lagt inn samtidig</td><td>Alle prediktorene i én blokk (metoden Enter). Hver b er da det unike bidraget, kontrollert for alle de andre. Motsatt: hierarkisk i blokker, eller stegvis.</td></tr>
+            <tr data-x><td>Tolerance</td><td>Toleranse</td><td>1 − R² når prediktoren forklares av de andre prediktorene. Lav toleranse betyr mye overlapp. Toleranse = 1 / VIF. Se <a href="#vif">VIF</a>.</td></tr>
+            <tr data-x><td>VIF</td><td>Variance inflation factor</td><td>1 / toleranse. Hvor mye variansen til b blåses opp av overlapp med de andre prediktorene. SE-en til b vokser med √VIF: VIF = 4 gir dobbelt så stor SE.</td></tr>
+            <tr data-x><td>Entered simultaneously</td><td>Lagt inn samtidig</td><td>Alle prediktorene i én blokk (metoden Enter). Hver b er da det unike bidraget, kontrollert for alle de andre. Motsatt: hierarkisk i blokker, eller stegvis.</td></tr>
             <tr><td>Mean-centred</td><td>Sentrert</td><td>Snittet er trukket fra prediktoren, så 0 betyr «gjennomsnittlig». Da blir (Intercept) predikert Y for en gjennomsnittlig person. Uten interaksjonsledd endres bare konstantleddet. Med et interaksjonsledd blir hver hovedeffekt effekten ved snittet av den andre variabelen.</td></tr>
             <tr><td>Effect-coded</td><td>Effektkodet</td><td>En kategorisk variabel kodet −1 og +1 (summerer til 0) i stedet for 0 og 1. Da blir konstantleddet totalsnittet. I en modell med interaksjon gjelder hver hovedeffekt da i snitt over den andre faktoren. Med dummykoding (0 og 1) gjelder den bare i referansegruppen.</td></tr>
           </tbody>
@@ -4735,7 +4855,7 @@ r = d / √(d² + 4)</div>
           <tbody>
             <tr><td>«A henger sammen med B»</td><td>Korrelasjon</td><td>Svaret er <em class="v">r</em> med p og konfidensintervall. Effektstørrelsen er r selv, eller r².</td></tr>
             <tr><td>«A predikerer B»</td><td>Regresjon</td><td>Svaret er koeffisienten for A, med SE, t og p. Modellen som helhet vurderes med R² og F.</td></tr>
-            <tr><td>«A predikerer B utover C»</td><td>Hierarkisk regresjon</td><td>Svaret er <em class="v">ΔR²</em> og p for endringen — ikke R² i den fulle modellen.</td></tr>
+            <tr data-x><td>«A predikerer B utover C»</td><td>Hierarkisk regresjon</td><td>Svaret er <em class="v">ΔR²</em> og p for endringen — ikke R² i den fulle modellen.</td></tr>
             <tr><td>«Gruppene skiller seg»</td><td>t-test eller ANOVA</td><td>To grupper: t med df, p og d. Tre eller flere: F med begge df, p og η². Så post hoc for å si hvilke.</td></tr>
             <tr><td>«Utfallet endrer seg over tid»</td><td>Paret t-test</td><td>Samme personer målt to ganger. Svaret er t, df, p og d for endringen.</td></tr>
             <tr><td>«Endringen er større i den ene gruppen»</td><td>Interaksjon</td><td>Blandet ANOVA: raden Tid × Gruppe. Ikke hovedeffekten av tid, og ikke to separate t-tester.</td></tr>
@@ -4781,7 +4901,7 @@ r = d / √(d² + 4)</div>
       
         <div class="aside"><b>Samme spørsmål med antall.</b> Kjikvadrattesten for uavhengighet er en interaksjon med frekvenser i stedet for gjennomsnitt. Den spør om fordelingen på den ene variabelen avhenger av nivået på den andre. Rad- og kolonnesummene spiller rollen til hovedeffektene. Se <a href="#kjikvadrat">Kategorier mot kategorier</a>.</div>
       
-        <details class="more" id="moderert">
+        <details class="more" id="moderert" data-x>
           <summary>Moderert regresjon: produktleddet i en koeffisienttabell</summary>
           <div class="more-body">
             <p>Er moderatoren kontinuerlig, trenger du ikke dele den ved medianen. Du lager et <b>produktledd</b>, betingelse ganget med moderatoren, og legger det inn i en regresjon sammen med de to variablene. Koeffisienten for produktleddet <em>er</em> interaksjonen.</p>
@@ -5112,9 +5232,9 @@ r = d / √(d² + 4)</div>
           <h3>r = β</h3>
           <div class="ffgrid">
             <div><b>I en enkel regresjon</b><span>Den standardiserte koeffisienten er nøyaktig Pearsons r, og R² er nøyaktig r². Med én prediktor er regresjon og korrelasjon samme regnestykke, skrevet på to måter.</span></div>
-            <div><b>Med flere prediktorer</b><span>Likheten brekker: β for én prediktor er nå vekten den får <em>når de andre holdes konstant</em> (en standardisert partiell koeffisient), og kan bli mindre, større eller skifte fortegn.</span></div>
+            <div data-x><b>Med flere prediktorer</b><span>Likheten brekker: β for én prediktor er nå vekten den får <em>når de andre holdes konstant</em> (en standardisert partiell koeffisient), og kan bli mindre, større eller skifte fortegn.</span></div>
           </div>
-          <p class="ffhint">Det er derfor et avvik mellom r og β i en multippel modell ikke er en feil, men informasjon: det forteller deg at prediktorene overlapper, og at koeffisienten nå er prediktorens unike bidrag når de andre holdes konstante. Se <a href="#dR2">Tillegget</a> og <a href="#vif">Overlappet</a>.</p>
+          <p class="ffhint" data-x>Det er derfor et avvik mellom r og β i en multippel modell ikke er en feil, men informasjon: det forteller deg at prediktorene overlapper, og at koeffisienten nå er prediktorens unike bidrag når de andre holdes konstante. Se <a href="#dR2">Tillegget</a> og <a href="#vif">Overlappet</a>.</p>
         </div>
         <div class="ff">
           <h3>F = t²</h3>
@@ -5252,7 +5372,7 @@ r = d / √(d² + 4)</div>
             <tr><td>Virket manipulasjonen?</td><td>Uavhengig t-test på manipulasjonssjekken</td><td>M og SD per betingelse, t med df, p, Cohens d.</td></tr>
             <tr><td>Henger de kontinuerlige variablene sammen?</td><td>Korrelasjonsmatrise</td><td>r for alle par — også de ikke-signifikante — med p, og r² for dem du omtaler.</td></tr>
             <tr><td>Predikerer den ene den andre?</td><td>Enkel lineær regresjon</td><td>b med SE og KI, β, t, p, R², F for modellen.</td></tr>
-            <tr><td>Tilfører prediktor nummer to noe?</td><td>Hierarkisk regresjon</td><td>ΔR² og p for endringen, koeffisientene i begge blokkene, VIF.</td></tr>
+            <tr data-x><td>Tilfører prediktor nummer to noe?</td><td>Hierarkisk regresjon</td><td>ΔR² og p for endringen, koeffisientene i begge blokkene, VIF.</td></tr>
             <tr><td>Skiller to grupper seg?</td><td>Uavhengig t-test</td><td>M og SD per gruppe, t med df, p, d, og Levene hvis den slo ut.</td></tr>
             <tr><td>Endret det seg fra før til etter?</td><td>Paret t-test</td><td>M og SD på begge tidspunkt, t med df, p, d for endringen.</td></tr>
             <tr><td>Skiller tre eller flere grupper seg?</td><td>Enveis-ANOVA</td><td>F med begge df, p, η², n per gruppe, Levene — og post hoc bare hvis F ble signifikant.</td></tr>
@@ -5359,8 +5479,8 @@ r = d / √(d² + 4)</div>
             <tr><td>t for en koeffisient</td><td>t = b / SE</td><td>b = 0.21 og SE = 0.07 gir t = 3.</td></tr>
             <tr><td>Forklart variasjon</td><td>R² = SS<sub>modell</sub> / SS<sub>total</sub></td><td>Med én prediktor er R² = r² og F = t².</td></tr>
             <tr><td>df i regresjon</td><td>k og N − k − 1</td><td>F(k, N − k − 1) for k prediktorer. Én prediktor og N = 75 gir F(1, 73).</td></tr>
-            <tr><td>Toleranse og VIF</td><td>VIF = 1 / (1 − R²<sub>j</sub>)</td><td>Toleranse = 1 − R²<sub>j</sub> = 1 / VIF. Over 5 er uroende, over 10 et problem.</td></tr>
-          <tr><td>Justert R²</td><td>1 − (1 − R²) · (N − 1) / (N − k − 1)</td><td>Fradrag for antall prediktorer k. R² = .30, N = 41 og k = 10 gir 1 − .70 · 40/30 ≈ .07. R² kan aldri synke når en prediktor legges til, justert R² kan.</td></tr><tr><td>Partiell korrelasjon</td><td>Z tas ut av både X og Y</td><td>Sammenhengen mellom X og Y blant folk med lik Z. Minst like stor som den semipartielle i tallverdi, fordi nevneren bare er den delen av Y som Z ikke forklarer.</td></tr><tr><td>Semipartiell korrelasjon</td><td>Z tas ut av bare X</td><td>sr² er andelen av hele Y som X forklarer alene, altså ΔR² når X legges inn sist. JASP: part correlation.</td></tr><tr><td>Kritisk r</td><td>r<sub>krit</sub> ≈ 2 / √N</td><td>Minste r med p &lt; .05, tosidig. N = 25 gir .40, N = 100 gir .20, N = 400 gir .10.</td></tr><tr><td>Attenuering</td><td>r<sub>obs</sub> ≈ r<sub>sann</sub> · √(rel<sub>x</sub> · rel<sub>y</sub>)</td><td>Målefeil demper r. Sann r = .50 og reliabilitet .80 på begge mål gir .50 · .80 = .40.</td></tr><tr><td>KI for b</td><td>b ± t<sub>krit</sub> · SE</td><td>t<sub>krit</sub> er 1.96 i svært store utvalg og litt over i mindre. b = 0.80, SE = 0.20 og df = 60 gir t<sub>krit</sub> = 2.00 og 0.80 ± 0.40 = [0.40, 1.20].</td></tr><tr><td>t-test som regresjon</td><td>b₀ = M<sub>ref</sub> · b₁ = M₁ − M<sub>ref</sub></td><td>Én 0/1-dummy. t for b₁ er t-testen. Med k grupper trengs k − 1 dummyer, og modellens F er ANOVAens F.</td></tr><tr><td>Moderert regresjon</td><td>ŷ = b₀ + b₁X + b₂M + b₃(X · M)</td><td>b₃ er interaksjonen. Helningen for X ved en gitt M er b₁ + b₃ · M. Sentrer M, så gjelder b₁ ved gjennomsnittlig M.</td></tr><tr><td>N fra df i regresjon</td><td>N = df₂ + k + 1</td><td>F(k, df₂) med k prediktorer. F(3, 96) gir 100 personer. Korrelasjon og enkel regresjon: N = df + 2.</td></tr>
+            <tr data-x><td>Toleranse og VIF</td><td>VIF = 1 / (1 − R²<sub>j</sub>)</td><td>Toleranse = 1 − R²<sub>j</sub> = 1 / VIF. Over 5 er uroende, over 10 et problem.</td></tr>
+          <tr><td>Justert R²</td><td>1 − (1 − R²) · (N − 1) / (N − k − 1)</td><td>Fradrag for antall prediktorer k. R² = .30, N = 41 og k = 10 gir 1 − .70 · 40/30 ≈ .07. R² kan aldri synke når en prediktor legges til, justert R² kan.</td></tr><tr data-x><td>Partiell korrelasjon</td><td>Z tas ut av både X og Y</td><td>Sammenhengen mellom X og Y blant folk med lik Z. Minst like stor som den semipartielle i tallverdi, fordi nevneren bare er den delen av Y som Z ikke forklarer.</td></tr><tr data-x><td>Semipartiell korrelasjon</td><td>Z tas ut av bare X</td><td>sr² er andelen av hele Y som X forklarer alene, altså ΔR² når X legges inn sist. JASP: part correlation.</td></tr><tr><td>Kritisk r</td><td>r<sub>krit</sub> ≈ 2 / √N</td><td>Minste r med p &lt; .05, tosidig. N = 25 gir .40, N = 100 gir .20, N = 400 gir .10.</td></tr><tr><td>Attenuering</td><td>r<sub>obs</sub> ≈ r<sub>sann</sub> · √(rel<sub>x</sub> · rel<sub>y</sub>)</td><td>Målefeil demper r. Sann r = .50 og reliabilitet .80 på begge mål gir .50 · .80 = .40.</td></tr><tr><td>KI for b</td><td>b ± t<sub>krit</sub> · SE</td><td>t<sub>krit</sub> er 1.96 i svært store utvalg og litt over i mindre. b = 0.80, SE = 0.20 og df = 60 gir t<sub>krit</sub> = 2.00 og 0.80 ± 0.40 = [0.40, 1.20].</td></tr><tr><td>t-test som regresjon</td><td>b₀ = M<sub>ref</sub> · b₁ = M₁ − M<sub>ref</sub></td><td>Én 0/1-dummy. t for b₁ er t-testen. Med k grupper trengs k − 1 dummyer, og modellens F er ANOVAens F.</td></tr><tr data-x><td>Moderert regresjon</td><td>ŷ = b₀ + b₁X + b₂M + b₃(X · M)</td><td>b₃ er interaksjonen. Helningen for X ved en gitt M er b₁ + b₃ · M. Sentrer M, så gjelder b₁ ved gjennomsnittlig M.</td></tr><tr><td>N fra df i regresjon</td><td>N = df₂ + k + 1</td><td>F(k, df₂) med k prediktorer. F(3, 96) gir 100 personer. Korrelasjon og enkel regresjon: N = df + 2.</td></tr>
           <tr><td>Taket fra reliabiliteten</td><td>r ≤ √(rel<sub>x</sub> · rel<sub>y</sub>)</td><td>Tilfeldig målefeil demper r. Med reliabilitet .81 og .64 kan observert r ikke bli høyere enn .9 · .8 = .72.</td></tr>
           </tbody>
         </table></div>
@@ -5428,7 +5548,7 @@ r = d / √(d² + 4)</div>
 <tr><td>V når k − 1 = 2</td><td>.07 · .21 · .35</td><td>Når det minste av rader og kolonner er 3. V = .20 er liten i en 2 × 2-tabell, men nesten middels i en 3 × 3-tabell.</td></tr>
 <tr><td>Std. residual i krysstabell</td><td>|z| &gt; 1.96</td><td>Cellen avviker ved p &lt; .05 (2.58: p &lt; .01). I regresjon er grensen for en mulig uteligger ±3.</td></tr>
 <tr><td>Oddsforhold</td><td>1 = ingen sammenheng</td><td>Over 1: høyere odds i den første gruppen. Under 1: lavere. OR = 0.5 er halv odds, ikke «50 % sjanse».</td></tr>
-          <tr><td>VIF og toleranse</td><td>VIF &gt; 5 · &gt; 10 · toleranse &lt; .20 · &lt; .10</td><td>Uro og problem. Toleranse = 1 / VIF. Måler oppblåste standardfeil, ikke om b flytter seg når en prediktor legges til.</td></tr><tr><td>Kritisk t mot z</td><td>2.57 · 2.23 · 2.04 · 1.96</td><td>df = 5, 10, 30 og uendelig mange. t-fordelingen har tyngre haler, så små utvalg krever større t for p &lt; .05.</td></tr>
+          <tr data-x><td>VIF og toleranse</td><td>VIF &gt; 5 · &gt; 10 · toleranse &lt; .20 · &lt; .10</td><td>Uro og problem. Toleranse = 1 / VIF. Måler oppblåste standardfeil, ikke om b flytter seg når en prediktor legges til.</td></tr><tr><td>Kritisk t mot z</td><td>2.57 · 2.23 · 2.04 · 1.96</td><td>df = 5, 10, 30 og uendelig mange. t-fordelingen har tyngre haler, så små utvalg krever større t for p &lt; .05.</td></tr>
           <tr><td>z-grensene</td><td>1.96 · 2.58 · 3.29</td><td>Tosidig p &lt; .05, .01 og .001. Brukes på z for skjevhet og kurtose (verdi / SE) og på enkeltverdier.</td></tr><tr><td>SE for skjevhet</td><td>≈ √(6/N)</td><td>N = 60 gir ca. 0.31, N = 600 ca. 0.10. Ti ganger så mange deltagere gir drøyt tre ganger så stor z for samme skjevhet (√10 ≈ 3.2). SE for kurtose er omtrent det dobbelte.</td></tr><tr><td>Kurtose</td><td>0 = normal · over 0 lepto · under 0 platy</td><td>Leptokurtisk: spiss topp og tunge haler. Platykurtisk: flat topp og lette haler. Testes som skjevhet: z = kurtose / SE.</td></tr><tr><td>Uteligger</td><td>|z| &gt; 3.29 · std. residual utenfor ±3</td><td>I en normalfordeling ligger 5 % utenfor ±1.96, 1 % utenfor ±2.58 og 0,1 % utenfor ±3.29. Undersøk verdien, og slett den aldri i det stille.</td></tr><tr><td>Cooks avstand</td><td>over 1</td><td>Ett tilfelle som flytter hele modellen. Undersøk det, og kjør analysen med og uten.</td></tr><tr><td>Durbin–Watson</td><td>nær 2</td><td>Uavhengige residualer. Skalaen går fra 0 til 4: under ca. 1 betyr positiv autokorrelasjon, over ca. 3 negativ.</td></tr>
           <tr><td>ICC</td><td>.50 · .75 · .90</td><td>Under .50 dårlig, .50–.75 moderat, .75–.90 god, over .90 utmerket. Brukes blant annet om inter-rater-reliabilitet.</td></tr>
           </tbody>
@@ -5523,8 +5643,8 @@ r = d / √(d² + 4)</div>
         <tr><td class="up">R²</td><td>Forklart variasjon</td><td>Hvor mye av utfallet hele modellen fanger opp.</td></tr>
         <tr><td class="up">Justert R²</td><td>Justert forklart variasjon</td><td>R² med fradrag for antall prediktorer. Verner mot overtilpasning.</td></tr>
         <tr><td>F</td><td>F-verdi</td><td>Tester hele modellen. Ved én prediktor: t².</td></tr>
-        <tr><td class="up">ΔR²</td><td>Endring i R²</td><td>Hva en ekstra prediktor la til. Kjernen i hierarkisk regresjon.</td></tr>
-        <tr><td class="up">VIF</td><td>Variance inflation factor</td><td>Overlapp mellom prediktorer. 1.00 = ingen, over 5 uroende.</td></tr>
+        <tr data-x><td class="up">ΔR²</td><td>Endring i R²</td><td>Hva en ekstra prediktor la til. Kjernen i hierarkisk regresjon.</td></tr>
+        <tr data-x><td class="up">VIF</td><td>Variance inflation factor</td><td>Overlapp mellom prediktorer. 1.00 = ingen, over 5 uroende.</td></tr>
         <tr><td class="up">ŷ</td><td>Predikert verdi</td><td>Hva modellen gjetter — «y-hatt», ikke det målte y.</td></tr>
       </tbody>
     </table>
@@ -5571,12 +5691,20 @@ r = d / √(d² + 4)</div>
 <footer>
   Datasettet i Del I er oppdiktet og lages på nytt i nettleseren din hver gang du endrer N eller trekker et nytt utvalg.<br>
   Den sanne populasjonen er bygget slik: poeng = 20 + 2,5 · timer studert + 1,5 · timer søvn + tilfeldig støy. Sann ρ mellom timer studert og poeng er .67.<br>
-  Tallene i setningsleseren i Del II er oppdiktede eksempler, satt opp slik ekte artikler formulerer seg. Grenseverdier er konvensjoner, ikke naturlover.
+  Tallene i setningsleseren i Del II er oppdiktede eksempler, satt opp slik ekte artikler formulerer seg. Grenseverdier er konvensjoner, ikke naturlover.<br>
+  <label class="xs-bryter xs-fot"><input type="checkbox" data-xs-toggle> Vis også stoffet som ikke vektlegges på eksamen (partiell og semipartiell korrelasjon, multippel og hierarkisk regresjon)</label>
 </footer>
 
 </div>
 
 <script>
+/* Eksamensfokus: stoff merket data-x vektlegges ikke på eksamen (partiell og semipartiell
+   korrelasjon, multippel og hierarkisk regresjon). Det er skjult med mindre leseren har valgt
+   å vise alt. Valget leses før siden tegnes (se <head>), så alt nedenfor kan bygges én gang. */
+const XS = {
+  on: document.documentElement.classList.contains('vis-alt'),
+  ut(el){ return !this.on && !!(el && el.closest && el.closest('[data-x]')); }
+};
 /* =========================================================
    Søketeksten: gjør «n2» og «η²» til det samme ordet
    ---------------------------------------------------------
@@ -7761,6 +7889,7 @@ const SENTENCES = [
   document.querySelectorAll('table.dict[data-fam]').forEach(src=>{
     const fam = src.getAttribute('data-fam');
     src.querySelectorAll('tbody tr').forEach(tr=>{
+      if(XS.ut(tr)) return;
       const tds = tr.querySelectorAll('td');
       if(tds.length < 3) return;
       const sign = tds[0].innerHTML.trim();
@@ -7944,7 +8073,9 @@ const JUMP = (function(){
   const scroll = (el, block) => el.scrollIntoView({behavior: calm ? 'auto' : 'smooth', block});
   const clean = s => String(s || '').replace(/\s+/g, ' ').trim();
   /* teksten i et element, uten overskriften sin */
-  const without = (el, skip) => clean([...el.childNodes].filter(n=>n !== skip).map(n=>n.textContent).join(' '));
+  /* teksten slik leseren ser den: uten det som er skjult av eksamensfokus (eller av «vis alt») */
+  const synligTekst = el => { if(!el || el.nodeType !== 1) return el ? el.textContent : ''; const c = el.cloneNode(true); c.querySelectorAll(XS.on ? '[data-xi]' : '[data-x]').forEach(n=> n.remove()); return c.textContent; };
+  const without = (el, skip) => clean([...el.childNodes].filter(n=>n !== skip && !(n.nodeType === 1 && (XS.on ? n.matches('[data-xi]') : n.matches('[data-x]')))).map(synligTekst).join(' '));
   const secOf = el => el.closest('section[id]');
   const secTitle = sec => sec ? clean(sec.querySelector('h2')?.textContent) : '';
   const secGlyph = sec => sec ? clean((sec.querySelector('.glyph') || sec.querySelector('.eyebrow'))?.textContent) || '¶' : '¶';
@@ -7969,6 +8100,7 @@ const JUMP = (function(){
        Da er ordet overskriften, og oversettelsen hører til forklaringen. */
     const worded = src.classList.contains('terms');
     src.querySelectorAll('tbody tr').forEach(tr=>{
+      if(XS.ut(tr)) return;
       const td = tr.querySelectorAll('td');
       if(td.length < 3) return;
       const sign = td[0].textContent.trim(), name = td[1].textContent.trim();
@@ -7996,7 +8128,7 @@ const JUMP = (function(){
     const h = sec.querySelector('h2');
     if(!h) return;
     const name = clean(h.textContent),
-          desc = clean(sec.querySelector('.asks')?.textContent),
+          desc = clean(synligTekst(sec.querySelector('.asks'))),
           sign = secGlyph(sec);
     items.push({kind:'sec', sign, name, fam:'seksjon',
                 title:name, lead:sign, leadUp:true, sub:desc,
@@ -8010,7 +8142,7 @@ const JUMP = (function(){
     if(!h) return;
     if(!ff.id) ff.id = 'ff-' + (i + 1);
     const name = clean(h.textContent),
-          desc = [...ff.querySelectorAll('.ffgrid b')].map(b=>clean(b.textContent)).join(' · '),
+          desc = [...ff.querySelectorAll('.ffgrid b')].filter(b=> !XS.ut(b)).map(b=>clean(b.textContent)).join(' · '),
           from = secTitle(secOf(ff));
     items.push({kind:'ff', sign:'⚠', name, fam: from,
                 title:name, lead:'⚠', leadUp:true, sub:desc,
@@ -8052,7 +8184,7 @@ const JUMP = (function(){
     const sec = secOf(el), st = secTitle(sec);
     const leadEl = el.matches('.aside') ? el.querySelector(':scope > b') : (el.matches('.roles > div') ? el.querySelector('h4') : null);
     const lead = leadEl ? clean(leadEl.textContent).replace(/[.:]+$/, '') : '';
-    const full = clean(el.textContent);
+    const full = clean(synligTekst(el));
     const text = leadEl ? clean(full.slice(clean(leadEl.textContent).length)) : full;
     if(text.length < 20) return;
     /* «Prøv:» alene sier ingenting i en treffliste — da får seksjonen navnet */
@@ -8099,6 +8231,7 @@ const JUMP = (function(){
     const byDoc = new Map(index.query(p).map(h=>[h.doc, h]));
     const out = [];
     items.forEach((it, i)=>{
+      if(XS.ut(it.row || it.target)) return;
       const w = byDoc.get(i);
       /* en seksjon er et mål i seg selv: treff i overskriften veier litt ekstra */
       const ws = w ? 600 * w.rel * (w.cov === 1 ? 1 : 0.7 * w.cov) * (it.kind === 'sec' ? 1.25 : 1) : 0;
@@ -8370,6 +8503,7 @@ const JUMP = (function(){
     if(src.hasAttribute('data-nocard')) return;
     const fam = src.getAttribute('data-fam');
     src.querySelectorAll('tbody tr').forEach(tr=>{
+      if(XS.ut(tr)) return;
       const td = tr.querySelectorAll('td');
       if(td.length < 3) return;
       const sign = td[0].textContent.trim(), name = td[1].textContent.trim();
@@ -11790,8 +11924,16 @@ const JASPGEN = (function(){
       ['C10','Gjentatte målinger'],['C11','Kjikvadrat og kategoriske effektmål'],['C12','Frihetsgrader'],['C13','Forutsetninger og residualer'],['C14','Robuste alternativer']]],
     ['Lese og formidle', [['D1','Velge riktig analyse'],['D2','Lese JASP-utskrifter'],['D3','Figurer og uteliggere'],['D4','Lese en resultatdel']]]];
 
+  /* Oppgaver om stoff som ikke vektlegges på eksamen (multippel og hierarkisk regresjon,
+     partiell og semipartiell korrelasjon): aldri med på prøveeksamen, og bare med i øvingen
+     når leseren har valgt å vise alt stoffet. */
+  const UTENFOR = new Set([6, 58, 196, 209, 210, 211, 212, 213, 214, 215, 217, 221, 247, 253, 254]);
+  const UTENFOR_GEN = new Set(['regm', 'hier', 'moder']);
+  if(!XS.on) for(let i = BANK.length - 1; i >= 0; i--) if(UTENFOR.has(BANK[i].n)) BANK.splice(i, 1);
+
   /* «Les utskriften»: oppgaver som lages på nytt hver gang, med egne tall (JASPGEN) */
-  const GEN = (typeof JASPGEN !== 'undefined' && JASPGEN && JASPGEN.templates) ? JASPGEN.templates : [];
+  const GEN = ((typeof JASPGEN !== 'undefined' && JASPGEN && JASPGEN.templates) ? JASPGEN.templates : [])
+    .filter(tpl => XS.on || !UTENFOR_GEN.has(tpl.id));
   const genOne = tpl => { try { return JASPGEN.make(tpl.id, rng((Math.random()*2147483647)|0)); } catch(e){ return null; } };
   const genAll = filter => GEN.filter(filter).map(genOne).filter(Boolean);
   const genMeta = GEN.map((tpl, i)=>({t:'Les utskriften', n:1000 + i, k:tpl.k || ['D2'], ch:tpl.ch}));
@@ -11809,7 +11951,11 @@ const JASPGEN = (function(){
   Object.keys(KAPITTEL).forEach(c=>{ const n = count(q=>q.ch == c); if(n) opt(gC, 'ch:' + c, 'Kap. ' + c + ' · ' + KAPITTEL[c] + ' (' + n + ')'); });
   BEGREP.forEach(([navn, liste])=>{
     const g = group('Begrep · ' + navn);
-    liste.forEach(([kode, tekst])=>{ const n = count(q=>(q.k||[]).includes(kode)); if(n) opt(g, 'k:' + kode, tekst + ' (' + n + ')'); });
+    liste.forEach(([kode, tekst])=>{
+      /* multippel regresjon vektlegges ikke på eksamen; den ene oppgaven igjen handler om én dummy */
+      if(kode === 'C6' && !XS.on) return;
+      const n = count(q=>(q.k||[]).includes(kode)); if(n) opt(g, 'k:' + kode, tekst + ' (' + n + ')');
+    });
   });
   const countEl = document.getElementById('oppgCount');
   if(countEl) countEl.textContent = BANK.length + ' flervalgsoppgaver' + (GEN.length ? ' + JASP-utskrifter' : '') + ' · eksamensformat';
@@ -11830,8 +11976,8 @@ const JASPGEN = (function(){
   const KVOTE = {1:2, 2:3, 3:1, 5:1, 6:3, 7:2, 8:3, 9:4, 11:4, 13:2, 14:3, 16:2};
   function examDeck(){
     /* tre JASP-utskrifter med nye tall er alltid med, og teller i kapittelkvoten */
-    const gen = shuffle(genAll(()=>true)).slice(0, 3);
-    const pool = shuffle(BANK.slice());
+    const gen = shuffle(genAll(tpl => !UTENFOR_GEN.has(tpl.id))).slice(0, 3);
+    const pool = shuffle(BANK.filter(q => !UTENFOR.has(q.n)));
     const by = {};
     pool.forEach(q=>(by[q.ch] = by[q.ch] || []).push(q));
     const out = gen.slice(), used = new Set(gen), kvote = Object.assign({}, KVOTE);
@@ -13833,7 +13979,7 @@ const JASPGEN = (function(){
   if(resume){
     let pos = null;
     try{ pos = JSON.parse(localStorage.getItem(POS) || 'null'); }catch(e){ pos = null; }
-    const link = pos && links.find(l=> l.getAttribute('href') === '#' + pos.id);
+    const link = pos && !XS.ut(document.getElementById(pos.id)) && links.find(l=> l.getAttribute('href') === '#' + pos.id);
     if(link && Date.now() - pos.t < 1000*60*60*24*90){
       const g = link.querySelector('.g');
       const name = [...link.childNodes].filter(n=> n !== g).map(n=> n.textContent).join('').trim();
@@ -13902,7 +14048,7 @@ const JASPGEN = (function(){
       views.forEach(el=> el.hidden = el.dataset.ovView !== v);
     };
     btns.forEach(b=> b.addEventListener('click', ()=> show(b.dataset.ovV)));
-    show(btns[0].dataset.ovV);
+    show((btns.find(b=> !XS.ut(b)) || btns[0]).dataset.ovV);
   });
   document.querySelectorAll('a[data-ov-go]').forEach(a=> a.addEventListener('click', ()=>{
     const sec = document.getElementById(a.getAttribute('href').slice(1));
@@ -14027,7 +14173,7 @@ const JASPGEN = (function(){
         x:'I studietimestudien er R² = .20: studietimer forklarer en femtedel av hvorfor noen får flere poeng enn andre. De andre 80 % skyldes andre ting, som søvn, forkunnskaper eller flaks.'},
     'β': {e:'Hvor sterkt en prediktor henger sammen med utfallet, regnet om til samme skala for alle prediktorene.',
         f:'For å se hvilken prediktor som betyr mest, når de er målt på ulike måter.',
-        x:'I studietimestudien er β = .48 for timer studert og .35 for søvn: studietimene betyr mest for poengene, selv om b er størst for søvn.'},
+        x:'I studietimestudien er β = .45: én SD mer studietid gir 0.45 SD flere poeng. Med én prediktor er β det samme som r.'},
     b: {e:'Hvor mye utfallet endrer seg når prediktoren øker med én enhet.',
         f:'For å si hvor mye det «lønner seg» med én enhet mer av X, i utfallets egne enheter.',
         x:'I studietimestudien er b = 1.35: hver ekstra time studert per uke gir i snitt 1.35 flere poeng på prøven.'},
@@ -14086,7 +14232,7 @@ const JASPGEN = (function(){
     residuals: {e:'Alt modellen ikke klarer å forklare: forskjeller mellom personer som har andre årsaker.',
         f:'For å vite hvor mye støy effekten må skille seg ut fra. Mindre støy gjør det lettere å se en effekt.',
         x:{'ov-anova':'I ordstudien er feilleddet 1084 i enveis ANOVA, men bare 304 ved gjentatte målinger, fordi forskjellene mellom personene er tatt ut.',
-           'ov-reg':'I studietimestudien er det poengforskjellene som ikke henger sammen med studietimer eller søvn.'}},
+           'ov-reg':'I studietimestudien er det poengforskjellene som ikke henger sammen med studietimene.'}},
     interaksjon: {e:'At effekten av én ting avhenger av en annen ting. Svaret er «det kommer an på».',
         f:'For å finne ut om en effekt gjelder likt for alle, eller bare for noen.',
         x:'I ordstudien: hjelper selvtesting mer for dem som sov godt? +7 mot +3 ord ser slik ut, men p = .198 betyr at det godt kan være tilfeldig.'},
@@ -14095,13 +14241,13 @@ const JASPGEN = (function(){
         x:'I ordstudien er χ² = 1.31 i Mauchlys test: et lite avvik fra kravet.'},
     r: {e:'Hvor tett to ting henger sammen, fra −1 til 1.',
         f:'For å se om høye verdier på én ting går sammen med høye, eller lave, verdier på en annen.',
-        x:'I studietimestudien er r = −.10: de som studerer mye, sover litt mindre, men sammenhengen er svak.'},
+        x:'I studietimestudien er r = .45: de som studerer mye, får som regel flere poeng, men ikke alltid. Det er en middels til sterk sammenheng.'},
     Rmult: {e:'Hvor tett det modellen gjetter, henger sammen med det som faktisk skjedde.',
         f:'For å se hvor godt modellen treffer. Kvadrert blir den R², og det er R² som tolkes.',
-        x:'I studietimestudien er R = .568 med begge prediktorene, og R² = .32.'},
+        x:'I studietimestudien er R = .450 med timer studert som eneste prediktor, det samme som r. R² = .20.'},
     adjR2: {e:'R² med et lite fradrag for hver prediktor modellen har.',
         f:'For å få et ærligere anslag på hvor mye modellen ville forklart hos nye personer.',
-        x:'I studietimestudien er det 0.304 mot 0.323: fradraget er lite, fordi det er mange studenter per prediktor.'},
+        x:'I studietimestudien er det 0.192 mot 0.203 i den enkle regresjonen: fradraget er lite, fordi det er mange studenter per prediktor.'},
     rmse: {e:'Hvor mye modellens gjetninger typisk bommer, i poeng.',
         f:'For å vite hvor presist du kan forutsi én persons resultat.',
         x:'I studietimestudien er RMSE = 13.49: kjenner du studietimene, bommer gjetningen typisk med rundt 13 poeng, mot 15 uten.'},
@@ -14135,7 +14281,7 @@ const JASPGEN = (function(){
     'df1':'df','df2':'df','df₁':'df','df₂':'df',"Mauchly's W":'mauchly','Approx. Χ²':'χ²','p-value':'p',
     'Greenhouse-Geisser ε':'ε','Huynh-Feldt ε':'ε','Lower Bound ε':'ε',
     'Residuals':'residuals','Residual':'residuals','(Intercept)':'intercept','Student':'welch','Welch':'welch',
-    'Strategi ✻ Søvn':'interaksjon',"Test of Equality of Variances (Levene's)":'levene','Test of Sphericity':'mauchly'
+    'Strategi ✻ Søvn':'interaksjon',"Pearson's r":'r','Upper 95% CI':'KI','Lower 95% CI':'KI',"Test of Equality of Variances (Levene's)":'levene','Test of Sphericity':'mauchly'
   };
   const ORD = {'R² Change':'ΔR²','F Change':'ΔR²','Levene':'levene','Levenes':'levene','Welch':'welch','Welchs':'welch',
                'Mauchly':'mauchly','Mauchlys':'mauchly','Greenhouse–Geisser':'ε','H₀':'H0'};
@@ -14364,6 +14510,63 @@ const JASPGEN = (function(){
   });
   window.addEventListener('scroll', ()=>{ if(!cur) return; if(pinned || sheet.matches) place(); else hide(false); }, {passive:true});
   window.addEventListener('resize', place);
+})();
+
+/* ================= eksamensfokus: bryteren, og lenker til stoff som er skjult =================
+   Valget lagres og siden lastes på nytt, så søket, kortene og oppgavene bygges uten (eller med)
+   det skjulte stoffet. Etterpå ruller siden tilbake til bryteren du trykket på. */
+(function eksamensfokus(){
+  const KEY = 'sa-alt-v1', BACK = 'sa-alt-til';
+  const sett = (on, til) => {
+    try{ on ? localStorage.setItem(KEY, '1') : localStorage.removeItem(KEY); }catch(e){}
+    try{ sessionStorage.setItem(BACK, til || ''); }catch(e){}
+    location.reload();
+  };
+  document.querySelectorAll('[data-xs-toggle]').forEach(box=>{
+    box.checked = XS.on;
+    const holder = box.closest('[id]');
+    box.addEventListener('change', ()=> sett(box.checked, holder ? '#' + holder.id : 'footer'));
+  });
+  let til = '';
+  try{ til = sessionStorage.getItem(BACK) || ''; sessionStorage.removeItem(BACK); }catch(e){}
+  if(til){
+    if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    const go = ()=>{ let el = null; try{ el = document.querySelector(til); }catch(e){} if(el) el.scrollIntoView({block:'center'}); };
+    requestAnimationFrame(go);
+    window.addEventListener('load', ()=> setTimeout(go, 50));
+  }
+  if(XS.on) return;
+
+  /* en lenke til noe skjult: si hva det er, og la leseren vise det */
+  const toast = document.createElement('div');
+  toast.className = 'xs-toast';
+  toast.setAttribute('role', 'status');
+  toast.hidden = true;
+  document.body.appendChild(toast);
+  let tid = 0;
+  document.addEventListener('click', e=>{
+    const a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a || a.getAttribute('href').length < 2) return;
+    const el = document.getElementById(a.getAttribute('href').slice(1));
+    if(!el || !XS.ut(el)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const sec = el.closest('section[id]'), h = el.matches('details') ? el.querySelector('summary') : sec && sec.querySelector('h2');
+    const navn = h ? h.textContent.trim() : 'Dette';
+    toast.textContent = '';
+    const t = document.createElement('p');
+    t.textContent = '«' + navn + '» vektlegges ikke på eksamen, og er derfor skjult.';
+    const vis = document.createElement('button');
+    vis.type = 'button'; vis.textContent = 'Vis alt stoffet';
+    vis.addEventListener('click', ()=> sett(true, '#' + el.id));
+    const lukk = document.createElement('button');
+    lukk.type = 'button'; lukk.className = 'ghost'; lukk.textContent = 'Lukk';
+    lukk.addEventListener('click', ()=>{ toast.hidden = true; });
+    toast.append(t, vis, lukk);
+    toast.hidden = false;
+    clearTimeout(tid);
+    tid = setTimeout(()=>{ toast.hidden = true; }, 9000);
+  }, true);
 })();
 
 /* ================= frakoblet: legg siden i hurtigbufferen, så den virker uten nett ================= */

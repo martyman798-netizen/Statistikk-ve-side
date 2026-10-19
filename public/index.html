@@ -720,6 +720,82 @@ svg.lupe{width:1em;height:1em;display:block}
   input[type=range]:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
 }
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+/* ---------- Start her: analysene på ett ark ---------- */
+.ov-fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:22px 0 8px}
+.ov-fam > div{display:flex;flex-direction:column;gap:6px;padding:16px 16px 14px;background:var(--surface);border:1px solid var(--rule-soft);border-top:3px solid var(--accent);border-radius:4px;box-shadow:var(--shadow)}
+.ov-fam .of-sym{font-family:var(--serif);font-style:italic;font-size:34px;line-height:1;color:var(--accent)}
+.ov-fam h3{font-family:var(--serif);font-weight:600;font-size:19px;margin:0}
+.ov-fam dl{margin:0 0 8px;font-size:14.5px;line-height:1.45}
+.ov-fam dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:9px}
+.ov-fam dd{margin:2px 0 0;color:var(--ink-2)}
+.ov-fam .of-res{margin-top:auto;font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--ink);background:var(--surface-2);border-radius:3px;padding:6px 8px;font-variant-numeric:tabular-nums}
+.ov-fam .of-go{font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none;padding-top:4px}
+.ov-fam .of-go:hover{text-decoration:underline}
+
+.ov-anat{background:var(--surface);border:1px solid var(--rule-soft);border-left:3px solid var(--mark);border-radius:4px;padding:16px 18px;margin:22px 0;max-width:66ch}
+.entry .ov-anat p{max-width:none}
+.ov-anat .oa-tit{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 8px}
+.ov-anat .oa-s{font-size:17px;line-height:2.15;color:var(--ink);margin:0 0 12px}
+.ov-anat .oa{background:var(--accent-soft);border-radius:3px;padding:2px 4px;-webkit-box-decoration-break:clone;box-decoration-break:clone;font-variant-numeric:tabular-nums}
+.ov-anat .oa sup{font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--mark);margin-left:3px}
+.ov-anat ol{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:15px;line-height:1.5}
+.ov-anat li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;color:var(--ink-2)}
+.ov-anat li > span:first-child{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--mark);padding-top:2px}
+.ov-anat li b{color:var(--ink)}
+.entry .ov-anat .oa-merk{margin:12px 0 0;font-size:15px;color:var(--ink-2)}
+
+table.ov-tab{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px;margin:6px 0 4px}
+table.ov-tab thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;text-align:left;padding:0 12px 6px 0;border-bottom:1px solid var(--rule);vertical-align:bottom}
+table.ov-tab tr.ot-grp th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;font-weight:600;color:var(--ink);text-align:left;padding:18px 0 6px;border-bottom:1px solid var(--ink-3)}
+table.ov-tab td{padding:9px 12px 9px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top;color:var(--ink-2);line-height:1.45}
+table.ov-tab td:first-child{width:150px}
+table.ov-tab td:first-child a{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent);text-decoration:none}
+table.ov-tab td:first-child a:hover{text-decoration:underline}
+table.ov-tab td.ot-res{font-family:var(--mono);font-size:12.5px;color:var(--ink);font-variant-numeric:tabular-nums;width:230px}
+table.ov-tab td:last-child{font-size:14px}
+
+table.ov-cmp{border-collapse:collapse;width:100%;min-width:600px;font-size:14px;margin:16px 0 4px;font-variant-numeric:tabular-nums}
+table.ov-cmp th, table.ov-cmp td{text-align:left;vertical-align:top;padding:8px 12px 8px 0;border-bottom:1px solid var(--rule-soft);line-height:1.45}
+table.ov-cmp thead th{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--accent);border-bottom:1px solid var(--rule);padding-bottom:6px}
+table.ov-cmp tbody th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;width:118px;padding-top:11px}
+table.ov-cmp td{color:var(--ink-2)}
+table.ov-cmp td.oc-res{font-family:var(--mono);font-size:12px;color:var(--ink)}
+table.ov-cmp td.oc-likt{color:var(--ink);background:color-mix(in srgb, var(--good) 11%, transparent);border-left:3px solid var(--good);padding-left:10px}
+table.ov-cmp td.oc-likt::before{content:"Likt i alle tre";display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--good);font-weight:600;margin-bottom:1px}
+
+.ov-panel .chips{margin-top:0}
+.entry .ov-key{display:flex;align-items:center;gap:7px;margin:10px 0 0;font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.ov-sw{display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--mark-soft);border:1px solid color-mix(in srgb, var(--mark) 35%, transparent)}
+.ov-view{margin-top:12px}
+.ov-view .scroller + .scroller{margin-top:10px}
+.ov-view ul{margin:12px 0 0;padding-left:20px;font-size:15px;line-height:1.55;color:var(--ink-2)}
+.ov-view li{margin:5px 0}
+.ov-view li b{color:var(--ink)}
+table.jasp td.ov-ny, table.jasp th.ov-ny, table.jasp tr.ov-ny td{background:var(--mark-soft)}
+table.mini.ov-celler{max-width:440px;margin:0 0 12px}
+table.mini.ov-celler td{font-variant-numeric:tabular-nums}
+.entry .ov-apa{margin:14px 0 0;max-width:none;padding:9px 14px;border-left:3px solid var(--accent);background:var(--surface-2);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.ov-apa b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:3px}
+@media (max-width:900px){
+  #start ~ .entry .panel, #start ~ .entry .ov-fam > div{box-shadow:none}
+}
+@media (max-width:640px){
+  .ov-anat{padding:14px}
+  .ov-anat .oa-s{font-size:16px}
+  .ov-fam{grid-template-columns:minmax(0,1fr)}
+  /* oversiktstabellen stables: navn, når, resultat og hva du ser etter under hverandre */
+  table.ov-tab{min-width:0}
+  table.ov-tab thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  table.ov-tab, table.ov-tab tbody, table.ov-tab tr, table.ov-tab td, table.ov-tab th{display:block;width:auto !important}
+  table.ov-tab tr{padding:10px 0;border-bottom:1px solid var(--rule-soft)}
+  table.ov-tab tr.ot-grp{padding:0;border:none}
+  table.ov-tab td{border:none;padding:2px 0}
+  table.ov-tab td.ot-res{margin:4px 0;padding:5px 8px;background:var(--surface-2);border-radius:3px}
+  table.ov-tab td:last-child{font-size:13.5px;color:var(--ink-3)}
+  table.ov-tab td:last-child::before{content:"Se først etter: ";font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
+  table.ov-cmp{font-size:13.5px}
+  table.ov-cmp tbody th{width:96px}
+}
 </style>
 
 <div class="wrap">
@@ -728,9 +804,10 @@ svg.lupe{width:1em;height:1em;display:block}
   <div>
     <p class="eyebrow">PSY300 · statistikk og metode</p>
     <h1>Statistikkens <em>alfabet</em></h1>
-    <p class="standfirst"><span class="sf-short">Statistikken i PSY300, forklart enkelt: tegnene med demoer du kan dra i, en ordbok for artikler, et formelark og oppgaver i eksamensformat. Søk på det du lurer på, eller bruk menyen nederst.</span><span class="sf-long">Fire deler: først grunnbegrepene og hva variablene dine egentlig heter, så hvert statistisk tegn forklart med demoer du kan dra i, så en leseordbok for artikler, og til slutt resonnementet som binder det sammen til en studie — hvilken analyse som svarer på hvilken hypotese, og hvordan svaret skrives ned. Alt i Del I kjører på et oppdiktet datasett du selv bestemmer størrelsen på. Nederst ligger formelarket, øvingskortene og oppgavene — kortene under tar deg rett dit.</span></p>
+    <p class="standfirst"><span class="sf-short">Statistikken i PSY300, forklart enkelt: en oversikt over analysene, tegnene med demoer du kan dra i, en ordbok for artikler, et formelark og oppgaver i eksamensformat. Søk på det du lurer på, eller bruk menyen nederst.</span><span class="sf-long">Helt først kommer et oversiktsark over analysene: hvordan resultatet ser ut etter hver t-test, ANOVA og regresjon, og hva som skiller dem. Så fire deler: først grunnbegrepene og hva variablene dine egentlig heter, så hvert statistisk tegn forklart med demoer du kan dra i, så en leseordbok for artikler, og til slutt resonnementet som binder det sammen til en studie — hvilken analyse som svarer på hvilken hypotese, og hvordan svaret skrives ned. Alt i Del I kjører på et oppdiktet datasett du selv bestemmer størrelsen på. Nederst ligger formelarket, øvingskortene og oppgavene — kortene under tar deg rett dit.</span></p>
   </div>
   <nav class="dataplate" aria-label="Delene">
+    <a href="#start"><b>Start her</b> — analysene på ett ark</a><br>
     <a href="#del0"><b>Del 0</b> — grunnbegrepene</a><br>
     <a href="#del1"><b>Del I</b> — tegnene og gruppene, med demoer</a><br>
     <a href="#del2"><b>Del II</b> — leseordbok for artikler</a><br>
@@ -806,6 +883,13 @@ svg.lupe{width:1em;height:1em;display:block}
 <div class="cols">
   <nav class="index" id="toc" aria-label="Innhold">
     <div class="navhead"><b>Innhold</b><a class="navtop" href="#top">↑ Til toppen</a><button type="button" data-toc-close>Lukk</button></div>
+    <p class="navgroup">Start her · på ett ark</p>
+    <ol>
+      <li><a href="#ov-kart"><span class="g">t·F·b</span> Tre familier</a></li>
+      <li><a href="#ov-t"><span class="g">t</span> Tre t-tester</a></li>
+      <li><a href="#ov-anova"><span class="g">F</span> Tre ANOVA-er</a></li>
+      <li><a href="#ov-reg"><span class="g">b</span> Tre regresjoner</a></li>
+    </ol>
     <p class="navgroup">Øving</p>
     <ol>
       <li><a href="#formler"><span class="g">Σ=</span> Formelarket</a></li>
@@ -894,8 +978,426 @@ svg.lupe{width:1em;height:1em;display:block}
 
   <main>
 
+    <!-- ==================== START HER: ANALYSENE PÅ ETT ARK ==================== -->
+    <section class="partbreak first" id="start">
+      <p class="eyebrow">Start her</p>
+      <h2 class="parttitle">Analysene på ett ark</h2>
+      <p class="partlede">Før detaljene kommer en oversikt over t-testene, ANOVA-ene og regresjonene i emnet. For hver av dem ser du hvordan resultatet ser ut, hva som er likt og hva som skiller dem fra hverandre. Eksemplene er oppdiktet, men tallene henger sammen, så du kan regne etter. Hver analyse har også en egen seksjon lenger ned med demoer og forklaringer.</p>
+    </section>
+
+    <section class="entry" id="ov-kart">
+      <div class="glyphcol"><span class="step">A</span><span class="glyph sm">t·F·b</span></div>
+      <div>
+        <h2>Tre familier, én idé</h2>
+        <p class="asks">Hva er likt i alle analysene, og hva skiller dem?</p>
+        <p>Alle analysene i emnet stiller egentlig det samme spørsmålet: <strong>er mønsteret i dataene større enn det tilfeldighetene alene ville laget?</strong> De svarer også på samme måte. De deler et signal på støyen, og utskriftene har de samme delene. Det som skiller dem, er <em>hva slags</em> mønster de leter etter.</p>
+        <div class="ov-fam">
+          <div>
+            <span class="of-sym">t</span>
+            <h3>t-testene</h3>
+            <dl>
+              <dt>Spør</dt><dd>Er to gjennomsnitt ulike?</dd>
+              <dt>X er</dt><dd>To grupper, to målinger av de samme personene, eller ett snitt mot en fast verdi.</dd>
+              <dt>Testtallet</dt><dd><em class="v">t</em>, med én df</dd>
+              <dt>Effektstørrelse</dt><dd>Cohens <em class="v">d</em></dd>
+            </dl>
+            <span class="of-res">t(48) = −2.47, p = .017, d = −0.70</span>
+            <a class="of-go" href="#ov-t">Se de tre t-testene →</a>
+          </div>
+          <div>
+            <span class="of-sym">F</span>
+            <h3>ANOVA</h3>
+            <dl>
+              <dt>Spør</dt><dd>Er tre eller flere gjennomsnitt ulike?</dd>
+              <dt>X er</dt><dd>Én eller flere grupperingsfaktorer, eller de samme personene målt flere ganger.</dd>
+              <dt>Testtallet</dt><dd><em class="v">F</em>, med to df</dd>
+              <dt>Effektstørrelse</dt><dd><em class="v">η²</em> med én faktor, <em class="v">η²<sub>p</sub></em> med flere faktorer og gjentatte målinger</dd>
+            </dl>
+            <span class="of-res">F(2, 57) = 6.66, p = .003, η² = .19</span>
+            <a class="of-go" href="#ov-anova">Se de tre ANOVA-ene →</a>
+          </div>
+          <div>
+            <span class="of-sym">b</span>
+            <h3>Regresjon</h3>
+            <dl>
+              <dt>Spør</dt><dd>Hvor mye endres Y når X øker, og hvor mye av Y forklarer X?</dd>
+              <dt>X er</dt><dd>Én eller flere prediktorer målt som tall.</dd>
+              <dt>Testtallet</dt><dd><em class="v">t</em> for hver <em class="v">b</em>, <em class="v">F</em> for hele modellen</dd>
+              <dt>Effektstørrelse</dt><dd><em class="v">R²</em>, og <em class="v">β</em> for hver prediktor</dd>
+            </dl>
+            <span class="of-res">b = 1.35, t(73) = 4.31, p &lt; .001, R² = .20</span>
+            <a class="of-go" href="#ov-reg">Se de tre regresjonene →</a>
+          </div>
+        </div>
+
+        <div class="ov-anat">
+          <p class="oa-tit">Slik er hvert resultat bygget opp</p>
+          <p class="oa-s">Appgruppen <span class="oa">(M = 17.5, SD = 5.0)<sup>2</sup></span> hadde <span class="oa">lavere stress enn<sup>1</sup></span> kontrollgruppen <span class="oa">(M = 21.0, SD = 5.0)<sup>2</sup></span>, <span class="oa">t(48) = −2.47<sup>3</sup></span>, <span class="oa">p = .017<sup>4</sup></span>, <span class="oa">d = −0.70<sup>5</sup></span>.</p>
+          <ol>
+            <li><span>1</span><span><b>Retningen, i ord.</b> Hvem hadde mest og minst, eller går sammenhengen opp eller ned?</span></li>
+            <li><span>2</span><span><b>Det du fant.</b> M og SD for hver gruppe. I regresjon er det stigningstallet <em class="v">b</em>.</span></li>
+            <li><span>3</span><span><b>Testtallet med df.</b> Signalet delt på støyen: <em class="v">t</em> eller <em class="v">F</em>. Frihetsgradene røper designet og hvor mange som var med.</span></li>
+            <li><span>4</span><span><b>p-verdien.</b> Hvor uvanlig resultatet er hvis H₀ er sann. Under .05 kalles det signifikant.</span></li>
+            <li><span>5</span><span><b>Effektstørrelsen.</b> Hvor stor forskjellen eller sammenhengen er: <em class="v">d</em>, <em class="v">η²</em>, <em class="v">η²<sub>p</sub></em> eller <em class="v">R²</em>. Den vokser ikke med N, slik testtallet gjør.</span></li>
+          </ol>
+          <p class="oa-merk">Bytter du analyse, får delene nye navn, men de er de samme fem.</p>
+        </div>
+
+        <h3>Alle ni på én gang</h3>
+        <p>Trykk på navnet for å se hele utskriften. Kolonnen til høyre sier hva du skal se etter først i utskriften.</p>
+        <div class="scroller"><table class="ov-tab">
+          <thead><tr><th>Analyse</th><th>Brukes når</th><th>Slik ser resultatet ut</th><th>Se først etter</th></tr></thead>
+          <tbody>
+            <tr class="ot-grp"><th colspan="4">t-testene · testtall t, effektstørrelse d</th></tr>
+            <tr><td><a href="#ov-t" data-ov-go="en">Ettutvalgs t-test</a></td><td>Ett snitt mot en fast verdi, for eksempel en norm</td><td class="ot-res">t(24) = −2.50, p = .020, d = −0.50</td><td>Testverdien, i noten under tabellen</td></tr>
+            <tr><td><a href="#ov-t" data-ov-go="uavh">Uavhengig t-test</a></td><td>To grupper med ulike personer</td><td class="ot-res">t(48) = −2.47, p = .017, d = −0.70</td><td>Levene: bruk Student-raden, eller Welch-raden hvis Levene er signifikant</td></tr>
+            <tr><td><a href="#ov-t" data-ov-go="paret">Paret t-test</a></td><td>De samme personene målt to ganger</td><td class="ot-res">t(24) = −4.00, p &lt; .001, d = −0.80</td><td>To målinger på samme rad: Measure 1 og Measure 2</td></tr>
+            <tr class="ot-grp"><th colspan="4">ANOVA · testtall F, effektstørrelse η² eller η²<sub>p</sub></th></tr>
+            <tr><td><a href="#ov-anova" data-ov-go="enveis">Enveis ANOVA</a></td><td>Tre eller flere grupper, én faktor, ulike personer</td><td class="ot-res">F(2, 57) = 6.66, p = .003, η² = .19</td><td>Levene, så F. Post hoc bare hvis F er signifikant</td></tr>
+            <tr><td><a href="#ov-anova" data-ov-go="fakt">Faktoriell ANOVA</a></td><td>To eller flere faktorer samtidig, og samspillet mellom dem</td><td class="ot-res">F(2, 54) = 1.67, p = .198, η²<sub>p</sub> = .06 for A × B, og én F per hovedeffekt</td><td>Interaksjonsraden (A ✻ B) før hovedeffektene</td></tr>
+            <tr><td><a href="#ov-anova" data-ov-go="gjentatt">ANOVA med gjentatte målinger</a></td><td>De samme personene i tre eller flere betingelser eller tidspunkter</td><td class="ot-res">F(2, 38) = 15.83, p &lt; .001, η²<sub>p</sub> = .45</td><td>Mauchly: er sfærisiteten brutt, les Greenhouse–Geisser-raden</td></tr>
+            <tr class="ot-grp"><th colspan="4">Regresjon · testtall t og F, effektstørrelse R²</th></tr>
+            <tr><td><a href="#ov-reg" data-ov-go="enkel">Enkel regresjon</a></td><td>Én prediktor målt som tall</td><td class="ot-res">b = 1.35, β = .45, t(73) = 4.31, p &lt; .001, R² = .20</td><td>b og p for prediktoren i Coefficients, og R²</td></tr>
+            <tr><td><a href="#ov-reg" data-ov-go="multi">Multippel regresjon</a></td><td>Flere prediktorer samtidig, hver kontrollert for de andre</td><td class="ot-res">R² = .32, F(2, 72) = 17.15, p &lt; .001, pluss b, β og t per prediktor</td><td>F for hele modellen, så b, β og p for hver prediktor</td></tr>
+            <tr><td><a href="#ov-reg" data-ov-go="hier">Hierarkisk regresjon</a></td><td>Prediktorer i blokker: tilfører blokk 2 noe?</td><td class="ot-res">ΔR² = .12, F(1, 72) = 12.78, p &lt; .001</td><td>R² Change og F Change i raden for den siste modellen</td></tr>
+          </tbody>
+        </table></div>
+        <div class="aside"><b>Tre spørsmål avgjør valget.</b> (1) <em>Er X grupper eller tall?</em> Grupper gir t-test eller ANOVA, tall gir regresjon. (2) <em>Hvor mange?</em> To snitt gir t-test. Tre eller flere snitt, eller flere faktorer, gir ANOVA. Én prediktor gir enkel regresjon, flere gir multippel, og prediktorer i blokker gir hierarkisk. (3) <em>Samme eller ulike personer?</em> Samme personer gir paret t-test eller gjentatte målinger. Ulike personer gir uavhengig t-test, enveis eller faktoriell ANOVA. Flere eksempler står i <a href="#loypa">Analyseløypa</a> og <a href="#hypoteser">Fra hypotese til testrad</a>.</div>
+        <div class="aside"><b>Familiene er i slekt.</b> Med to grupper gir en enveis ANOVA og en uavhengig t-test nøyaktig samme p, og F = t². En ANOVA er en regresjon der gruppene er kodet som 0 og 1, og da er η² det samme som R². Derfor ligner utskriftene hverandre så mye. Se <a href="#samme">Samme modell, flere navn</a>.</div>
+      </div>
+    </section>
+
+    <section class="entry" id="ov-t">
+      <div class="glyphcol"><span class="step">B</span><span class="glyph">t</span></div>
+      <div>
+        <h2>Tre t-tester side om side</h2>
+        <p class="asks">Samme regnestykke, tre ulike sammenligninger</p>
+        <p>Eksempelet: 25 studenter bruker en mindfulness-app i fire uker, og stresset deres måles på en skala fra 0 til 40. Den samme studien kan gi tre ulike t-tester. Det kommer an på <strong>hva du sammenligner appgruppen med</strong>.</p>
+        <div class="scroller"><table class="ov-cmp">
+          <thead><tr><th></th><th>Ettutvalgs</th><th>Uavhengig</th><th>Paret</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Sammenligner</th><td>Appgruppen mot normen for studenter, 20</td><td>Appgruppen mot 25 andre studenter uten appen</td><td>Appgruppen før og etter de fire ukene</td></tr>
+            <tr><th scope="row">H₀</th><td>μ = 20</td><td>μ₁ = μ₂</td><td>μ<sub>diff</sub> = 0</td></tr>
+            <tr><th scope="row">Testtallet</th><td colspan="3" class="oc-likt">t = signalet / standardfeilen. Stor t betyr at forskjellen er stor i forhold til det tilfeldighetene lager.</td></tr>
+            <tr><th scope="row">Signalet</th><td>17.5 − 20 = −2.5</td><td>17.5 − 21.0 = −3.5</td><td>etter − før = −4.0</td></tr>
+            <tr><th scope="row">Støyen (SE)</th><td>5 / √25 = 1.00</td><td>s<sub>p</sub> · √(1/25 + 1/25) = 1.41</td><td>s<sub>diff</sub> / √25 = 1.00</td></tr>
+            <tr><th scope="row">df</th><td>n − 1 = 24</td><td>n₁ + n₂ − 2 = 48</td><td>antall par − 1 = 24</td></tr>
+            <tr><th scope="row">d deler på</th><td>SD i gruppen</td><td>den samlede SD-en, s<sub>p</sub></td><td>SD for differansene</td></tr>
+            <tr><th scope="row">Ekstra sjekk</th><td>Ingen</td><td>Levene: like varianser? Ellers Welch</td><td>Ingen, men normalitet gjelder differansene</td></tr>
+            <tr><th scope="row">Rapporteres</th><td colspan="3" class="oc-likt">t(df) = …, p = …, d = …, sammen med M og SD.</td></tr>
+            <tr><th scope="row">Resultatet</th><td class="oc-res">t(24) = −2.50, p = .020, d = −0.50</td><td class="oc-res">t(48) = −2.47, p = .017, d = −0.70</td><td class="oc-res">t(24) = −4.00, p &lt; .001, d = −0.80</td></tr>
+            <tr><th scope="row">I JASP</th><td>T-Tests → One Sample T-Test</td><td>T-Tests → Independent Samples T-Test</td><td>T-Tests → Paired Samples T-Test</td></tr>
+          </tbody>
+        </table></div>
+        <div class="panel ov-panel" data-ov>
+          <div class="panel-head"><span>Slik ser utskriften ut</span><span>bytt og se hva som endrer seg</span></div>
+          <div class="chips">
+            <button class="chip" type="button" data-ov-v="en">Ettutvalgs</button>
+            <button class="chip" type="button" data-ov-v="uavh">Uavhengig</button>
+            <button class="chip" type="button" data-ov-v="paret">Paret</button>
+          </div>
+          <p class="ov-key"><span class="ov-sw" aria-hidden="true"></span>Farget = finnes bare i denne varianten</p>
+
+          <div class="ov-view" data-ov-view="en">
+            <div class="scroller"><table class="jasp">
+              <caption>One Sample T-Test</caption>
+              <thead><tr><th></th><th>t</th><th>df</th><th>p</th><th>Mean Difference</th><th>Cohen's d</th></tr></thead>
+              <tbody><tr><td>Stress</td><td>−2.500</td><td>24</td><td>.020</td><td>−2.500</td><td>−0.500</td></tr></tbody>
+              <tfoot><tr><td colspan="6" class="ov-ny">Note. For the Student t-test, the alternative hypothesis specifies that the mean is different from 20.</td></tr></tfoot>
+            </table></div>
+            <ul>
+              <li><b>Mean Difference = −2.500</b> er x̄ − μ₀ = 17.5 − 20. Det finnes bare én gruppe. Tallet 20 er ikke målt på noen i studien.</li>
+              <li><b>t = −2.500 / 1.00.</b> SE = s / √n = 5 / √25 = 1.</li>
+              <li><b>df = 25 − 1 = 24.</b></li>
+              <li><b>Noten</b> sier hvilken testverdi som er brukt. Det er den som skiller utskriften fra de andre.</li>
+            </ul>
+            <p class="ov-apa"><b>Slik skrives det</b>Etter fire uker hadde appgruppen lavere stress (M = 17.5, SD = 5.0) enn normen for studenter på 20, t(24) = −2.50, p = .020, d = −0.50.</p>
+          </div>
+
+          <div class="ov-view" data-ov-view="uavh">
+            <div class="scroller"><table class="jasp">
+              <caption>Independent Samples T-Test</caption>
+              <thead><tr><th></th><th>Test</th><th>t</th><th>df</th><th>p</th><th>Mean Difference</th><th>SE Difference</th><th>Cohen's d</th></tr></thead>
+              <tbody>
+                <tr><td>Stress</td><td>Student</td><td>−2.475</td><td>48</td><td>.017</td><td>−3.500</td><td>1.414</td><td>−0.700</td></tr>
+                <tr class="ov-ny"><td></td><td>Welch</td><td>−2.475</td><td>48.00</td><td>.017</td><td>−3.500</td><td>1.414</td><td>−0.700</td></tr>
+              </tbody>
+            </table></div>
+            <div class="scroller"><table class="jasp">
+              <caption>Test of Equality of Variances (Levene's)</caption>
+              <thead><tr><th></th><th>F</th><th>df₁</th><th>df₂</th><th>p</th></tr></thead>
+              <tbody><tr class="ov-ny"><td>Stress</td><td>0.040</td><td>1</td><td>48</td><td>.842</td></tr></tbody>
+            </table></div>
+            <ul>
+              <li><b>Mean Difference = −3.500</b> er 17.5 − 21.0, appgruppen minus kontrollgruppen. Fortegnet sier bare hvilken vei forskjellen går.</li>
+              <li><b>t = −3.500 / 1.414 ≈ −2.47.</b> SE er større enn i de to andre testene. To grupper med ulike personer gir to kilder til støy.</li>
+              <li><b>df = 25 + 25 − 2 = 48.</b></li>
+              <li><b>Levene p = .842:</b> ingen tegn til ulike varianser, så Student-raden gjelder. Er Levene signifikant, leser du Welch-raden, og den har som regel desimaler i df. Her er SD-ene like, så radene blir like.</li>
+            </ul>
+            <p class="ov-apa"><b>Slik skrives det</b>Appgruppen (M = 17.5, SD = 5.0) hadde lavere stress enn kontrollgruppen (M = 21.0, SD = 5.0), t(48) = −2.47, p = .017, d = −0.70.</p>
+          </div>
+
+          <div class="ov-view" data-ov-view="paret">
+            <div class="scroller"><table class="jasp">
+              <caption>Paired Samples T-Test</caption>
+              <thead><tr><th class="ov-ny">Measure 1</th><th></th><th class="ov-ny">Measure 2</th><th>t</th><th>df</th><th>p</th><th>Mean Difference</th><th>SE Difference</th><th>Cohen's d</th></tr></thead>
+              <tbody><tr><td class="ov-ny">Stress_etter</td><td>−</td><td class="ov-ny">Stress_før</td><td>−4.000</td><td>24</td><td>&lt; .001</td><td>−4.000</td><td>1.000</td><td>−0.800</td></tr></tbody>
+            </table></div>
+            <ul>
+              <li><b>To variabler på samme rad.</b> Measure 1 og Measure 2 er to målinger av de samme personene. Det er kjennetegnet på en paret test.</li>
+              <li><b>Mean Difference = −4.000</b> er snittet av differansene, etter minus før: 17.5 − 21.5.</li>
+              <li><b>t = −4.000 / 1.000.</b> SE er liten fordi hver person sammenlignes med seg selv. Forskjellene mellom personene er tatt ut av støyen.</li>
+              <li><b>df = 25 − 1 = 24:</b> antall par minus 1, ikke antall målinger.</li>
+              <li><b>d deler på SD for differansene</b> (5.0), og kalles derfor ofte d<sub>z</sub>.</li>
+            </ul>
+            <p class="ov-apa"><b>Slik skrives det</b>Stresset sank fra før (M = 21.5, SD = 5.4) til etter (M = 17.5, SD = 5.0) de fire ukene med appen, t(24) = −4.00, p &lt; .001, d = −0.80.</p>
+          </div>
+        </div>
+        <div class="aside"><b>Det viktigste skillet:</b> spør hvor tallet du sammenligner med kommer fra. Er det en fast verdi som ingen i studien er målt på, er det ettutvalgs t-test. Er det andre personer, er det uavhengig t-test. Er det de samme personene, er det paret t-test. Alt annet i utskriften følger av det. Mer i <a href="#ttest">t-testen</a>.</div>
+      </div>
+    </section>
+
+    <section class="entry" id="ov-anova">
+      <div class="glyphcol"><span class="step">C</span><span class="glyph">F</span></div>
+      <div>
+        <h2>Tre ANOVA-er side om side</h2>
+        <p class="asks">Samme signal, men støyen deles opp på ulike måter</p>
+        <p>Eksempelet: hvor mange av 30 ord husker studenter etter tre læringsstrategier? De tre strategiene er å lese om igjen (M = 14), å lage tankekart (M = 16) og å teste seg selv (M = 19). Enveis og faktoriell ANOVA bruker de samme 60 studentene. Ved gjentatte målinger prøver 20 studenter alle tre strategiene. Snittene og den totale variasjonen er de samme i alle tre. Det som endrer seg, er <strong>hvor mye av resten analysen klarer å forklare</strong>, og dermed hvor stor støyen blir.</p>
+        <div class="scroller"><table class="ov-cmp">
+          <thead><tr><th></th><th>Enveis</th><th>Faktoriell</th><th>Gjentatte målinger</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Design</th><td>60 studenter, 20 per strategi</td><td>De samme 60, med søvn natta før (god eller dårlig) som faktor nummer to: 3 × 2 celler med 10 i hver</td><td>20 studenter prøver alle tre strategiene, i motbalansert rekkefølge</td></tr>
+            <tr><th scope="row">Testtallet</th><td colspan="3" class="oc-likt">F = MS for effekten / MS for feilleddet: forklart variasjon delt på uforklart. Rundt 1 når H₀ er sann.</td></tr>
+            <tr><th scope="row">Signalet</th><td colspan="3" class="oc-likt">Strategi: SS = 253.33, df = 2, MS = 126.67</td></tr>
+            <tr><th scope="row">Støyen</th><td>Residuals: SS = 1084, df = N − k = 57, MS = 19.02</td><td>Residuals: SS = 864, df = N − celler = 54, MS = 16.00. Søvnen er tatt ut.</td><td>Residuals: SS = 304, df = (k − 1)(n − 1) = 38, MS = 8.00. Forskjellene mellom personene er tatt ut.</td></tr>
+            <tr><th scope="row">F for strategi</th><td class="oc-res">F(2, 57) = 6.66</td><td class="oc-res">F(2, 54) = 7.92</td><td class="oc-res">F(2, 38) = 15.83</td></tr>
+            <tr><th scope="row">Effekt­størrelse</th><td>η² = .19: SS strategi / SS total</td><td>η²<sub>p</sub> = .23: strategi / (strategi + feil)</td><td>η²<sub>p</sub> = .45</td></tr>
+            <tr><th scope="row">Ekstra rader</th><td>Ingen</td><td>Søvn og Strategi ✻ Søvn</td><td>Between Subjects: personene, SS = 780</td></tr>
+            <tr><th scope="row">Ekstra sjekk</th><td>Levene</td><td>Levene. Les interaksjonen først</td><td>Mauchly (sfærisitet)</td></tr>
+            <tr><th scope="row">Rapporteres</th><td colspan="3" class="oc-likt">F(df₁, df₂) = …, p = …, η² eller η²<sub>p</sub> = …, én linje per effekt.</td></tr>
+            <tr><th scope="row">I JASP</th><td>ANOVA → ANOVA</td><td>ANOVA → ANOVA, med to faktorer</td><td>ANOVA → Repeated Measures ANOVA</td></tr>
+          </tbody>
+        </table></div>
+        <div class="panel ov-panel" data-ov>
+          <div class="panel-head"><span>Slik ser utskriften ut</span><span>bytt og se hva som endrer seg</span></div>
+          <div class="chips">
+            <button class="chip" type="button" data-ov-v="enveis">Enveis</button>
+            <button class="chip" type="button" data-ov-v="fakt">Faktoriell</button>
+            <button class="chip" type="button" data-ov-v="gjentatt">Gjentatte målinger</button>
+          </div>
+          <p class="ov-key"><span class="ov-sw" aria-hidden="true"></span>Farget = finnes bare i denne varianten</p>
+
+          <div class="ov-view" data-ov-view="enveis">
+            <div class="scroller"><table class="jasp">
+              <caption>ANOVA - Ord husket</caption>
+              <thead><tr><th>Cases</th><th>Sum of Squares</th><th>df</th><th>Mean Square</th><th>F</th><th>p</th><th>η²</th></tr></thead>
+              <tbody>
+                <tr><td>Strategi</td><td>253.33</td><td>2</td><td>126.67</td><td>6.66</td><td>.003</td><td>.189</td></tr>
+                <tr><td>Residuals</td><td>1084.00</td><td>57</td><td>19.02</td><td></td><td></td><td></td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="7">Note. Type III Sum of Squares</td></tr></tfoot>
+            </table></div>
+            <ul>
+              <li><b>To rader:</b> effekten (Strategi) og støyen (Residuals). Alt som ikke er strategi, havner i Residuals.</li>
+              <li><b>F = 126.67 / 19.02 ≈ 6.66.</b> Signalet er 6.7 ganger så stort som støyen.</li>
+              <li><b>df: k − 1 = 2 og N − k = 57.</b> Begge skal stå i parentesen.</li>
+              <li><b>η² = 253.33 / (253.33 + 1084) = .19.</b> 19 % av forskjellene i antall ord henger sammen med strategien.</li>
+              <li><b>F sier ikke hvilke strategier som skiller seg.</b> Det krever post hoc-tester eller kontraster.</li>
+            </ul>
+            <p class="ov-apa"><b>Slik skrives det</b>Antall ord husket var ulikt for de tre strategiene, F(2, 57) = 6.66, p = .003, η² = .19.</p>
+          </div>
+
+          <div class="ov-view" data-ov-view="fakt">
+            <div class="scroller"><table class="mini ov-celler">
+              <thead><tr><th>Snitt</th><th>Lese om igjen</th><th>Tankekart</th><th>Teste seg selv</th></tr></thead>
+              <tbody>
+                <tr><td>God søvn</td><td>15</td><td>17</td><td>22</td></tr>
+                <tr><td>Dårlig søvn</td><td>13</td><td>15</td><td>16</td></tr>
+                <tr><td>Begge</td><td>14</td><td>16</td><td>19</td></tr>
+              </tbody>
+            </table></div>
+            <div class="scroller"><table class="jasp">
+              <caption>ANOVA - Ord husket</caption>
+              <thead><tr><th>Cases</th><th>Sum of Squares</th><th>df</th><th>Mean Square</th><th>F</th><th>p</th><th>η²<sub>p</sub></th></tr></thead>
+              <tbody>
+                <tr><td>Strategi</td><td>253.33</td><td>2</td><td>126.67</td><td>7.92</td><td>&lt; .001</td><td>.227</td></tr>
+                <tr class="ov-ny"><td>Søvn</td><td>166.67</td><td>1</td><td>166.67</td><td>10.42</td><td>.002</td><td>.162</td></tr>
+                <tr class="ov-ny"><td>Strategi ✻ Søvn</td><td>53.33</td><td>2</td><td>26.67</td><td>1.67</td><td>.198</td><td>.058</td></tr>
+                <tr><td>Residuals</td><td>864.00</td><td>54</td><td>16.00</td><td></td><td></td><td></td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="7">Note. Type III Sum of Squares</td></tr></tfoot>
+            </table></div>
+            <ul>
+              <li><b>Én rad per effekt:</b> to hovedeffekter og interaksjonen. Med to faktorer får du tre F-er, alle testet mot det samme feilleddet.</li>
+              <li><b>Les interaksjonen først.</b> Strategi ✻ Søvn: F(2, 54) = 1.67, p = .198. Gevinsten av å teste seg selv ser større ut etter god søvn (+7 mot +3), men forskjellen er ikke signifikant. Da kan hovedeffektene leses hver for seg.</li>
+              <li><b>Samme SS for strategi som i enveis (253.33), men større F.</b> Søvn og interaksjonen har tatt 220 ut av Residuals, så støyen falt fra 19.02 til 16.00.</li>
+              <li><b>η²<sub>p</sub>, ikke η².</b> Med flere faktorer deles effekten på seg selv pluss feilleddet: 253.33 / (253.33 + 864) = .23.</li>
+            </ul>
+            <p class="ov-apa"><b>Slik skrives det</b>Det var ingen signifikant interaksjon mellom strategi og søvn, F(2, 54) = 1.67, p = .198, η²<sub>p</sub> = .06. Strategi hadde en hovedeffekt, F(2, 54) = 7.92, p &lt; .001, η²<sub>p</sub> = .23, og det hadde også søvn, F(1, 54) = 10.42, p = .002, η²<sub>p</sub> = .16.</p>
+          </div>
+
+          <div class="ov-view" data-ov-view="gjentatt">
+            <div class="scroller"><table class="jasp rm-wrap">
+              <caption>Test of Sphericity</caption>
+              <thead><tr><th></th><th>Mauchly's W</th><th>Approx. Χ²</th><th>df</th><th>p-value</th><th>Greenhouse-Geisser ε</th><th>Huynh-Feldt ε</th><th>Lower Bound ε</th></tr></thead>
+              <tbody><tr class="ov-ny"><td>Strategi</td><td>.930</td><td>1.31</td><td>2</td><td>.520</td><td>.935</td><td>1.000</td><td>.500</td></tr></tbody>
+            </table></div>
+            <div class="scroller"><table class="jasp">
+              <caption>Within Subjects Effects</caption>
+              <thead><tr><th>Cases</th><th>Sum of Squares</th><th>df</th><th>Mean Square</th><th>F</th><th>p</th><th>η²<sub>p</sub></th></tr></thead>
+              <tbody>
+                <tr><td>Strategi</td><td>253.33</td><td>2</td><td>126.67</td><td>15.83</td><td>&lt; .001</td><td>.455</td></tr>
+                <tr><td>Residuals</td><td>304.00</td><td>38</td><td>8.00</td><td></td><td></td><td></td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="7">Note. Type III Sum of Squares</td></tr></tfoot>
+            </table></div>
+            <div class="scroller"><table class="jasp">
+              <caption>Between Subjects Effects</caption>
+              <thead><tr><th>Cases</th><th>Sum of Squares</th><th>df</th><th>Mean Square</th><th>F</th><th>p</th></tr></thead>
+              <tbody><tr class="ov-ny"><td>Residuals</td><td>780.00</td><td>19</td><td>41.05</td><td></td><td></td></tr></tbody>
+            </table></div>
+            <ul>
+              <li><b>Start med Mauchly.</b> W = .930, p = .520: sfærisitet kan antas, og den ukorrigerte raden gjelder. Var p under .05, skulle du lest Greenhouse–Geisser-raden.</li>
+              <li><b>Samme signal, mye mindre støy.</b> SS for strategi er fortsatt 253.33, men Residuals er bare 304. De 780 under Between Subjects er at noen husker mer enn andre uansett strategi. Den variasjonen er trukket ut, fordi hver person sammenlignes med seg selv. 780 + 304 = 1084, altså nøyaktig støyen i enveis ANOVA.</li>
+              <li><b>df for feilleddet = (k − 1)(n − 1) = 2 · 19 = 38.</b></li>
+              <li><b>F = 126.67 / 8.00 ≈ 15.83.</b> Det er mer enn dobbelt så mye som i enveis ANOVA, med en tredjedel så mange personer.</li>
+              <li><b>η²<sub>p</sub> = 253.33 / (253.33 + 304) = .45.</b> Nevneren er effekten pluss feilleddet, ikke de 780.</li>
+            </ul>
+            <p class="ov-apa"><b>Slik skrives det</b>Mauchlys test var ikke signifikant, χ²(2) = 1.31, p = .520, så sfærisitet ble antatt. Antall ord husket var ulikt for de tre strategiene, F(2, 38) = 15.83, p &lt; .001, η²<sub>p</sub> = .45.</p>
+          </div>
+        </div>
+        <div class="aside"><b>Det viktigste skillet:</b> signalet er det samme i alle tre. Det som skiller analysene, er hvor mye av resten de kan forklare: ingenting (enveis), søvnen (faktoriell) eller personene (gjentatte målinger). Mindre støy gir større F. Det gir også større η²<sub>p</sub>, fordi nevneren blir mindre. Derfor skal η² og η²<sub>p</sub> ikke sammenlignes direkte. Mer i <a href="#anova1">enveis ANOVA</a>, <a href="#anova2">faktoriell ANOVA</a> og <a href="#anova3">gjentatte målinger</a>.</div>
+      </div>
+    </section>
+
+    <section class="entry" id="ov-reg">
+      <div class="glyphcol"><span class="step">D</span><span class="glyph">b</span></div>
+      <div>
+        <h2>Tre regresjoner side om side</h2>
+        <p class="asks">Én prediktor, flere samtidig, eller i blokker</p>
+        <p>Eksempelet er samme slags studie som i Del I: 75 studenter, timer studert per uke, timer søvn natta før og poeng på prøven (0–100). Her er tallene faste, så de endrer seg ikke med datasettbaren. Timer studert varierer mye (SD = 5), søvnen lite (SD = 1.2), og de som studerer mye, sover litt mindre (r = −.10).</p>
+        <div class="scroller"><table class="ov-cmp">
+          <thead><tr><th></th><th>Enkel</th><th>Multippel</th><th>Hierarkisk</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Prediktorer</th><td>Timer studert</td><td>Timer studert og søvn, samtidig</td><td>Blokk 1: timer studert. Blokk 2: + søvn</td></tr>
+            <tr><th scope="row">Spørsmålet</th><td>Henger timer sammen med poeng, og hvor sterkt?</td><td>Hva bidrar hver prediktor med når den andre holdes konstant?</td><td>Forklarer søvn noe utover det timer allerede forklarer?</td></tr>
+            <tr><th scope="row">Modellen</th><td colspan="3" class="oc-likt">ŷ = b₀ + b₁·X₁ (+ b₂·X₂): den linja som bommer minst. Hver b testes med t = b / SE, og hele modellen med F.</td></tr>
+            <tr><th scope="row">b for timer</th><td>1.35</td><td>1.45, med søvn holdt konstant</td><td>1.35 i M₀, 1.45 i M₁</td></tr>
+            <tr><th scope="row">Testen av modellen</th><td class="oc-res">F(1, 73) = 18.54</td><td class="oc-res">F(2, 72) = 17.15</td><td class="oc-res">F Change(1, 72) = 12.78 for blokk 2</td></tr>
+            <tr><th scope="row">Effekt­størrelse</th><td>R² = .20, og β = r = .45</td><td>R² = .32, og β for hver prediktor</td><td>ΔR² = .12</td></tr>
+            <tr><th scope="row">Nøkkeltabellen</th><td>Coefficients</td><td>ANOVA og Coefficients</td><td>Model Summary med R² Change</td></tr>
+            <tr><th scope="row">Rapporteres</th><td colspan="3" class="oc-likt">b (gjerne med KI), β, t(df), p for prediktorene, og R² med F for modellen.</td></tr>
+            <tr><th scope="row">I JASP</th><td>Regression → Linear Regression</td><td>Samme meny, begge prediktorene i Covariates</td><td>Samme meny, med timer lagt i nullmodellen</td></tr>
+          </tbody>
+        </table></div>
+        <div class="panel ov-panel" data-ov>
+          <div class="panel-head"><span>Slik ser utskriften ut</span><span>bytt og se hva som endrer seg</span></div>
+          <div class="chips">
+            <button class="chip" type="button" data-ov-v="enkel">Enkel</button>
+            <button class="chip" type="button" data-ov-v="multi">Multippel</button>
+            <button class="chip" type="button" data-ov-v="hier">Hierarkisk</button>
+          </div>
+          <p class="ov-key"><span class="ov-sw" aria-hidden="true"></span>Farget = finnes bare i denne varianten</p>
+
+          <div class="ov-view" data-ov-view="enkel">
+            <div class="scroller"><table class="jasp">
+              <caption>Model Summary - Poeng</caption>
+              <thead><tr><th>Model</th><th>R</th><th>R²</th><th>Adjusted R²</th><th>RMSE</th></tr></thead>
+              <tbody>
+                <tr><td>M₀</td><td>0.000</td><td>0.000</td><td>0.000</td><td>15.00</td></tr>
+                <tr><td>M₁</td><td>0.450</td><td>0.203</td><td>0.192</td><td>13.49</td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="5">Note. M₁ includes Timer.</td></tr></tfoot>
+            </table></div>
+            <div class="scroller"><table class="jasp">
+              <caption>ANOVA</caption>
+              <thead><tr><th>Model</th><th></th><th>Sum of Squares</th><th>df</th><th>Mean Square</th><th>F</th><th>p</th></tr></thead>
+              <tbody>
+                <tr><td>M₁</td><td>Regression</td><td>3371.63</td><td>1</td><td>3371.63</td><td>18.54</td><td>&lt; .001</td></tr>
+                <tr><td></td><td>Residual</td><td>13278.38</td><td>73</td><td>181.90</td><td></td><td></td></tr>
+                <tr><td></td><td>Total</td><td>16650.00</td><td>74</td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table></div>
+            <div class="scroller"><table class="jasp">
+              <caption>Coefficients</caption>
+              <thead><tr><th>Model</th><th></th><th>Unstandardized</th><th>Standard Error</th><th>Standardized</th><th>t</th><th>p</th></tr></thead>
+              <tbody>
+                <tr><td>M₁</td><td>(Intercept)</td><td>43.800</td><td>4.072</td><td></td><td>10.756</td><td>&lt; .001</td></tr>
+                <tr><td></td><td>Timer</td><td>1.350</td><td>0.314</td><td>0.450</td><td>4.305</td><td>&lt; .001</td></tr>
+              </tbody>
+            </table></div>
+            <ul>
+              <li><b>Tre tabeller, tre spørsmål.</b> Model Summary: hvor mye forklares (R²)? ANOVA: forklares mer enn null (F)? Coefficients: hvor bratt er linja (b)?</li>
+              <li><b>b = 1.350:</b> én time mer studering per uke gir i snitt 1.35 flere poeng. t = 1.350 / 0.314 ≈ 4.31.</li>
+              <li><b>Med én prediktor er F = t²:</b> 4.305² ≈ 18.54. Testen av modellen og testen av b er den samme testen.</li>
+              <li><b>Standardized = 0.450 er r</b>, og R² = 0.450² ≈ .20. Timer studert forklarer 20 % av forskjellene i poeng.</li>
+              <li><b>M₀ er modellen uten prediktorer.</b> Den gjetter snittet for alle, og RMSE er da SD for poeng.</li>
+            </ul>
+            <p class="ov-apa"><b>Slik skrives det</b>Timer studert predikerte poeng, b = 1.35, 95 % KI [0.73, 1.97], β = .45, t(73) = 4.31, p &lt; .001. Modellen forklarte 20 % av variasjonen, R² = .20, F(1, 73) = 18.54, p &lt; .001.</p>
+          </div>
+
+          <div class="ov-view" data-ov-view="multi">
+            <div class="scroller"><table class="jasp">
+              <caption>Model Summary - Poeng</caption>
+              <thead><tr><th>Model</th><th>R</th><th>R²</th><th>Adjusted R²</th><th>RMSE</th></tr></thead>
+              <tbody>
+                <tr><td>M₀</td><td>0.000</td><td>0.000</td><td>0.000</td><td>15.00</td></tr>
+                <tr><td>M₁</td><td>0.568</td><td>0.323</td><td>0.304</td><td>12.51</td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="5">Note. M₁ includes Timer, Søvn.</td></tr></tfoot>
+            </table></div>
+            <div class="scroller"><table class="jasp">
+              <caption>ANOVA</caption>
+              <thead><tr><th>Model</th><th></th><th>Sum of Squares</th><th>df</th><th>Mean Square</th><th>F</th><th>p</th></tr></thead>
+              <tbody>
+                <tr><td>M₁</td><td>Regression</td><td>5373.41</td><td class="ov-ny">2</td><td>2686.70</td><td>17.15</td><td>&lt; .001</td></tr>
+                <tr><td></td><td>Residual</td><td>11276.59</td><td class="ov-ny">72</td><td>156.62</td><td></td><td></td></tr>
+                <tr><td></td><td>Total</td><td>16650.00</td><td>74</td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table></div>
+            <div class="scroller"><table class="jasp">
+              <caption>Coefficients</caption>
+              <thead><tr><th>Model</th><th></th><th>Unstandardized</th><th>Standard Error</th><th>Standardized</th><th>t</th><th>p</th></tr></thead>
+              <tbody>
+                <tr><td>M₁</td><td>(Intercept)</td><td>12.053</td><td>9.651</td><td></td><td>1.249</td><td>.216</td></tr>
+                <tr><td></td><td>Timer</td><td>1.455</td><td>0.292</td><td>0.485</td><td>4.974</td><td>&lt; .001</td></tr>
+                <tr class="ov-ny"><td></td><td>Søvn</td><td>4.356</td><td>1.218</td><td>0.348</td><td>3.575</td><td>&lt; .001</td></tr>
+              </tbody>
+            </table></div>
+            <ul>
+              <li><b>F tester alle prediktorene samlet:</b> F(2, 72) = 17.15. df₁ er antall prediktorer, og df₂ = N − prediktorer − 1.</li>
+              <li><b>Hver b gjelder når de andre holdes konstant.</b> b for timer steg fra 1.35 til 1.45 da søvn kom med. De som studerer mye, sover litt mindre, og søvn gir poeng. Alene ble timer studert trukket litt ned av søvnen som gikk tapt.</li>
+              <li><b>Sammenlign prediktorene med β, ikke b.</b> b er størst for søvn (4.36), men søvnen varierer lite. β er målt i standardavvik, og der veier timer (.48) mer enn søvn (.35).</li>
+              <li><b>R² = .32:</b> sammen forklarer de 32 %. Justert R² (.304) er litt lavere, fordi modellen har fått en prediktor til.</li>
+            </ul>
+            <p class="ov-apa"><b>Slik skrives det</b>Timer studert og søvn forklarte sammen 32 % av variasjonen i poeng, R² = .32, F(2, 72) = 17.15, p &lt; .001. Begge bidro unikt: timer studert, b = 1.45, β = .48, t(72) = 4.97, p &lt; .001, og søvn, b = 4.36, β = .35, t(72) = 3.58, p &lt; .001.</p>
+          </div>
+
+          <div class="ov-view" data-ov-view="hier">
+            <div class="scroller"><table class="jasp reg-wrap">
+              <caption>Model Summary - Poeng</caption>
+              <thead><tr><th>Model</th><th>R</th><th>R²</th><th>Adjusted R²</th><th>RMSE</th><th class="ov-ny">R² Change</th><th class="ov-ny">F Change</th><th class="ov-ny">df1</th><th class="ov-ny">df2</th><th class="ov-ny">p</th></tr></thead>
+              <tbody>
+                <tr><td>M₀</td><td>0.450</td><td>0.203</td><td>0.192</td><td>13.49</td><td class="ov-ny">0.203</td><td class="ov-ny">18.54</td><td class="ov-ny">1</td><td class="ov-ny">73</td><td class="ov-ny">&lt; .001</td></tr>
+                <tr><td>M₁</td><td>0.568</td><td>0.323</td><td>0.304</td><td>12.51</td><td class="ov-ny">0.120</td><td class="ov-ny">12.78</td><td class="ov-ny">1</td><td class="ov-ny">72</td><td class="ov-ny">&lt; .001</td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="10">Note. M₀ includes Timer. M₁ includes Timer, Søvn.</td></tr></tfoot>
+            </table></div>
+            <ul>
+              <li><b>Hver blokk får sin egen rad.</b> M₀ er timer alene, altså den enkle regresjonen. M₁ er timer pluss søvn, altså den multiple. Tallene i begge radene har du sett i de to andre fanene, og Coefficients for M₁ er den samme som i den multiple.</li>
+              <li><b>R² Change i M₁ er svaret:</b> .323 − .203 = .120. Søvn forklarer 12 prosentpoeng mer, utover timer.</li>
+              <li><b>F Change(1, 72) = 12.78, p &lt; .001</b> tester om tillegget er større enn null. Når blokken har én prediktor, er F Change = t² for den prediktoren: 3.575² ≈ 12.78.</li>
+              <li><b>Rekkefølgen bestemmer du før analysen</b>, ut fra teorien. Det du vil kontrollere for, kommer først. Med søvn i blokk 1 ville søvn alene forklart 9 %, og timer lagt til 23 prosentpoeng.</li>
+            </ul>
+            <p class="ov-apa"><b>Slik skrives det</b>I trinn 1 forklarte timer studert 20 % av variasjonen i poeng, R² = .20, F(1, 73) = 18.54, p &lt; .001. Søvn ble lagt til i trinn 2 og forklarte 12 prosentpoeng mer, ΔR² = .12, F(1, 72) = 12.78, p &lt; .001.</p>
+          </div>
+        </div>
+        <div class="aside"><b>Det viktigste skillet:</b> enkel og multippel regresjon er én modell hver. Hierarkisk regresjon er to modeller som sammenlignes, og den siste av dem er den multiple. Koeffisientene blir derfor de samme. Det nye er spørsmålet. Det er ikke lenger «hva predikerer poeng?», men «hva legger søvn til?». Mer i <a href="#b">Linja</a>, <a href="#R2">Forklart variasjon</a>, <a href="#dR2">Endringen i forklart variasjon</a> og <a href="#kontroll">Statistisk kontroll</a>.</div>
+      </div>
+    </section>
+
     <!-- ==================== DEL 0 ==================== -->
-    <section class="partbreak first" id="del0">
+    <section class="partbreak" id="del0">
       <p class="eyebrow">Del 0</p>
       <h2 class="parttitle">Grunnbegrepene</h2>
       <p class="partlede">Før symbolene betyr noe, må du vite hva slags ting de beskriver. Denne delen har nesten ingen regning. Den gir deg vokabularet du trenger for å forstå hva en studie i det hele tatt gjør, og de få reglene for sannsynlighet som du kan bruke i hodet.</p>
@@ -13323,6 +13825,26 @@ const JASPGEN = (function(){
   const typing = t => t && t.matches && t.matches('input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=button]), textarea, select');
   document.addEventListener('focusin', e=>{ if(typing(e.target)) document.body.classList.add('typing'); });
   document.addEventListener('focusout', e=>{ if(typing(e.target)) document.body.classList.remove('typing'); });
+})();
+
+/* ================= Start her: fanene som bytter mellom variantene av en analyse =================
+   Uten skript står alle utskriftene under hverandre. Lenkene i oversiktstabellen velger riktig fane. */
+(function oversikt(){
+  document.querySelectorAll('[data-ov]').forEach(panel=>{
+    const btns = [...panel.querySelectorAll('[data-ov-v]')], views = [...panel.querySelectorAll('[data-ov-view]')];
+    if(!btns.length) return;
+    const show = v => {
+      btns.forEach(b=> b.setAttribute('aria-pressed', b.dataset.ovV === v ? 'true' : 'false'));
+      views.forEach(el=> el.hidden = el.dataset.ovView !== v);
+    };
+    btns.forEach(b=> b.addEventListener('click', ()=> show(b.dataset.ovV)));
+    show(btns[0].dataset.ovV);
+  });
+  document.querySelectorAll('a[data-ov-go]').forEach(a=> a.addEventListener('click', ()=>{
+    const sec = document.getElementById(a.getAttribute('href').slice(1));
+    const b = sec && sec.querySelector('[data-ov-v="' + a.dataset.ovGo + '"]');
+    if(b) b.click();
+  }));
 })();
 
 /* ================= frakoblet: legg siden i hurtigbufferen, så den virker uten nett ================= */

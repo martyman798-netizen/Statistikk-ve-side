@@ -1,6 +1,7 @@
 # Statistikkens alfabet
 
-En interaktiv, selvstendig nettside om statistikk for PSY300. Fire deler:
+En interaktiv, selvstendig nettside om statistikk for PSY300. Først et
+oversiktsark over analysene, så fire deler:
 grunnbegrepene, tegnene med en sandkasse du kan dra i, en leseordbok for
 vitenskapelige artikler, og til slutt resonnementet som binder det sammen til
 en studie — modellen hypotesene kommer fra, hvilken analyse som svarer på
@@ -97,6 +98,16 @@ npm run deploy
 
 ## Notater
 
+- **Start her** (`#start`, før Del 0) er oversiktsarket over analysene:
+  `#ov-kart` viser de tre familiene (t-test, ANOVA, regresjon), delene
+  hvert resultat består av, og en tabell med alle ni variantene. `#ov-t`,
+  `#ov-anova` og `#ov-reg` sammenligner tre varianter hver i en tabell der
+  rader merket `oc-likt` er det som er likt i alle tre, og har en JASP-lik
+  utskrift per variant bak fanene (`data-ov`, `data-ov-v`,
+  `data-ov-view`). Celler merket `ov-ny` er det som er særegent for
+  varianten. Tallene er regnet ut på forhånd og henger sammen (p fra t
+  eller F og df, SS summerer seg til samme total i de tre ANOVA-ene, og
+  den hierarkiske regresjonen består av den enkle og den multiple).
 - Søket (`/` eller knappen i toppbaren) slår opp i alle ordbokstabellene,
   seksjonene, «falske venner»-boksene, veivisertabellene, forklaringsboksene
   og den løpende teksten. Greske tegn indekseres både på lyden og på formen,

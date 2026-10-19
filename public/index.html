@@ -763,6 +763,15 @@ table.ov-cmp td.oc-res{font-family:var(--mono);font-size:12px;color:var(--ink)}
 table.ov-cmp td.oc-likt{color:var(--ink);background:color-mix(in srgb, var(--good) 11%, transparent);border-left:3px solid var(--good);padding-left:10px}
 table.ov-cmp td.oc-likt::before{content:"Likt i alle tre";display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--good);font-weight:600;margin-bottom:1px}
 
+table.mini.ov-velg{max-width:640px;margin:10px 0 0}
+table.mini.ov-velg td{vertical-align:middle}
+table.mini.ov-velg td:first-child, table.mini.ov-velg td:nth-child(2){font-family:var(--mono);font-size:13px;font-weight:500;white-space:nowrap}
+table.mini.ov-velg td:last-child a{font-weight:600;color:var(--accent);text-decoration:none}
+table.mini.ov-velg td:last-child a:hover{text-decoration:underline}
+.ov-ja, .ov-nei{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:600;padding:0 7px;border-radius:3px;line-height:1.6}
+.ov-ja{color:var(--good);background:color-mix(in srgb, var(--good) 13%, transparent)}
+.ov-nei{color:var(--mark);background:var(--mark-soft)}
+.entry .ov-velg-note{margin-top:10px;font-size:15px;color:var(--ink-2)}
 .ov-panel .chips{margin-top:0}
 .entry .ov-key{display:flex;align-items:center;gap:7px;margin:10px 0 0;font-family:var(--mono);font-size:11px;color:var(--ink-3)}
 .ov-sw{display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--mark-soft);border:1px solid color-mix(in srgb, var(--mark) 35%, transparent)}
@@ -818,6 +827,15 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
 .tipbox .sk-skala li{display:contents}
 .tipbox .sk-v{font-family:var(--mono);font-size:12px;white-space:nowrap;justify-self:start;background:var(--surface-2);border:1px solid var(--rule-soft);border-radius:4px;padding:0 6px}
 .tipbox .sk-merk{margin-top:9px;font-size:13.5px;color:var(--ink-2)}
+.tipbox .tb-enkelt{margin:8px 0 0;padding:8px 10px;border-left:3px solid var(--good);background:color-mix(in srgb, var(--good) 9%, transparent);border-radius:0 4px 4px 0}
+.tipbox .tb-enkelt p + .tb-lab{margin-top:7px}
+.tipbox .tb-lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--good);font-weight:600}
+.tipbox .tb-eks{margin-top:8px;padding:8px 10px;background:var(--accent-soft);border-radius:4px;font-size:14px;color:var(--ink)}
+.tipbox .tb-presist{margin-top:10px;border-top:1px solid var(--rule-soft);padding-top:6px}
+.tipbox .tb-presist > summary{cursor:pointer;font-family:var(--mono);font-size:11.5px;color:var(--accent);list-style:none}
+.tipbox .tb-presist > summary::-webkit-details-marker{display:none}
+.tipbox .tb-presist > summary::before{content:"+ ";color:var(--mark);font-weight:600}
+.tipbox .tb-presist[open] > summary::before{content:"− "}
 .tipbox .tb-mer{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none}
 .tipbox .tb-mer:hover{text-decoration:underline}
 .tipbox.sheet{left:8px !important;right:8px;top:auto !important;bottom:calc(66px + env(safe-area-inset-bottom));width:auto;max-height:52vh;padding:14px 16px;font-size:15px}
@@ -1074,6 +1092,21 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
           <p class="oa-merk">Bytter du analyse, får delene nye navn, men de er de samme fem.</p>
         </div>
 
+        <h3>Velg analysen: er det de samme personene på begge sider?</h3>
+        <p>Skal du sammenligne gjennomsnitt, avgjør tre ting valget: hvor mange faktorer du har, hvor mange nivåer de har, og om det er de samme personene som måles på hvert nivå.</p>
+        <div class="scroller"><table class="mini ov-velg">
+          <thead><tr><th>Faktorer</th><th>Nivåer</th><th>Samme personer?</th><th>Metode</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>2</td><td><span class="ov-nei">nei</span></td><td><a href="#ov-t" data-ov-go="uavh">uavhengig t-test</a></td></tr>
+            <tr><td>1</td><td>2</td><td><span class="ov-ja">ja</span></td><td><a href="#ov-t" data-ov-go="paret">paret t-test</a></td></tr>
+            <tr><td>1</td><td>3+</td><td><span class="ov-nei">nei</span></td><td><a href="#ov-anova" data-ov-go="enveis">enveis ANOVA</a></td></tr>
+            <tr><td>2</td><td>2 × 2, 2 × 3 …</td><td><span class="ov-nei">nei</span>, på begge</td><td><a href="#ov-anova" data-ov-go="fakt">faktoriell ANOVA</a></td></tr>
+            <tr><td>1</td><td>3+</td><td><span class="ov-ja">ja</span></td><td><a href="#ov-anova" data-ov-go="gjentatt">ANOVA for gjentatte målinger</a></td></tr>
+            <tr><td>2</td><td>2 × 3</td><td><span class="ov-ja">ja</span> på den ene, <span class="ov-nei">nei</span> på den andre</td><td><a href="#rm-blandet">blandet ANOVA</a></td></tr>
+          </tbody>
+        </table></div>
+        <p class="ov-velg-note">To tilfeller står ikke i tabellen. Ett snitt mot en fast verdi, for eksempel en norm, gir <a href="#ov-t" data-ov-go="en">ettutvalgs t-test</a>. Er X målt som tall i stedet for grupper, er det <a href="#ov-reg">regresjon</a>. Blandet ANOVA har ingen egen utskrift her. Den står under <a href="#rm-blandet">gjentatte målinger</a>, der Tid × Gruppe er testen.</p>
+
         <h3>Alle ni på én gang</h3>
         <p>Trykk på navnet for å se hele utskriften. Kolonnen til høyre sier hva du skal se etter først i utskriften.</p>
         <div class="scroller"><table class="ov-tab">
@@ -1093,7 +1126,7 @@ table.mini.ov-celler td{font-variant-numeric:tabular-nums}
             <tr><td><a href="#ov-reg" data-ov-go="hier">Hierarkisk regresjon</a></td><td>Prediktorer i blokker: tilfører blokk 2 noe?</td><td class="ot-res">ΔR² = .12, F(1, 72) = 12.78, p &lt; .001</td><td>R² Change og F Change i raden for den siste modellen</td></tr>
           </tbody>
         </table></div>
-        <div class="aside"><b>Tre spørsmål avgjør valget.</b> (1) <em>Er X grupper eller tall?</em> Grupper gir t-test eller ANOVA, tall gir regresjon. (2) <em>Hvor mange?</em> To snitt gir t-test. Tre eller flere snitt, eller flere faktorer, gir ANOVA. Én prediktor gir enkel regresjon, flere gir multippel, og prediktorer i blokker gir hierarkisk. (3) <em>Samme eller ulike personer?</em> Samme personer gir paret t-test eller gjentatte målinger. Ulike personer gir uavhengig t-test, enveis eller faktoriell ANOVA. Flere eksempler står i <a href="#loypa">Analyseløypa</a> og <a href="#hypoteser">Fra hypotese til testrad</a>.</div>
+        <div class="aside"><b>Det samme spørsmålet gjelder regresjon.</b> Én prediktor gir enkel regresjon, flere samtidig gir multippel, og prediktorer i blokker gir hierarkisk. Flere eksempler på hvilket spørsmål som hører til hvilken analyse står i <a href="#loypa">Analyseløypa</a> og <a href="#hypoteser">Fra hypotese til testrad</a>.</div>
         <div class="aside"><b>Familiene er i slekt.</b> Med to grupper gir en enveis ANOVA og en uavhengig t-test nøyaktig samme p, og F = t². En ANOVA er en regresjon der gruppene er kodet som 0 og 1, og da er η² det samme som R². Derfor ligner utskriftene hverandre så mye. Se <a href="#samme">Samme modell, flere navn</a>.</div>
       </div>
     </section>
@@ -13876,6 +13909,10 @@ const JASPGEN = (function(){
     const b = sec && sec.querySelector('[data-ov-v="' + a.dataset.ovGo + '"]');
     if(b) b.click();
   }));
+  document.querySelectorAll('#ov-kart a[href^="#"]').forEach(a=> a.addEventListener('click', ()=>{
+    const d = document.getElementById(a.getAttribute('href').slice(1));
+    if(d && d.tagName === 'DETAILS') d.open = true;
+  }));
 })();
 
 /* ================= Start her: hold pekeren over et tegn, så forklares det =================
@@ -13958,6 +13995,137 @@ const JASPGEN = (function(){
       verdier:'Fra 0 til 1. Med én prediktor er R det samme som |r|.',
       skala:[['0.450','R² = 0.450² ≈ .20.']]}
   };
+  /* Enkelt sagt: hva tallet er og hva det brukes til, med vanlige ord, og hva det betyr i studien
+     tegnet står i. x er enten én tekst eller én per seksjon (ov-t: appstudien, ov-anova: ordstudien,
+     ov-reg: studietimestudien). */
+  const ENKELT = {
+    t: {e:'Et tall for hvor tydelig en forskjell eller sammenheng er. Det sammenligner hvor stor forskjellen er med hvor mye tallene ville hoppet rundt av ren tilfeldighet.',
+        f:'For å finne ut om det du ser er ekte, eller bare flaks med hvem som tilfeldigvis ble med i studien.',
+        x:{'ov-t':'I appstudien er t = −2.47: forskjellen i stress mellom appgruppen og kontrollgruppen er nesten 2,5 ganger så stor som det tilfeldighetene vanligvis lager. Det er tydelig nok til å regnes som en ekte forskjell.',
+           'ov-reg':'I studietimestudien er t = 4.31 for timer studert: sammenhengen mellom studietimer og poeng er over fire ganger så stor som usikkerheten. Den er neppe tilfeldig.'}},
+    p: {e:'Hvor overraskende resultatet ville vært hvis det egentlig ikke fantes noen effekt.',
+        f:'For å avgjøre om vi kan stole på at funnet ikke bare er tilfeldig. Lav p betyr at tilfeldigheter er en dårlig forklaring. p sier ingenting om hvor stor eller viktig effekten er.',
+        x:{'ov-t':'I appstudien er p = .017: hvis appen ikke virket i det hele tatt, ville en forskjell minst så stor dukket opp i under 2 av 100 slike studier. Derfor regnes forskjellen som signifikant.',
+           'ov-anova':'I ordstudien er p = .003 i enveis ANOVA: hvis strategien ikke betydde noe, ville så ulike snitt dukket opp i bare 3 av 1000 slike studier.',
+           'ov-reg':'I studietimestudien er p < .001: det er svært lite sannsynlig å finne en så tydelig sammenheng mellom studietimer og poeng hvis det egentlig ikke fantes noen.'}},
+    d: {e:'Hvor stor forskjellen mellom to grupper er, målt i hvor mye folk vanligvis skiller seg fra hverandre (standardavvik).',
+        f:'For å si om forskjellen betyr noe i praksis, ikke bare om den er ekte. Fordi den ikke avhenger av skalaen, kan den sammenlignes med andre studier.',
+        x:'I appstudien er d = −0.70: appgruppen ligger 0.7 standardavvik lavere i stress enn kontrollgruppen. Det er en middels til stor forskjell, som merkes i hverdagen.'},
+    F: {e:'Det samme som t, men for flere grupper eller en hel modell på én gang: hvor mye større forskjellene mellom gruppene er enn forskjellene innad i gruppene.',
+        f:'For å finne ut om det finnes noen forskjell i det hele tatt, eller om modellen forklarer noe. Den sier ikke hvilke grupper som skiller seg.',
+        x:{'ov-t':'I appstudien er F = 0.040 i Levenes test: nesten ingen forskjell i hvor mye de to gruppene sprer seg.',
+           'ov-anova':'I ordstudien er F = 6.66 i enveis ANOVA: snittene for de tre strategiene spriker nesten sju ganger mer enn tilfeldighetene ville gitt.',
+           'ov-reg':'I studietimestudien er F = 18.54: modellen med studietimer forklarer klart mer enn å gjette snittet for alle.'}},
+    'η²': {e:'Hvor stor del av forskjellene mellom personene som henger sammen med hvilken gruppe de var i.',
+        f:'For å vise hvor mye gruppen faktisk betyr. En signifikant F kan skjule en liten effekt. η² viser størrelsen.',
+        x:'I ordstudien er η² = .19: 19 % av grunnen til at noen husker flere ord enn andre, henger sammen med hvilken strategi de brukte. Resten skyldes andre ting.'},
+    'η²p': {e:'Som η², men effekten måles bare mot det som er igjen når de andre faktorene er tatt bort.',
+        f:'For å vise hvor stor hver enkelt effekt er når analysen har flere faktorer, eller de samme personene er målt flere ganger.',
+        x:'I ordstudien er η²p = .45 ved gjentatte målinger: når forskjellene mellom personene er tatt bort, forklarer strategien nesten halvparten av variasjonen som er igjen.'},
+    'R²': {e:'Hvor stor del av forskjellene i utfallet modellen klarer å forklare. 0 er ingenting, 1 er alt.',
+        f:'For å vite hvor mye du vet om utfallet når du kjenner prediktorene, altså hvor godt modellen forklarer det.',
+        x:'I studietimestudien er R² = .20: studietimer forklarer en femtedel av hvorfor noen får flere poeng enn andre. De andre 80 % skyldes andre ting, som søvn, forkunnskaper eller flaks.'},
+    'β': {e:'Hvor sterkt en prediktor henger sammen med utfallet, regnet om til samme skala for alle prediktorene.',
+        f:'For å se hvilken prediktor som betyr mest, når de er målt på ulike måter.',
+        x:'I studietimestudien er β = .48 for timer studert og .35 for søvn: studietimene betyr mest for poengene, selv om b er størst for søvn.'},
+    b: {e:'Hvor mye utfallet endrer seg når prediktoren øker med én enhet.',
+        f:'For å si hvor mye det «lønner seg» med én enhet mer av X, i utfallets egne enheter.',
+        x:'I studietimestudien er b = 1.35: hver ekstra time studert per uke gir i snitt 1.35 flere poeng på prøven.'},
+    M: {e:'Gjennomsnittet: der gruppen ligger i midten.',
+        f:'For å beskrive hvor høyt eller lavt en gruppe typisk skårer. Det er utgangspunktet for alle sammenligningene.',
+        x:{'ov-t':'I appstudien er M = 17.5: studentene i appgruppen hadde i snitt et stresskår på 17.5 av 40.',
+           'ov-anova':'I ordstudien er M = 19 for selvtesting: de som testet seg selv, husket i snitt 19 av 30 ord.'}},
+    SD: {e:'Hvor mye personene spriker rundt gjennomsnittet.',
+        f:'For å vise om gruppen er lik eller ulik innad. Den er også målestokken for hvor stor en forskjell er.',
+        x:{'ov-t':'I appstudien er SD = 5.0: omtrent to av tre i appgruppen hadde et stresskår innenfor 5 poeng fra snittet på 17.5.',
+           'ov-reg':'I studietimestudien er SD = 5 for timer studert og 1.2 for søvn: studietimene varierer mye mer mellom studentene enn søvnen gjør.'}},
+    H0: {e:'Utgangspunktet om at ingenting skjer: appen virker ikke, strategien spiller ingen rolle, timene henger ikke sammen med poengene.',
+        f:'For å ha noe å teste mot. Funnet regnes som ekte bare hvis det passer dårlig med H₀.',
+        x:{'ov-t':'I appstudien sier H₀: μ₁ = μ₂ at appgruppen og kontrollgruppen egentlig har like mye stress.',
+           'ov-anova':'I ordstudien sier H₀ at alle tre strategiene gir like mange ord i snitt: μ₁ = μ₂ = μ₃.',
+           'ov-reg':'I studietimestudien sier H₀ at b = 0: studietimer henger ikke sammen med poeng.'}},
+    levene: {e:'En sjekk av om gruppene sprer seg omtrent like mye.',
+        f:'For å vite om du kan bruke den vanlige testen, eller må bruke en som tåler ulik spredning (Welch).',
+        x:{'ov-t':'I appstudien er p = .842: gruppene sprer seg omtrent like mye, så den vanlige raden (Student) kan brukes.',
+           'ov-anova':'I ordstudien hører Levene til enveis og faktoriell ANOVA. Er p under .05, bruker du Welchs F. Ved gjentatte målinger er det Mauchly som gjelder i stedet.'}},
+    welch: {e:'To versjoner av samme test. Student antar at gruppene sprer seg like mye, Welch gjør det ikke.',
+        f:'For å vite hvilken rad du skal lese og rapportere.',
+        x:'I appstudien er radene like, fordi begge gruppene har SD = 5.0.'},
+    mauchly: {e:'En sjekk som brukes når de samme personene er målt flere ganger: varierer endringene omtrent like mye mellom alle målingene?',
+        f:'For å vite om du kan lese den vanlige raden, eller må lese en korrigert rad.',
+        x:'I ordstudien er p = .520: ingen problem, så den ukorrigerte raden gjelder.'},
+    'ε': {e:'Et tall for hvor godt kravet om sfærisitet holder. 1 er perfekt.',
+        f:'For å justere testen slik at den blir rettferdig når kravet ikke holder helt.',
+        x:'I ordstudien er Greenhouse–Geisser ε = .935: nær 1, så det trengs nesten ingen korreksjon.'},
+    'ΔR²': {e:'Hvor mye mer modellen forklarer når du legger til nye prediktorer.',
+        f:'For å finne ut om en ny variabel tilfører noe nytt, utover det du allerede visste.',
+        x:'I studietimestudien er ΔR² = .12: når søvn legges til, forklarer modellen 12 prosentpoeng mer av poengene enn studietimene gjorde alene.'},
+    'μ': {e:'Gjennomsnittet i hele populasjonen, altså alle studenter, ikke bare de som var med i studien.',
+        f:'For å skille det vi egentlig vil vite noe om fra det vi målte. Utvalget brukes til å gjette på μ.',
+        x:'I appstudien er μ₀ = 20 normen: et vanlig stresskår for studenter.'},
+    SE: {e:'Hvor mye resultatet ville variert hvis du gjorde studien på nytt med andre personer.',
+        f:'For å si hvor presist tallet ditt er. Liten SE betyr at tallet er til å stole på.',
+        x:{'ov-t':'I appstudien er SE = 1.41: forskjellen på −3.5 kunne lett blitt et par poeng annerledes i en ny studie, men neppe null.',
+           'ov-reg':'I studietimestudien er SE = 0.314 for b: anslaget på 1.35 poeng per time er ganske presist.'}},
+    df: {e:'Hvor mye informasjon testen har å bygge på. Det henger tett sammen med hvor mange som var med.',
+        f:'For å vite hvor stort testtallet må være for å bli signifikant, og for å kunne regne ut hvor mange deltagere studien hadde.',
+        x:{'ov-t':'I appstudien er df = 48 i den uavhengige testen: 25 + 25 deltagere minus 2.',
+           'ov-anova':'I ordstudien betyr F(2, 57): 3 strategier minus 1, og 60 studenter minus 3 grupper.',
+           'ov-reg':'I studietimestudien er df = 73: 75 studenter minus 2.'}},
+    meandiff: {e:'Hvor mye snittene skiller seg, i de vanlige poengene.',
+        f:'For å vise hvor stor forskjellen er på skalaen deltagerne faktisk svarte på.',
+        x:'I appstudien er den −3.500: appgruppen hadde 3.5 poeng lavere stress enn kontrollgruppen, på en skala fra 0 til 40.'},
+    ss: {e:'Hvor mye av variasjonen en rad i tabellen står for. Tenk på det som hvor stor bit av kaka raden får.',
+        f:'For å dele opp forskjellene mellom personene i det effekten forklarer og det som er støy.',
+        x:{'ov-anova':'I ordstudien står strategien for 253 av totalt 1337, altså omtrent en femdel av all variasjonen i antall ord.',
+           'ov-reg':'I studietimestudien forklarer modellen med timer studert 3372 av totalt 16650, altså omtrent 20 %. Det er R².'}},
+    ms: {e:'En gjennomsnittlig variasjon: SS delt på antall frihetsgrader.',
+        f:'For å kunne sammenligne effekten og støyen rettferdig. F er MS for effekten delt på MS for støyen.',
+        x:{'ov-anova':'I ordstudien er det 126.67 mot 19.02 i enveis ANOVA: effekten er mange ganger større enn støyen, og det gir F = 6.66.',
+           'ov-reg':'I studietimestudien er det 3371.63 mot 181.90: den forklarte variasjonen er mye større enn den uforklarte, og det gir F = 18.54.'}},
+    residuals: {e:'Alt modellen ikke klarer å forklare: forskjeller mellom personer som har andre årsaker.',
+        f:'For å vite hvor mye støy effekten må skille seg ut fra. Mindre støy gjør det lettere å se en effekt.',
+        x:{'ov-anova':'I ordstudien er feilleddet 1084 i enveis ANOVA, men bare 304 ved gjentatte målinger, fordi forskjellene mellom personene er tatt ut.',
+           'ov-reg':'I studietimestudien er det poengforskjellene som ikke henger sammen med studietimer eller søvn.'}},
+    interaksjon: {e:'At effekten av én ting avhenger av en annen ting. Svaret er «det kommer an på».',
+        f:'For å finne ut om en effekt gjelder likt for alle, eller bare for noen.',
+        x:'I ordstudien: hjelper selvtesting mer for dem som sov godt? +7 mot +3 ord ser slik ut, men p = .198 betyr at det godt kan være tilfeldig.'},
+    'χ²': {e:'Et tall for hvor langt det du observerte ligger fra det du ville ventet hvis det ikke var noe å finne.',
+        f:'For å teste antall og andeler. Her brukes det til å teste kravet om sfærisitet.',
+        x:'I ordstudien er χ² = 1.31 i Mauchlys test: et lite avvik fra kravet.'},
+    r: {e:'Hvor tett to ting henger sammen, fra −1 til 1.',
+        f:'For å se om høye verdier på én ting går sammen med høye, eller lave, verdier på en annen.',
+        x:'I studietimestudien er r = −.10: de som studerer mye, sover litt mindre, men sammenhengen er svak.'},
+    Rmult: {e:'Hvor tett det modellen gjetter, henger sammen med det som faktisk skjedde.',
+        f:'For å se hvor godt modellen treffer. Kvadrert blir den R², og det er R² som tolkes.',
+        x:'I studietimestudien er R = .568 med begge prediktorene, og R² = .32.'},
+    adjR2: {e:'R² med et lite fradrag for hver prediktor modellen har.',
+        f:'For å få et ærligere anslag på hvor mye modellen ville forklart hos nye personer.',
+        x:'I studietimestudien er det 0.304 mot 0.323: fradraget er lite, fordi det er mange studenter per prediktor.'},
+    rmse: {e:'Hvor mye modellens gjetninger typisk bommer, i poeng.',
+        f:'For å vite hvor presist du kan forutsi én persons resultat.',
+        x:'I studietimestudien er RMSE = 13.49: kjenner du studietimene, bommer gjetningen typisk med rundt 13 poeng, mot 15 uten.'},
+    intercept: {e:'Startpunktet til linja: det modellen gjetter når prediktorene er 0.',
+        f:'Mest som et regnepunkt. Det sier sjelden noe interessant om studien.',
+        x:'I studietimestudien er det 43.8: en som ikke studerer i det hele tatt, får i snitt 43.8 poeng ifølge modellen.'},
+    KI: {e:'Et område med de verdiene som passer med dataene.',
+        f:'For å vise hvor sikkert tallet er: et smalt intervall er presist, et bredt er usikkert.',
+        x:'I studietimestudien er 95 % KI [0.73, 1.97]: alt fra omtrent 0.7 til 2 poeng per time passer med dataene. Intervallet inneholder ikke 0, så sammenhengen er signifikant.'}
+  };
+  /* hvilken studie tegnet hører til: seksjonen, eller i «Tre familier» kortet eller tabellgruppen */
+  const FAM = ['ov-t', 'ov-anova', 'ov-reg'];
+  function ctx(t){
+    const sec = t.closest('section[id]')?.id;
+    if(sec !== 'ov-kart') return sec;
+    const card = t.closest('.ov-fam > div');
+    if(card) return FAM[[...card.parentNode.children].indexOf(card)] || 'ov-t';
+    const tr = t.closest('.ov-tab tr');
+    if(tr){
+      const grp = [...tr.parentNode.querySelectorAll('.ot-grp')];
+      for(let r = tr; r; r = r.previousElementSibling) if(r.classList.contains('ot-grp')) return FAM[grp.indexOf(r)] || 'ov-t';
+    }
+    return 'ov-t';
+  }
   /* tekst i utskriftene og tabellene → nøkkel */
   const EKSAKT = {
     't':'t','df':'df','p':'p','F':'F','R²':'R²','η²':'η²','η²p':'η²p','H₀':'H0','Støyen (SE)':'SE',
@@ -14052,8 +14220,8 @@ const JASPGEN = (function(){
     const t = h ? h.textContent.trim() : '';
     return t.includes(':') ? t.split(':')[0] : t;
   }
-  function fill(key){
-    const k = KORT[key], e = EGNE[key];
+  function fill(t){
+    const key = t.dataset.tip, k = KORT[key], e = EGNE[key], en = ENKELT[key];
     if(!k && !e) return false;
     box.textContent = '';
     const head = el('p', 'tb-head');
@@ -14073,26 +14241,39 @@ const JASPGEN = (function(){
     }
     head.append(sym, el('b', null, name), close);
     box.appendChild(head);
-    if(k){
-      const dl = k.querySelector('dl').cloneNode(true);
-      dl.querySelectorAll('dt').forEach(dt=>{ if(/^Hvorfor/.test(dt.textContent)) dt.textContent = 'Hvorfor er det viktig?'; });
-      box.appendChild(dl);
-      const ul = k.querySelector('.sk-skala');
-      if(ul){ box.appendChild(el('p', 'tb-les', 'Slik leser du tallet')); box.appendChild(ul.cloneNode(true)); }
-      const merk = k.querySelector('.sk-merk');
-      if(merk) box.appendChild(merk.cloneNode(true));
-    }else{
-      const dl = el('dl');
-      [['Hva er det?', e.hva], ['Hvorfor er det viktig?', e.hvorfor], ['Hvilke verdier?', e.verdier]].forEach(([t, d])=>{
-        dl.append(el('dt', null, t), el('dd', null, d));
-      });
-      box.appendChild(dl);
-      box.appendChild(el('p', 'tb-les', 'Slik leser du tallet'));
-      const ul = el('ul', 'sk-skala');
-      e.skala.forEach(([v, t])=>{ const li = el('li'); li.append(el('span', 'sk-v'), el('span')); li.children[0].textContent = v; li.children[1].textContent = t; ul.appendChild(li); });
-      box.appendChild(ul);
-      if(e.merk) box.appendChild(el('p', 'sk-merk', e.merk));
+    if(en){
+      const lett = el('div', 'tb-enkelt');
+      lett.append(el('p', 'tb-lab', 'Enkelt sagt'), el('p', null, ''), el('p', 'tb-lab', 'Hvorfor bruker vi det?'), el('p', null, ''));
+      lett.children[1].textContent = en.e;
+      lett.children[3].textContent = en.f;
+      box.appendChild(lett);
+      const x = typeof en.x === 'string' ? en.x : (en.x[ctx(t)] || Object.values(en.x)[0]);
+      if(x){ const eks = el('p', 'tb-eks'); eks.textContent = x; box.appendChild(eks); }
     }
+    /* tallgrensene står fremme, den statistiske definisjonen kan foldes ut */
+    const presist = el('details', 'tb-presist');
+    presist.appendChild(el('summary', null, 'Mer presist'));
+    let dl, ul, merk;
+    if(k){
+      dl = k.querySelector('dl').cloneNode(true);
+      const sk = k.querySelector('.sk-skala');
+      ul = sk && sk.cloneNode(true);
+      merk = k.querySelector('.sk-merk')?.cloneNode(true);
+    }else{
+      dl = el('dl');
+      [['Hva er det?', e.hva], ['Hvorfor bruker vi det?', e.hvorfor], ['Hvilke verdier?', e.verdier]].forEach(([dt, dd])=> dl.append(el('dt', null, dt), el('dd', null, dd)));
+      ul = el('ul', 'sk-skala');
+      e.skala.forEach(([v, tx])=>{ const li = el('li'); li.append(el('span', 'sk-v'), el('span')); li.children[0].textContent = v; li.children[1].textContent = tx; ul.appendChild(li); });
+      if(e.merk) merk = el('p', 'sk-merk', e.merk);
+    }
+    dl.querySelectorAll('dt').forEach(dt=>{
+      if(/^Hva er/.test(dt.textContent)) dt.textContent = 'Definisjon';
+      else if(/^Hvorfor/.test(dt.textContent)) dt.textContent = 'Rollen i analysen';
+    });
+    if(ul){ box.appendChild(el('p', 'tb-les', 'Slik leser du tallet')); box.appendChild(ul); }
+    presist.appendChild(dl);
+    if(merk) presist.appendChild(merk);
+    box.appendChild(presist);
     const sn = secName(secId);
     if(sn){
       const a = el('a', 'tb-mer');
@@ -14118,7 +14299,7 @@ const JASPGEN = (function(){
   function show(t, pin){
     clearTimeout(tHide); clearTimeout(tShow);
     if(cur !== t){
-      if(!fill(t.dataset.tip)) return;
+      if(!fill(t)) return;
       if(cur){ cur.classList.remove('on'); cur.removeAttribute('aria-describedby'); if(cur.hasAttribute('aria-expanded')) cur.setAttribute('aria-expanded', 'false'); }
       cur = t;
       box.scrollTop = 0;

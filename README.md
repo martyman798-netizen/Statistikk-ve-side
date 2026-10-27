@@ -112,11 +112,19 @@ npm run deploy
   på forhånd og henger sammen (p fra t eller F og df, SS summerer seg til
   samme total i de tre ANOVA-ene, r og b gir samme t, og den hierarkiske
   regresjonen består av den enkle og den multiple).
-- **Eksamensfokus.** Faglærer har sagt at partiell og semipartiell
-  korrelasjon og multippel og hierarkisk regresjon ikke vektlegges på
-  eksamen. Alt stoff om det er merket `data-x` og skjult som standard:
-  seksjonene `#dR2`, `#kontroll` og `#vif`, og enkeltdeler, rader og
-  forklaringsbokser ellers. `data-xi` er det motsatte: tekst som bare
+- **Eksamensfokus.** Faglærer har sagt at dette ikke kommer på eksamen,
+  fordi det ikke er gått gjennom i forelesninger eller seminarer:
+  bayesiansk statistikk (i kapittel 3), moderering og mediering
+  (kapittel 10, men interaksjoner i faktoriell og blandet ANOVA er med),
+  ANCOVA (kapittel 12), ikke-parametriske tester (kapittel 15) og
+  logistisk regresjon (kapittel 17). Kapitlene er fra *Discovering
+  Statistics Using JASP* (Field, van Doorn og Wagenmakers, 2025). Fra
+  før vektlegges heller ikke partiell og semipartiell korrelasjon eller
+  multippel og hierarkisk regresjon. Alt stoff om dette er merket `data-x`
+  og skjult som standard: seksjonene `#dR2`, `#kontroll`, `#vif` og
+  `#fam-bayes`, og enkeltdeler, rader og forklaringsbokser ellers.
+  Spearman og Kendalls τ (kapittel 7) og kjikvadrat med oddsforhold
+  (kapittel 16) er ikke skjult. `data-xi` er det motsatte: tekst som bare
   vises når det andre er skjult. Bryteren (`data-xs-toggle`, i `#bruk` og
   i bunnteksten) lagrer valget i `sa-alt-v1` og laster siden på nytt.
   Valget leses i `<head>` og settes som klassen `vis-alt` på `<html>`, så
@@ -124,7 +132,8 @@ npm run deploy
   ordboka og kortene hopper over skjulte rader, og en lenke til noe skjult
   gir en melding med knappen «Vis alt stoffet». Oppgavene i `UTENFOR` og
   JASP-malene i `UTENFOR_GEN` er bare med i øvingen når alt vises, og
-  aldri på prøveeksamen. Skal mer stoff skjules, er det nok å sette
+  aldri på prøveeksamen. Det samme gjelder eksemplene i setningsleseren
+  som er merket `x:true`. Skal mer stoff skjules, er det nok å sette
   `data-x` på det, og legge oppgavenumrene i `UTENFOR`.
 - Tegnene og JASP-ordene i «Start her» forklares i et lite vindu når
   pekeren holdes over dem (trykk på mobil, Enter med tastaturet). Skriptet
